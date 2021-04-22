@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CoffeeStore"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Coffee Store" MinHeight="450" MinWidth="800" WindowState="Maximized" 
+        Title="Coffee Store" MinHeight="450" MinWidth="800" WindowState="Normal" 
         Icon="Images/icon.png"
         >
     <Window.Resources>
@@ -92,7 +92,7 @@
                             <TextBlock Text="Food and Drink" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem x:Name="ItemStorage" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Warehouse" Height="25" Width="25" Margin="10"/>
                             <TextBlock Text="Ware House" VerticalAlignment="Center"  Margin="20 10"/>
@@ -112,6 +112,9 @@
                     </ListViewItem>
                 </ListView>
             </StackPanel>
+        </Grid>
+        <Grid x:Name="GridUserControl" HorizontalAlignment="Center" VerticalAlignment="Center">
+            
         </Grid>
     </Grid>
 </Window>
