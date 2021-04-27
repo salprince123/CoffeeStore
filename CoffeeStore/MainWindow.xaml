@@ -33,7 +33,7 @@
         </EventTrigger>
     </Window.Triggers>
     
-    <Grid Background="#FFDEDEDE">
+    <Grid Background="SeaGreen">
         <Grid x:Name="GridMain"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="2000" Height="2000"/>
         <Grid Height="60" VerticalAlignment="Top" Background="#FF5C99D6">
             <Grid.Effect>

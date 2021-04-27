@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeStore.BUS
 {
-    class BUS_Material
+    public class BUS_Material
     {
         DAL_Material dalVL = new DAL_Material();
         public DataTable selectAll()

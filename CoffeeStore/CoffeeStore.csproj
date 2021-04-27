@@ -111,10 +111,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BUS\BUS_InventoryImport.cs" />
+    <Compile Include="DAL\DAL_InventoryImport.cs" />
+    <Compile Include="DTO\DTO_InventoryImport.cs" />
+    <Compile Include="InventoryImport.xaml.cs">
+      <DependentUpon>InventoryImport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VatLieu.xaml.cs">
       <DependentUpon>VatLieu.xaml</DependentUpon>
     </Compile>
     <Page Include="Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InventoryImport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

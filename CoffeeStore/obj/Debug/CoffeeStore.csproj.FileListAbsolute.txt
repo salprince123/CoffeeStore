@@ -53,3 +53,5 @@ D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\CoffeeStore\bin\De
 D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\CoffeeStore\bin\Debug\Xamarin.Forms.Xaml.pdb
 D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\CoffeeStore\bin\Debug\Xamarin.Forms.Xaml.xml
 D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\CoffeeStore\obj\Debug\XamlC.stamp
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\CoffeeStore\obj\Debug\InventoryImport.g.cs
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\CoffeeStore\obj\Debug\InventoryImport.baml

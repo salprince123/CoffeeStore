@@ -25,13 +25,18 @@ namespace CoffeeStore
         public String t = "testing";
         Home home;
         VatLieu vatLieu;
+        InventoryImport import;
         
         public MainWindow()
         {
             InitializeComponent();
-            vatLieu = new VatLieu();
+
+            /*vatLieu = new VatLieu();
             BUS_Material vatlieu = new BUS_Material();
-            GridUserControl.Children.Add(vatLieu);
+            GridUserControl.Children.Add(vatLieu);*/
+            import = new InventoryImport();
+            BUS_InventoryImport busImport = new BUS_InventoryImport();
+            GridUserControl.Children.Add(import);
         }
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
         {
