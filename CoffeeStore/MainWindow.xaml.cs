@@ -24,10 +24,14 @@ namespace CoffeeStore
     {
         public String t = "testing";
         Home home;
+        VatLieu vatLieu;
         
         public MainWindow()
         {
-            InitializeComponent();                 
+            InitializeComponent();
+            vatLieu = new VatLieu();
+            BUS_Material vatlieu = new BUS_Material();
+            GridUserControl.Children.Add(vatLieu);
         }
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -44,6 +48,7 @@ namespace CoffeeStore
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             GridMain.Children.Clear();
+            GridUserControl.Children.Clear();
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "ItemService":
@@ -55,6 +60,14 @@ namespace CoffeeStore
                     }
                 
                 break;
+                case "ItemStorage":
+                    {
+                        vatLieu = new VatLieu();
+                        BUS_Material vatlieu= new BUS_Material();
+                        GridUserControl.Children.Add(vatLieu);
+                    }
+
+                    break;
                 default:
                     break;
             }
