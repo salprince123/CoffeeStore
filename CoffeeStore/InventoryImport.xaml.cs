@@ -24,6 +24,7 @@ namespace CoffeeStore
     /// </summary>
     public partial class InventoryImport : UserControl
     {
+        public String selectionID = "";
         public class InventoryImportObject
         {
             public int number { get; set; }
@@ -56,7 +57,8 @@ namespace CoffeeStore
         }
         private void dataGridImport_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-
+            InventoryImportObject row = (InventoryImportObject)dataGridImport.SelectedItem;
+            this.selectionID = row.ID;
         }
 
         private void AddImport_Click(object sender, RoutedEventArgs e)
@@ -67,6 +69,20 @@ namespace CoffeeStore
                 Content = new InventoryImportADD()
             };
             window.ShowDialog();
+        }
+
+        private void edit_click(object sender, RoutedEventArgs e)
+        {
+            if (this.selectionID != "")
+            {
+                Window window = new Window
+                {
+                    Title = "Chi tiết phiếu nhập",
+                    Content = new InventoryImportADD(selectionID)
+                };
+                window.ShowDialog();
+            }
+            else MessageBox.Show("Xin vui lòng chọn phiếu cần xem");
         }
     }
 }

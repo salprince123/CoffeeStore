@@ -23,6 +23,7 @@ namespace CoffeeStore.Inventory
     /// </summary>
     public partial class InventoryImportADD : UserControl
     {
+        public String selectionID = "";
         public class InventoryImportDetailObject
         {
             public int number { get; set; }
@@ -35,13 +36,21 @@ namespace CoffeeStore.Inventory
         public InventoryImportADD()
         {
             InitializeComponent();
-            LoadData();
+            if(selectionID!= "")
+                LoadData();
+        }
+        public InventoryImportADD(String id)
+        {
+            this.selectionID = id;
+            InitializeComponent();
+            if (selectionID != "")
+                LoadData();
         }
         public void LoadData()
         {
             var list = new ObservableCollection<InventoryImportDetailObject>();
             BUS_InventoryImport import = new BUS_InventoryImport();
-            DataTable temp = import.selectDetail("Imp0000001");
+            DataTable temp = import.selectDetail(selectionID);
             int number0 = 1;
             Console.WriteLine(temp.Rows.Count);
             foreach (DataRow row in temp.Rows)
