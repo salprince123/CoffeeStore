@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:CoffeeStore"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Coffee Store" MinHeight="450" MinWidth="800" WindowState="Normal" 
-        Icon="Images/icon.png"
+        Title="Coffee Store" MinHeight="800" MinWidth="800" WindowState="Normal" 
+        Top="0"
+        Icon="Images/icon.png" VerticalAlignment="Top"
         >
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">

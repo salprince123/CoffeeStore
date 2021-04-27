@@ -30,7 +30,7 @@ namespace CoffeeStore
         {
             InitializeComponent();
             vatLieu = new VatLieu();
-            BUS_VatLieu vatlieu = new BUS_VatLieu();
+            BUS_Material vatlieu = new BUS_Material();
             GridUserControl.Children.Add(vatLieu);
         }
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -63,7 +63,7 @@ namespace CoffeeStore
                 case "ItemStorage":
                     {
                         vatLieu = new VatLieu();
-                        BUS_VatLieu vatlieu= new BUS_VatLieu();
+                        BUS_Material vatlieu= new BUS_Material();
                         GridUserControl.Children.Add(vatLieu);
                     }
 

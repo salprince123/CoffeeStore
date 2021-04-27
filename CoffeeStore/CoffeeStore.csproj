@@ -127,12 +127,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BUS\BUS_Mon.cs" />
-    <Compile Include="BUS\BUS_VatLieu.cs" />
+    <Compile Include="BUS\BUS_Material.cs" />
     <Compile Include="DAL\DAL_Mon.cs" />
-    <Compile Include="DAL\DAL_VatLieu.cs" />
+    <Compile Include="DAL\DAL_Material.cs" />
     <Compile Include="DTO\DBConnect.cs" />
     <Compile Include="DTO\DTO_Mon.cs" />
-    <Compile Include="DTO\DTO_VatLieu.cs" />
+    <Compile Include="DTO\DTO_Material.cs" />
     <Compile Include="Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>

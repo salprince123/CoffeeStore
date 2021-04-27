@@ -23,35 +23,69 @@ namespace CoffeeStore
     /// </summary>
     public partial class VatLieu : UserControl
     {
-        public class VatLieuObject
+        public class MaterialObject
         {
-            public String maVL { get; set; }
-            public String tenVL { get; set; }
-            public String donViTinh { get; set; }
+            public String ID { get; set; }
+            public String Name { get; set; }
+            public String Unit { get; set; }
         }
 
         public VatLieu()
         {
             InitializeComponent();
             //this.DataContext = this;
-            var list = new ObservableCollection<VatLieuObject>();
-            BUS_VatLieu vatlieu= new BUS_VatLieu();
-            DataTable temp = vatlieu.selectAll();
+            this.LoadData();
+        }
+        public void LoadData()
+        {
+            var list = new ObservableCollection<MaterialObject>();
+            BUS_Material material = new BUS_Material();
+            DataTable temp = material.selectAll();
             Console.WriteLine(temp.Rows.Count);
             foreach (DataRow row in temp.Rows)
             {
-                string ma = row["mavatlieu"].ToString();
-                string ten = row["tenVatLieu"].ToString();
-                string donvi= row["Donvitinh"].ToString();
-                list.Add(new VatLieuObject() { maVL = ma, tenVL = ten, donViTinh = donvi });
+                string id = row["MaterialID"].ToString();
+                string name = row["MaterialName"].ToString();
+                string unit = row["Unit"].ToString();
+                list.Add(new MaterialObject() { ID = id, Name = name, Unit = unit });
             }
             this.dataGrid1.ItemsSource = list;
         }
 
-
         private void Add_Click(object sender, RoutedEventArgs e)
         {
+            BUS_Material material = new BUS_Material();
+            material.Create(tbMaterialName.Text, tbUnit.Text);
+            this.LoadData();
+            MessageBox.Show($"Đã thêm vật liệu {tbMaterialName.Text}, đơn vị tính {tbUnit.Text}");
+        }
 
+        private void btnXoa_Click(object sender, RoutedEventArgs e)
+        {
+            BUS_Material material = new BUS_Material();
+            bool result =material.Delete(tbMaterialID.Text);
+            if(result)
+                MessageBox.Show($"Đã xóa thành công vật liệu {tbMaterialID.Text}");
+            else MessageBox.Show($"Xóa không thành công");
+            this.LoadData();
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            
+            BUS_Material material = new BUS_Material();
+            bool result = material.Update(tbMaterialID.Text, tbMaterialName.Text, tbUnit.Text);
+            if (result)
+                MessageBox.Show($"Đã lưu chỉnh sửa ");
+            else MessageBox.Show($"Chỉnh sửa không thành công");
+            this.LoadData();
+        }
+        private void dataGrid1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MaterialObject row = (MaterialObject)dataGrid1.SelectedItem;
+            tbMaterialID.Text = row.ID;
+            tbMaterialName.Text = row.Name;
+            tbUnit.Text = row.Unit;
         }
     }
 }

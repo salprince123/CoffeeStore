@@ -7,38 +7,48 @@
              xmlns:local="clr-namespace:CoffeeStore"
              mc:Ignorable="d" MinHeight="800" MinWidth="800" Height="Auto" Width="Auto">
     <StackPanel Margin="0,0,0,0" Background="ForestGreen">
-        <Grid Height="100">
-            
-        </Grid>
-        <DataGrid 
+       
+        <DataGrid Margin="0,100,0,0"
           Height="252"  Width="500"
           x:Name="dataGrid1" 
             VerticalAlignment="Center" 
-            HorizontalAlignment="Center" BorderThickness="0.1" FontFamily="Times New Roman" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"/>
-        <StackPanel Margin="0,10,0,0"  Orientation="Horizontal">
-            <TextBlock Text="ADD" Margin="0,10,0,0" 
-                       Width="88" Height="50" FontFamily="Times New Roman" FontSize="35" HorizontalAlignment="Center" />
-            <StackPanel Margin="70,10,0,0" Width="482">
-                <TextBlock Name="tenVLTB" Margin="0,10,0,0" 
-                       Width="400" Height="50" Background="WhiteSmoke"/>
-                <TextBlock x:Name="donvitinhTB" Margin="0,10,0,0" 
-                       Width="400" Height="50" Background="WhiteSmoke"/>
+            HorizontalAlignment="Center" BorderThickness="0.1" FontFamily="Times New Roman" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" IsReadOnly="True" EnableColumnVirtualization="True" MouseLeftButtonUp="dataGrid1_MouseLeftButtonUp">
+            <DataGrid.CurrentColumn>
+                <materialDesign:DataGridTextColumn/>
+            </DataGrid.CurrentColumn>
+        </DataGrid>
 
+        <StackPanel Margin="0,50,0,0" Orientation="Horizontal" >
+            <TextBlock Text="ID" Margin="0,10,0,0" 
+                       Width="150" Height="50" FontFamily="Times New Roman" FontSize="35" HorizontalAlignment="Center" />
+            <TextBlock Name="tbMaterialID" Margin="50,10,0,0" 
+                       Width="400" Height="50" Background="WhiteSmoke" />   
+        </StackPanel>
+        <StackPanel Margin="0,10,0,0"  Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Name" Margin="0,10,0,0" 
+                       Width="150" Height="50" FontFamily="Times New Roman" FontSize="35" HorizontalAlignment="Center" />
+                <TextBox  Name="tbMaterialName" Margin="50,10,0,0" 
+                       Width="400" Height="50" Background="WhiteSmoke"/>
             </StackPanel>
-
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="Unit" Margin="0,10,0,0" 
+                       Width="150" Height="50" FontFamily="Times New Roman" FontSize="35" HorizontalAlignment="Center" />
+                <TextBox  Name="tbUnit" Margin="50,10,0,0" 
+                       Width="400" Height="50" Background="WhiteSmoke"/>
+            </StackPanel>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,50,0,0">
             <Button Width="70" Height="50"  Click="Add_Click" Margin="10,0,0,0" >
                 <materialDesign:PackIcon Kind="Add" Height="30" Width="30" />
             </Button>
-        </StackPanel>
-        <StackPanel Margin="0,10,0,0" Orientation="Horizontal" >
-            <TextBlock Text="DELETE" Margin="0,10,0,0" 
-                       Width="150" Height="50" FontFamily="Times New Roman" FontSize="35" HorizontalAlignment="Center" />
-            <TextBlock Name="maVLDel" Margin="50,10,0,0" 
-                       Width="400" Height="50" Background="WhiteSmoke"/>
-            <Button x:Name="btnXoa" Margin="50,10,0,0" Width="70" Height="50">
-                <materialDesign:PackIcon Kind="Delete" Height="30" Width="30" Margin="10"/>
+            <Button Width="70" Height="50"  Click="Edit_Click" Margin="10,0,0,0" >
+                <materialDesign:PackIcon Kind="PuzzleEdit" Height="30" Width="30" />
             </Button>
-
+            <Button x:Name="btnXoa" Margin="10,00,0,0" Width="70" Height="50" Click="btnXoa_Click">
+                <materialDesign:PackIcon Kind="Delete" Height="30" Width="30"  />
+            </Button>
         </StackPanel>
     </StackPanel>
 </UserControl>
