@@ -1,4 +1,5 @@
 ﻿using CoffeeStore.BUS;
+using CoffeeStore.Inventory;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -56,6 +57,16 @@ namespace CoffeeStore
         private void dataGridImport_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void AddImport_Click(object sender, RoutedEventArgs e)
+        {
+            Window window = new Window
+            {
+                Title = "My User Control Dialog",
+                Content = new InventoryImportADD()
+            };
+            window.ShowDialog();
         }
     }
 }

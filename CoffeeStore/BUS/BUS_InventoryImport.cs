@@ -27,5 +27,9 @@ namespace CoffeeStore.BUS
         {
             return import.Update(id, employId, date);
         }
+        public DataTable selectDetail(String id)
+        {
+            return import.SelectDetail(id);
+        }
     }
 }

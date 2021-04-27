@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:CoffeeStore.Inventory"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="620">
+             Height="500" Width="620">
     <StackPanel Background="SeaGreen">
         <Grid Height="90">
             <TextBlock HorizontalAlignment="Left" Text="Lập phiếu nhập kho" 
@@ -31,13 +31,13 @@
         </Button>
         <StackPanel >
             <TextBlock Width="450" Text="Danh sách thiết bị, nguyên vật liệu" Foreground="Yellow"/>
-            <DataGrid Margin="0,5,0,0" Height="252"  Width="450"
+            <DataGrid Margin="0,5,0,0" Height="252"  Width="550"
                 x:Name="dataGridImport" VerticalAlignment="Center" 
                 HorizontalAlignment="Center" BorderThickness="0.1" 
                 FontFamily="Times New Roman" HorizontalScrollBarVisibility="Visible" 
                 VerticalScrollBarVisibility="Visible" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" 
                 IsReadOnly="True" EnableColumnVirtualization="True" 
-                MouseLeftButtonUp="dataGridImport_MouseLeftButtonUp">
+                >
                 <DataGrid.CurrentColumn>
                     <materialDesign:DataGridTextColumn/>
                 </DataGrid.CurrentColumn>

@@ -117,6 +117,9 @@
     <Compile Include="InventoryImport.xaml.cs">
       <DependentUpon>InventoryImport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\InventoryImportADD.xaml.cs">
+      <DependentUpon>InventoryImportADD.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VatLieu.xaml.cs">
       <DependentUpon>VatLieu.xaml</DependentUpon>
     </Compile>
@@ -125,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InventoryImport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Inventory\InventoryImportADD.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
