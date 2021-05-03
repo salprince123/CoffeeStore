@@ -32,9 +32,9 @@
             <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
         </EventTrigger>
     </Window.Triggers>
-    
+
     <Grid Background="#FFDEDEDE">
-        <Grid x:Name="GridMain"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="2000" Height="2000"/>
+        <Grid x:Name="GridMain" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="Auto" Height="Auto" Margin="0,60,0,0"/>
         <Grid Height="60" VerticalAlignment="Top" Background="#FF5C99D6">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
@@ -115,7 +115,6 @@
             </StackPanel>
         </Grid>
         <Grid x:Name="GridUserControl" HorizontalAlignment="Center" VerticalAlignment="Center">
-            
         </Grid>
     </Grid>
 </Window>

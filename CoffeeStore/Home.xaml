@@ -3,15 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:CoffeeStore"
              mc:Ignorable="d" >
-    <Grid Background="LightGreen" >
-        <StackPanel Margin="0,50,300,100">
-            <TextBlock Name="tenMon" Margin="0,40,0,0" Height="50" Width="400" Background="AliceBlue"  
+    <Grid>
+        <materialDesign:DialogHost CloseOnClickAway="True">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid Margin="20">
+                    <TextBlock Text="My first Dialog" />
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+            <Grid>
+                <StackPanel Margin="150,32,150,118">
+                    <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Content="Show Dialog"
+               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="tenMon" Margin="0,40,0,0" Height="50" Width="400" Background="AliceBlue"  
                        Text="{Binding TenMon}" FontSize="18" FontFamily="Times New Roman"/>
-            <TextBlock Name="loaiMon" Margin="0,30,0,0" Height="50" Width="400" Background="AliceBlue"
+                    <TextBlock x:Name="loaiMon" Margin="0,30,0,0" Height="50" Width="400" Background="AliceBlue"
                        Text="{Binding LoaiMon}" FontSize="18" FontFamily="Times New Roman"/>
-            
-        </StackPanel>
+                </StackPanel>
+            </Grid>
+        </materialDesign:DialogHost>
     </Grid>
 </UserControl>
