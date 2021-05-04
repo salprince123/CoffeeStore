@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SQLite;
 using CoffeeStore.BUS;
+using BeautySolutions.View.ViewModel;
+using MaterialDesignThemes.Wpf;
 
 namespace CoffeeStore
 {
@@ -21,56 +23,47 @@ namespace CoffeeStore
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
-        public String t = "testing";
-        Home home;
-        VatLieu vatLieu;
-        
+    {        
         public MainWindow()
         {
             InitializeComponent();
-            vatLieu = new VatLieu();
-            BUS_Material vatlieu = new BUS_Material();
-            GridUserControl.Children.Add(vatLieu);
-        }
-        private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
-        {
-            ButtonCloseMenu.Visibility = Visibility.Visible;
-            ButtonOpenMenu.Visibility = Visibility.Collapsed;
-        }
+            var menuRegister = new List<SubItem>();
+            menuRegister.Add(new SubItem("Customer"));
+            menuRegister.Add(new SubItem("Providers"));
+            menuRegister.Add(new SubItem("Employees"));
+            menuRegister.Add(new SubItem("Products"));
+            var item6 = new ItemMenu("Register", menuRegister, PackIconKind.Register);
 
-        private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
-        {
-            ButtonCloseMenu.Visibility = Visibility.Collapsed;
-            ButtonOpenMenu.Visibility = Visibility.Visible;
-        }
+            var menuSchedule = new List<SubItem>();
+            menuSchedule.Add(new SubItem("Services"));
+            menuSchedule.Add(new SubItem("Meetings"));
+            var item1 = new ItemMenu("Appointments", menuSchedule, PackIconKind.Schedule);
 
-        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            GridMain.Children.Clear();
-            GridUserControl.Children.Clear();
-            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
-            {
-                case "ItemService":
-                    {
-                        home = new Home();
-                        BUS_Mon mon = new BUS_Mon();
-                        mon.fillForm("01", ref home);
-                        GridMain.Children.Add(home);
-                    }
-                
-                break;
-                case "ItemStorage":
-                    {
-                        vatLieu = new VatLieu();
-                        BUS_Material vatlieu= new BUS_Material();
-                        GridUserControl.Children.Add(vatLieu);
-                    }
+            var menuReports = new List<SubItem>();
+            menuReports.Add(new SubItem("Customers"));
+            menuReports.Add(new SubItem("Providers"));
+            menuReports.Add(new SubItem("Products"));
+            menuReports.Add(new SubItem("Stock"));
+            menuReports.Add(new SubItem("Sales"));
+            var item2 = new ItemMenu("Reports", menuReports, PackIconKind.FileReport);
 
-                    break;
-                default:
-                    break;
-            }
+            var menuExpenses = new List<SubItem>();
+            menuExpenses.Add(new SubItem("Fixed"));
+            menuExpenses.Add(new SubItem("Variable"));
+            var item3 = new ItemMenu("Expenses", menuExpenses, PackIconKind.ShoppingBasket);
+
+            var menuFinancial = new List<SubItem>();
+            menuFinancial.Add(new SubItem("Cash flow"));
+            var item4 = new ItemMenu("Financial", menuFinancial, PackIconKind.ScaleBalance);
+
+            var item0 = new ItemMenu("Dashboard", new UserControl(), PackIconKind.ViewDashboard);
+
+            Menu.Children.Add(new MenuItem(item0));
+            Menu.Children.Add(new MenuItem(item6));
+            Menu.Children.Add(new MenuItem(item1));
+            Menu.Children.Add(new MenuItem(item2));
+            Menu.Children.Add(new MenuItem(item3));
+            Menu.Children.Add(new MenuItem(item4));
         }
     }
 }
