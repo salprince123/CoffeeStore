@@ -6,10 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace BeautySolutions.View.ViewModel
+namespace CoffeeStore.ViewModel
 {
     public class ItemMenu
     {
+        public ItemMenu()
+        {
+            Header = "";
+            SubItems = null;
+            Icon = PackIconKind.Null;
+        }
         public ItemMenu(string header, List<SubItem> subItems, PackIconKind icon)
         {
             Header = header;
