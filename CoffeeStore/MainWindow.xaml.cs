@@ -37,7 +37,7 @@ namespace CoffeeStore
             var item3 = new ItemMenu("Ưu đãi", new UserControl(), PackIconKind.ShoppingBasket);
 
             var menuInventory = new List<SubItem>();
-            menuInventory.Add(new SubItem("Thông tin kho"));
+            menuInventory.Add(new SubItem("Thông tin kho",new Home()));
             menuInventory.Add(new SubItem("Nhập kho"));
             menuInventory.Add(new SubItem("Xuất kho"));
             var item4 = new ItemMenu("Kho", menuInventory, PackIconKind.Warehouse);
@@ -57,14 +57,24 @@ namespace CoffeeStore
             menuAccount.Add(new SubItem("Nhóm tài khoản"));
             var item7 = new ItemMenu("Tài khoản", menuAccount, PackIconKind.Register);
 
-            Menu.Children.Add(new MenuItem(item0));
-            Menu.Children.Add(new MenuItem(item1));
-            Menu.Children.Add(new MenuItem(item2));
-            Menu.Children.Add(new MenuItem(item3));
-            Menu.Children.Add(new MenuItem(item4));
-            Menu.Children.Add(new MenuItem(item5));
-            Menu.Children.Add(new MenuItem(item6));
-            Menu.Children.Add(new MenuItem(item7));
+            Menu.Children.Add(new MenuItem(item0, this));
+            Menu.Children.Add(new MenuItem(item1, this));
+            Menu.Children.Add(new MenuItem(item2, this));
+            Menu.Children.Add(new MenuItem(item3, this));
+            Menu.Children.Add(new MenuItem(item4, this));
+            Menu.Children.Add(new MenuItem(item5, this));
+            Menu.Children.Add(new MenuItem(item6, this));
+            Menu.Children.Add(new MenuItem(item7, this));
+        }
+        internal void SwitchScreen(object sender)
+        {
+            var screen = ((UserControl)sender);
+
+            if (screen != null)
+            {
+                StackPanelMain.Children.Clear();
+                StackPanelMain.Children.Add(screen);
+            }
         }
     }
 }
