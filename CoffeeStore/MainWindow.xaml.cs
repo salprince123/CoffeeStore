@@ -25,6 +25,7 @@ namespace CoffeeStore
     public partial class MainWindow : Window
     {
         ItemMenu inventoryItemMenu;
+        ItemMenu inventoryItemMenu1;
         public MainWindow()
         {
             InitializeComponent();
@@ -34,7 +35,17 @@ namespace CoffeeStore
             menuInventory.Add(new SubItem("Nhập kho",1));
             menuInventory.Add(new SubItem("Xuất kho",2));
             inventoryItemMenu = new ItemMenu("Kho", menuInventory, PackIconKind.Storage);
-            this.DataContext = inventoryItemMenu;
+            InventoryMenuItem.DataContext = inventoryItemMenu;
+            
+            //example for adding new tab 
+            this.InventoryMenuItem1._context = this;
+            var menuInventory1 = new List<SubItem>();
+            menuInventory1.Add(new SubItem("Tổng", 0, new Home()));
+            menuInventory1.Add(new SubItem("Nhập ", 1));
+            menuInventory1.Add(new SubItem("Xuấho", 2));
+            inventoryItemMenu1 = new ItemMenu("KO", menuInventory1, PackIconKind.Storage);
+            InventoryMenuItem1.DataContext = inventoryItemMenu1;
+            
         }
         internal void SwitchScreen(object sender)
         {

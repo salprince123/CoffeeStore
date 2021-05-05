@@ -38,6 +38,9 @@
                     <local:MyMenuItem x:Name="InventoryMenuItem" 
                                       ItemMenus="{Binding Path=inventoryItemMenu}" 
                                       />
+                    <local:MyMenuItem x:Name="InventoryMenuItem1" 
+                                      ItemMenus="{Binding Path=inventoryItemMenu1}" 
+                                      />
                 </StackPanel>
             </ScrollViewer>
         </Grid>
