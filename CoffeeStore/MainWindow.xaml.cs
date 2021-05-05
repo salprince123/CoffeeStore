@@ -37,8 +37,8 @@ namespace CoffeeStore
             var item3 = new ItemMenu("Ưu đãi", new UserControl(), PackIconKind.ShoppingBasket);
 
             var menuInventory = new List<SubItem>();
-            menuInventory.Add(new SubItem("Thông tin kho",new Home()));
-            menuInventory.Add(new SubItem("Nhập kho"));
+            menuInventory.Add(new SubItem("Thông tin kho",new Inventory.InventoryMainPage()));
+            menuInventory.Add(new SubItem("Nhập kho", new Inventory.InventoryImport()));
             menuInventory.Add(new SubItem("Xuất kho"));
             var item4 = new ItemMenu("Kho", menuInventory, PackIconKind.Warehouse);
 
