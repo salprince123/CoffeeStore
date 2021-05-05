@@ -12,7 +12,6 @@
         >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -20,18 +19,19 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <materialDesign:ColorZone Mode="PrimaryMid" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+        <materialDesign:ColorZone Mode="PrimaryMid" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Background="White">
             <Grid>
-                <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" HorizontalAlignment="Right" Margin="10"/>
+                
             </Grid>
         </materialDesign:ColorZone>
+        
         <Grid HorizontalAlignment="Stretch" Grid.Row="1" Background="#6B6158">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="137*"/>
                 <ColumnDefinition Width="113*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-
+                <RowDefinition Height="50*"/>
                 <RowDefinition Height="326*"/>
             </Grid.RowDefinitions>
             <ScrollViewer HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.ColumnSpan="2">
