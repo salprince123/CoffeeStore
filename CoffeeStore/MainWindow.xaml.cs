@@ -27,43 +27,44 @@ namespace CoffeeStore
         public MainWindow()
         {
             InitializeComponent();
-            var menuRegister = new List<SubItem>();
-            menuRegister.Add(new SubItem("Customer"));
-            menuRegister.Add(new SubItem("Providers"));
-            menuRegister.Add(new SubItem("Employees"));
-            menuRegister.Add(new SubItem("Products"));
-            var item6 = new ItemMenu("Register", menuRegister, PackIconKind.Register);
 
-            var menuSchedule = new List<SubItem>();
-            menuSchedule.Add(new SubItem("Services"));
-            menuSchedule.Add(new SubItem("Meetings"));
-            var item1 = new ItemMenu("Appointments", menuSchedule, PackIconKind.Schedule);
+            var item0 = new ItemMenu("Trang chủ", new UserControl(), PackIconKind.ViewDashboard);
+            
+            var item1 = new ItemMenu("Thu ngân", new UserControl(), PackIconKind.Schedule);
 
-            var menuReports = new List<SubItem>();
-            menuReports.Add(new SubItem("Customers"));
-            menuReports.Add(new SubItem("Providers"));
-            menuReports.Add(new SubItem("Products"));
-            menuReports.Add(new SubItem("Stock"));
-            menuReports.Add(new SubItem("Sales"));
-            var item2 = new ItemMenu("Reports", menuReports, PackIconKind.FileReport);
+            var item2 = new ItemMenu("Menu", new UserControl(), PackIconKind.CalendarTextOutline);
 
-            var menuExpenses = new List<SubItem>();
-            menuExpenses.Add(new SubItem("Fixed"));
-            menuExpenses.Add(new SubItem("Variable"));
-            var item3 = new ItemMenu("Expenses", menuExpenses, PackIconKind.ShoppingBasket);
+            var item3 = new ItemMenu("Ưu đãi", new UserControl(), PackIconKind.ShoppingBasket);
 
-            var menuFinancial = new List<SubItem>();
-            menuFinancial.Add(new SubItem("Cash flow"));
-            var item4 = new ItemMenu("Financial", menuFinancial, PackIconKind.ScaleBalance);
+            var menuInventory = new List<SubItem>();
+            menuInventory.Add(new SubItem("Thông tin kho"));
+            menuInventory.Add(new SubItem("Nhập kho"));
+            menuInventory.Add(new SubItem("Xuất kho"));
+            var item4 = new ItemMenu("Kho", menuInventory, PackIconKind.Warehouse);
 
-            var item0 = new ItemMenu("Dashboard", new UserControl(), PackIconKind.ViewDashboard);
+            var menuRevenue = new List<SubItem>();
+            menuRevenue.Add(new SubItem("Danh sách hóa đơn"));
+            menuRevenue.Add(new SubItem("Danh sách chi"));
+            var item5 = new ItemMenu("Thu chi", menuRevenue, PackIconKind.ScaleBalance);
+
+            var menuReport = new List<SubItem>();
+            menuReport.Add(new SubItem("Mặt hàng bán chạy"));
+            menuReport.Add(new SubItem("Lợi nhuận"));
+            var item6 = new ItemMenu("Báo cáo thống kê", menuReport, PackIconKind.ChartLineVariant);
+
+            var menuAccount = new List<SubItem>();
+            menuAccount.Add(new SubItem("Tài khoản"));
+            menuAccount.Add(new SubItem("Nhóm tài khoản"));
+            var item7 = new ItemMenu("Tài khoản", menuAccount, PackIconKind.Register);
 
             Menu.Children.Add(new MenuItem(item0));
-            Menu.Children.Add(new MenuItem(item6));
             Menu.Children.Add(new MenuItem(item1));
             Menu.Children.Add(new MenuItem(item2));
             Menu.Children.Add(new MenuItem(item3));
             Menu.Children.Add(new MenuItem(item4));
+            Menu.Children.Add(new MenuItem(item5));
+            Menu.Children.Add(new MenuItem(item6));
+            Menu.Children.Add(new MenuItem(item7));
         }
     }
 }

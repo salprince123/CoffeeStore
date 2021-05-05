@@ -165,3 +165,5 @@ D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\CoffeeSt
 D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.pdb
 D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\MenuItem.g.cs
 D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\MenuItem.baml
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\MenuItem.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\MenuItem.baml
