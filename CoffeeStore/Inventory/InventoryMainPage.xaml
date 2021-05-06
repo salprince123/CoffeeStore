@@ -17,8 +17,8 @@
                     Background="White" Width="600" Height="50">
             <TextBox Width="200" Height="30" Name="tbKeyword"
                      Text="Từ khóa tìm kiếm" Margin="20,0,0,0"
-                     BorderBrush="Black" BorderThickness="1"/>
-            <Button Margin="10,0,0,0" Width="45" Name="btnSearch">
+                     BorderBrush="Black" BorderThickness="1" MouseLeftButtonUp="tbKeyword_MouseLeftButtonUp" MouseLeftButtonDown="tbKeyword_MouseLeftButtonDown"/>
+            <Button Margin="10,0,0,0" Width="45" Name="btnSearch" Click="btnSearch_Click">
                 <materialDesign:PackIcon Kind="Search" Height="30" Width="30" 
                                          Margin="-10,0,0,0" />
             </Button>

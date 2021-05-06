@@ -19,6 +19,9 @@ namespace CoffeeStore.BUS
         {
             return temp.SelectAllExportDetailGroupByName();
         }
-
+        public DataTable Find(String key)
+        {
+            return temp.FindWithKeyWord(key);
+        }
     }
 }

@@ -47,5 +47,25 @@ namespace CoffeeStore.DAL
             };
 
         }
+        public DataTable FindWithKeyWord(String key)
+        {
+            try
+            {
+                string sql = $" select materialname as 'Tên', sum(amount) as 'Số lượng' " +
+                            $"from InventoryExportDetail detail Join Material mater " +
+                            $"on detail.MaterialID= mater.MaterialID where materialName like '%{key}%' or unit like '%{key}%' " +
+                            $"group by materialname";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                DataTable listImportDetail = new DataTable();
+                da.Fill(listImportDetail);
+                return listImportDetail;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception AT" + e.ToString());
+                return new DataTable();
+            };
+
+        }
     }
 }
