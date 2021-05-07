@@ -86,37 +86,7 @@ namespace CoffeeStore.Inventory
 
         public void findMaterial(String keyword)
         {
-            Dictionary<String, int> mapNameAmount = new Dictionary<string, int>();
-            var list = new ObservableCollection<InventoryObject>();
-
-            BUS_InventoryImportDetail import = new BUS_InventoryImportDetail();
-            DataTable temp = import.Find(keyword);
-            foreach (DataRow row in temp.Rows)
-            {
-                string name = row["Tên"].ToString();
-                string amount = row["Số lượng"].ToString();
-                mapNameAmount[name] = int.Parse(amount);
-            }
-            BUS_InventoryExportDetail export = new BUS_InventoryExportDetail();
-            DataTable temp1 = export.Find(keyword);
-            foreach (DataRow row in temp1.Rows)
-            {
-                string name = row["Tên"].ToString();
-                string amount = row["Số lượng"].ToString();
-                if (mapNameAmount.ContainsKey(name))
-                    mapNameAmount[name] -= int.Parse(amount);
-            }
-            this.dataGridInfo.ItemsSource = list;
-
-            int number0 = 1;
-            foreach (DataRow row in temp.Rows)
-            {
-                string name = row["Tên"].ToString();
-                string amount = row["Số lượng"].ToString();
-                string unit = row["Đơn vị tính"].ToString();
-                list.Add(new InventoryObject() { number = number0, Name = name, Amount = mapNameAmount[name].ToString(), Unit = unit, Action = "" });
-                number0++;
-            }
+            MessageBox.Show("vui long code xu li");
         }
         private void tbKeyword_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {

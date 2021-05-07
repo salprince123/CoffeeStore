@@ -33,8 +33,10 @@ namespace CoffeeStore.Inventory
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Vui lòng code xử lí");
-            //MessageBox.Show($"Đã thêm vật liệu {tbName.Text}, đơn vị tính {tbUnit.Text}");
+            BUS_Material material = new BUS_Material();
+            material.Create(tbName.Text, tbUnit.Text);
+            MessageBox.Show($"Đã thêm vật liệu {tbName.Text}, đơn vị tính {tbUnit.Text}");
+            Window.GetWindow(this).Close();
         }
     }
 }
