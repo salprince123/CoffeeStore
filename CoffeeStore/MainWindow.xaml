@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:CoffeeStore"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Coffee Store" MinHeight="800" MinWidth="800" WindowState="Normal" 
+        Title="Coffee Store" MinHeight="720" MinWidth="800" 
         Top="0"
         Icon="Images/icon.png" VerticalAlignment="Top"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"
         >
     <Grid>
         <Grid.RowDefinitions>
@@ -16,16 +17,10 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="240"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <materialDesign:ColorZone Mode="PrimaryMid" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Background="White">
-            <Grid>
-                
-            </Grid>
-        </materialDesign:ColorZone>
-        
-        <Grid HorizontalAlignment="Stretch" Grid.Row="1" Background="#6B6158">
+        <Grid HorizontalAlignment="Stretch" Grid.Row="0" Background="#6B6158">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="137*"/>
                 <ColumnDefinition Width="113*"/>
@@ -38,6 +33,10 @@
                 <StackPanel x:Name="Menu" Margin="10"/>
             </ScrollViewer>
         </Grid>
-        <StackPanel x:Name="StackPanelMain" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"/>
+        <StackPanel x:Name="StackPanelMain" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        </StackPanel>
+        <Grid>
+            
+        </Grid>
     </Grid>
 </Window>
