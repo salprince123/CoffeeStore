@@ -128,6 +128,12 @@
     <Compile Include="Inventory\InventoryMainPage.xaml.cs">
       <DependentUpon>InventoryMainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\Material.xaml.cs">
+      <DependentUpon>Material.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\PopupAddMaterial.xaml.cs">
+      <DependentUpon>PopupAddMaterial.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MenuItem.xaml.cs">
       <DependentUpon>MenuItem.xaml</DependentUpon>
     </Compile>
@@ -145,6 +151,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Inventory\InventoryMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Inventory\Material.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Inventory\PopupAddMaterial.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

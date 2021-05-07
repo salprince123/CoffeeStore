@@ -40,8 +40,10 @@ namespace CoffeeStore.Inventory
         public void LoadData()
         {
             Dictionary<String, int> mapNameAmount = new Dictionary<string, int>();
+            Dictionary<String, String> mapNameUnit= new Dictionary<string, string>();
             var list = new ObservableCollection<InventoryObject>();
-
+            //mapping name with unit & import amount
+                //With import amount
             BUS_InventoryImportDetail import = new BUS_InventoryImportDetail();
             DataTable temp = import.SelectAllImportDetailGroupByName();
             foreach (DataRow row in temp.Rows)
@@ -50,6 +52,16 @@ namespace CoffeeStore.Inventory
                 string amount = row["Số lượng"].ToString();
                 mapNameAmount[name] = int.Parse(amount);
             }
+            //With unit
+            BUS_Material mater = new BUS_Material();
+            DataTable tempMater = mater.selectAll();
+            foreach (DataRow row in tempMater.Rows)
+            {
+                string name = row["MaterialName"].ToString();
+                string unit = row["Unit"].ToString();
+                mapNameUnit[name] = unit;
+            }
+            //calculate amount in stock = import - export (if have)
             BUS_InventoryExportDetail export = new BUS_InventoryExportDetail();
             DataTable temp1 = export.SelectAllExportDetailGroupByName();
             foreach (DataRow row in temp1.Rows)
@@ -59,17 +71,17 @@ namespace CoffeeStore.Inventory
                 if(mapNameAmount.ContainsKey(name))
                     mapNameAmount[name] -= int.Parse(amount);
             }
-            this.dataGridInfo.ItemsSource = list;
-
+            //finally get the amount of mater in stock (if not import yet then:  amount =0 )
             int number0 = 1;
-            foreach (DataRow row in temp.Rows)
+            foreach (KeyValuePair<string, string> name in mapNameUnit)
             {
-                string name = row["Tên"].ToString();
-                string amount = row["Số lượng"].ToString();
-                string unit = row["Đơn vị tính"].ToString();
-                list.Add(new InventoryObject() { number = number0, Name = name, Amount = mapNameAmount[name].ToString(), Unit = unit, Action = "" });
+                int amount = 0;
+                if (mapNameAmount.ContainsKey(name.Key))
+                    amount = mapNameAmount[name.Key];
+                list.Add(new InventoryObject() { number = number0, Name = name.Key, Amount = amount.ToString(), Unit = name.Value, Action = "" });
                 number0++;
             }
+            this.dataGridInfo.ItemsSource = list;
         }
 
         public void findMaterial(String keyword)
@@ -120,6 +132,21 @@ namespace CoffeeStore.Inventory
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             findMaterial(tbKeyword.Text);
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            Window window = new Window
+            {
+                Title = "Thêm vật liệu",
+                Content = new PopupAddMaterial(),
+                Width=540,
+                Height=300,
+                Left= (Application.Current.MainWindow.Left+ Application.Current.MainWindow.Width -540/2)/2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height -300/2) / 2,
+            };
+            window.ShowDialog();
+            LoadData();
         }
     }
 }
