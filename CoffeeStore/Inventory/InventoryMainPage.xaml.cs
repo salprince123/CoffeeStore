@@ -159,10 +159,8 @@ namespace CoffeeStore.Inventory
         {
             try
             {
-                DataRowView dataRowView = (DataRowView)((Button)e.Source).DataContext;
-                String ProductName = dataRowView[1].ToString();
-                String ProductDescription = dataRowView[2].ToString();
-                MessageBox.Show("You Clicked : " + ProductName + "\r\nDescription : " + ProductDescription);
+                InventoryObject dataRowView = (InventoryObject)((Button)e.Source).DataContext;
+                MessageBox.Show($"You Clicked : {dataRowView.Name}");
                 //This is the code which will show the button click row data. Thank you.
             }
             catch (Exception ex)
