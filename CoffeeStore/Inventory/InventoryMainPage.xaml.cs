@@ -23,6 +23,7 @@ namespace CoffeeStore.Inventory
     /// </summary>
     public partial class InventoryMainPage : UserControl
     {
+        public String selectionName = "";
         public class InventoryObject
         {
             public int number { get; set; }
@@ -117,6 +118,49 @@ namespace CoffeeStore.Inventory
             };
             window.ShowDialog();
             LoadData();
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.selectionName != "")
+            {
+                InventoryObject row = (InventoryObject)dataGridInfo.SelectedItem;
+                
+                Window window = new Window
+                {
+                    Title = "Sửa vật liệu",
+                    Content = new PopupEditMaterial(row.Name, row.Unit),
+                    Width = 540,
+                    Height = 300,
+                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540 / 2) / 2,
+                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 300 / 2) / 2,
+                };
+                window.ShowDialog();
+                LoadData();
+            }
+            else MessageBox.Show("Xin vui lòng chọn phiếu cần xem");
+            
+        }
+
+        private void btnDel_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.selectionName != "")
+            {
+                MessageBox.Show("vui long code xu li");
+            }
+            else MessageBox.Show("Xin vui lòng chọn phiếu cần xóa");
+            
+        }
+
+        private void dataGridInfo_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                InventoryObject row = (InventoryObject)dataGridInfo.SelectedItem;
+                this.selectionName = row.Name;
+            }
+            catch (Exception) { }
+            
         }
     }
 }

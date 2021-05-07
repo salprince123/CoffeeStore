@@ -23,9 +23,9 @@ namespace CoffeeStore.BUS
         {
             return dalVL.Delete(id);
         }
-        public bool Update(String id, String name, String unit)
+        public bool Update(String name, String unit)
         {
-            return dalVL.Update(id,name,unit);
+            return dalVL.Update(name,unit);
         }
     }
 }

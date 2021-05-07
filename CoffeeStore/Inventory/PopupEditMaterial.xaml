@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="CoffeeStore.Inventory.PopupEditMaterial"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CoffeeStore.Inventory"
+             mc:Ignorable="d" 
+             Height="250" Width="540">
+    <StackPanel Background="WhiteSmoke">
+        <TextBlock Margin="0,10,0,0" Text="SỬA VẬT LIỆU"
+                   HorizontalAlignment="Center" FontSize="30"/>
+        <TextBlock Margin="60,10,0,0" Text="Tên vật liệu"/>
+        <TextBox  Name="tbName" Margin="0,5,0,0" BorderThickness="1"
+                 Height="40" Width="420"
+                  Text="{Binding Path=Name}"/>
+        <StackPanel Orientation="Horizontal" Margin="40,0,0,0">
+            <StackPanel>
+                <TextBlock Margin="20,0,0,0" Text="Đơn vị tính"/>
+                <TextBox Name="tbUnit" Margin="20,5,0,0" BorderThickness="1"
+                Height="40" Width="420"
+                Text="{Binding Path=Unit}"/>
+            </StackPanel>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btSave" Height="40" Width="100"
+                    Content="Lưu" Margin="0,10,0,0" Click="btSave_Click"/>
+            <Button x:Name="btExit" Height="40" Width="100"
+                    Content="Hủy" Margin="10,10,0,0" Click="btExit_Click"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

@@ -36,15 +36,15 @@
                 HorizontalAlignment="Center" BorderThickness="0.1" 
                 FontFamily="Times New Roman" HorizontalScrollBarVisibility="Visible" 
                 VerticalScrollBarVisibility="Visible" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" 
-                IsReadOnly="True" EnableColumnVirtualization="True"  >
+                IsReadOnly="True" EnableColumnVirtualization="True" MouseLeftButtonUp="dataGridInfo_MouseLeftButtonUp"  >
                 <DataGrid.CurrentColumn>
                     <materialDesign:DataGridTextColumn/>
                 </DataGrid.CurrentColumn>
             </DataGrid>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-            <Button Margin="20,0,0,0" Width="100" Name="btnEdit" Content="Sửa" />
-            <Button Margin="20,0,0,0" Width="100" Name="btnWatch" Content="Xem" />
+            <Button Margin="20,0,0,0" Width="100" Name="btnEdit" Content="Sửa" Click="btnEdit_Click" />
+            <Button Margin="20,0,0,0" Width="100" Name="btnDel" Content="Xóa" Click="btnDel_Click" />
         </StackPanel>
     </StackPanel>
 </UserControl>

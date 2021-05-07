@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\App.xaml
-81890419107
+8559767650
 
-33182398001
-135-130230909
-Home.xaml;Inventory\InventoryImport.xaml;Inventory\InventoryMainPage.xaml;Inventory\Material.xaml;Inventory\PopupAddMaterial.xaml;MainWindow.xaml;MenuItem.xaml;VatLieu.xaml;
+331615962177
+13684155827
+Home.xaml;Inventory\InventoryImport.xaml;Inventory\InventoryMainPage.xaml;Inventory\PopupAddMaterial.xaml;Inventory\PopupEditMaterial.xaml;MainWindow.xaml;MenuItem.xaml;VatLieu.xaml;
 
 True
 
