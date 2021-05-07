@@ -26,11 +26,12 @@ namespace CoffeeStore
     {        
         public MainWindow()
         {
+            
             InitializeComponent();
 
             var item0 = new ItemMenu("Trang chủ", new UserControl(), PackIconKind.ViewDashboard);
             
-            var item1 = new ItemMenu("Thu ngân", new UserControl(), PackIconKind.Schedule);
+            var item1 = new ItemMenu("Thu ngân", new Cashier(), PackIconKind.Schedule);
 
             var item2 = new ItemMenu("Menu", new UserControl(), PackIconKind.CalendarTextOutline);
 
@@ -75,6 +76,16 @@ namespace CoffeeStore
                 StackPanelMain.Children.Clear();
                 StackPanelMain.Children.Add(screen);
             }
+        }
+        internal void SwitchWindow(object sender)
+        {
+            var screen = ((Cashier)sender);
+            if (screen != null)
+            {
+                Window window = new Cashier();
+                window.Show();
+            }
+            
         }
     }
 }

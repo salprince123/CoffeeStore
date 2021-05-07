@@ -167,3 +167,5 @@ E:\Project\CoffeeStore\CoffeeStore\obj\Debug\XamlC.stamp
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.csproj.CopyComplete
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.exe
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.pdb
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Cashier.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Cashier.baml
