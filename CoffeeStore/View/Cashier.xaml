@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="0.1*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -21,8 +21,8 @@
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="4*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.75*"/>
+                <RowDefinition Height="0.75*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <!--Bill data here-->
@@ -45,7 +45,7 @@
             </Grid>
             <!--Bill Calculation here-->
             <Viewbox Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                <Grid Width="315">
+                <Grid Width="363">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -112,8 +112,18 @@
                     Padding="0,0,10,0"/>
                 </Grid>
             </Viewbox>
+            <!--Generate bill button here-->
             <Grid Grid.Row="2" Background="#FF7A00">
-
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Background="#FF7A00" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" FontSize="20">
+                    <TextBlock Text="Thanh toán" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button>
+                <Button Background="#6B6158" Grid.Column="1" HorizontalAlignment="Stretch" Height="Auto" FontSize="20" >
+                    <TextBlock Text="In hóa đơn" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button>
             </Grid>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1">
@@ -124,17 +134,20 @@
                 </Grid.ColumnDefinitions>
                 <!--Product image here-->
                 <Viewbox Grid.Column="0">
-                    <Grid >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                    </Grid>
+                    <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                        </Grid>
+                    </ScrollViewer>
                 </Viewbox>
+                <!--Filter button here-->
                 <ListBox></ListBox>
             </Grid>
         </Grid>

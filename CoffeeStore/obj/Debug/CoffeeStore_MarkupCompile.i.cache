@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\Project\CoffeeStore\CoffeeStore\App.xaml
-10-1611245389
+11469732001
 
-35-559011069
+36-229509429
 136-55225853
-Home.xaml;Inventory\InventoryImport.xaml;Inventory\InventoryImportADD.xaml;Inventory\InventoryImportDETAIL.xaml;Inventory\InventoryMainPage.xaml;Inventory\PopupAddMaterial.xaml;Inventory\PopupEditMaterial.xaml;MainWindow.xaml;MenuItem.xaml;VatLieu.xaml;
+Home.xaml;Inventory\InventoryImport.xaml;Inventory\InventoryImportADD.xaml;Inventory\InventoryImportDETAIL.xaml;Inventory\InventoryMainPage.xaml;Inventory\PopupAddMaterial.xaml;Inventory\PopupEditMaterial.xaml;MainWindow.xaml;MenuItem.xaml;VatLieu.xaml;View\Cashier.xaml;
 
 True
 

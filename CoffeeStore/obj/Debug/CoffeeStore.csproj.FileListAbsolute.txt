@@ -191,3 +191,5 @@ E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportDETAIL.bam
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryMainPage.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddMaterial.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupEditMaterial.baml
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Cashier.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Cashier.baml

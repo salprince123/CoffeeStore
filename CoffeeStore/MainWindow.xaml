@@ -19,7 +19,7 @@
             <ColumnDefinition Width="240"/>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-
+        <!--Navigation menu here-->
         <Grid HorizontalAlignment="Stretch" Grid.Row="0" Background="#6B6158">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="137*"/>
@@ -29,14 +29,16 @@
                 <RowDefinition Height="50*"/>
                 <RowDefinition Height="326*"/>
             </Grid.RowDefinitions>
+            <!--Logo here-->
+            <Grid Grid.Row="0" Grid.ColumnSpan="2"></Grid>
             <ScrollViewer HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.ColumnSpan="2">
                 <StackPanel x:Name="Menu" Margin="10"/>
             </ScrollViewer>
         </Grid>
+        <!--Screen here-->
         <StackPanel x:Name="StackPanelMain" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         </StackPanel>
         <Grid>
-            
         </Grid>
     </Grid>
 </Window>
