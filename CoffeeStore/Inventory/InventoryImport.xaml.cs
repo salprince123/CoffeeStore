@@ -48,6 +48,7 @@ namespace CoffeeStore.Inventory
                 string id = row["importID"].ToString();
                 string date = row["importDate"].ToString();
                 list.Add(new InventoryImportObject() { ID = id, EmployName = employid, InventoryDate = date, number = number0, Action = "" });
+                number0++;
             }
             this.dataGridImport.ItemsSource = list;
         }
