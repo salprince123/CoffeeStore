@@ -50,7 +50,7 @@
                     <DataGridTextColumn Header="Number" Binding="{Binding Path='number'}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Name" Binding="{Binding Path='Name'}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Unit" Binding="{Binding Path='Unit'}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Amount" Binding="{Binding Path='OnDate'}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Amount" Binding="{Binding Path='Amount'}" IsReadOnly="True" />
                     <DataGridTemplateColumn Header="Action">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
