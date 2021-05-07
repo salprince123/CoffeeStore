@@ -179,3 +179,15 @@ D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventor
 D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportDETAIL.g.cs
 D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportADD.baml
 D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportDETAIL.baml
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImport.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportADD.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportDETAIL.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryMainPage.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddMaterial.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupEditMaterial.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImport.baml
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportADD.baml
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportDETAIL.baml
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryMainPage.baml
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddMaterial.baml
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupEditMaterial.baml

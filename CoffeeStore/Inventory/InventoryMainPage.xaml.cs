@@ -155,6 +155,22 @@ namespace CoffeeStore.Inventory
             
         }
 
+        private void btnView_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DataRowView dataRowView = (DataRowView)((Button)e.Source).DataContext;
+                String ProductName = dataRowView[1].ToString();
+                String ProductDescription = dataRowView[2].ToString();
+                MessageBox.Show("You Clicked : " + ProductName + "\r\nDescription : " + ProductDescription);
+                //This is the code which will show the button click row data. Thank you.
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
         private void dataGridInfo_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             try
