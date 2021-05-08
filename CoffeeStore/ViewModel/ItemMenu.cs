@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace BeautySolutions.View.ViewModel
@@ -24,10 +25,10 @@ namespace BeautySolutions.View.ViewModel
             Icon = icon;
         }
 
-        public ItemMenu(string header, CoffeeStore.Cashier cashier, PackIconKind icon)
+        public ItemMenu(string header, Window window, PackIconKind icon)
         {
             Header = header;
-            Cashier = cashier;
+            _Window = window;
             Icon = icon;
         }
 
@@ -36,6 +37,6 @@ namespace BeautySolutions.View.ViewModel
         public List<SubItem> SubItems { get; private set; }
         public UserControl Screen { get; private set; }
 
-        public CoffeeStore.Cashier Cashier { get; private set; }
+        public Window _Window { get; private set; }
     }
 }

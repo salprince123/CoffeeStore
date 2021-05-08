@@ -23,5 +23,17 @@ namespace CoffeeStore
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+   
     }
 }
