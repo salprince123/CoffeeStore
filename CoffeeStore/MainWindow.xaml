@@ -9,6 +9,7 @@
         Title="Coffee Store" MinHeight="720" MinWidth="800" 
         Top="0"
         Icon="Images/icon.png" VerticalAlignment="Top"
+        Closing="Window_Closing"
         WindowStartupLocation="CenterScreen" WindowState="Maximized"
         >
     <Grid>
