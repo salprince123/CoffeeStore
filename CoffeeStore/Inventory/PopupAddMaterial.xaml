@@ -6,14 +6,13 @@
              xmlns:local="clr-namespace:CoffeeStore.Inventory"
              mc:Ignorable="d" 
              Height="250" Width="540">
-    <StackPanel Background="WhiteSmoke">
-        <TextBlock Margin="0,10,0,0" Text="THÊM VẬT LIỆU"
-                   HorizontalAlignment="Center" FontSize="30"/>
-        <TextBlock Margin="60,10,0,0" Text="Tên vật liệu"/>
+    <StackPanel Background="White">
+        
+        <TextBlock Margin="60,10,0,0" Text="Tên nguyên liệu, vật liệu"/>
         <TextBox  Name="tbName" Margin="0,5,0,0" BorderThickness="1"
-                 Height="40" Width="420"/>
+                 Height="40" Width="420" />
         <StackPanel Orientation="Horizontal" Margin="40,0,0,0">
-            <StackPanel>
+            <StackPanel Margin="0,10,0,0">
                 <TextBlock Margin="20,0,0,0" Text="Đơn vị tính"/>
                 <TextBox Name="tbUnit" Margin="20,5,0,0" BorderThickness="1"
                  Height="40" Width="420"/>
@@ -22,9 +21,9 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="btSave" Height="40" Width="100"
-                    Content="Lưu" Margin="0,10,0,0" Click="btSave_Click"/>
+                    Content="LƯU" Margin="0,30,0,0" Click="btSave_Click" Background="#66A3FF"/>
             <Button x:Name="btExit" Height="40" Width="100"
-                    Content="Hủy" Margin="10,10,0,0" Click="btExit_Click"/>
+                    Content="HỦY" Margin="10,30,0,0" Click="btExit_Click" Background="#F27047"/>
         </StackPanel>
     </StackPanel>
 </UserControl>
