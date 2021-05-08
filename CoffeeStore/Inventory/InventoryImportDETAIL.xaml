@@ -15,25 +15,24 @@
         </Grid>
         <StackPanel Orientation="Horizontal" 
                     Background="White" >
-            <TextBox Width="250" Height="30"
-                     Text="Mã phiếu lập" Margin="0,0,0,0" 
+            <TextBox Name="tbID" Text="{Binding Path=id}"
+                Width="250" Height="30"
+                     Margin="0,0,0,0" 
                      BorderBrush="Black" BorderThickness="1"
-                     IsEnabled="False"/>
-            <TextBox Width="250" Height="30"
-                     Text="Người lập" Margin="20,0,0,0"
+                     IsEnabled="False"  />
+            <TextBox Name="tbName"
+                Width="250" Height="30"
+                      Margin="20,0,0,0"
                      BorderBrush="Black" BorderThickness="1"
-                     IsEnabled="False"/>
-            <TextBox Width="250" Height="30"
-                     Text="Ngày lập" Margin="20,0,0,0"
+                     IsEnabled="False" Text="{Binding Path=name}"/>
+            <TextBox Name="tbDate"
+                Width="250" Height="30"
+                      Margin="20,0,0,0"
+                     Text="{Binding Path=day}"
                      BorderBrush="Black" BorderThickness="1"/>
 
         </StackPanel>
-        <Button HorizontalAlignment="Left" Margin="10,0,0,0" Width="200" Name="btnAdd" >
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
-                <materialDesign:PackIcon Kind="Plus" Height="30" Width="30" Margin="-20,0,0,0" />
-                <TextBlock Text="Thêm vật liệu , thiết bị" Margin="0,5,0,0"/>
-            </StackPanel>
-        </Button>
+        
         <StackPanel >
             <TextBlock Width="450" Text="Danh sách thiết bị, nguyên vật liệu" Foreground="Yellow"/>
             <DataGrid Margin="0,5,0,0" Height="252"  Width="550"
@@ -50,8 +49,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" 
                     Margin="0,10,0,0">
-            <Button Name="btnSave" Width="100" Content="Luu" />
-            <Button Name="btnCancel" Width="100" Content="Huy" Margin="10,0,0,0" />
+            <Button Name="btnCancel" Width="100" Content="Back" Margin="10,0,0,0" Click="btnCancel_Click" />
         </StackPanel>
     </StackPanel>
 </UserControl>
