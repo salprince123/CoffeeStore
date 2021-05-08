@@ -54,7 +54,11 @@
                     <DataGridTemplateColumn Header="Action">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="btnView" Content="View" Click="btnView_Click" />
+                            <StackPanel Orientation="Horizontal">
+                                <Button Name="btnView" Content="View" Click="btnView_Click" />
+                                <Button Margin="10,0,0,0" Name="btnEdit" Content="Edit" />
+                                <Button Margin="10,0,0,0" Name="btnDelete" Content="Delete" />
+                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
