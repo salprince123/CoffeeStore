@@ -44,8 +44,8 @@ namespace CoffeeStore.Inventory
         {
             BUS_Material material = new BUS_Material();
             bool result = material.Update(tbName.Text, tbUnit.Text);
-            if (result)
-                MessageBox.Show($"Đã lưu chỉnh sửa ");
+            if (result) ; 
+            //MessageBox.Show($"Đã lưu chỉnh sửa ");
             else MessageBox.Show($"Chỉnh sửa không thành công");
             Window.GetWindow(this).Close();
         }

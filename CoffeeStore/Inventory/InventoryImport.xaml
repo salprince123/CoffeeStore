@@ -19,10 +19,10 @@
                      Text="Từ ngày" Margin="0,0,0,0" 
                      BorderBrush="Black" BorderThickness="1"/>
             <TextBox Width="100" Height="30" Name="tbEndDay"
-                     Text="Từ ngày" Margin="20,0,0,0"
+                     Text="Den ngày" Margin="20,0,0,0"
                      BorderBrush="Black" BorderThickness="1"/>
             <TextBox Width="200" Height="30" Name="tbKeyword"
-                     Text="Từ ngày" Margin="20,0,0,0"
+                     Text="Ma phieu nhap kho/ nguoi lap" Margin="20,0,0,0"
                      BorderBrush="Black" BorderThickness="1"/>
             <Button Margin="10,0,0,0" Width="45" Name="btnSearch">
                 <materialDesign:PackIcon Kind="Search" Height="30" Width="30" 
@@ -50,7 +50,7 @@
             </DataGrid>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-            <Button Margin="20,0,0,0" Width="100" Name="btnWatch" Content="Xem" />
+            <Button Margin="20,0,0,0" Width="100" Name="btnWatch" Content="Xem" Click="btnWatch_Click" />
             <Button Margin="20,0,0,0" Width="100" Name="btnEdit" Content="Sửa" Click="edit_click"/>
             <Button Margin="20,0,0,0" Width="100" Name="btnDel" Content="Xóa" />
         </StackPanel>
