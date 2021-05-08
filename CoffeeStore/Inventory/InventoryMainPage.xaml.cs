@@ -26,6 +26,7 @@ namespace CoffeeStore.Inventory
         public String selectionName = "";
         public class InventoryObject
         {
+            public string id { get; set; }
             public int number { get; set; }
             public String Name { get; set; }
             public String Unit { get; set; }
@@ -122,8 +123,6 @@ namespace CoffeeStore.Inventory
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (this.selectionName != "")
-            {
                 InventoryObject row = (InventoryObject)dataGridInfo.SelectedItem;
                 if(row != null)
                 {
@@ -139,34 +138,6 @@ namespace CoffeeStore.Inventory
                     window.ShowDialog();
                     LoadData();
                 }
-                
-            }
-            else MessageBox.Show("Xin vui lòng chọn phiếu cần xem");
-            
-        }
-
-        private void btnDel_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.selectionName != "")
-            {
-                MessageBox.Show("vui long code xu li");
-            }
-            else MessageBox.Show("Xin vui lòng chọn phiếu cần xóa");
-            
-        }
-
-        private void btnView_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                InventoryObject dataRowView = (InventoryObject)((Button)e.Source).DataContext;
-                MessageBox.Show($"You Clicked : {dataRowView.Name}");
-                //This is the code which will show the button click row data. Thank you.
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
         }
 
         private void dataGridInfo_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -178,6 +149,25 @@ namespace CoffeeStore.Inventory
             }
             catch (Exception) { }
             
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryObject row = (InventoryObject)dataGridInfo.SelectedItem;
+            if (row != null)
+            {
+                try
+                {
+                    BUS_Material material = new BUS_Material();
+                    bool result = material.Delete(row.Name);
+                    if (result)
+                        MessageBox.Show($"Đã xóa thành công vật liệu {row.Name}");
+                    else MessageBox.Show($"Xóa không thành công");
+                    LoadData();
+                }
+                catch (Exception) { }
+            }
+           
         }
     }
 }

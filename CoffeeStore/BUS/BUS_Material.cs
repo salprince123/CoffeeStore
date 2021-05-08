@@ -15,13 +15,13 @@ namespace CoffeeStore.BUS
         {
             return dalVL.SelectAllMaterial();
         }
-        public void Create (String name, String unit)
+        public bool Create (String name, String unit)
         {
-            dalVL.Create(name, unit);
+           return dalVL.Create(name, unit);
         }
-        public bool Delete (String id)
+        public bool Delete (String name)
         {
-            return dalVL.Delete(id);
+            return dalVL.Delete(name);
         }
         public bool Update(String name, String unit)
         {
