@@ -61,7 +61,6 @@ namespace CoffeeStore.Inventory
 
         private void AddImport_Click(object sender, RoutedEventArgs e)
         {
-            
             Window window = new Window
             {
                 Title = "My User Control Dialog",
