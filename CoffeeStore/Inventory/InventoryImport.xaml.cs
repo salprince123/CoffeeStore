@@ -28,8 +28,6 @@ namespace CoffeeStore.Inventory
             public String ID { get; set; }
             public String InventoryDate { get; set; }
             public String EmployName { get; set; }
-            //this variable for button add/del/edit
-            public String Action { get; set; }
         }
         public InventoryImportObject row;
         public InventoryImport()
@@ -46,10 +44,10 @@ namespace CoffeeStore.Inventory
             Console.WriteLine(temp.Rows.Count);
             foreach (DataRow row in temp.Rows)
             {
-                string employid = row["EmployeeID"].ToString();
+                string employid = row["EmployeeName"].ToString();
                 string id = row["importID"].ToString();
                 string date = row["importDate"].ToString();
-                list.Add(new InventoryImportObject() { ID = id, EmployName = employid, InventoryDate = date, number = number0, Action = "" });
+                list.Add(new InventoryImportObject() { ID = id, EmployName = employid, InventoryDate = date, number = number0 });
                 number0++;
             }
             this.dataGridImport.ItemsSource = list;
@@ -87,16 +85,26 @@ namespace CoffeeStore.Inventory
 
         private void btnWatch_Click(object sender, RoutedEventArgs e)
         {
-            if (this.selectionID != "")
+            InventoryImportObject row = (InventoryImportObject)dataGridImport.SelectedItem;
+            if (row != null)
             {
                 Window window = new Window
                 {
                     Title = "Chi tiết phiếu nhập",
-                    Content = new InventoryImportDETAIL(selectionID,row.EmployName,row.InventoryDate)
+                    Content = new InventoryImportDETAIL(row.ID, row.EmployName, row.InventoryDate)
                 };
                 window.ShowDialog();
             }
-            else MessageBox.Show("Xin vui lòng chọn phiếu cần xem");
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("vui long code xu li");
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("vui long code xu li");
         }
     }
 }
