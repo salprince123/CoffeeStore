@@ -73,7 +73,16 @@ namespace CoffeeStore.Inventory
 
         private void edit_click(object sender, RoutedEventArgs e)
         {
-            
+            if (this.selectionID != "")
+            {
+                Window window = new Window
+                {
+                    Title = "Chi tiết phiếu nhập",
+                    Content = new InventoryImportEDIT(selectionID, row.EmployName, row.InventoryDate)
+                };
+                window.ShowDialog();
+            }
+            else MessageBox.Show("Xin vui lòng chọn phiếu cần xem");
         }
 
         private void btnWatch_Click(object sender, RoutedEventArgs e)
