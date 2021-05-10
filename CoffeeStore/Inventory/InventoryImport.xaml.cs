@@ -64,7 +64,7 @@ namespace CoffeeStore.Inventory
             Window window = new Window
             {
                 Title = "My User Control Dialog",
-                //Content = new InventoryImportADD()
+                Content = new InventoryImportADD()
             };
             window.ShowDialog();
         }
@@ -104,7 +104,16 @@ namespace CoffeeStore.Inventory
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("vui long code xu li");
+            InventoryImportObject row = (InventoryImportObject)dataGridImport.SelectedItem;
+            if (row != null)
+            {
+                Window window = new Window
+                {
+                    Title = "Sua chi tiet phiếu nhập",
+                    Content = new InventoryImportEDIT(row.ID, row.EmployName, row.InventoryDate)
+                };
+                window.ShowDialog();
+            }
         }
     }
 }

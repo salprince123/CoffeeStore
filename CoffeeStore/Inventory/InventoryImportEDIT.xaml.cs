@@ -84,5 +84,15 @@ namespace CoffeeStore.Inventory
         {
             Window.GetWindow(this).Close();
         }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            Window window = new Window
+            {
+                Title = "Them chi tiet nhap kho",
+                Content = new PopupAddImportDetail()
+            };
+            window.ShowDialog();
+        }
     }
 }

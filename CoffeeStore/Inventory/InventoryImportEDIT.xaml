@@ -32,7 +32,12 @@
                      BorderBrush="Black" BorderThickness="1"/>
 
         </StackPanel>
-
+        <Button HorizontalAlignment="Left" Margin="30,20,0,0" Width="80" Name="btnAdd" Click="btnAdd_Click">
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Plus" Height="30" Width="30" Margin="-20,0,0,0" />
+                <TextBlock Text="Thêm" Margin="0,5,0,0"/>
+            </StackPanel>
+        </Button>
         <StackPanel >
             <TextBlock Width="450" Text="Danh sách thiết bị, nguyên vật liệu" Foreground="Yellow"/>
             <DataGrid Margin="0,5,0,0" Height="252"  Width="750"
@@ -58,9 +63,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Margin="10,0,0,0" Name="btnEdit" >
-                                        <materialDesign:PackIcon Kind="PlaylistEdit" Height="20" Width="20"  />
-                                    </Button>
+                                    
                                     <Button Margin="10,0,0,0" Name="btnDelete" Background="Red" >
                                         <materialDesign:PackIcon Kind="Delete" Height="20" Width="20"  />
                                     </Button>
