@@ -69,13 +69,7 @@ namespace CoffeeStore
         }
         internal void SwitchScreen(object sender)
         {
-            var screen = ((UserControl)sender);
-
-            if (screen != null)
-            {
-                StackPanelMain.Children.Clear();
-                StackPanelMain.Children.Add(screen);
-            }
+            
         }
         internal void SwitchWindow(object sender)
         {

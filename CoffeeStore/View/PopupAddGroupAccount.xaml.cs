@@ -10,30 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CoffeeStore
+namespace CoffeeStore.View
 {
     /// <summary>
-    /// Interaction logic for Cashier.xaml
+    /// Interaction logic for PopupAddGroupAccount.xaml
     /// </summary>
-    public partial class Cashier : Window
+    public partial class PopupAddGroupAccount : UserControl
     {
-        public Cashier()
+        public PopupAddGroupAccount()
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btExit_Click(object sender, RoutedEventArgs e)
         {
-
+          
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void btSave_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
-
-   
     }
 }

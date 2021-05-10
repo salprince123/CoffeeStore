@@ -29,6 +29,8 @@ namespace CoffeeStore.Inventory
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Close();
+            
+
         }
 
         private void btSave_Click(object sender, RoutedEventArgs e)
