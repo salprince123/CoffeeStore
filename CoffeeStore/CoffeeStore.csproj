@@ -117,6 +117,7 @@
     <Compile Include="DTO\DTO_Menu.cs" />
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
+	  </Compile>
     <Compile Include="BUS\BUS_InventoryExportDetail.cs" />
     <Compile Include="BUS\BUS_InventoryImport.cs" />
     <Compile Include="BUS\BUS_InventoryImportDetail.cs" />

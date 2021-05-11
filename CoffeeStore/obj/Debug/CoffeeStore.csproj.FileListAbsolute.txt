@@ -226,3 +226,23 @@ C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\CoffeeStore.exe
 C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\CoffeeStore.pdb
 C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\MainMenu.g.cs
 C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\MainMenu.baml
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\MainMenu.g.cs
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImport.g.cs
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportADD.g.cs
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportDETAIL.g.cs
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryMainPage.g.cs
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddMaterial.g.cs
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupEditMaterial.g.cs
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Cashier.g.cs
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Login.g.cs
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PopupAddGroupAccount.g.cs
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\MainMenu.baml
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImport.baml
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportADD.baml
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportDETAIL.baml
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryMainPage.baml
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddMaterial.baml
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupEditMaterial.baml
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Cashier.baml
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Login.baml
+D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PopupAddGroupAccount.baml

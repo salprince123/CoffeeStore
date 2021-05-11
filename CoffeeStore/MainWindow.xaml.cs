@@ -67,26 +67,35 @@ namespace CoffeeStore
             Menu.Children.Add(new MenuItem(item6, this));
             Menu.Children.Add(new MenuItem(item7, this));
         }
-        internal void SwitchWindow(object sender)
+        internal void SwitchScreen(object sender)   
         {
-            var screen = ((Cashier)sender);
+            var screen = ((UserControl)sender);
             if (screen != null)
             {
                 StackPanelMain.Children.Clear();
                 StackPanelMain.Children.Add(screen);
-                Window window = new Cashier();
-                window.Show();
             }
         }
         internal void SwitchWindow(object sender)
+        {
+           
+            var screen = ((UserControl)sender);
+            if (screen != null)
+            {
+                StackPanelMain.Children.Clear();
+                StackPanelMain.Children.Add(screen);
+            }
+        }
+        internal void SwitchWindow(object sender,int type)
         {
             var screen = ((Cashier)sender);
             if (screen != null)
             {
                 Window window = new Cashier();
-                window.Show();
-            }
-            
+                this.Hide();
+                window.ShowDialog();
+                this.Show();
+            } 
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
