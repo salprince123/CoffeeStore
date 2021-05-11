@@ -236,3 +236,4 @@ CoffeeStore/obj/Debug/VatLieu.g.i.cs
 .vs/CoffeeStore/v16/.suo
 CoffeeStore/obj/Debug/CoffeeStore.csprojAssemblyReference.cache
 CoffeeStore/obj/Debug/CoffeeStore_MarkupCompile.i.cache
+*.cache
