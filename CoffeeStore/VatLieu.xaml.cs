@@ -74,7 +74,7 @@ namespace CoffeeStore
         {
             
             BUS_Material material = new BUS_Material();
-            bool result = material.Update(tbMaterialID.Text, tbMaterialName.Text, tbUnit.Text);
+            bool result = material.Update(tbMaterialName.Text, tbUnit.Text);
             if (result)
                 MessageBox.Show($"Đã lưu chỉnh sửa ");
             else MessageBox.Show($"Chỉnh sửa không thành công");

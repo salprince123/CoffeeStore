@@ -26,19 +26,20 @@ namespace CoffeeStore
     {        
         public MainWindow()
         {
+            
             InitializeComponent();
 
             var item0 = new ItemMenu("Trang chủ", new UserControl(), PackIconKind.ViewDashboard);
             
-            var item1 = new ItemMenu("Thu ngân", new UserControl(), PackIconKind.Schedule);
+            var item1 = new ItemMenu("Thu ngân", new Cashier(), PackIconKind.Schedule);
 
             var item2 = new ItemMenu("Menu", new MainMenu(), PackIconKind.CalendarTextOutline);
 
             var item3 = new ItemMenu("Ưu đãi", new UserControl(), PackIconKind.ShoppingBasket);
 
             var menuInventory = new List<SubItem>();
-            menuInventory.Add(new SubItem("Thông tin kho",new Home()));
-            menuInventory.Add(new SubItem("Nhập kho"));
+            menuInventory.Add(new SubItem("Thông tin kho",new Inventory.InventoryMainPage()));
+            menuInventory.Add(new SubItem("Nhập kho", new Inventory.InventoryImport()));
             menuInventory.Add(new SubItem("Xuất kho"));
             var item4 = new ItemMenu("Kho", menuInventory, PackIconKind.Warehouse);
 
@@ -66,14 +67,31 @@ namespace CoffeeStore
             Menu.Children.Add(new MenuItem(item6, this));
             Menu.Children.Add(new MenuItem(item7, this));
         }
-        internal void SwitchScreen(object sender)
+        internal void SwitchWindow(object sender)
         {
-            var screen = ((UserControl)sender);
+            var screen = ((Cashier)sender);
             if (screen != null)
             {
                 StackPanelMain.Children.Clear();
                 StackPanelMain.Children.Add(screen);
+                Window window = new Cashier();
+                window.Show();
             }
+        }
+        internal void SwitchWindow(object sender)
+        {
+            var screen = ((Cashier)sender);
+            if (screen != null)
+            {
+                Window window = new Cashier();
+                window.Show();
+            }
+            
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

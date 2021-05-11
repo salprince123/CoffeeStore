@@ -26,12 +26,19 @@ namespace CoffeeStore.DAL
             };
             return null;
         }
-        public void Create(String name, String unit)
+        public bool Create(String name, String unit)
         {
+            //checking if material is already exist
+            string checkMaterial = $"SELECT materialId FROM Material where MaterialName= '{name}' ";
+            SQLiteDataAdapter checkDA = new SQLiteDataAdapter(checkMaterial, getConnection());
+            DataTable checkMater = new DataTable();
+            checkDA.Fill(checkMater);
+            if(checkMater.Rows.Count!=0)
+               return false;
             //create auto increase ID
             //Get max MaterialID
-             String id = "";
-             string tempSQL = "SELECT materialId FROM Material order by materialId desc LIMIT 1 ";
+            String id = "";
+            string tempSQL = "SELECT materialId FROM Material order by materialId desc LIMIT 1 ";
             SQLiteDataAdapter da = new SQLiteDataAdapter(tempSQL, getConnection());
             DataTable maxId = new DataTable();
             da.Fill(maxId);
@@ -50,34 +57,37 @@ namespace CoffeeStore.DAL
             try
             {
                 insert.ExecuteNonQuery();
+                return true;
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
+            
+            
         }
-        public bool Delete (String id)
+        public bool Delete (String name)
         {
-            string sql = $"delete from material where MaterialID='{id}'";
+            string sql = $"delete from material where MaterialName='{name}'";
             SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
             try
             {
                 return insert.ExecuteNonQuery() >0;                
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
         }
-        public bool Update (String id,String name, String unit)
+        public bool Update (String name, String unit)
         {
-            string sql = $"update Material set MaterialName='{name}', Unit = '{unit}'  where MaterialID='{id}'";
+            string sql = $"update Material set MaterialName='{name}', Unit = '{unit}'  where MaterialName='{name}'";
             SQLiteCommand update = new SQLiteCommand(sql, getConnection().OpenAndReturn());
             try
             {
                 return update.ExecuteNonQuery() > 0;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
