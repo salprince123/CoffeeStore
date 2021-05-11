@@ -74,8 +74,6 @@ namespace CoffeeStore
                 StackPanelMain.Children.Clear();
                 StackPanelMain.Children.Add(screen);
             }
-            else
-                MessageBox.Show("NUll");
         }
     }
 }
