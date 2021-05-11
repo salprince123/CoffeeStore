@@ -32,7 +32,7 @@ namespace CoffeeStore
             
             var item1 = new ItemMenu("Thu ngân", new UserControl(), PackIconKind.Schedule);
 
-            var item2 = new ItemMenu("Menu", new UserControl(), PackIconKind.CalendarTextOutline);
+            var item2 = new ItemMenu("Menu", new MainMenu(), PackIconKind.CalendarTextOutline);
 
             var item3 = new ItemMenu("Ưu đãi", new UserControl(), PackIconKind.ShoppingBasket);
 
@@ -69,12 +69,13 @@ namespace CoffeeStore
         internal void SwitchScreen(object sender)
         {
             var screen = ((UserControl)sender);
-
             if (screen != null)
             {
                 StackPanelMain.Children.Clear();
                 StackPanelMain.Children.Add(screen);
             }
+            else
+                MessageBox.Show("NUll");
         }
     }
 }

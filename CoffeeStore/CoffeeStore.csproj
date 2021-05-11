@@ -111,6 +111,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BUS\BUS_Menu.cs" />
+    <Compile Include="DAL\DAL_Menu.cs" />
+    <Compile Include="DTO\DTO_Menu.cs" />
+    <Compile Include="MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MenuItem.xaml.cs">
       <DependentUpon>MenuItem.xaml</DependentUpon>
     </Compile>
@@ -120,6 +126,10 @@
     <Compile Include="ViewModel\ItemMenu.cs" />
     <Compile Include="ViewModel\SubItem.cs" />
     <Page Include="Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
