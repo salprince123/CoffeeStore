@@ -139,7 +139,7 @@ namespace CoffeeStore.Inventory
                         Title = "Sửa nguyên liệu, vật liệu",
                         Content = new PopupEditMaterial(row.Name, row.Unit),
                         Width = 540,
-                        Height = 300,
+                        Height = 280,
                         Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 900 / 2) / 2,
                         Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 600 / 2) / 2,
                     };

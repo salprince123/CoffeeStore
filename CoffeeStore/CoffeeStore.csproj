@@ -118,6 +118,9 @@
     <Compile Include="Account\PopupAddGroupAccount.xaml.cs">
       <DependentUpon>PopupAddGroupAccount.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Account\PopupDeleteConfirm.xaml.cs">
+      <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BUS\BUS_InventoryExportDetail.cs" />
     <Compile Include="BUS\BUS_InventoryImport.cs" />
     <Compile Include="BUS\BUS_InventoryImportDetail.cs" />
@@ -169,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Account\PopupAddGroupAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\PopupDeleteConfirm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
