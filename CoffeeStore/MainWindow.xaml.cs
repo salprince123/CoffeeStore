@@ -33,7 +33,7 @@ namespace CoffeeStore
             
             var item1 = new ItemMenu("Thu ngân", new Cashier(), PackIconKind.Schedule);
 
-            var item2 = new ItemMenu("Menu", new UserControl(), PackIconKind.CalendarTextOutline);
+            var item2 = new ItemMenu("Menu", new Inventory.InventoryMainPage(), PackIconKind.CalendarTextOutline);
 
             var item3 = new ItemMenu("Ưu đãi", new UserControl(), PackIconKind.ShoppingBasket);
 

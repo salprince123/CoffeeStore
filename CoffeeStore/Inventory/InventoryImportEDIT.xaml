@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="CoffeeStore.Inventory.InventoryImportEDIT"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CoffeeStore.Inventory"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Height="600" Width="800">
+    <StackPanel Background="SeaGreen">
+        <Grid Height="90">
+            <TextBlock HorizontalAlignment="Left" Text="Sua phiếu nhập kho" 
+                       FontSize="60" FontFamily="Times New Roman" FontStyle="Italic"
+                       FontWeight="Bold" Foreground="Yellow"/>
+        </Grid>
+        <StackPanel Orientation="Horizontal" 
+                    Background="White" >
+            <TextBox Name="tbID" Text="{Binding Path=id}"
+                Width="250" Height="30"
+                     Margin="0,0,0,0" 
+                     BorderBrush="Black" BorderThickness="1"
+                     IsEnabled="False"  />
+            <TextBox Name="tbName"
+                Width="250" Height="30"
+                      Margin="20,0,0,0"
+                     BorderBrush="Black" BorderThickness="1"
+                     IsEnabled="False" Text="{Binding Path=name}"/>
+            <TextBox Name="tbDate"
+                Width="250" Height="30"
+                      Margin="20,0,0,0"
+                     Text="{Binding Path=day}"
+                     BorderBrush="Black" BorderThickness="1"/>
+
+        </StackPanel>
+        <Button HorizontalAlignment="Left" Margin="30,20,0,0" Width="80" Name="btnAdd" Click="btnAdd_Click">
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Plus" Height="30" Width="30" Margin="-20,0,0,0" />
+                <TextBlock Text="Thêm" Margin="0,5,0,0"/>
+            </StackPanel>
+        </Button>
+        <StackPanel >
+            <TextBlock Width="450" Text="Danh sách thiết bị, nguyên vật liệu" Foreground="Yellow"/>
+            <DataGrid Margin="0,5,0,0" Height="252"  Width="750"
+                x:Name="dataGridImport" VerticalAlignment="Center" 
+                HorizontalAlignment="Center" BorderThickness="0.1" 
+                FontFamily="Times New Roman" HorizontalScrollBarVisibility="Visible" 
+                VerticalScrollBarVisibility="Visible" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" 
+                IsReadOnly="True" EnableColumnVirtualization="True" 
+                      AutoGenerateColumns="False"
+                >
+                <DataGrid.CurrentColumn>
+                    <materialDesign:DataGridTextColumn/>
+                </DataGrid.CurrentColumn>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Number" Binding="{Binding Path='number'}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Path='name'}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Price" Binding="{Binding Path='unitPrice'}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Amount" Binding="{Binding Path='amount'}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Unit" Binding="{Binding Path='unit'}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Cost" Binding="{Binding Path='totalCost'}" IsReadOnly="True" />
+                    <DataGridTemplateColumn Header="Action">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    
+                                    <Button Margin="10,0,0,0" Name="btnDelete" Background="Red" >
+                                        <materialDesign:PackIcon Kind="Delete" Height="20" Width="20"  />
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" 
+                    Margin="0,10,0,0">
+            <Button Name="btnSave" Width="100" Content="Luu" Margin="10,0,0,0" />
+            <Button Name="btnCancel" Width="100" Content="Huy" Margin="10,0,0,0" Click="btnCancel_Click"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

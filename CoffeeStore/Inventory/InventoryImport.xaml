@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:CoffeeStore.Inventory"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
     <StackPanel Background="SeaGreen">
         <Grid Height="90">
             <TextBlock HorizontalAlignment="Left" Text="Nhập kho" 
@@ -14,7 +14,7 @@
                        FontWeight="Bold" Foreground="Yellow"/>
         </Grid>
         <StackPanel Orientation="Horizontal" 
-                    Background="White" Width="600" Height="50">
+                    Background="White" Width="750" Height="50">
             <TextBox Width="100" Height="30" Name="tbStartDay"
                      Text="Từ ngày" Margin="0,0,0,0" 
                      BorderBrush="Black" BorderThickness="1"/>
@@ -37,22 +37,42 @@
         </StackPanel>
         <StackPanel >
             <TextBlock Text="Danh sách nhập kho" Foreground="Yellow"/>
-            <DataGrid Margin="0,10,0,0" Height="252"  Width="600"
+            <DataGrid Margin="0,10,0,0" Height="252"  Width="750"
                 x:Name="dataGridImport" VerticalAlignment="Center" 
                 HorizontalAlignment="Center" BorderThickness="0.1" 
                 FontFamily="Times New Roman" HorizontalScrollBarVisibility="Visible" 
                 VerticalScrollBarVisibility="Visible" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" 
                 IsReadOnly="True" EnableColumnVirtualization="True" 
-                MouseLeftButtonUp="dataGridImport_MouseLeftButtonUp">
+                MouseLeftButtonUp="dataGridImport_MouseLeftButtonUp"
+                AutoGenerateColumns="False">
                 <DataGrid.CurrentColumn>
                     <materialDesign:DataGridTextColumn/>
                 </DataGrid.CurrentColumn>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="STT" Binding="{Binding Path='number'}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Ma phieu nhap kho" Binding="{Binding Path='ID'}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Ngay nhap kho" Binding="{Binding Path='InventoryDate'}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Nguoi nhap" Binding="{Binding Path='EmployName'}" IsReadOnly="True" />
+                    <DataGridTemplateColumn Header="Thao tac">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Margin="10,0,0,0" Name="btnWatch" Background="White" Click="btnWatch_Click">
+                                        <materialDesign:PackIcon Kind="Eye" Height="10" Width="10" Foreground="Black" />
+                                    </Button>
+                                    <Button Margin="10,0,0,0" Name="btnEdit" Background="Blue" Click="btnEdit_Click">
+                                        <materialDesign:PackIcon Kind="PlaylistEdit" Height="10" Width="10"  />
+                                    </Button>
+                                    <Button Margin="10,0,0,0" Name="btnDelete" Background="Red" Click="btnDelete_Click">
+                                        <materialDesign:PackIcon Kind="Delete" Height="10" Width="10"  />
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
             </DataGrid>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-            <Button Margin="20,0,0,0" Width="100" Name="btnWatch" Content="Xem" Click="btnWatch_Click" />
-            <Button Margin="20,0,0,0" Width="100" Name="btnEdit" Content="Sửa" Click="edit_click"/>
-            <Button Margin="20,0,0,0" Width="100" Name="btnDel" Content="Xóa" />
-        </StackPanel>
+        </StackPanel>        
     </StackPanel>
 </UserControl>
