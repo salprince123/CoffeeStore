@@ -112,6 +112,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Account\GroupAccountList.xaml.cs">
+      <DependentUpon>GroupAccountList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Account\PopupAddGroupAccount.xaml.cs">
+      <DependentUpon>PopupAddGroupAccount.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BUS\BUS_InventoryExportDetail.cs" />
     <Compile Include="BUS\BUS_InventoryImport.cs" />
     <Compile Include="BUS\BUS_InventoryImportDetail.cs" />
@@ -155,9 +161,17 @@
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PopupAddGroupAccount.xaml.cs">
-      <DependentUpon>PopupAddGroupAccount.xaml</DependentUpon>
+    <Compile Include="View\PopupDetail.xaml.cs">
+      <DependentUpon>PopupDetail.xaml</DependentUpon>
     </Compile>
+    <Page Include="Account\GroupAccountList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\PopupAddGroupAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -224,7 +238,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PopupAddGroupAccount.xaml">
+    <Page Include="View\PopupDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

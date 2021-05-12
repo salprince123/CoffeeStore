@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CoffeeStore.View
+namespace CoffeeStore.Account
 {
     /// <summary>
     /// Interaction logic for PopupAddGroupAccount.xaml
@@ -23,15 +23,6 @@ namespace CoffeeStore.View
         public PopupAddGroupAccount()
         {
             InitializeComponent();
-        }
-        private void btExit_Click(object sender, RoutedEventArgs e)
-        {
-          
-        }
-
-        private void btSave_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
     }
 }

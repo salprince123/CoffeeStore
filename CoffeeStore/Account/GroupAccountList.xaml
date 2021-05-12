@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="CoffeeStore.Account.GroupAccountList"
+             FontFamily="Open Sans"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CoffeeStore.Inventory"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+    <StackPanel Background="White" Margin="0,0,0,-54">
+        <!--Header here-->
+        <Grid Background="#6B6158" Margin="30,30,30,20" Height="90">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TextBlock Margin="40,0,0,0" HorizontalAlignment="Left" Text="Nhóm tài khoản" 
+                       VerticalAlignment="Center"
+                       FontSize="30" 
+                       FontWeight="Bold" Foreground="#FFE297"/>
+            </Grid>
+            <Grid Grid.Row="1" Background="#FFE297"></Grid>
+        </Grid>
+        <StackPanel Margin="30,0,30,30" >
+            <Button BorderBrush="#6B6158" Background="#FFE297" HorizontalAlignment="Right" Margin="0,0,0,0" Width="220" Click="Button_Click" >
+                <TextBlock Foreground="#6B6158" Text="+ THÊM NHÓM TÀI KHOẢN"/>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

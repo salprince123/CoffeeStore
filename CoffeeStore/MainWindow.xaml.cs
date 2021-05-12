@@ -26,7 +26,7 @@ namespace CoffeeStore
     {        
         public MainWindow()
         {
-            
+            this.FontFamily = new FontFamily("Open Sans");
             InitializeComponent();
 
             var item0 = new ItemMenu("Trang chủ", new UserControl(), PackIconKind.ViewDashboard);
@@ -55,7 +55,7 @@ namespace CoffeeStore
 
             var menuAccount = new List<SubItem>();
             menuAccount.Add(new SubItem("Tài khoản"));
-            menuAccount.Add(new SubItem("Nhóm tài khoản"));
+            menuAccount.Add(new SubItem("Nhóm tài khoản", new Account.GroupAccountList()));
             var item7 = new ItemMenu("Tài khoản", menuAccount, PackIconKind.Register);
 
             Menu.Children.Add(new MenuItem(item0, this));
@@ -69,7 +69,13 @@ namespace CoffeeStore
         }
         internal void SwitchScreen(object sender)
         {
-            
+            var screen = ((UserControl)sender);
+
+            if (screen != null)
+            {
+                StackPanelMain.Children.Clear();
+                StackPanelMain.Children.Add(screen);
+            }
         }
         internal void SwitchWindow(object sender)
         {
