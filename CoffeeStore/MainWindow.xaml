@@ -35,8 +35,7 @@
                 <StackPanel x:Name="Menu" Margin="10"/>
             </ScrollViewer>
         </Grid>
-        <!--Screen here-->
         <StackPanel x:Name="StackPanelMain" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        </StackPanel>
+        </StackPanel>        
     </Grid>
 </Window>

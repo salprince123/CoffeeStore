@@ -37,8 +37,11 @@ namespace CoffeeStore
 
         private void ListViewItemMenu_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-           // _context.SwitchWindow(((ItemMenu)((ListBoxItem)sender).DataContext).Cashier);
-            _context.SwitchScreen(((ItemMenu)((ListBoxItem)sender).DataContext).Screen);
+           // if(sender.Equals(Cashier))
+           if(((ItemMenu)((ListBoxItem)sender).DataContext)._Window!=null)
+            _context.SwitchWindow(((ItemMenu)((ListBoxItem)sender).DataContext)._Window,1);
+           else
+            _context.SwitchWindow(((ItemMenu)((ListBoxItem)sender).DataContext).Screen);
         }
     }
 }

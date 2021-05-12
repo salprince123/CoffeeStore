@@ -121,6 +121,12 @@
     <Compile Include="Account\PopupDeleteConfirm.xaml.cs">
       <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BUS\BUS_Menu.cs" />
+    <Compile Include="DAL\DAL_Menu.cs" />
+    <Compile Include="DTO\DTO_Menu.cs" />
+    <Compile Include="MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
+	  </Compile>
     <Compile Include="BUS\BUS_InventoryExportDetail.cs" />
     <Compile Include="BUS\BUS_InventoryImport.cs" />
     <Compile Include="BUS\BUS_InventoryImportDetail.cs" />
@@ -187,6 +193,10 @@
     </Page>
     <Page Include="Home.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainMenu.xaml">
+	 <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Inventory\InventoryImport.xaml">
