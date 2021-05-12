@@ -4,29 +4,17 @@
 winexe
 C#
 .cs
-<<<<<<< HEAD
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\
-=======
-C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\
->>>>>>> a3deb744ac495bb9daa3125cc6e014f453c5b8cd
 CoffeeStore
 none
 false
 DEBUG;TRACE
-<<<<<<< HEAD
 E:\Study\Project\CoffeeStore\CoffeeStore\App.xaml
-13156068890
+18-1496146648
 
-372107175304
+42-200111435
 136760734727
-=======
-C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\App.xaml
-13156068890
-
-372107175304
-1362093825804
->>>>>>> a3deb744ac495bb9daa3125cc6e014f453c5b8cd
-Home.xaml;Inventory\InventoryImport.xaml;Inventory\InventoryImportADD.xaml;Inventory\InventoryImportDETAIL.xaml;Inventory\InventoryMainPage.xaml;Inventory\PopupAddMaterial.xaml;Inventory\PopupEditMaterial.xaml;MainWindow.xaml;MenuItem.xaml;VatLieu.xaml;View\Cashier.xaml;View\Login.xaml;View\PopupAddGroupAccount.xaml;
+Account\GroupAccountList.xaml;Account\PopupAddGroupAccount.xaml;Account\PopupDeleteConfirm.xaml;Home.xaml;Inventory\InventoryImport.xaml;Inventory\InventoryImportADD.xaml;Inventory\InventoryImportDETAIL.xaml;Inventory\InventoryImportEDIT.xaml;Inventory\InventoryMainPage.xaml;Inventory\PopupAddImportDetail.xaml;Inventory\PopupAddMaterial.xaml;Inventory\PopupEditMaterial.xaml;MainWindow.xaml;MenuItem.xaml;VatLieu.xaml;View\Cashier.xaml;View\Login.xaml;View\PopupDetail.xaml;
 
 False
 

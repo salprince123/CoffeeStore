@@ -1,11 +1,15 @@
 ﻿
-<<<<<<< HEAD
 FE:\Study\Project\CoffeeStore\CoffeeStore\App.xaml;;
+FE:\Study\Project\CoffeeStore\CoffeeStore\Account\GroupAccountList.xaml;;
+FE:\Study\Project\CoffeeStore\CoffeeStore\Account\PopupAddGroupAccount.xaml;;
+FE:\Study\Project\CoffeeStore\CoffeeStore\Account\PopupDeleteConfirm.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\Home.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\Inventory\InventoryImport.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\Inventory\InventoryImportADD.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\Inventory\InventoryImportDETAIL.xaml;;
+FE:\Study\Project\CoffeeStore\CoffeeStore\Inventory\InventoryImportEDIT.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\Inventory\InventoryMainPage.xaml;;
+FE:\Study\Project\CoffeeStore\CoffeeStore\Inventory\PopupAddImportDetail.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\Inventory\PopupAddMaterial.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\Inventory\PopupEditMaterial.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\MainWindow.xaml;;
@@ -13,21 +17,5 @@ FE:\Study\Project\CoffeeStore\CoffeeStore\MenuItem.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\VatLieu.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\View\Cashier.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\View\Login.xaml;;
-FE:\Study\Project\CoffeeStore\CoffeeStore\View\PopupAddGroupAccount.xaml;;
-=======
-FC:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\App.xaml;;
-FC:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\Home.xaml;;
-FC:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\Inventory\InventoryImport.xaml;;
-FC:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\Inventory\InventoryImportADD.xaml;;
-FC:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\Inventory\InventoryImportDETAIL.xaml;;
-FC:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\Inventory\InventoryMainPage.xaml;;
-FC:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\Inventory\PopupAddMaterial.xaml;;
-FC:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\Inventory\PopupEditMaterial.xaml;;
-FC:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\MainWindow.xaml;;
-FC:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\MenuItem.xaml;;
-FC:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\VatLieu.xaml;;
-FC:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\View\Cashier.xaml;;
-FC:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\View\Login.xaml;;
-FC:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\View\PopupAddGroupAccount.xaml;;
->>>>>>> a3deb744ac495bb9daa3125cc6e014f453c5b8cd
+FE:\Study\Project\CoffeeStore\CoffeeStore\View\PopupDetail.xaml;;
 
