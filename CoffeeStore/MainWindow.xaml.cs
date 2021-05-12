@@ -66,6 +66,13 @@ namespace CoffeeStore
             Menu.Children.Add(new MenuItem(item5, this));
             Menu.Children.Add(new MenuItem(item6, this));
             Menu.Children.Add(new MenuItem(item7, this));
+
+            loginScreen.btnManager.Click += loginScreen_btnManager_Click;
+        }
+
+        private void loginScreen_btnManager_Click(object sender, RoutedEventArgs e)
+        {
+            gridLogin.Children.Clear();
         }
         internal void SwitchScreen(object sender)   
         {

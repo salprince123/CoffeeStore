@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoffeeStore"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:view="clr-namespace:CoffeeStore.View"
         mc:Ignorable="d"
         Title="Coffee Store" MinHeight="720" MinWidth="800" 
         Top="0"
@@ -31,11 +31,16 @@
                 <RowDefinition Height="50*"/>
                 <RowDefinition Height="326*"/>
             </Grid.RowDefinitions>
+
             <ScrollViewer HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.ColumnSpan="2">
                 <StackPanel x:Name="Menu" Margin="10"/>
             </ScrollViewer>
         </Grid>
         <StackPanel x:Name="StackPanelMain" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        </StackPanel>        
+        </StackPanel>
+        <Grid x:Name="gridLogin" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <view:Login x:Name="loginScreen">
+            </view:Login>
+        </Grid>
     </Grid>
 </Window>

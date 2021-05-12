@@ -266,7 +266,6 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.exe
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.pdb
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Login.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Login.baml
-E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\CoffeeStore.exe.config
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\CoffeeStore.exe
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\CoffeeStore.pdb
@@ -342,3 +341,16 @@ C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\XamlC.st
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.csproj.CopyComplete
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.exe
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.pdb
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\GroupAccountList.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupAddGroupAccount.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDeleteConfirm.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportEDIT.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddImportDetail.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PopupDetail.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\GroupAccountList.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupAddGroupAccount.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDeleteConfirm.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportEDIT.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddImportDetail.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PopupDetail.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\GeneratedInternalTypeHelper.g.cs
