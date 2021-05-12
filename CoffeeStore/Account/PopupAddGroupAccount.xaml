@@ -5,12 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CoffeeStore.View"
               mc:Ignorable="d" 
-             Height="450" Width="540">
-    <StackPanel Background="White" Margin="0,0,0,72">
+             Height="369" Width="540">
+    <StackPanel Background="White">
+        <!--Group account name-->
         <TextBlock Margin="40,10,40,0" Text="Tên nhóm tài khoản"/>
         <TextBox  x:Name="tbName" Margin="40,5,40,0" BorderThickness="1"
                  Height="40" />
-        <Grid Margin="40,20,40,0" DataContext="{Binding ElementName=UI}" >
+        <!--Permission-->
+        <Grid Margin="40,20,40,0" DataContext="{Binding }" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="181*"/>
                 <RowDefinition Height="23*"/>
@@ -21,10 +23,11 @@
                 <ColumnDefinition Width="241*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="1">
+                <!--Move permission button-->
                 <Button   
-                        Command="{Binding AddDevice}" 
+                        Command="{Binding }" 
                         Margin="0,10,0,0"
-                        CommandParameter="{Binding SelectedItem, ElementName=unSecure}" 
+                        CommandParameter="{Binding}" 
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Center" 
                         Height="33"  Width="48" Background="#FFE297" BorderBrush="#6B6158">
@@ -58,20 +61,22 @@
                     <TextBlock Text="&lt;&lt; Left" Foreground="#FFE297"></TextBlock>
                 </Button>
             </StackPanel>
+            <!--Data grid-->
             <DockPanel Margin="0,0,10,0" Grid.RowSpan="2" >
-                <TextBox DockPanel.Dock="Top" Text="Quyền chưa chọn" />
-                <DataGrid x:Name="unSecure" ItemsSource="{Binding UnsecuredDevices}" />
+                <TextBox IsReadOnly="True" DockPanel.Dock="Top" Text="Quyền chưa chọn" />
+                <DataGrid x:Name="unSecure" ItemsSource="{Binding }" />
             </DockPanel>
             <DockPanel  Margin="0,0,10,0" Grid.Column="2">
-                <TextBox DockPanel.Dock="Top" Text="Quyền đã chọn" />
-                <DataGrid ItemsSource="{Binding SecuredDevices}" />
+                <TextBox IsReadOnly="True" DockPanel.Dock="Top" Text="Quyền đã chọn" />
+                <DataGrid ItemsSource="{Binding }" />
             </DockPanel>
         </Grid>
+        <!--Save, Cancel button-->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="btSave" Height="40" Width="100"
-                    Content="LƯU" Margin="0,20,0,0"  Background="#66A3FF"/>
+                    Content="LƯU" Margin="0,30,0,0"  Background="#66A3FF"/>
             <Button x:Name="btExit" Height="40" Width="100"
-                    Content="HỦY" Margin="10,20,0,0" Background="#F27047"/>
+                    Content="HỦY" Margin="10,30,0,0" Background="#F27047"/>
         </StackPanel>
     </StackPanel>
 
