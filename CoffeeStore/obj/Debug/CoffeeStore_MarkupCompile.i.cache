@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-E:\Project\CoffeeStore\CoffeeStore\obj\Debug\
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\
 CoffeeStore
 none
 false
 DEBUG;TRACE
-E:\Project\CoffeeStore\CoffeeStore\App.xaml
+E:\Study\Project\CoffeeStore\CoffeeStore\App.xaml
 13156068890
 
 381264815937
-136-55225853
+136760734727
 Home.xaml;Inventory\InventoryImport.xaml;Inventory\InventoryImportADD.xaml;Inventory\InventoryImportDETAIL.xaml;Inventory\InventoryMainPage.xaml;Inventory\PopupAddMaterial.xaml;Inventory\PopupEditMaterial.xaml;MainWindow.xaml;MenuItem.xaml;VatLieu.xaml;View\Cashier.xaml;View\Login.xaml;View\PopupAddGroupAccount.xaml;
 
 True
