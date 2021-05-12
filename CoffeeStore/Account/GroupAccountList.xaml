@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:CoffeeStore.Inventory"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="800">
+             MinWidth="510" MinHeight="504">
     <StackPanel Background="White" Margin="0,0,0,-54">
         <!--Header here-->
         <Grid Background="#6B6158" Margin="30,30,30,20" Height="90">
@@ -25,8 +25,8 @@
         </Grid>
         <StackPanel Margin="30,0,30,30" >
             <!--Add button here-->
-            <Button BorderBrush="#6B6158" Background="#FFE297" HorizontalAlignment="Right" Margin="0,0,0,0" Width="220" Click="Button_Click" >
-                <TextBlock Foreground="#6B6158" Text="+ THÊM NHÓM TÀI KHOẢN"/>
+            <Button BorderBrush="#6B6158" Background="#FFE297" HorizontalAlignment="Right" Margin="0,0,0,0" Width="83" Click="Button_Click" >
+                <TextBlock Foreground="#6B6158" Text="+ THÊM"/>
             </Button>
             <!--Data grid here-->
         </StackPanel>

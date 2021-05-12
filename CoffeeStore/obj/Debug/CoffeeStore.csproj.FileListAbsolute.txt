@@ -354,3 +354,5 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportEDIT
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddImportDetail.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PopupDetail.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\MainMenu.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\MainMenu.baml
