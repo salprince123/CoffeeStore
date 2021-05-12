@@ -116,10 +116,6 @@ namespace CoffeeStore.Inventory
             }
         }
 
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
