@@ -356,3 +356,13 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PopupDetail.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\GeneratedInternalTypeHelper.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\MainMenu.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\MainMenu.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\AccountList.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupAddAccount.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\MenuList.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupAddMenu.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupDeleteConfirm.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\AccountList.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupAddAccount.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\MenuList.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupAddMenu.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupDeleteConfirm.baml

@@ -55,7 +55,8 @@
                      Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="5" 
                      FontFamily="Open Sans" FontSize="20" 
                      VerticalContentAlignment="Center" 
-                     BorderThickness="1">
+                     BorderThickness="1"
+                     Padding="5">
             </TextBox>
             <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="7"
                    FontFamily="Open Sans" FontWeight="Bold" FontSize="16" Foreground="#FF4A4A4A" Padding="0">
@@ -65,7 +66,8 @@
                          Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="8" 
                          FontFamily="Open Sans" FontSize="20" 
                          VerticalContentAlignment="Center" 
-                         BorderThickness="1">
+                         BorderThickness="1"
+                         Padding="5">
             </PasswordBox>
             <Button Name="btnSale" Background="#FFFF7700"
                     Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2"
