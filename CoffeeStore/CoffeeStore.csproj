@@ -177,6 +177,9 @@
     <Compile Include="Menu\PopupAddMenu.xaml.cs">
       <DependentUpon>PopupAddMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Menu\PopupDeleteConfirm.xaml.cs">
+      <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VatLieu.xaml.cs">
       <DependentUpon>VatLieu.xaml</DependentUpon>
     </Compile>
@@ -285,6 +288,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Menu\PopupDeleteConfirm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VatLieu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -332,7 +339,9 @@
   <ItemGroup>
     <Resource Include="Images\icon.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Discount\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
