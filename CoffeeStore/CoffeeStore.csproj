@@ -127,8 +127,15 @@
     <Compile Include="Account\PopupDeleteConfirm.xaml.cs">
       <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BUS\BUS_AccessPermission.cs" />
+    <Compile Include="BUS\BUS_AccessPermissionGroup.cs" />
+    <Compile Include="BUS\BUS_Employees.cs" />
+    <Compile Include="BUS\BUS_EmployeeType.cs" />
     <Compile Include="BUS\BUS_Menu.cs" />
+    <Compile Include="DAL\DAL_AccessPermission.cs" />
+    <Compile Include="DAL\DAL_AccessPermissionGroup.cs" />
     <Compile Include="DAL\DAL_Employees.cs" />
+    <Compile Include="DAL\DAL_EmployeeType.cs" />
     <Compile Include="DAL\DAL_Menu.cs" />
     <Compile Include="DTO\DTO_AccessPermissionGroup.cs" />
     <Compile Include="DTO\DTO_AccessPermission.cs" />
