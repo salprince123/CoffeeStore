@@ -15,14 +15,17 @@
         >
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-
-        <Grid HorizontalAlignment="Stretch" Grid.Row="0" Background="#6B6158">
+        <!--Username here-->
+        <Grid Grid.Row="0" Grid.ColumnSpan="2"></Grid>
+        <!--Navigation menu here-->
+        <Grid HorizontalAlignment="Stretch" Grid.RowSpan="2"  Background="#6B6158">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="137*"/>
                 <ColumnDefinition Width="113*"/>
@@ -31,12 +34,13 @@
                 <RowDefinition Height="50*"/>
                 <RowDefinition Height="326*"/>
             </Grid.RowDefinitions>
-
+            <!--Logo here-->
+            <Grid Grid.Row="0" Grid.ColumnSpan="2"/>
             <ScrollViewer HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.ColumnSpan="2">
                 <StackPanel x:Name="Menu" Margin="10"/>
             </ScrollViewer>
         </Grid>
-        <StackPanel x:Name="StackPanelMain" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <StackPanel x:Name="StackPanelMain" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         </StackPanel>
         <Grid x:Name="gridLogin" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2">
             <view:Login x:Name="loginScreen">

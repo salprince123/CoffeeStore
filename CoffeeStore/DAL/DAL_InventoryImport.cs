@@ -23,7 +23,7 @@ namespace CoffeeStore.DAL
             }
             catch (Exception e)
             {
-                Console.WriteLine( "Exception AT" + e.ToString());
+                Console.WriteLine( "INVENTORYIMPORT SELECT: Exception AT" + e.ToString());
                 return new DataTable();
             };
             
