@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:CoffeeStore.Inventory"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             MinWidth="510" MinHeight="504">
+             MinWidth="510" MinHeight="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="90"></RowDefinition>
@@ -46,7 +46,6 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="15"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="15"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -74,7 +73,44 @@
                     </Label>
                 </Grid>
                 <!--List body here-->
-                
+                <Border Grid.Row="1" BorderBrush="#6B6158" BorderThickness="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <DataGrid Grid.Column="1" Grid.Row="1" IsReadOnly="True" BorderThickness="1">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="STT"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Tên nhóm tài khoản"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Quyền 1"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Quyền 2"></DataGridTextColumn>
+                                <DataGridTextColumn Header="..."></DataGridTextColumn>
+                                <DataGridTextColumn Header="Thao tác"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2">
+                            <Button Width="40" Height="Auto" 
+                                    Background="White" Foreground="Black" BorderBrush="White"
+                                    VerticalAlignment="Center" Content="&lt;">
+                            </Button>
+                            <Rectangle Width="40"></Rectangle>
+                            <Button Width="40" Height="Auto" 
+                                    Background="White" Foreground="Black" BorderBrush="White"
+                                    VerticalAlignment="Center" Content="&gt;">
+                                
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Border>
             </Grid>
         </Grid>
     </Grid>

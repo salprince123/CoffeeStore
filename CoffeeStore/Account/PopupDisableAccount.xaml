@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="CoffeeStore.Account.PopupDeleteConfirm"
+﻿<UserControl x:Class="CoffeeStore.Account.PopupDisableAccount"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,7 +8,7 @@
     <StackPanel Background="White" Margin="0,0,0,42">
         <!--Popup content-->
         <TextBlock Margin="30" HorizontalAlignment="Center"
-                   Text="Dữ liệu về ... sẽ bị xóa vĩnh viễn. &#x0a;Bạn chắc chắn muốn xóa?" 
+                   Text="Tài khoản... sẽ bị vô hiệu hóa. &#x0a;Bạn chắc chắn muốn vô hiệu hóa?" 
                    Height="39"
                    FontSize="15"/>
         <!--Button-->
