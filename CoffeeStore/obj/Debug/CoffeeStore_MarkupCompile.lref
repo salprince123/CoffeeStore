@@ -2,9 +2,6 @@
 FE:\Study\Project\CoffeeStore\CoffeeStore\App.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\Account\AccountList.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\Account\GroupAccountList.xaml;;
-FE:\Study\Project\CoffeeStore\CoffeeStore\Account\PopupAddAccount.xaml;;
-FE:\Study\Project\CoffeeStore\CoffeeStore\Account\PopupAddGroupAccount.xaml;;
-FE:\Study\Project\CoffeeStore\CoffeeStore\Account\PopupDeleteConfirm.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\Home.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\MainMenu.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\Inventory\InventoryImport.xaml;;
@@ -18,7 +15,6 @@ FE:\Study\Project\CoffeeStore\CoffeeStore\Inventory\PopupEditMaterial.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\MainWindow.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\MenuItem.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\Menu\MenuList.xaml;;
-FE:\Study\Project\CoffeeStore\CoffeeStore\Menu\PopupAddMenu.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\Menu\PopupDeleteConfirm.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\VatLieu.xaml;;
 FE:\Study\Project\CoffeeStore\CoffeeStore\View\Cashier.xaml;;

@@ -366,3 +366,11 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupAddAccount.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\MenuList.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupAddMenu.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupDeleteConfirm.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupChangePassword.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDisableAccount.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditAccount.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupEditMenu.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupChangePassword.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDisableAccount.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditAccount.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupEditMenu.g.cs

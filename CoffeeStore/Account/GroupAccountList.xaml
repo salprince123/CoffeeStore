@@ -8,27 +8,25 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              MinWidth="510" MinHeight="600">
-    <Grid>
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="90"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="14*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Background="White"></Grid>
-        <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Background="White"></Grid>
         <!--Header here-->
         <Grid Background="#6B6158" Grid.Row="0" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="5"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="13*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             
             <Label Grid.Column="1"
@@ -40,7 +38,7 @@
         </Grid>
         
         <!--Body here-->
-        <Grid Grid.Row="1" Grid.Column="1" Background="White">
+        <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="15"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -66,8 +64,8 @@
                 <!--List header here-->
                 <Grid Grid.Row="0" Background="#6B6158">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                        <ColumnDefinition Width="13.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="15"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="1" Foreground="#FFE297" FontWeight="Bold" Content="Danh sách nhóm tài khoản">
                     </Label>
