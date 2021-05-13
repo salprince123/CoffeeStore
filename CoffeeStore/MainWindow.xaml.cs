@@ -73,13 +73,21 @@ namespace CoffeeStore
 
         private void LoginScreen_BtnSale_Click(object sender, RoutedEventArgs e)
         {
-            Window window = new Cashier();
-            window.Show();
+            bool checkResult = loginScreen.CheckPassword();
+            if (checkResult)
+            {
+                Window window = new Cashier();
+                window.Show();
+            }   
         }
 
         private void LoginScreen_BtnManager_Click(object sender, RoutedEventArgs e)
         {
-            gridLogin.Children.Clear();
+            bool checkResult = loginScreen.CheckPassword();
+            if (checkResult)
+            {
+                gridLogin.Children.Clear();
+            }
         }
         internal void SwitchScreen(object sender)   
         {

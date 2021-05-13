@@ -124,20 +124,18 @@
     <Compile Include="Account\PopupAddGroupAccount.xaml.cs">
       <DependentUpon>PopupAddGroupAccount.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Account\PopupChangePassword.xaml.cs">
-      <DependentUpon>PopupChangePassword.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Account\PopupDeleteConfirm.xaml.cs">
       <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Account\PopupDisableAccount.xaml.cs">
-      <DependentUpon>PopupDisableAccount.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Account\PopupEditAccount.xaml.cs">
-      <DependentUpon>PopupEditAccount.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="BUS\BUS_AccessPermission.cs" />
+    <Compile Include="BUS\BUS_AccessPermissionGroup.cs" />
+    <Compile Include="BUS\BUS_Employees.cs" />
+    <Compile Include="BUS\BUS_EmployeeType.cs" />
     <Compile Include="BUS\BUS_Menu.cs" />
+    <Compile Include="DAL\DAL_AccessPermission.cs" />
+    <Compile Include="DAL\DAL_AccessPermissionGroup.cs" />
     <Compile Include="DAL\DAL_Employees.cs" />
+    <Compile Include="DAL\DAL_EmployeeType.cs" />
     <Compile Include="DAL\DAL_Menu.cs" />
     <Compile Include="DTO\DTO_AccessPermissionGroup.cs" />
     <Compile Include="DTO\DTO_AccessPermission.cs" />
@@ -194,9 +192,6 @@
     <Compile Include="Menu\PopupDeleteConfirm.xaml.cs">
       <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Menu\PopupEditMenu.xaml.cs">
-      <DependentUpon>PopupEditMenu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="VatLieu.xaml.cs">
       <DependentUpon>VatLieu.xaml</DependentUpon>
     </Compile>
@@ -227,21 +222,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Account\PopupChangePassword.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Account\PopupDeleteConfirm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Account\PopupDisableAccount.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Account\PopupEditAccount.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Home.xaml">
       <SubType>Designer</SubType>
@@ -321,10 +304,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Menu\PopupEditMenu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="VatLieu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -372,7 +351,9 @@
   <ItemGroup>
     <Resource Include="Images\icon.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Discount\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
