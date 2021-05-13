@@ -203,7 +203,6 @@ C:\Users\pacif\Desktop\CNPM\CoffeeStore\bin\Debug\Xamarin.Forms.Core.pdb
 C:\Users\pacif\Desktop\CNPM\CoffeeStore\bin\Debug\Xamarin.Forms.Core.xml
 C:\Users\pacif\Desktop\CNPM\CoffeeStore\bin\Debug\Xamarin.Forms.Xaml.pdb
 C:\Users\pacif\Desktop\CNPM\CoffeeStore\bin\Debug\Xamarin.Forms.Xaml.xml
-C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\CoffeeStore.csprojAssemblyReference.cache
 C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\Home.g.cs
 C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\MainWindow.g.cs
 C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\MenuItem.g.cs
@@ -246,3 +245,22 @@ D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventor
 D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Cashier.baml
 D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Login.baml
 D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PopupAddGroupAccount.baml
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\Inventory\InventoryImport.g.cs
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\Inventory\InventoryImportADD.g.cs
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\Inventory\InventoryImportDETAIL.g.cs
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\Inventory\InventoryMainPage.g.cs
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\Inventory\PopupAddMaterial.g.cs
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\Inventory\PopupEditMaterial.g.cs
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\View\Cashier.g.cs
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\View\Login.g.cs
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\View\PopupAddGroupAccount.g.cs
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\Inventory\InventoryImport.baml
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\Inventory\InventoryImportADD.baml
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\Inventory\InventoryImportDETAIL.baml
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\Inventory\InventoryMainPage.baml
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\Inventory\PopupAddMaterial.baml
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\Inventory\PopupEditMaterial.baml
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\View\Cashier.baml
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\View\Login.baml
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\View\PopupAddGroupAccount.baml
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\CoffeeStore.csprojAssemblyReference.cache
