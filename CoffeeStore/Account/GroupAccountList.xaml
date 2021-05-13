@@ -58,7 +58,24 @@
                     Background="#FFE297" Foreground="#6B6158"
                     Click="Button_Click">+ THÊM</Button>
             <!--List here-->
-            <Grid Grid.Row="3" Grid.ColumnSpan="2"></Grid>
+            <Grid Grid.Row="3" Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <!--List header here-->
+                <Grid Grid.Row="0" Background="#6B6158">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="13.5*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1" Foreground="#FFE297" FontWeight="Bold" Content="Danh sách nhóm tài khoản">
+                    </Label>
+                </Grid>
+                <!--List body here-->
+                
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>
