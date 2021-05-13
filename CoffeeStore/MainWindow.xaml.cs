@@ -33,7 +33,7 @@ namespace CoffeeStore
             
             var item1 = new ItemMenu("Thu ngân", new Cashier(), PackIconKind.Schedule);
 
-            var item2 = new ItemMenu("Menu", new Inventory.InventoryMainPage(), PackIconKind.CalendarTextOutline);
+            var item2 = new ItemMenu("Menu", new Menu.MenuList(), PackIconKind.CalendarTextOutline);
 
             var item3 = new ItemMenu("Ưu đãi", new UserControl(), PackIconKind.ShoppingBasket);
 
@@ -54,7 +54,7 @@ namespace CoffeeStore
             var item6 = new ItemMenu("Báo cáo thống kê", menuReport, PackIconKind.ChartLineVariant);
 
             var menuAccount = new List<SubItem>();
-            menuAccount.Add(new SubItem("Tài khoản"));
+            menuAccount.Add(new SubItem("Tài khoản", new Account.AccountList()));
             menuAccount.Add(new SubItem("Nhóm tài khoản", new Account.GroupAccountList()));
             var item7 = new ItemMenu("Tài khoản", menuAccount, PackIconKind.Register);
 

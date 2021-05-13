@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="CoffeeStore.Account.PopupAddAccount"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CoffeeStore.Inventory"
+             mc:Ignorable="d" 
+             Height="395" Width="540">
+    <StackPanel Background="White">
+        <!--Group account name-->
+        <TextBlock Margin="60,10,60,0" Text="Tài khoản"/>
+        <TextBox Margin="0,5,0,0" BorderThickness="1"
+                 Height="40" Width="420" />
+
+        <TextBlock Margin="60,10,60,0" Text="Mật khẩu"/>
+        <TextBox  Margin="0,5,0,0" BorderThickness="1"
+                 Height="40" Width="420" />
+
+        <TextBlock Margin="60,10,60,0" Text="Tên nhân viên"/>
+        <TextBox  Margin="0,5,0,0" BorderThickness="1"
+                 Height="40" Width="420" />
+
+        <TextBlock Margin="60,10,60,0" Text="Nhóm tài khoản"/>
+        <ComboBox  Margin="0,5,0,0" BorderThickness="1"
+                 Height="40" Width="420" />
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btSave" Height="40" Width="100"
+                    Content="LƯU" Margin="0,30,0,0" Background="#66A3FF"/>
+            <Button x:Name="btExit" Height="40" Width="100"
+                    Content="HỦY" Margin="10,30,0,0" Background="#F27047"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

@@ -112,8 +112,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Account\AccountList.xaml.cs">
+      <DependentUpon>AccountList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Account\GroupAccountList.xaml.cs">
       <DependentUpon>GroupAccountList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Account\PopupAddAccount.xaml.cs">
+      <DependentUpon>PopupAddAccount.xaml</DependentUpon>
     </Compile>
     <Compile Include="Account\PopupAddGroupAccount.xaml.cs">
       <DependentUpon>PopupAddGroupAccount.xaml</DependentUpon>
@@ -126,7 +132,7 @@
     <Compile Include="DTO\DTO_Menu.cs" />
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
-	  </Compile>
+    </Compile>
     <Compile Include="BUS\BUS_InventoryExportDetail.cs" />
     <Compile Include="BUS\BUS_InventoryImport.cs" />
     <Compile Include="BUS\BUS_InventoryImportDetail.cs" />
@@ -165,6 +171,12 @@
     <Compile Include="MenuItem.xaml.cs">
       <DependentUpon>MenuItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Menu\MenuList.xaml.cs">
+      <DependentUpon>MenuList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\PopupAddMenu.xaml.cs">
+      <DependentUpon>PopupAddMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VatLieu.xaml.cs">
       <DependentUpon>VatLieu.xaml</DependentUpon>
     </Compile>
@@ -179,7 +191,15 @@
     <Compile Include="View\PopupDetail.xaml.cs">
       <DependentUpon>PopupDetail.xaml</DependentUpon>
     </Compile>
+    <Page Include="Account\AccountList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Account\GroupAccountList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\PopupAddAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,7 +216,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainMenu.xaml">
-	 <SubType>Designer</SubType>
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Inventory\InventoryImport.xaml">
@@ -256,6 +276,14 @@
     <Page Include="MenuItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menu\MenuList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menu\PopupAddMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="VatLieu.xaml">
       <SubType>Designer</SubType>
