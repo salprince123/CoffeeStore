@@ -128,7 +128,12 @@
       <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
     </Compile>
     <Compile Include="BUS\BUS_Menu.cs" />
+    <Compile Include="DAL\DAL_Employees.cs" />
     <Compile Include="DAL\DAL_Menu.cs" />
+    <Compile Include="DTO\DTO_AccessPermissionGroup.cs" />
+    <Compile Include="DTO\DTO_AccessPermission.cs" />
+    <Compile Include="DTO\DTO_Employees.cs" />
+    <Compile Include="DTO\DTO_EmployeeType.cs" />
     <Compile Include="DTO\DTO_Menu.cs" />
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
