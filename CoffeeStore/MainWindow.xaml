@@ -31,7 +31,8 @@
                 <RowDefinition Height="50*"/>
                 <RowDefinition Height="326*"/>
             </Grid.RowDefinitions>
-
+            <!--Logo here-->
+            <Grid Grid.Row="0" Grid.ColumnSpan="2"/>
             <ScrollViewer HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.ColumnSpan="2">
                 <StackPanel x:Name="Menu" Margin="10"/>
             </ScrollViewer>
