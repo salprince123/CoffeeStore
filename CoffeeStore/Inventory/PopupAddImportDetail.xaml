@@ -6,45 +6,76 @@
              xmlns:local="clr-namespace:CoffeeStore.Inventory"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             Width="600" Height="800">
-    <StackPanel Background="WhiteSmoke">
-        <StackPanel HorizontalAlignment="Center" Margin="0,20,0,0" Orientation="Horizontal">
-            <TextBox x:Name="tbFind"  Width="400" BorderThickness="1" />
-            <Button x:Name="bnFind" Margin="30,0,0,0">
-                <materialDesign:PackIcon Kind="Search" Height="20" Width="20"  />
+             MinWidth="400" Height="Auto">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="300"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--Search + Filter here-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="tbFind" BorderThickness="1" Margin="10,0,10,0"/>
+            <Button x:Name="bnFind" Grid.Column="1" Margin="0,0,10,0"
+                    Background="#6B6158" Foreground="#FFE297" 
+                    BorderBrush="#FFE297" BorderThickness="1">
+                <materialDesign:PackIcon Kind="Search"/>
             </Button>
-            <Button x:Name="bnFilter" Margin="30,0,0,0">
-                <materialDesign:PackIcon Kind="Filter" Height="20" Width="20"  />
+            <Button x:Name="bnFilter" Grid.Column="2" Margin="0,0,10,0"
+                    Background="#6B6158" Foreground="#FFE297" 
+                    BorderBrush="#FFE297" BorderThickness="1">
+                <materialDesign:PackIcon Kind="Filter" Height="20" Width="20"/>
             </Button>
-        </StackPanel>
-        <DataGrid Margin="0,20,0,0" Height="620"  Width="550"
-                x:Name="dataGrid" VerticalAlignment="Center" 
-                HorizontalAlignment="Center" BorderThickness="1" 
-                FontFamily="Times New Roman" HorizontalScrollBarVisibility="Visible" 
-                VerticalScrollBarVisibility="Visible" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" EnableColumnVirtualization="True" 
-                      AutoGenerateColumns="False" CellEditEnding="dataGrid_CellEditEnding" SelectionChanged="dataGrid_SelectionChanged"
-                  >
-            <DataGrid.CurrentColumn>
-                <materialDesign:DataGridTextColumn/>
-            </DataGrid.CurrentColumn>
-
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="STT" Binding="{Binding Path='number'}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Ten" Binding="{Binding Path='name'}" IsReadOnly="True" />
-                <DataGridTextColumn Header="So luong"  />
-                <DataGridTextColumn Header="Don vi tinh" Binding="{Binding Path='unit'}" IsReadOnly="True" />
-                <DataGridTemplateColumn Header="Action">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <CheckBox x:Name="cbCheck"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <StackPanel Margin="0,20,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="btSave" Content="Luu"/>
-            <Button x:Name="btCancel" Content="Huy" Margin="20,0,0,0"/>
-        </StackPanel>
-    </StackPanel>
+        </Grid>
+        <!--List here-->
+        <Grid Grid.Row="3">
+            <DataGrid x:Name="dataGrid" Margin="10,0,10,0"
+                      BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
+                      VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" 
+                      CellEditEnding="dataGrid_CellEditEnding" SelectionChanged="dataGrid_SelectionChanged">
+                <DataGrid.CurrentColumn>
+                    <materialDesign:DataGridTextColumn/>
+                </DataGrid.CurrentColumn>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="STT" Binding="{Binding Path='number'}" IsReadOnly="True"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" Binding="{Binding Path='name'}" IsReadOnly="True"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Số lượng"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding Path='unit'}" IsReadOnly="True"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox x:Name="cbCheck"></CheckBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <!--Button here-->
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btSave" Width="100" Margin="0,0,10,0"
+                    Background="#66A3FF" FontWeight="Bold"
+                    VerticalAlignment="Top" HorizontalAlignment="Right">
+                LƯU
+            </Button>
+            <Button x:Name="btCancel" Grid.Column="1" Width="100" Margin="10,0,0,0"
+                    Background="#F27047" FontWeight="Bold"
+                    VerticalAlignment="Top" HorizontalAlignment="Left">
+                HỦY
+            </Button>
+        </Grid>
+    </Grid>
 </UserControl>
