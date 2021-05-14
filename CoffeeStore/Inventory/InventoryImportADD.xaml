@@ -87,7 +87,7 @@
                 </Grid.RowDefinitions>
                 <!--List header here-->
                 <Grid Background="#6B6158">
-                    <Label Foreground="#FFE297" FontWeight="Bold" Content="Danh sách nguyên vật liệu, thiết bị nhập">
+                    <Label Foreground="#FFE297" FontWeight="Bold" Content="Danh sách nguyên vật liệu, thiết bị nhập" Margin="15,0,0,0">
                     </Label>
                 </Grid>
                 <!--List body here-->
