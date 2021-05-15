@@ -148,6 +148,9 @@
     <Compile Include="IncomeAndPayment\PopupPaymentDetail.xaml.cs">
       <DependentUpon>PopupPaymentDetail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IncomeAndPayment\ReceiptDetail.xaml.cs">
+      <DependentUpon>ReceiptDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\PopupInventoryExportDETAIL.xaml.cs">
       <DependentUpon>PopupInventoryExportDETAIL.xaml</DependentUpon>
     </Compile>
@@ -247,6 +250,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="IncomeAndPayment\PopupPaymentDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IncomeAndPayment\ReceiptDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

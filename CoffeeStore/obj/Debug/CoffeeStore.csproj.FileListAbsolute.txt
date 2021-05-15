@@ -397,3 +397,5 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupMaterialToImpo
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupMaterialToImport.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PopupEditMenuStatus.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PopupEditMenuStatus.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\ReceiptDetail.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\ReceiptDetail.baml

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\Study\Project\CoffeeStore\CoffeeStore\App.xaml
-28-1461966501
+29-429704415
 
-68877900450
+69-1995745086
 136760734727
-Account\AccountList.xaml;Account\GroupAccountList.xaml;Account\PopupAddAccount.xaml;Account\PopupAddGroupAccount.xaml;Account\PopupDeleteConfirm.xaml;Discount\PopupDiscountDetail.xaml;Home.xaml;IncomeAndPayment\PopupPaymentDetail.xaml;Inventory\PopupInventoryExportDETAIL.xaml;Inventory\PopupMaterialToImport.xaml;MainMenu.xaml;Inventory\InventoryImport.xaml;Inventory\InventoryImportADD.xaml;Inventory\InventoryImportDETAIL.xaml;Inventory\InventoryImportEDIT.xaml;Inventory\InventoryMainPage.xaml;Inventory\PopupAddImportDetail.xaml;Inventory\PopupAddMaterial.xaml;Inventory\PopupEditMaterial.xaml;MainWindow.xaml;MenuItem.xaml;Menu\MenuList.xaml;Menu\PopupAddMenu.xaml;Menu\PopupDeleteConfirm.xaml;VatLieu.xaml;View\Cashier.xaml;View\Login.xaml;View\PopupEditMenuStatus.xaml;
+Account\AccountList.xaml;Account\GroupAccountList.xaml;Account\PopupAddAccount.xaml;Account\PopupAddGroupAccount.xaml;Account\PopupDeleteConfirm.xaml;Discount\PopupDiscountDetail.xaml;Home.xaml;IncomeAndPayment\PopupPaymentDetail.xaml;IncomeAndPayment\ReceiptDetail.xaml;Inventory\PopupInventoryExportDETAIL.xaml;Inventory\PopupMaterialToImport.xaml;MainMenu.xaml;Inventory\InventoryImport.xaml;Inventory\InventoryImportADD.xaml;Inventory\InventoryImportDETAIL.xaml;Inventory\InventoryImportEDIT.xaml;Inventory\InventoryMainPage.xaml;Inventory\PopupAddImportDetail.xaml;Inventory\PopupAddMaterial.xaml;Inventory\PopupEditMaterial.xaml;MainWindow.xaml;MenuItem.xaml;Menu\MenuList.xaml;Menu\PopupAddMenu.xaml;Menu\PopupDeleteConfirm.xaml;VatLieu.xaml;View\Cashier.xaml;View\Login.xaml;View\PopupEditMenuStatus.xaml;
 
 True
 
