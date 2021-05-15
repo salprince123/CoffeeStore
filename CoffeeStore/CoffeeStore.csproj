@@ -137,6 +137,9 @@
     <Compile Include="DAL\DAL_Employees.cs" />
     <Compile Include="DAL\DAL_EmployeeType.cs" />
     <Compile Include="DAL\DAL_Menu.cs" />
+    <Compile Include="Discount\PopupDiscountDetail.xaml.cs">
+      <DependentUpon>PopupDiscountDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DTO\DTO_AccessPermissionGroup.cs" />
     <Compile Include="DTO\DTO_AccessPermission.cs" />
     <Compile Include="DTO\DTO_Employees.cs" />
@@ -223,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Account\PopupDeleteConfirm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Discount\PopupDiscountDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -351,9 +358,7 @@
   <ItemGroup>
     <Resource Include="Images\icon.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Discount\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

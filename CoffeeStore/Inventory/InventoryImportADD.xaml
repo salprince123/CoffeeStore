@@ -53,15 +53,15 @@
             <!--Textbox here-->
             <StackPanel Grid.Row="1">
                 <TextBlock>Người lập</TextBlock>
-                <TextBox Name="tbEmploy" 
-                         Background="#DADADA" BorderThickness="1"
+                <TextBox Name="tbEmploy" Height="40"
+                         Background="#DADADA" BorderThickness="0"
                          Padding="5" Margin="0,5,10,0"
                          IsReadOnly="True">
                 </TextBox>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="2">
                 <TextBlock Margin="10,0,0,0">Ngày lập</TextBlock>
-                <TextBox Name="tbDate" 
+                <TextBox Name="tbDate" Height="40"
                          Margin="10,5,0,0" Padding="5"
                          BorderThickness="1">
                 </TextBox>
