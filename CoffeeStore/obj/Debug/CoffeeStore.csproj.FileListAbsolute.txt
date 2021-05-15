@@ -391,3 +391,5 @@ C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Menu\Pop
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\View\PopupDetail.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDiscountDetail.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDiscountDetail.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\PopupPaymentDetail.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\PopupPaymentDetail.baml

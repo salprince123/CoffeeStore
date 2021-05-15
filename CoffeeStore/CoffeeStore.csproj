@@ -145,6 +145,9 @@
     <Compile Include="DTO\DTO_Employees.cs" />
     <Compile Include="DTO\DTO_EmployeeType.cs" />
     <Compile Include="DTO\DTO_Menu.cs" />
+    <Compile Include="IncomeAndPayment\PopupPaymentDetail.xaml.cs">
+      <DependentUpon>PopupPaymentDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
@@ -234,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IncomeAndPayment\PopupPaymentDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
