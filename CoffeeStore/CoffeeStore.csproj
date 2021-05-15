@@ -151,6 +151,9 @@
     <Compile Include="Inventory\PopupInventoryExportDETAIL.xaml.cs">
       <DependentUpon>PopupInventoryExportDETAIL.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\PopupMaterialToImport.xaml.cs">
+      <DependentUpon>PopupMaterialToImport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
@@ -245,6 +248,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Inventory\PopupInventoryExportDETAIL.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Inventory\PopupMaterialToImport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
