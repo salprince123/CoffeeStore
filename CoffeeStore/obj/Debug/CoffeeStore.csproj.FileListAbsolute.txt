@@ -344,13 +344,11 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupAddGroupAccount.
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDeleteConfirm.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportEDIT.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddImportDetail.g.cs
-E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PopupDetail.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\GroupAccountList.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupAddGroupAccount.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDeleteConfirm.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportEDIT.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddImportDetail.baml
-E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PopupDetail.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\GeneratedInternalTypeHelper.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\MainMenu.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\MainMenu.baml
@@ -393,3 +391,5 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDiscountDetail.
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDiscountDetail.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\PopupPaymentDetail.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\PopupPaymentDetail.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupInventoryExportDETAIL.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupInventoryExportDETAIL.baml
