@@ -19,7 +19,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel Margin="0,0,10,0" Grid.Column="0">
                 <TextBlock  Text="Ngày lập"/>
-                <DatePicker Name="" DisplayDate="" Height="40" />
+                <DatePicker Name="dp1" DisplayDate="" Height="40" />
             </StackPanel>
             <StackPanel Margin="0,0,10,0" Grid.Column="1">
                 <TextBlock  Text="Số tiền"/>
