@@ -145,15 +145,23 @@
                         </DataGrid>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2">
+                            <Label VerticalAlignment="Center">Rows per page :</Label>
+                            <Rectangle Width="20"></Rectangle>
+                            <ComboBox x:Name="cbGridRow" BorderThickness="0" Foreground="Black">
+                                <ComboBoxItem Content="5" IsSelected="True"/>
+                                <ComboBoxItem Content="10"/>
+                            </ComboBox>
+                            <Rectangle Width="20"></Rectangle>
                             <Button Width="40" Height="Auto" 
-                                    Background="White" Foreground="Black" BorderBrush="White"
-                                    VerticalAlignment="Center" Content="&lt;">
+                                    Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
+                                    VerticalAlignment="Center">
+                                <materialDesign:PackIcon Kind="ChevronLeft" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
                             </Button>
-                            <Rectangle Width="40"></Rectangle>
+                            <Rectangle Width="20"></Rectangle>
                             <Button Width="40" Height="Auto" 
-                                    Background="White" Foreground="Black" BorderBrush="White"
-                                    VerticalAlignment="Center" Content="&gt;">
-
+                                    Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
+                                    VerticalAlignment="Center">
+                                <materialDesign:PackIcon Kind="ChevronRight" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
                             </Button>
                         </StackPanel>
                     </Grid>
