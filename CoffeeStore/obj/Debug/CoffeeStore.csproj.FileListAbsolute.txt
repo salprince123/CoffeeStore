@@ -399,3 +399,7 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PopupEditMenuStatus.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PopupEditMenuStatus.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\ReceiptDetail.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\ReceiptDetail.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryExportADD.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryExportADD.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryExportEDIT.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryExportEDIT.baml
