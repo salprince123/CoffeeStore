@@ -137,14 +137,23 @@
     <Compile Include="DAL\DAL_Employees.cs" />
     <Compile Include="DAL\DAL_EmployeeType.cs" />
     <Compile Include="DAL\DAL_Menu.cs" />
+    <Compile Include="Discount\PopupDiscountAdd.xaml.cs">
+      <DependentUpon>PopupDiscountAdd.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Discount\PopupDiscountDetail.xaml.cs">
       <DependentUpon>PopupDiscountDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\PopupDiscountEdit.xaml.cs">
+      <DependentUpon>PopupDiscountEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="DTO\DTO_AccessPermissionGroup.cs" />
     <Compile Include="DTO\DTO_AccessPermission.cs" />
     <Compile Include="DTO\DTO_Employees.cs" />
     <Compile Include="DTO\DTO_EmployeeType.cs" />
     <Compile Include="DTO\DTO_Menu.cs" />
+    <Compile Include="IncomeAndPayment\PopupPaymentAdd.xaml.cs">
+      <DependentUpon>PopupPaymentAdd.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IncomeAndPayment\PopupPaymentDetail.xaml.cs">
       <DependentUpon>PopupPaymentDetail.xaml</DependentUpon>
     </Compile>
@@ -232,11 +241,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Discount\PopupDiscountAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Discount\PopupDiscountDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Discount\PopupDiscountEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IncomeAndPayment\PopupPaymentAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
