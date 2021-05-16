@@ -151,6 +151,9 @@
     <Compile Include="DTO\DTO_Employees.cs" />
     <Compile Include="DTO\DTO_EmployeeType.cs" />
     <Compile Include="DTO\DTO_Menu.cs" />
+    <Compile Include="IncomeAndPayment\PaymentList.xaml.cs">
+      <DependentUpon>PaymentList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IncomeAndPayment\PopupPaymentAdd.xaml.cs">
       <DependentUpon>PopupPaymentAdd.xaml</DependentUpon>
     </Compile>
@@ -159,6 +162,9 @@
     </Compile>
     <Compile Include="IncomeAndPayment\ReceiptDetail.xaml.cs">
       <DependentUpon>ReceiptDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IncomeAndPayment\ReceiptList.xaml.cs">
+      <DependentUpon>ReceiptList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Inventory\InventoryExportADD.xaml.cs">
       <DependentUpon>InventoryExportADD.xaml</DependentUpon>
@@ -272,6 +278,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="IncomeAndPayment\PaymentList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="IncomeAndPayment\PopupPaymentAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -281,6 +291,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="IncomeAndPayment\ReceiptDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IncomeAndPayment\ReceiptList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

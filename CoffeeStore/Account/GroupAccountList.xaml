@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:CoffeeStore.Inventory"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             MinWidth="510" MinHeight="600">
+             MinWidth="650" MinHeight="600">
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="90"></RowDefinition>
@@ -84,14 +84,27 @@
                             <ColumnDefinition Width="20"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid Grid.Column="1" Grid.Row="1" IsReadOnly="True" BorderThickness="1">
+                        <DataGrid x:Name="dataGridGroupAccount" Grid.Column="1" Grid.Row="1" 
+                                  IsReadOnly="True" BorderThickness="1"
+                                  BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
+                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False">
+                            <DataGrid.CurrentColumn>
+                                <materialDesign:DataGridTextColumn/>
+                            </DataGrid.CurrentColumn>
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="STT"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Tên nhóm tài khoản"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Quyền 1"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Quyền 2"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Quyền 3"></DataGridTextColumn>
                                 <DataGridTextColumn Header="..."></DataGridTextColumn>
-                                <DataGridTextColumn Header="Thao tác"></DataGridTextColumn>
+                                <DataGridTemplateColumn Header="">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <!--Action here-->
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
 

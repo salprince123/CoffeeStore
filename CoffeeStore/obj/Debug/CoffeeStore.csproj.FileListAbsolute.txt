@@ -403,3 +403,13 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryExportADD.
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryExportADD.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryExportEDIT.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryExportEDIT.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDiscountAdd.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDiscountEdit.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\PopupPaymentAdd.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDiscountAdd.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDiscountEdit.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\PaymentList.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\PopupPaymentAdd.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\PaymentList.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\ReceiptList.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\ReceiptList.baml
