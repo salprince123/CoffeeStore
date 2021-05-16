@@ -166,6 +166,9 @@
     <Compile Include="IncomeAndPayment\ReceiptList.xaml.cs">
       <DependentUpon>ReceiptList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\InventoryExport.xaml.cs">
+      <DependentUpon>InventoryExport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\InventoryExportADD.xaml.cs">
       <DependentUpon>InventoryExportADD.xaml</DependentUpon>
     </Compile>
@@ -295,6 +298,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="IncomeAndPayment\ReceiptList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Inventory\InventoryExport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
