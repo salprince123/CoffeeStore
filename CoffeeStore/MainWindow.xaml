@@ -23,7 +23,9 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <!--Username here-->
-        <Grid Grid.Row="0" Grid.ColumnSpan="2"></Grid>
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+            
+        </Grid>
         <!--Navigation menu here-->
         <Grid HorizontalAlignment="Stretch" Grid.RowSpan="2"  Background="#6B6158">
             <Grid.ColumnDefinitions>
@@ -36,8 +38,8 @@
             </Grid.RowDefinitions>
             <!--Logo here-->
             <Grid Grid.Row="0" Grid.ColumnSpan="2"/>
-            <ScrollViewer HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.ColumnSpan="2">
-                <StackPanel x:Name="Menu" Margin="10"/>
+            <ScrollViewer HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Grid.Row="1" Grid.ColumnSpan="2">
+                <StackPanel x:Name="Menu" Margin="10,0,0,0"/>
             </ScrollViewer>
         </Grid>
         <StackPanel x:Name="StackPanelMain" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

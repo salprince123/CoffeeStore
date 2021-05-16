@@ -16,6 +16,7 @@ using System.Data.SQLite;
 using CoffeeStore.BUS;
 using BeautySolutions.View.ViewModel;
 using MaterialDesignThemes.Wpf;
+using CoffeeStore.View;
 
 namespace CoffeeStore
 {
@@ -31,7 +32,7 @@ namespace CoffeeStore
 
             var item0 = new ItemMenu("Trang chủ", new UserControl(), PackIconKind.ViewDashboard);
             
-            var item1 = new ItemMenu("Thu ngân", new Cashier(), PackIconKind.Schedule);
+            var item1 = new ItemMenu("Thu ngân", new Cashier(this), PackIconKind.Schedule);
 
             var item2 = new ItemMenu("Menu", new Menu.MenuList(), PackIconKind.CalendarTextOutline);
 
@@ -74,10 +75,11 @@ namespace CoffeeStore
         private void LoginScreen_BtnSale_Click(object sender, RoutedEventArgs e)
         {
             bool checkResult = loginScreen.CheckPassword();
+            var screen = new Cashier(this);
             if (checkResult)
             {
-                Window window = new Cashier();
-                window.Show();
+                gridLogin.Children.Clear();
+                gridLogin.Children.Add(screen);
             }   
         }
 
@@ -112,11 +114,14 @@ namespace CoffeeStore
             var screen = ((Cashier)sender);
             if (screen != null)
             {
-                Window window = new Cashier();
-                this.Hide();
-                window.ShowDialog();
-                this.Show();
+                gridLogin.Children.Clear();
+                gridLogin.Children.Add(screen);
             } 
+        }
+
+        public void SwitchBackHome()
+        {
+            gridLogin.Children.Clear();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
