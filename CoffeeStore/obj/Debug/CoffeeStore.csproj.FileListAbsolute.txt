@@ -415,3 +415,5 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\ReceiptList.
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\ReceiptList.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryExport.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryExport.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\MaterialList.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\MaterialList.baml

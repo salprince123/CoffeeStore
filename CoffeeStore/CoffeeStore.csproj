@@ -175,6 +175,9 @@
     <Compile Include="Inventory\InventoryExportEDIT.xaml.cs">
       <DependentUpon>InventoryExportEDIT.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\MaterialList.xaml.cs">
+      <DependentUpon>MaterialList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\PopupInventoryExportDETAIL.xaml.cs">
       <DependentUpon>PopupInventoryExportDETAIL.xaml</DependentUpon>
     </Compile>
@@ -310,6 +313,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Inventory\InventoryExportEDIT.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Inventory\MaterialList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
