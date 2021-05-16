@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\Study\Project\CoffeeStore\CoffeeStore\App.xaml
-31387461346
+361208638501
 
-711748451771
+761730947081
 136760734727
-Account\AccountList.xaml;Account\GroupAccountList.xaml;Account\PopupAddAccount.xaml;Account\PopupAddGroupAccount.xaml;Account\PopupDeleteConfirm.xaml;Discount\PopupDiscountDetail.xaml;Home.xaml;IncomeAndPayment\PopupPaymentDetail.xaml;IncomeAndPayment\ReceiptDetail.xaml;Inventory\InventoryExportADD.xaml;Inventory\InventoryExportEDIT.xaml;Inventory\PopupInventoryExportDETAIL.xaml;Inventory\PopupMaterialToImport.xaml;MainMenu.xaml;Inventory\InventoryImport.xaml;Inventory\InventoryImportADD.xaml;Inventory\InventoryImportDETAIL.xaml;Inventory\InventoryImportEDIT.xaml;Inventory\InventoryMainPage.xaml;Inventory\PopupAddImportDetail.xaml;Inventory\PopupAddMaterial.xaml;Inventory\PopupEditMaterial.xaml;MainWindow.xaml;MenuItem.xaml;Menu\MenuList.xaml;Menu\PopupAddMenu.xaml;Menu\PopupDeleteConfirm.xaml;VatLieu.xaml;View\Cashier.xaml;View\Login.xaml;View\PopupEditMenuStatus.xaml;
+Account\AccountList.xaml;Account\GroupAccountList.xaml;Account\PopupAddAccount.xaml;Account\PopupAddGroupAccount.xaml;Account\PopupDeleteConfirm.xaml;Discount\PopupDiscountAdd.xaml;Discount\PopupDiscountDetail.xaml;Discount\PopupDiscountEdit.xaml;Home.xaml;IncomeAndPayment\PaymentList.xaml;IncomeAndPayment\PopupPaymentAdd.xaml;IncomeAndPayment\PopupPaymentDetail.xaml;IncomeAndPayment\ReceiptDetail.xaml;IncomeAndPayment\ReceiptList.xaml;Inventory\InventoryExportADD.xaml;Inventory\InventoryExportEDIT.xaml;Inventory\PopupInventoryExportDETAIL.xaml;Inventory\PopupMaterialToImport.xaml;MainMenu.xaml;Inventory\InventoryImport.xaml;Inventory\InventoryImportADD.xaml;Inventory\InventoryImportDETAIL.xaml;Inventory\InventoryImportEDIT.xaml;Inventory\InventoryMainPage.xaml;Inventory\PopupAddImportDetail.xaml;Inventory\PopupAddMaterial.xaml;Inventory\PopupEditMaterial.xaml;MainWindow.xaml;MenuItem.xaml;Menu\MenuList.xaml;Menu\PopupAddMenu.xaml;Menu\PopupDeleteConfirm.xaml;VatLieu.xaml;View\Cashier.xaml;View\Login.xaml;View\PopupEditMenuStatus.xaml;
 
 True
 
