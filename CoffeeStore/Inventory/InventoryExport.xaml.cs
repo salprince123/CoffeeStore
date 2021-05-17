@@ -20,9 +20,16 @@ namespace CoffeeStore.Inventory
     /// </summary>
     public partial class InventoryExport : UserControl
     {
-        public InventoryExport()
+        MainWindow _context;
+        public InventoryExport(MainWindow mainWindow)
         {
             InitializeComponent();
+            _context = mainWindow;
+        }
+
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        {
+            _context.SwitchToInventoryExportAdd();
         }
     }
 }
