@@ -51,7 +51,7 @@
                    FontFamily="Open Sans" FontWeight="Bold" FontSize="16" Foreground="#FF4A4A4A" Padding="0">
                 Tên tài khoản
             </Label>
-            <TextBox Name="txtBoxAccount"
+            <TextBox Name="txtBoxAccount" Text="E001"
                      Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="5" 
                      FontFamily="Open Sans" FontSize="20" 
                      VerticalContentAlignment="Center" 
@@ -62,7 +62,7 @@
                    FontFamily="Open Sans" FontWeight="Bold" FontSize="16" Foreground="#FF4A4A4A" Padding="0">
                 Mật khẩu
             </Label>
-            <PasswordBox Name="txtBoxPassword" 
+            <PasswordBox Name="txtBoxPassword"
                          Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="8" 
                          FontFamily="Open Sans" FontSize="20" 
                          VerticalContentAlignment="Center" 

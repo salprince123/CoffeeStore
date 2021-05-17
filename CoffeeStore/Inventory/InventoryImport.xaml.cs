@@ -55,8 +55,6 @@ namespace CoffeeStore.Inventory
         private void dataGridImport_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             row = (InventoryImportObject)dataGridImport.SelectedItem;
-            this.selectionID = row.ID;
-            this.selectionName = row.EmployName;
         }
 
         private void AddImport_Click(object sender, RoutedEventArgs e)
