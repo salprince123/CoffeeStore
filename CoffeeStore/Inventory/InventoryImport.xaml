@@ -79,7 +79,7 @@
             <!--Button here-->
             <Button Grid.Row="1" Grid.Column="1" Height="Auto"
                     BorderBrush="#6B6158" BorderThickness="1"
-                    Background="#FFE297" Foreground="#6B6158">
+                    Background="#FFE297" Foreground="#6B6158" Click="btnAdd_Click">
                 + THÊM
             </Button>
             <!--List here-->

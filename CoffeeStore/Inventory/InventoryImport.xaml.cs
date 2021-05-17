@@ -20,6 +20,7 @@ namespace CoffeeStore.Inventory
 {
     public partial class InventoryImport : UserControl
     {
+        MainWindow _context;
         public String selectionID = "";
         public String selectionName = "";
         public class InventoryImportObject
@@ -30,10 +31,11 @@ namespace CoffeeStore.Inventory
             public String EmployName { get; set; }
         }
         public InventoryImportObject row;
-        public InventoryImport()
+        public InventoryImport(MainWindow mainWindow)
         {
             InitializeComponent();
             LoadData();
+            _context = mainWindow;
         }
         public void LoadData()
         {
@@ -120,6 +122,11 @@ namespace CoffeeStore.Inventory
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            _context.SwitchToInventoryImporttAdd();
         }
     }
 }

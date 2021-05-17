@@ -64,5 +64,25 @@ namespace CoffeeStore.Inventory
             }
             this.dataGridImport.ItemsSource = list;
         }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            Window window = new Window
+            {
+                Title = "",
+                Content = new PopupMaterialToImport(),
+                Width = 540,
+                Height = 450,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
+            };
+            window.ShowDialog();
+
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
+        }
     }
 }
