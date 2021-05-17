@@ -11,6 +11,10 @@ namespace CoffeeStore.BUS
     class BUS_Material
     {
         DAL_Material dalVL = new DAL_Material();
+        public DataTable selectByName(List <String> name)
+        {
+            return dalVL.SelectByName(name);
+        }
         public DataTable selectAll()
         {
             return dalVL.SelectAllMaterial();

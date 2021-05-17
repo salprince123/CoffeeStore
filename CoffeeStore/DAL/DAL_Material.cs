@@ -11,6 +11,29 @@ namespace CoffeeStore.DAL
 {
     public class DAL_Material : DBConnect
     {
+        public DataTable SelectByName(List <String > name)
+        {
+            try
+            {
+                String selectedName = $"(";
+                for (int i = 0; i < name.Count - 1; i++)
+                {
+                    selectedName += $"'{name[i]}',";
+                }
+                selectedName += $"'{name[name.Count - 1]}')";
+                string sql = $"SELECT * FROM Material where materialname IN {selectedName}";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                DataTable listMaterial = new DataTable();
+                da.Fill(listMaterial);
+                Console.WriteLine($"SELECT BY NAME ROW {listMaterial.Rows.Count}");
+                return listMaterial;
+            }
+            catch (Exception)
+            {
+
+            };
+            return null;
+        }
         public DataTable SelectAllMaterial()
         {
             try

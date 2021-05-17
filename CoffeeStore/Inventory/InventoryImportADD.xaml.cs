@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,8 @@ namespace CoffeeStore.Inventory
     public partial class InventoryImportADD : UserControl
     {
         public String selectionID = "";
+        public List<String> MaterName { get; set; }
+        public List<InventoryImportDetailObject> list = new List<InventoryImportDetailObject>();
         public class InventoryImportDetailObject
         {
             public int number { get; set; }
@@ -36,34 +39,66 @@ namespace CoffeeStore.Inventory
         public InventoryImportADD()
         {
             InitializeComponent();
-            if (selectionID != "")
-                LoadData();
         }
         
         public InventoryImportADD(String id)
         {
             this.selectionID = id;
             InitializeComponent();
-            if (selectionID != "")
-                LoadData();
+            tbDate.Text = DateTime.Now.ToString("dd/mm/yyyy");
+            tbEmployeeName.Text = id;
         }
-        public void LoadData()
+        
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            var list = new ObservableCollection<InventoryImportDetailObject>();
-            BUS_InventoryImport import = new BUS_InventoryImport();
-            DataTable temp = import.selectDetail(selectionID);
-            int number0 = 1;
-            Console.WriteLine(temp.Rows.Count);
+            Window window = new Window
+            {
+                Title = "Nguyen vat lieu trong kho",
+                Content = new PopupMaterialToImport(this),
+                Width = 600,
+                Height = 900
+            };
+            window.ShowDialog();
+            
+            BUS_Material mater = new BUS_Material();
+            DataTable temp = mater.selectByName( this.MaterName);
             foreach (DataRow row in temp.Rows)
             {
-                string name = row["Tên"].ToString();
-                string amount = row["Số lượng"].ToString();
-                string unitprice = row["Đơn giá"].ToString();
-                string unit = row["Đơn vị tính"].ToString();
-                int tongtien = int.Parse(amount) * int.Parse(unitprice);
-                list.Add(new InventoryImportDetailObject() { number = number0, amount = amount, name = name, unit = unit, totalCost = tongtien.ToString(), unitPrice = unitprice });
+                string name = row["MaterialName"].ToString();
+                string unit = row["Unit"].ToString();
+                list.Add(new InventoryImportDetailObject() { number=list.Count+1, name=name, unit=unit });
             }
-            this.dataGridImport.ItemsSource = list;
+            dataGridImport.ItemsSource = list;
+            dataGridImport.Items.Refresh();
+
+        }
+
+        private void btSave_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (InventoryImportDetailObject obj in list)
+            {
+                if (obj.unitPrice != null && obj.amount != null)
+                    obj.totalCost = (int.Parse(obj.unitPrice) * int.Parse(obj.amount)).ToString();
+            }
+            dataGridImport.Items.Refresh();
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryImportDetailObject row = (InventoryImportDetailObject)dataGridImport.SelectedItem;
+            if (row != null)
+            {
+                try
+                {
+                    list.RemoveAt(row.number - 1);
+                    for (int i = 0; i < list.Count; i++)
+                        list[i].number= i+1;
+
+                    dataGridImport.Items.Refresh();
+                }
+                catch (Exception) { }
+            }
         }
     }
 }

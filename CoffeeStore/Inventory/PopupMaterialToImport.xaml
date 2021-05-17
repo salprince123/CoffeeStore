@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CoffeeStore.Inventory" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             Width="Auto" Height="Auto">
+             Width="Auto" Height="Auto" >
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="10"></RowDefinition>
@@ -44,13 +44,15 @@
                     <materialDesign:DataGridTextColumn/>
                 </DataGrid.CurrentColumn>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="STT" IsReadOnly="True"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" IsReadOnly="True"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Đơn vị tính" IsReadOnly="True"></DataGridTextColumn>
+                    <DataGridTextColumn Header="STT" IsReadOnly="True" Binding="{Binding Path='number'}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" IsReadOnly="True" 
+                                        Binding="{Binding Path='name'}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Đơn vị tính" IsReadOnly="True"
+                                        Binding="{Binding Path='unit'}"></DataGridTextColumn>
                     <DataGridTemplateColumn Header="">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox x:Name="cbCheck"></CheckBox>
+                                <CheckBox x:Name="cbCheck" Checked="cbCheck_Checked" ></CheckBox>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -65,7 +67,8 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="btnConfirm" Width="110" Margin="0,0,10,0"
                     Background="#66A3FF" FontWeight="Bold"
-                    VerticalAlignment="Top" HorizontalAlignment="Right">
+                    VerticalAlignment="Top" HorizontalAlignment="Right"
+                    Click="btnConfirm_Click">
                 XÁC NHẬN
             </Button>
             <Button x:Name="btnCancel" Grid.Column="1" Width="110" Margin="10,0,0,0"

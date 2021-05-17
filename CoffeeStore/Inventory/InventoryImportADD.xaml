@@ -77,7 +77,7 @@
                 </Grid.ColumnDefinitions>
                 <Button Name="btnAdd" 
                         BorderBrush="#6B6158" BorderThickness="1"
-                        Background="#FFE297" Foreground="#6B6158">
+                        Background="#FFE297" Foreground="#6B6158" Click="btnAdd_Click">
                     + THÊM
                 </Button>
             </Grid>
@@ -111,23 +111,23 @@
                               BorderThickness="1"
                               BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
                               VerticalScrollBarVisibility="Visible"
-                              AutoGenerateColumns="False">
+                              AutoGenerateColumns="False"  >
                             <DataGrid.CurrentColumn>
                                 <materialDesign:DataGridTextColumn/>
                             </DataGrid.CurrentColumn>
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="STT" Binding="{Binding Path='number'}" IsReadOnly="True"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" Binding="{Binding Path='name'}" IsReadOnly="True"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Đơn giá" Binding="{Binding Path='unitPrice'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Số lượng" Binding="{Binding Path='amount'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Đơn giá" Binding="{Binding Path='unitPrice',Mode=TwoWay}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Số lượng" Binding="{Binding Path='amount' ,Mode=TwoWay}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding Path='unit'}" IsReadOnly="True"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Tổng tiền" Binding="{Binding Path='totalCost'}" IsReadOnly="True"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Tổng tiền" Binding="{Binding Path='totalCost',Mode=TwoWay}" IsReadOnly="True"></DataGridTextColumn>
                                 <DataGridTextColumn Header=""></DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Name="btnDelete" Background="Red" >
-                                                <materialDesign:PackIcon Kind="Delete" Height="20" Width="20"  />
+                                            <Button Name="btnDelete" Background="Red" Click="btnDelete_Click" >
+                                                <materialDesign:PackIcon Kind="Delete"  Height="20" Width="20"  />
                                             </Button>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
@@ -147,8 +147,10 @@
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Button Grid.Row="1" Width="100" Margin="0,0,10,0"
+                            Name="btSave"
                             Background="#66A3FF" FontWeight="Bold"
-                            VerticalAlignment="Top" HorizontalAlignment="Right">
+                            VerticalAlignment="Top" HorizontalAlignment="Right"
+                            Click="btSave_Click">
                         LƯU
                     </Button>
                     <Button Grid.Row="1" Grid.Column="1" Width="100" Margin="10,0,0,0"

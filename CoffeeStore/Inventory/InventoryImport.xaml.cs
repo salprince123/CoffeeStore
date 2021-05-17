@@ -22,6 +22,8 @@ namespace CoffeeStore.Inventory
     {
         public String selectionID = "";
         public String selectionName = "";
+        MainWindow _context;
+        public String username { get; set; }
         public class InventoryImportObject
         {
             public int number { get; set; }
@@ -30,13 +32,15 @@ namespace CoffeeStore.Inventory
             public String EmployName { get; set; }
         }
         public InventoryImportObject row;
-        public InventoryImport()
+        public InventoryImport(MainWindow mainWindow)
         {
             InitializeComponent();
+            this._context = mainWindow;
             LoadData();
         }
         public void LoadData()
         {
+            username = "EC001";
             var list = new ObservableCollection<InventoryImportObject>();
             BUS_InventoryImport import = new BUS_InventoryImport();
             DataTable temp = import.selectAll();
@@ -59,12 +63,12 @@ namespace CoffeeStore.Inventory
 
         private void AddImport_Click(object sender, RoutedEventArgs e)
         {
-            Window window = new Window
+            var screen = new InventoryImportADD(username);
+            if (screen != null)
             {
-                Title = "My User Control Dialog",
-                Content = new InventoryImportADD()
-            };
-            window.ShowDialog();
+                this._context.StackPanelMain.Children.Clear();
+                this._context.StackPanelMain.Children.Add(screen);
+            }
         }
 
         private void edit_click(object sender, RoutedEventArgs e)
@@ -114,11 +118,7 @@ namespace CoffeeStore.Inventory
                 window.ShowDialog();
             }
         }
-
-
-        private void btnDel_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
+
+
 }
