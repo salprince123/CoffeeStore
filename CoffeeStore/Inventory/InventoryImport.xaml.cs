@@ -90,6 +90,7 @@ namespace CoffeeStore.Inventory
                 {
                     Title = "Chi tiết phiếu nhập",
                     Content = new PopupInventoryImportDETAIL(row.ID, row.EmployName, row.InventoryDate)
+                    //Content = new PopupInventoryImportDETAIL("a","a","a")
                 };
                 window.ShowDialog();
             }

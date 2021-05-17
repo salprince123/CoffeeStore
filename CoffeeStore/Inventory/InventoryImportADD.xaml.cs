@@ -39,6 +39,7 @@ namespace CoffeeStore.Inventory
             if (selectionID != "")
                 LoadData();
         }
+        
         public InventoryImportADD(String id)
         {
             this.selectionID = id;

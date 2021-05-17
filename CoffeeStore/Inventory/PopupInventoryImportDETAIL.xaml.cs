@@ -46,17 +46,23 @@ namespace CoffeeStore.Inventory
         public PopupInventoryImportDETAIL()
         {
             InitializeComponent();
-            if (selectionID != "")
+            //if (selectionID != "")
+            {               
                 LoadData();
+            }
+                
         }
         public PopupInventoryImportDETAIL(String id, String importname, String importdate)
         {
             this.selectionID = id;
             this.ImportName = importname;
             InitializeComponent();
+
+            tbDate.Text = importdate;
+            tbEmployeeName.Text = importname;
+            tbImportID.Text = id;
             if (selectionID != "")
                 LoadData();
-            this.DataContext = new BindingObject(id, importname, importdate);
         }
         public void LoadData()
         {
@@ -72,7 +78,7 @@ namespace CoffeeStore.Inventory
                 string unitprice = row["Đơn giá"].ToString();
                 string unit = row["Đơn vị tính"].ToString();
                 int tongtien = int.Parse(amount) * int.Parse(unitprice);
-                list.Add(new InventoryImportDetailObject() { number = number0, amount = amount, name = name, unit = unit, totalCost = tongtien.ToString(), unitPrice = unitprice });
+                list.Add(new InventoryImportDetailObject() { number =number0,amount = amount, name = name, unit = unit, totalCost = tongtien.ToString(), unitPrice = unitprice });
             }
             this.dataGridImport.ItemsSource = list;
         }

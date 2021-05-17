@@ -58,12 +58,17 @@
             <TextBlock>Nguyên vật liệu, thiết bị đã nhập</TextBlock>
             <DataGrid x:Name="dataGridImport" Height="250" Margin="0,5,0,0" Background="#DADADA"
                       BorderThickness="0" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" 
-                      VerticalScrollBarVisibility="Visible" IsReadOnly="True">
+                      VerticalScrollBarVisibility="Visible" IsReadOnly="True"
+                      AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Nguyên vật liệu, thiết bị"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Đơn giá"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Số lượng"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Đơn vị tính"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Nguyên vật liệu, thiết bị" 
+                                        Binding="{Binding Path='name'}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Đơn giá"
+                                        Binding="{Binding Path='unitprice'}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Số lượng"
+                                        Binding="{Binding Path='amount'}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Đơn vị tính"
+                                        Binding="{Binding Path='unit'}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

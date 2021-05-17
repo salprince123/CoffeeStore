@@ -88,7 +88,7 @@ namespace CoffeeStore.Inventory
 
         public void findMaterial(String keyword)
         {
-            MessageBox.Show("vui long code xu li");
+            
         }
         private void tbKeyword_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
