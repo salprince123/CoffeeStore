@@ -207,8 +207,8 @@
     <Compile Include="Inventory\InventoryImportADD.xaml.cs">
       <DependentUpon>InventoryImportADD.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Inventory\InventoryImportDETAIL.xaml.cs">
-      <DependentUpon>InventoryImportDETAIL.xaml</DependentUpon>
+    <Compile Include="Inventory\PopupInventoryImportDETAIL.xaml.cs">
+      <DependentUpon>PopupInventoryImportDETAIL.xaml</DependentUpon>
     </Compile>
     <Compile Include="Inventory\InventoryImportEDIT.xaml.cs">
       <DependentUpon>InventoryImportEDIT.xaml</DependentUpon>
@@ -347,7 +347,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Inventory\InventoryImportDETAIL.xaml">
+    <Page Include="Inventory\PopupInventoryImportDETAIL.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

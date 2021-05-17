@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 
 namespace CoffeeStore.Inventory
 {
-    public partial class InventoryImportDETAIL : UserControl
+    public partial class PopupInventoryImportDETAIL : UserControl
     {
         public String selectionID = "";
         public String ImportName = "";
@@ -43,13 +43,13 @@ namespace CoffeeStore.Inventory
             public String unit { get; set; }
             public String totalCost { get; set; }
         }
-        public InventoryImportDETAIL()
+        public PopupInventoryImportDETAIL()
         {
             InitializeComponent();
             if (selectionID != "")
                 LoadData();
         }
-        public InventoryImportDETAIL(String id, String importname, String importdate)
+        public PopupInventoryImportDETAIL(String id, String importname, String importdate)
         {
             this.selectionID = id;
             this.ImportName = importname;
