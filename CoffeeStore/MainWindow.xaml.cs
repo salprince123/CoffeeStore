@@ -36,17 +36,17 @@ namespace CoffeeStore
 
             var item2 = new ItemMenu("Menu", new Menu.MenuList(), PackIconKind.CalendarTextOutline);
 
-            var item3 = new ItemMenu("Ưu đãi", new UserControl(), PackIconKind.ShoppingBasket);
+            var item3 = new ItemMenu("Ưu đãi", new Discount.DiscountList(), PackIconKind.ShoppingBasket);
 
             var menuInventory = new List<SubItem>();
             menuInventory.Add(new SubItem("Thông tin kho",new Inventory.InventoryMainPage()));
             menuInventory.Add(new SubItem("Nhập kho", new Inventory.InventoryImport()));
-            menuInventory.Add(new SubItem("Xuất kho"));
+            menuInventory.Add(new SubItem("Xuất kho", new Inventory.InventoryExport()));
             var item4 = new ItemMenu("Kho", menuInventory, PackIconKind.Warehouse);
 
             var menuRevenue = new List<SubItem>();
-            menuRevenue.Add(new SubItem("Danh sách hóa đơn"));
-            menuRevenue.Add(new SubItem("Danh sách chi"));
+            menuRevenue.Add(new SubItem("Danh sách hóa đơn",new IncomeAndPayment.ReceiptList()));
+            menuRevenue.Add(new SubItem("Danh sách chi", new IncomeAndPayment.PaymentList()));
             var item5 = new ItemMenu("Thu chi", menuRevenue, PackIconKind.ScaleBalance);
 
             var menuReport = new List<SubItem>();
