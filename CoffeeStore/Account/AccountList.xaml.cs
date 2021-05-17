@@ -34,10 +34,10 @@ namespace CoffeeStore.Account
             {
                 Title = "Thêm tài khoản",
                 Content = new PopupAddAccount(),
-                Width = 540,
+                Width = 570,
                 Height = 430,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 900 / 2) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 600 / 2) / 2,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
             };
             window.ShowDialog();
 
