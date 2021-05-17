@@ -1,5 +1,8 @@
-﻿using System;
+﻿using CoffeeStore.BUS;
+using CoffeeStore.DTO;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,23 +15,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CoffeeStore.DTO;
-using CoffeeStore.BUS;
-using System.Data;
 
-namespace CoffeeStore
+namespace CoffeeStore.Discount
 {
     /// <summary>
-    /// Interaction logic for Discount.xaml
+    /// Interaction logic for DiscountMain.xaml
     /// </summary>
-    public partial class Discount : UserControl
+    public partial class DiscountMain : UserControl
     {
         BUS_Discount busDiscount;
-        public Discount()
+        public DiscountMain()
         {
             InitializeComponent();
             busDiscount = new BUS_Discount();
-            dgDiscount.ItemsSource = busDiscount.getAllDiscount().DefaultView;
+            //dgDiscount.ItemsSource = busDiscount.getAllDiscount().DefaultView;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -45,7 +45,7 @@ namespace CoffeeStore
             }
             else
                 MessageBox.Show("Fail");
-            
+
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)

@@ -114,8 +114,8 @@
     </ApplicationDefinition>
     <Compile Include="BUS\BUS_Discount.cs" />
     <Compile Include="DAL\DAL_Discount.cs" />
-    <Compile Include="Discount.xaml.cs">
-      <DependentUpon>Discount.xaml</DependentUpon>
+    <Compile Include="Discount\DiscountMain.xaml.cs">
+      <DependentUpon>DiscountMain.xaml</DependentUpon>
     </Compile>
     <Compile Include="DTO\DTO_Discount.cs" />
     <Compile Include="Account\AccountList.xaml.cs">
@@ -137,12 +137,10 @@
     <Compile Include="BUS\BUS_AccessPermissionGroup.cs" />
     <Compile Include="BUS\BUS_Employees.cs" />
     <Compile Include="BUS\BUS_EmployeeType.cs" />
-    <Compile Include="BUS\BUS_Menu.cs" />
     <Compile Include="DAL\DAL_AccessPermission.cs" />
     <Compile Include="DAL\DAL_AccessPermissionGroup.cs" />
     <Compile Include="DAL\DAL_Employees.cs" />
     <Compile Include="DAL\DAL_EmployeeType.cs" />
-    <Compile Include="DAL\DAL_Menu.cs" />
     <Compile Include="Discount\DiscountList.xaml.cs">
       <DependentUpon>DiscountList.xaml</DependentUpon>
     </Compile>
@@ -159,7 +157,6 @@
     <Compile Include="DTO\DTO_AccessPermission.cs" />
     <Compile Include="DTO\DTO_Employees.cs" />
     <Compile Include="DTO\DTO_EmployeeType.cs" />
-    <Compile Include="DTO\DTO_Menu.cs" />
     <Compile Include="IncomeAndPayment\PaymentList.xaml.cs">
       <DependentUpon>PaymentList.xaml</DependentUpon>
     </Compile>
@@ -257,10 +254,6 @@
     <Compile Include="View\PopupEditMenuStatus.xaml.cs">
       <DependentUpon>PopupEditMenuStatus.xaml</DependentUpon>
     </Compile>
-    <Page Include="Discount.xaml">
-  <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Account\AccountList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -282,6 +275,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Discount\DiscountList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Discount\DiscountMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

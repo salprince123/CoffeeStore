@@ -12,11 +12,12 @@ namespace CoffeeStore.DAL
     {
         public DataTable getAllDiscount()
         {
-            string sql = $"select * from discount order by enddate DESC";
+            /*string sql = $"select * from discount order by enddate DESC";
             SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
             DataTable dt = new DataTable();
             da.Fill(dt);
-            return dt;
+            return dt;*/
+            return null;
         }
 
         public DataTable findDiscount(string startdate, string enddate)

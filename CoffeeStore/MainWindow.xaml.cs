@@ -17,6 +17,7 @@ using CoffeeStore.BUS;
 using BeautySolutions.View.ViewModel;
 using MaterialDesignThemes.Wpf;
 using CoffeeStore.View;
+using CoffeeStore.Discount;
 
 namespace CoffeeStore
 {
@@ -36,7 +37,7 @@ namespace CoffeeStore
 
             var item2 = new ItemMenu("Menu", new Menu.MenuList(), PackIconKind.CalendarTextOutline);
 
-            var item3 = new ItemMenu("Ưu đãi", new Discount(), PackIconKind.ShoppingBasket);
+            var item3 = new ItemMenu("Ưu đãi", new DiscountMain(), PackIconKind.ShoppingBasket);
 
             var menuInventory = new List<SubItem>();
             menuInventory.Add(new SubItem("Thông tin kho",new Inventory.InventoryMainPage()));
