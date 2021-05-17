@@ -264,3 +264,6 @@ C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\View\Cashier.baml
 C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\View\Login.baml
 C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\View\PopupAddGroupAccount.baml
 C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\CoffeeStore.csprojAssemblyReference.cache
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\Discount.g.cs
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\pacif\Desktop\CNPM\CoffeeStore\obj\Debug\Discount.baml

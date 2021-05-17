@@ -112,12 +112,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BUS\BUS_Menu.cs" />
-    <Compile Include="DAL\DAL_Menu.cs" />
-    <Compile Include="DTO\DTO_Menu.cs" />
+    <Compile Include="BUS\BUS_Discount.cs" />
+    <Compile Include="DAL\DAL_Discount.cs" />
+    <Compile Include="Discount.xaml.cs">
+      <DependentUpon>Discount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DTO\DTO_Discount.cs" />
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
-	  </Compile>
+    </Compile>
     <Compile Include="BUS\BUS_InventoryExportDetail.cs" />
     <Compile Include="BUS\BUS_InventoryImport.cs" />
     <Compile Include="BUS\BUS_InventoryImportDetail.cs" />
@@ -164,13 +167,16 @@
     <Compile Include="View\PopupAddGroupAccount.xaml.cs">
       <DependentUpon>PopupAddGroupAccount.xaml</DependentUpon>
     </Compile>
+    <Page Include="Discount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-	
     <Page Include="MainMenu.xaml">
-	 <SubType>Designer</SubType>
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Inventory\InventoryImport.xaml">
@@ -205,12 +211,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BUS\BUS_Mon.cs" />
+    <Compile Include="BUS\BUS_Beverage.cs" />
     <Compile Include="BUS\BUS_Material.cs" />
-    <Compile Include="DAL\DAL_Mon.cs" />
+    <Compile Include="DAL\DAL_Beverage.cs" />
     <Compile Include="DAL\DAL_Material.cs" />
     <Compile Include="DTO\DBConnect.cs" />
-    <Compile Include="DTO\DTO_Mon.cs" />
+    <Compile Include="DTO\DTO_Beverage.cs" />
     <Compile Include="DTO\DTO_Material.cs" />
     <Compile Include="Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>

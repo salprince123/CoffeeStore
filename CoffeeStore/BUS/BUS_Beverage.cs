@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace CoffeeStore.BUS
 {
-    public class BUS_Mon
+    public class BUS_Beverage
     {
-        DAL_Mon dalmonan = new DAL_Mon();
+        DAL_Beverage dalmonan = new DAL_Beverage();
         public DataTable searchMA(string key)
         {
             return dalmonan.searchMA(key);

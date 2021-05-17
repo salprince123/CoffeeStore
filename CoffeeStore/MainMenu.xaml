@@ -11,9 +11,9 @@
         <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="431,115,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.903,2.108" Click="Button_Click"/>
         <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="543,115,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.903,2.108" Click="btnDelete_Click"/>
         <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="665,115,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.903,2.108" Click="btnEdit_Click"/>
-        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="23" Margin="96,23,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbPrice" HorizontalAlignment="Left" Height="23" Margin="544,23,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbNote" HorizontalAlignment="Left" Height="23" Margin="96,73,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="23" Margin="96,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbPrice" HorizontalAlignment="Left" Height="23" Margin="544,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbNote" HorizontalAlignment="Left" Height="23" Margin="96,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,26,0,0"/>
         <Label Content="Note" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,74,0,0"/>
         <Label Content="Price" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="491,20,0,0" RenderTransformOrigin="10.948,-1.373"/>

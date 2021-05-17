@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeStore.DAL
 {
-    public class DAL_Mon : DBConnect
+    public class DAL_Beverage : DBConnect
     {
         public DataTable searchMA(string key)
         {
