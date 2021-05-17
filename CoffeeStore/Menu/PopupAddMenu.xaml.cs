@@ -13,25 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CoffeeStore.View
+namespace CoffeeStore.Menu
 {
     /// <summary>
-    /// Interaction logic for PopupAddGroupAccount.xaml
+    /// Interaction logic for PopupAddMenu.xaml
     /// </summary>
-    public partial class PopupAddGroupAccount : UserControl
+    public partial class PopupAddMenu : UserControl
     {
-        public PopupAddGroupAccount()
+        public PopupAddMenu()
         {
             InitializeComponent();
-        }
-        private void btExit_Click(object sender, RoutedEventArgs e)
-        {
-          
-        }
-
-        private void btSave_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
     }
 }

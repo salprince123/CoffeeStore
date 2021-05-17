@@ -111,14 +111,15 @@ namespace CoffeeStore.Inventory
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
             ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
             ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+
             Window window = new Window
             {
-                Title = "Thêm nguyên liệu, vật liệu",
+                Title = "Thêm vật liệu",
                 Content = new PopupAddMaterial(),
                 Width=540,
-                Height=280,
-                Left= (Application.Current.MainWindow.Left+ Application.Current.MainWindow.Width - 900/2)/2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height -600/2) / 2,
+                Height=300,
+                Left= (Application.Current.MainWindow.Left+ Application.Current.MainWindow.Width - 900 / 2) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 600 / 2) / 2,
             };
             window.ShowDialog();
             LoadData();
@@ -128,15 +129,15 @@ namespace CoffeeStore.Inventory
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-                InventoryObject row = (InventoryObject)dataGridInfo.SelectedItem;
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            InventoryObject row = (InventoryObject)dataGridInfo.SelectedItem;
                 if(row != null)
                 {
-                    System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
-                    ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
-                    ((MainWindow)App.Current.MainWindow).Effect = objBlur;
                     Window window = new Window
                     {
-                        Title = "Sửa nguyên liệu, vật liệu",
+                        Title = "Sửa vật liệu",
                         Content = new PopupEditMaterial(row.Name, row.Unit),
                         Width = 540,
                         Height = 300,
@@ -145,9 +146,9 @@ namespace CoffeeStore.Inventory
                     };
                     window.ShowDialog();
                     LoadData();
-                    ((MainWindow)App.Current.MainWindow).Opacity = 1;
-                    ((MainWindow)App.Current.MainWindow).Effect = null;
                 }
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
         }
 
         private void dataGridInfo_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

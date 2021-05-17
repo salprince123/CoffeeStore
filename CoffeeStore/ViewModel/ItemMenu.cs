@@ -1,4 +1,5 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using CoffeeStore.View;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,10 +26,10 @@ namespace BeautySolutions.View.ViewModel
             Icon = icon;
         }
 
-        public ItemMenu(string header, Window window, PackIconKind icon)
+        public ItemMenu(string header, Cashier cashier, PackIconKind icon)
         {
             Header = header;
-            _Window = window;
+            _Cashier = cashier;
             Icon = icon;
         }
 
@@ -37,6 +38,6 @@ namespace BeautySolutions.View.ViewModel
         public List<SubItem> SubItems { get; private set; }
         public UserControl Screen { get; private set; }
 
-        public Window _Window { get; private set; }
+        public Cashier _Cashier { get; private set; }
     }
 }

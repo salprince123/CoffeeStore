@@ -11,20 +11,15 @@
         <TextBox  Name="tbName" Margin="0,5,0,0" BorderThickness="1"
                  Height="40" Width="420"
                   Text="{Binding Path=Name}"/>
-        <StackPanel Orientation="Horizontal" Margin="40,0,0,0">
-            <StackPanel>
-                <TextBlock Margin="20,0,0,0" Text="Đơn vị tính"/>
-                <TextBox Name="tbUnit" Margin="20,5,0,0" BorderThickness="1"
-                Height="40" Width="420"
-                Text="{Binding Path=Unit}"/>
-            </StackPanel>
-
-        </StackPanel>
+        <TextBlock Margin="60,10,0,0" Text="Đơn vị tính"/>
+        <TextBox  Name="tbUnit" Margin="0,5,0,0" BorderThickness="1"
+                 Height="40" Width="420" Text="{Binding Path=Unit}"/>
+        
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="btSave" Height="40" Width="100"
-                    Content="Lưu" Margin="0,30,0,0" Click="btSave_Click" Background="#66A3FF"/>
+                    Content="LƯU" Margin="0,30,0,0" Background="#66A3FF"/>
             <Button x:Name="btExit" Height="40" Width="100"
-                    Content="Hủy" Margin="10,30,0,0" Click="btExit_Click" Background="#F27047"/>
+                    Content="HỦY" Margin="10,30,0,0" Background="#F27047"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

@@ -7,30 +7,41 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Background="SeaGreen">
-        <Grid Height="90">
-            <TextBlock HorizontalAlignment="Left" Text="Thông tin kho" 
-                       FontSize="60" FontFamily="Times New Roman" FontStyle="Italic"
-                       FontWeight="Bold" Foreground="Yellow"/>
+    <StackPanel Background="White">
+        <!--Header here-->
+        <Grid Background="#6B6158" Margin="30,30,30,20" Height="90">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TextBlock Margin="40,0,0,0" HorizontalAlignment="Left" Text="Thông tin kho" 
+                       VerticalAlignment="Center"
+                       FontSize="30" 
+                       FontWeight="Bold" Foreground="#FFE297"/>
+            </Grid>
+            <Grid Grid.Row="1" Background="#FFE297"></Grid>
         </Grid>
-        <StackPanel Orientation="Horizontal" 
-                    Background="White" Width="600" Height="50">
-            <TextBox Width="200" Height="30" Name="tbKeyword"
+        <Grid Margin="30,0">
+            <StackPanel Orientation="Horizontal" 
+                    Background="White" Height="50">
+                <TextBox Width="200" Height="30" Name="tbKeyword"
                      Text="Từ khóa tìm kiếm" Margin="20,0,0,0"
                      BorderBrush="Black" BorderThickness="1" MouseLeftButtonUp="tbKeyword_MouseLeftButtonUp" MouseLeftButtonDown="tbKeyword_MouseLeftButtonDown"/>
-            <Button Margin="10,0,0,0" Width="45" Name="btnSearch" Click="btnSearch_Click">
-                <materialDesign:PackIcon Kind="Search" Height="30" Width="30" 
+                <Button Margin="10,0,0,0" Width="45" Name="btnSearch" Click="btnSearch_Click">
+                    <materialDesign:PackIcon Kind="Search" Height="30" Width="30" 
                                          Margin="-10,0,0,0" />
+                </Button>
+            </StackPanel>
+            <Button BorderBrush="#6B6158" Background="#FFE297" HorizontalAlignment="Right" Width="195" Name="btnAdd" Click="btnAdd_Click" >
+                <TextBlock Foreground="#6B6158" Text="+ Thêm vật liệu/ thiết bị" />
             </Button>
-            <Button Margin="120,0,0,0" Width="200" Name="btnAdd" Click="btnAdd_Click" >
-                <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Kind="Plus" Height="30" Width="30" Margin="-20,0,0,0" />
-                    <TextBlock Text="Thêm vật liệu/ thiết bị" Margin="0,5,0,0"/>
-                </StackPanel>
-            </Button>
-        </StackPanel>
+        </Grid>
+        
+        
+        
         <StackPanel >
-            <TextBlock Text="Danh sách nguyên vật liệu/ thiết bị" Foreground="Yellow"/>
+            <TextBlock Text="Danh sách nguyên vật liệu/ thiết bị" Foreground="Black" Margin="100,0"/>
             <DataGrid Margin="0,10,0,0" Height="252"  Width="600"
                 x:Name="dataGridInfo" VerticalAlignment="Center" 
                 HorizontalAlignment="Center" 
@@ -45,30 +56,30 @@
                 <DataGrid.CurrentColumn>
                     <materialDesign:DataGridTextColumn/>
                 </DataGrid.CurrentColumn>
-                
+
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Number" Binding="{Binding Path='number'}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Name" Binding="{Binding Path='Name'}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Unit" Binding="{Binding Path='Unit'}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Amount" Binding="{Binding Path='Amount'}" IsReadOnly="True" />
                     <DataGridTemplateColumn Header="Action">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">                                   
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
                                     <Button Margin="10,0,0,0" Name="btnEdit" Click="btnEdit_Click" >
                                         <materialDesign:PackIcon Kind="PlaylistEdit" Height="20" Width="20"  />
                                     </Button>
                                     <Button Margin="10,0,0,0" Name="btnDelete" Background="Red" Click="btnDelete_Click">
                                         <materialDesign:PackIcon Kind="Delete" Height="20" Width="20"  />
                                     </Button>
-                                    
+
                                 </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        
+
     </StackPanel>
 </UserControl>

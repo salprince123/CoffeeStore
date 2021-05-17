@@ -15,7 +15,7 @@ namespace CoffeeStore.DAL
         {
             try
             {
-                string sql = $"select * from InventoryImport";
+                string sql = $"select employeename, importid, importdate from InventoryImport Imp Join Employees employ on employ.EmployeeID=Imp.EmployeeID ";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 DataTable listImport = new DataTable();
                 da.Fill(listImport);
@@ -23,7 +23,7 @@ namespace CoffeeStore.DAL
             }
             catch (Exception e)
             {
-                Console.WriteLine( "Exception AT" + e.ToString());
+                Console.WriteLine( "INVENTORYIMPORT SELECT: Exception AT" + e.ToString());
                 return new DataTable();
             };
             

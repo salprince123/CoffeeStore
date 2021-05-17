@@ -10,23 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CoffeeStore
+namespace CoffeeStore.View
 {
     /// <summary>
     /// Interaction logic for Cashier.xaml
     /// </summary>
-    public partial class Cashier : Window
+    public partial class Cashier : UserControl
     {
-        public Cashier()
+        MainWindow _context;
+        public Cashier(MainWindow mainWindow)
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
+            _context = mainWindow;
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -34,6 +32,14 @@ namespace CoffeeStore
 
         }
 
-   
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            _context.SwitchBackHome();
+        }
+
+        private void FilterButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

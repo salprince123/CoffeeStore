@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoffeeStore.BUS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,26 @@ namespace CoffeeStore.View
         {
             InitializeComponent();
         }
+
+        public bool CheckPassword()
+        {
+            string id = txtBoxAccount.Text;
+            string pass = txtBoxPassword.Password;
+            BUS_Employees busEmp = new BUS_Employees();
+            string truePass = busEmp.GetPasswordByID(id);
+            if (truePass == "")
+            {
+                //show validate can't find account
+                return false;
+            }    
+                
+            if (truePass != pass)
+            {
+                //show validate false account or password
+                return false;
+            }
+            
+            return true;
+        }    
     }
 }

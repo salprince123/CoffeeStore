@@ -4,52 +4,68 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CoffeeStore.Inventory"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             Height="500" Width="620">
-    <StackPanel Background="SeaGreen">
-        <Grid Height="90">
-            <TextBlock HorizontalAlignment="Left" Text="Chi tiết phiếu nhập kho" 
-                       FontSize="60" FontFamily="Times New Roman" FontStyle="Italic"
-                       FontWeight="Bold" Foreground="Yellow"/>
-        </Grid>
-        <StackPanel Orientation="Horizontal" 
-                    Background="White" >
-            <TextBox Name="tbID" Text="{Binding Path=id}"
-                Width="250" Height="30"
-                     Margin="0,0,0,0" 
-                     BorderBrush="Black" BorderThickness="1"
-                     IsEnabled="False"  />
-            <TextBox Name="tbName"
-                Width="250" Height="30"
-                      Margin="20,0,0,0"
-                     BorderBrush="Black" BorderThickness="1"
-                     IsEnabled="False" Text="{Binding Path=name}"/>
-            <TextBox Name="tbDate"
-                Width="250" Height="30"
-                      Margin="20,0,0,0"
-                     Text="{Binding Path=day}"
-                     BorderBrush="Black" BorderThickness="1"/>
-
-        </StackPanel>
+             Height="Auto" Width="Auto">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
         
-        <StackPanel >
-            <TextBlock Width="450" Text="Danh sách thiết bị, nguyên vật liệu" Foreground="Yellow"/>
-            <DataGrid Margin="0,5,0,0" Height="252"  Width="550"
-                x:Name="dataGridImport" VerticalAlignment="Center" 
-                HorizontalAlignment="Center" BorderThickness="0.1" 
-                FontFamily="Times New Roman" HorizontalScrollBarVisibility="Visible" 
-                VerticalScrollBarVisibility="Visible" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" 
-                IsReadOnly="True" EnableColumnVirtualization="True" 
-                >
-                <DataGrid.CurrentColumn>
-                    <materialDesign:DataGridTextColumn/>
-                </DataGrid.CurrentColumn>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="5"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="20"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!--ID & Date here-->
+            <TextBlock Grid.Row="0">Mã phiếu nhập</TextBlock>
+            <TextBox Name="tbImportID" Grid.Row="2" Background="#DADADA"
+                     Padding="5" Height="40"
+                     BorderThickness="0" IsReadOnly="True">
+            </TextBox>
+            <TextBlock Grid.Column="2">Ngày lập</TextBlock>
+            <TextBox Grid.Row="2" Grid.Column="2" Name="tbDate" Background="#DADADA"
+                     Padding="5"  Height="40"
+                     BorderThickness="0" IsReadOnly="True">
+            </TextBox>
+        </Grid>
+        <!--Employee name here-->
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <TextBlock>Người lập</TextBlock>
+            <TextBox Name="tbEmployeeName" Background="#DADADA"
+                     Padding="5" Margin="0,5,0,0" Height="40"
+                     BorderThickness="0" IsReadOnly="True">
+            </TextBox>
+        </StackPanel>
+        <!--Material imported list here-->
+        <StackPanel Grid.Row="5" Grid.Column="1">
+            <TextBlock>Nguyên vật liệu, thiết bị đã nhập</TextBlock>
+            <DataGrid x:Name="dataGridImport" Height="250" Margin="0,5,0,0" Background="#DADADA"
+                      BorderThickness="0" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" 
+                      VerticalScrollBarVisibility="Visible" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nguyên vật liệu, thiết bị"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Đơn giá"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Số lượng"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Đơn vị tính"></DataGridTextColumn>
+                </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" 
-                    Margin="0,10,0,0">
-            <Button Name="btnCancel" Width="100" Content="Back" Margin="10,0,0,0" Click="btnCancel_Click" />
-        </StackPanel>
-    </StackPanel>
+    </Grid>
 </UserControl>

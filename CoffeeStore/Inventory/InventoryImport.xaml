@@ -6,53 +6,167 @@
              xmlns:local="clr-namespace:CoffeeStore.Inventory"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="800">
-    <StackPanel Background="SeaGreen">
-        <Grid Height="90">
-            <TextBlock HorizontalAlignment="Left" Text="Nhập kho" 
-                       FontSize="60" FontFamily="Times New Roman" FontStyle="Italic"
-                       FontWeight="Bold" Foreground="Yellow"/>
+             MinWidth="650" MinHeight="600">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!--Header here-->
+        <Grid Background="#6B6158" Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="5"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="1"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                   Foreground="#FFE297" FontSize="30" FontWeight="Bold">
+                Nhập kho
+            </Label>
+            <Grid Grid.Row="1" Grid.ColumnSpan="2" Background="#FFE297"></Grid>
         </Grid>
-        <StackPanel Orientation="Horizontal" 
-                    Background="White" Width="600" Height="50">
-            <TextBox Width="100" Height="30" Name="tbStartDay"
-                     Text="Từ ngày" Margin="0,0,0,0" 
-                     BorderBrush="Black" BorderThickness="1"/>
-            <TextBox Width="100" Height="30" Name="tbEndDay"
-                     Text="Den ngày" Margin="20,0,0,0"
-                     BorderBrush="Black" BorderThickness="1"/>
-            <TextBox Width="200" Height="30" Name="tbKeyword"
-                     Text="Ma phieu nhap kho/ nguoi lap" Margin="20,0,0,0"
-                     BorderBrush="Black" BorderThickness="1"/>
-            <Button Margin="10,0,0,0" Width="45" Name="btnSearch">
-                <materialDesign:PackIcon Kind="Search" Height="30" Width="30" 
-                                         Margin="-10,0,0,0" />
+
+        <!--Body here-->
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="15"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!--Textbox here-->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="10"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="10"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="10"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="10"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="tbDateStart" Height="40" 
+                         BorderThickness="1" VerticalContentAlignment="Center"
+                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
+                <TextBox x:Name="tbDateEnd" Grid.Column="2" Height="40" 
+                         BorderThickness="1" VerticalContentAlignment="Center"
+                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5"/>
+                <TextBox x:Name="tbFind" Grid.Column="4" Height="40" 
+                         BorderThickness="1" VerticalContentAlignment="Center"
+                         materialDesign:HintAssist.Hint="Mã phiếu nhập hoặc người lập" Padding="5"/>
+                <Button x:Name="btnFind" Grid.Column="6" Height="40"
+                    Background="#6B6158" Foreground="#FFE297" 
+                    BorderBrush="#FFE297" BorderThickness="1">
+                    <materialDesign:PackIcon Kind="Search" Height="20" Width="20"/>
+                </Button>
+            </Grid>
+
+            <!--Button here-->
+            <Button Grid.Row="1" Grid.Column="1" Height="Auto"
+                    BorderBrush="#6B6158" BorderThickness="1"
+                    Background="#FFE297" Foreground="#6B6158">
+                + THÊM
             </Button>
-            <Button Margin="20,0,0,0" Width="80" Name="btnAdd" Click="AddImport_Click">
-                <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Kind="Plus" Height="30" Width="30" Margin="-20,0,0,0" />
-                    <TextBlock Text="Thêm" Margin="0,5,0,0"/>
-                </StackPanel>
-            </Button>
-        </StackPanel>
-        <StackPanel >
-            <TextBlock Text="Danh sách nhập kho" Foreground="Yellow"/>
-            <DataGrid Margin="0,10,0,0" Height="252"  Width="600"
-                x:Name="dataGridImport" VerticalAlignment="Center" 
-                HorizontalAlignment="Center" BorderThickness="0.1" 
-                FontFamily="Times New Roman" HorizontalScrollBarVisibility="Visible" 
-                VerticalScrollBarVisibility="Visible" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" 
-                IsReadOnly="True" EnableColumnVirtualization="True" 
-                MouseLeftButtonUp="dataGridImport_MouseLeftButtonUp">
-                <DataGrid.CurrentColumn>
-                    <materialDesign:DataGridTextColumn/>
-                </DataGrid.CurrentColumn>
-            </DataGrid>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-            <Button Margin="20,0,0,0" Width="100" Name="btnWatch" Content="Xem" Click="btnWatch_Click" />
-            <Button Margin="20,0,0,0" Width="100" Name="btnEdit" Content="Sửa" Click="btnEdit_Click"/>
-            <Button Margin="20,0,0,0" Width="100" Name="btnDel" Content="Xóa" Click="btnDel_Click"/>
-        </StackPanel>
-    </StackPanel>
+            <!--List here-->
+            <Grid Grid.Row="3" Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!--List header here-->
+                <Grid Grid.Row="0" Background="#6B6158">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1" Foreground="#FFE297" FontWeight="Bold" Content="Danh sách nhập kho">
+                    </Label>
+                </Grid>
+                <!--List body here-->
+                <Border Grid.Row="1" BorderBrush="#6B6158" BorderThickness="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <DataGrid x:Name="dataGridImport" Grid.Column="1" Grid.Row="1" 
+                                  IsReadOnly="True" BorderThickness="1"
+                                  BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
+                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" MouseLeftButtonUp="dataGridImport_MouseLeftButtonUp">
+                            <DataGrid.CurrentColumn>
+                                <materialDesign:DataGridTextColumn/>
+                            </DataGrid.CurrentColumn>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="STT" Binding="{Binding Path='number'}" IsReadOnly="True"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Mã phiếu nhập kho" Binding="{Binding Path='ID'}" IsReadOnly="True"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Ngày lập" Binding="{Binding Path='InventoryDate'}" IsReadOnly="True"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Người lập" Binding="{Binding Path='EmployName'}" IsReadOnly="True"></DataGridTextColumn>
+                                <DataGridTemplateColumn Header="">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Margin="10,0,0,0" Name="btnWatch" Background="White" Click="btnWatch_Click">
+                                                    <materialDesign:PackIcon Kind="Eye" Height="10" Width="10" Foreground="Black" />
+                                                </Button>
+                                                <Button Margin="10,0,0,0" Name="btnEdit" Background="Blue" Click="btnEdit_Click">
+                                                    <materialDesign:PackIcon Kind="PlaylistEdit" Height="10" Width="10"  />
+                                                </Button>
+                                                <Button Margin="10,0,0,0" Name="btnDelete" Background="Red" Click="btnDelete_Click">
+                                                    <materialDesign:PackIcon Kind="Delete" Height="10" Width="10"  />
+                                                </Button>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2">
+                            <Label VerticalAlignment="Center">Rows per page :</Label>
+                            <Rectangle Width="20"></Rectangle>
+                            <ComboBox x:Name="cbGridRow" BorderThickness="0" Foreground="Black">
+                                <ComboBoxItem Content="5" IsSelected="True"/>
+                                <ComboBoxItem Content="10"/>
+                            </ComboBox>
+                            <Rectangle Width="20"></Rectangle>
+                            <Button Width="40" Height="Auto" 
+                                    Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
+                                    VerticalAlignment="Center">
+                                <materialDesign:PackIcon Kind="ChevronLeft" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
+                            </Button>
+                            <Rectangle Width="20"></Rectangle>
+                            <Button Width="40" Height="Auto" 
+                                    Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
+                                    VerticalAlignment="Center">
+                                <materialDesign:PackIcon Kind="ChevronRight" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
 </UserControl>

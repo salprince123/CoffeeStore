@@ -118,6 +118,81 @@
       <DependentUpon>Discount.xaml</DependentUpon>
     </Compile>
     <Compile Include="DTO\DTO_Discount.cs" />
+    <Compile Include="Account\AccountList.xaml.cs">
+      <DependentUpon>AccountList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Account\GroupAccountList.xaml.cs">
+      <DependentUpon>GroupAccountList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Account\PopupAddAccount.xaml.cs">
+      <DependentUpon>PopupAddAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Account\PopupAddGroupAccount.xaml.cs">
+      <DependentUpon>PopupAddGroupAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Account\PopupDeleteConfirm.xaml.cs">
+      <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BUS\BUS_AccessPermission.cs" />
+    <Compile Include="BUS\BUS_AccessPermissionGroup.cs" />
+    <Compile Include="BUS\BUS_Employees.cs" />
+    <Compile Include="BUS\BUS_EmployeeType.cs" />
+    <Compile Include="BUS\BUS_Menu.cs" />
+    <Compile Include="DAL\DAL_AccessPermission.cs" />
+    <Compile Include="DAL\DAL_AccessPermissionGroup.cs" />
+    <Compile Include="DAL\DAL_Employees.cs" />
+    <Compile Include="DAL\DAL_EmployeeType.cs" />
+    <Compile Include="DAL\DAL_Menu.cs" />
+    <Compile Include="Discount\DiscountList.xaml.cs">
+      <DependentUpon>DiscountList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\PopupDiscountAdd.xaml.cs">
+      <DependentUpon>PopupDiscountAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\PopupDiscountDetail.xaml.cs">
+      <DependentUpon>PopupDiscountDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Discount\PopupDiscountEdit.xaml.cs">
+      <DependentUpon>PopupDiscountEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DTO\DTO_AccessPermissionGroup.cs" />
+    <Compile Include="DTO\DTO_AccessPermission.cs" />
+    <Compile Include="DTO\DTO_Employees.cs" />
+    <Compile Include="DTO\DTO_EmployeeType.cs" />
+    <Compile Include="DTO\DTO_Menu.cs" />
+    <Compile Include="IncomeAndPayment\PaymentList.xaml.cs">
+      <DependentUpon>PaymentList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IncomeAndPayment\PopupPaymentAdd.xaml.cs">
+      <DependentUpon>PopupPaymentAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IncomeAndPayment\PopupPaymentDetail.xaml.cs">
+      <DependentUpon>PopupPaymentDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IncomeAndPayment\ReceiptDetail.xaml.cs">
+      <DependentUpon>ReceiptDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IncomeAndPayment\ReceiptList.xaml.cs">
+      <DependentUpon>ReceiptList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\InventoryExport.xaml.cs">
+      <DependentUpon>InventoryExport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\InventoryExportADD.xaml.cs">
+      <DependentUpon>InventoryExportADD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\InventoryExportEDIT.xaml.cs">
+      <DependentUpon>InventoryExportEDIT.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\MaterialList.xaml.cs">
+      <DependentUpon>MaterialList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\PopupInventoryExportDETAIL.xaml.cs">
+      <DependentUpon>PopupInventoryExportDETAIL.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\PopupMaterialToImport.xaml.cs">
+      <DependentUpon>PopupMaterialToImport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
@@ -141,8 +216,14 @@
     <Compile Include="Inventory\InventoryImportDETAIL.xaml.cs">
       <DependentUpon>InventoryImportDETAIL.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\InventoryImportEDIT.xaml.cs">
+      <DependentUpon>InventoryImportEDIT.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\InventoryMainPage.xaml.cs">
       <DependentUpon>InventoryMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\PopupAddImportDetail.xaml.cs">
+      <DependentUpon>PopupAddImportDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="Inventory\PopupAddMaterial.xaml.cs">
       <DependentUpon>PopupAddMaterial.xaml</DependentUpon>
@@ -152,6 +233,15 @@
     </Compile>
     <Compile Include="MenuItem.xaml.cs">
       <DependentUpon>MenuItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\MenuList.xaml.cs">
+      <DependentUpon>MenuList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\PopupAddMenu.xaml.cs">
+      <DependentUpon>PopupAddMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\PopupDeleteConfirm.xaml.cs">
+      <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
     </Compile>
     <Compile Include="VatLieu.xaml.cs">
       <DependentUpon>VatLieu.xaml</DependentUpon>
@@ -164,14 +254,94 @@
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PopupAddGroupAccount.xaml.cs">
-      <DependentUpon>PopupAddGroupAccount.xaml</DependentUpon>
+    <Compile Include="View\PopupEditMenuStatus.xaml.cs">
+      <DependentUpon>PopupEditMenuStatus.xaml</DependentUpon>
     </Compile>
     <Page Include="Discount.xaml">
+  <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\AccountList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\GroupAccountList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\PopupAddAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\PopupAddGroupAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\PopupDeleteConfirm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Discount\DiscountList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Discount\PopupDiscountAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Discount\PopupDiscountDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Discount\PopupDiscountEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IncomeAndPayment\PaymentList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IncomeAndPayment\PopupPaymentAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IncomeAndPayment\PopupPaymentDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IncomeAndPayment\ReceiptDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IncomeAndPayment\ReceiptList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Inventory\InventoryExport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Inventory\InventoryExportADD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Inventory\InventoryExportEDIT.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Inventory\MaterialList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Inventory\PopupInventoryExportDETAIL.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Inventory\PopupMaterialToImport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,7 +361,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Inventory\InventoryImportEDIT.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Inventory\InventoryMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Inventory\PopupAddImportDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -229,6 +407,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Menu\MenuList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menu\PopupAddMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Menu\PopupDeleteConfirm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VatLieu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -241,7 +431,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PopupAddGroupAccount.xaml">
+    <Page Include="View\PopupEditMenuStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

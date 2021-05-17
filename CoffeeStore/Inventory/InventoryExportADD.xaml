@@ -1,0 +1,171 @@
+﻿<UserControl x:Class="CoffeeStore.Inventory.InventoryExportADD"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CoffeeStore.Inventory" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             MinWidth="700" MinHeight="600">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="30"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!--Header here-->
+        <Grid Background="#6B6158" Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="5"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="1"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                   Foreground="#FFE297" FontSize="30" FontWeight="Bold">
+                Lập phiếu xuất kho
+            </Label>
+            <Grid Grid.Row="1" Grid.ColumnSpan="2" Background="#FFE297"></Grid>
+        </Grid>
+
+        <!--Body here-->
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="15"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="15"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--Textbox here-->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock>Người lập</TextBlock>
+                    <TextBox Name="tbEmployeeName" Height="40"
+                         Background="#DADADA" BorderThickness="0"
+                         Padding="5" Margin="0,5,0,0"
+                         IsReadOnly="True">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <TextBlock>Ngày lập</TextBlock>
+                    <TextBox Name="tbDate" Height="40"
+                         Margin="0,5,0,0" Padding="5"
+                         BorderThickness="1">
+                    </TextBox>
+                </StackPanel>
+            </Grid>
+            <!--Button here-->
+            <Grid Grid.Row="3" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Name="btnAdd" 
+                        BorderBrush="#6B6158" BorderThickness="1"
+                        Background="#FFE297" Foreground="#6B6158">
+                    + THÊM
+                </Button>
+            </Grid>
+
+            <Grid Grid.Row="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <!--List header here-->
+                <Grid Background="#6B6158">
+                    <Label Foreground="#FFE297" FontWeight="Bold" Content="Danh sách nguyên vật liệu, thiết bị xuất" Margin="15,0,0,0">
+                    </Label>
+                </Grid>
+                <!--List body here-->
+                <Border Grid.Row="1" Grid.Column="1" BorderBrush="#6B6158" BorderThickness="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="10"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="10"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <DataGrid Grid.Column="1" Grid.Row="1" Height="200"
+                              x:Name="dataGridImport" 
+                              BorderThickness="1"
+                              BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
+                              VerticalScrollBarVisibility="Visible"
+                              AutoGenerateColumns="False">
+                            <DataGrid.CurrentColumn>
+                                <materialDesign:DataGridTextColumn/>
+                            </DataGrid.CurrentColumn>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="STT" IsReadOnly="True"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" IsReadOnly="True"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Số lượng"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Đơn vị tính" IsReadOnly="True"></DataGridTextColumn>
+                                <DataGridTextColumn Header=""></DataGridTextColumn>
+                                <DataGridTemplateColumn Header="">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="btnDelete" Background="Red" >
+                                                <materialDesign:PackIcon Kind="Delete" Height="20" Width="20"  />
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+                <!--Description here-->
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="15"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="15"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+                        <TextBlock>Lý do</TextBlock>
+                        <TextBox Name="tbDescription" Height="80"
+                         Margin="0,5,0,0" Padding="5"
+                         BorderThickness="1">
+                        </TextBox>
+                    </StackPanel>
+                    <!--Button here-->
+                    <Button Grid.Row="3" Width="100" Margin="0,0,10,0"
+                            Background="#66A3FF" FontWeight="Bold"
+                            VerticalAlignment="Top" HorizontalAlignment="Right">
+                        LƯU
+                    </Button>
+                    <Button Grid.Row="3" Grid.Column="1" Width="100" Margin="10,0,0,0"
+                            Background="#F27047" FontWeight="Bold"
+                            VerticalAlignment="Top" HorizontalAlignment="Left">
+                        HỦY
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

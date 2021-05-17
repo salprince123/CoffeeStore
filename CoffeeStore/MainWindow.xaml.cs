@@ -16,6 +16,7 @@ using System.Data.SQLite;
 using CoffeeStore.BUS;
 using BeautySolutions.View.ViewModel;
 using MaterialDesignThemes.Wpf;
+using CoffeeStore.View;
 
 namespace CoffeeStore
 {
@@ -26,14 +27,14 @@ namespace CoffeeStore
     {        
         public MainWindow()
         {
-            
+            this.FontFamily = new FontFamily("Open Sans");
             InitializeComponent();
 
             var item0 = new ItemMenu("Trang chủ", new UserControl(), PackIconKind.ViewDashboard);
             
-            var item1 = new ItemMenu("Thu ngân", new Cashier(), PackIconKind.Schedule);
+            var item1 = new ItemMenu("Thu ngân", new Cashier(this), PackIconKind.Schedule);
 
-            var item2 = new ItemMenu("Menu", new MainMenu(), PackIconKind.CalendarTextOutline);
+            var item2 = new ItemMenu("Menu", new Menu.MenuList(), PackIconKind.CalendarTextOutline);
 
             var item3 = new ItemMenu("Ưu đãi", new Discount(), PackIconKind.ShoppingBasket);
 
@@ -54,8 +55,8 @@ namespace CoffeeStore
             var item6 = new ItemMenu("Báo cáo thống kê", menuReport, PackIconKind.ChartLineVariant);
 
             var menuAccount = new List<SubItem>();
-            menuAccount.Add(new SubItem("Tài khoản"));
-            menuAccount.Add(new SubItem("Nhóm tài khoản"));
+            menuAccount.Add(new SubItem("Tài khoản", new Account.AccountList()));
+            menuAccount.Add(new SubItem("Nhóm tài khoản", new Account.GroupAccountList()));
             var item7 = new ItemMenu("Tài khoản", menuAccount, PackIconKind.Register);
 
             Menu.Children.Add(new MenuItem(item0, this));
@@ -66,6 +67,29 @@ namespace CoffeeStore
             Menu.Children.Add(new MenuItem(item5, this));
             Menu.Children.Add(new MenuItem(item6, this));
             Menu.Children.Add(new MenuItem(item7, this));
+
+            loginScreen.btnManager.Click += LoginScreen_BtnManager_Click;
+            loginScreen.btnSale.Click += LoginScreen_BtnSale_Click;
+        }
+
+        private void LoginScreen_BtnSale_Click(object sender, RoutedEventArgs e)
+        {
+            bool checkResult = loginScreen.CheckPassword();
+            var screen = new Cashier(this);
+            if (checkResult)
+            {
+                gridLogin.Children.Clear();
+                gridLogin.Children.Add(screen);
+            }   
+        }
+
+        private void LoginScreen_BtnManager_Click(object sender, RoutedEventArgs e)
+        {
+            bool checkResult = loginScreen.CheckPassword();
+            if (checkResult)
+            {
+                gridLogin.Children.Clear();
+            }
         }
         internal void SwitchScreen(object sender)   
         {
@@ -78,7 +102,6 @@ namespace CoffeeStore
         }
         internal void SwitchWindow(object sender)
         {
-           
             var screen = ((UserControl)sender);
             if (screen != null)
             {
@@ -91,11 +114,14 @@ namespace CoffeeStore
             var screen = ((Cashier)sender);
             if (screen != null)
             {
-                Window window = new Cashier();
-                this.Hide();
-                window.ShowDialog();
-                this.Show();
+                gridLogin.Children.Clear();
+                gridLogin.Children.Add(screen);
             } 
+        }
+
+        public void SwitchBackHome()
+        {
+            gridLogin.Children.Clear();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
