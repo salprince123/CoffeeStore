@@ -63,7 +63,7 @@ namespace CoffeeStore.Inventory
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
                 Title = "",
-                Content = new PopupMaterialToImport(),
+                Content = new PopupMaterialToImport(this),
                 Width = 540,
                 Height = 450,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
@@ -135,5 +135,16 @@ namespace CoffeeStore.Inventory
                 catch (Exception) { }
             }
         }
+
+        private void btExit_Click(object sender, RoutedEventArgs e)
+        {
+            var screen = new InventoryImport(_context);
+            if (screen != null)
+            {
+                this._context.StackPanelMain.Children.Clear();
+                this._context.StackPanelMain.Children.Add(screen);
+            }
+        }
+
     }
 }
