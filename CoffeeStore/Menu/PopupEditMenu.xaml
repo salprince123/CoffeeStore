@@ -3,9 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:UserControls="clr-namespace:CoffeeStore.View"
              mc:Ignorable="d" 
-             Height="395" Width="540">
+             Height="580" Width="540">
     <StackPanel Background="White">
+        <!--Title bar here-->
+        <Grid Margin="0,0,0,0" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <UserControls:TitleBar/>
+            <TextBlock Text="Thêm món" 
+                       FontFamily="Montserrat"
+                       FontSize="20" 
+                       FontWeight="Bold"
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"
+                       Foreground="#FFE297"/>
+        </Grid>
         <!--Product name-->
         <TextBlock Margin="60,10,60,0" Text="Tên món"/>
         <TextBox Margin="0,5,0,0" BorderThickness="1"
@@ -18,18 +30,19 @@
         <TextBlock Margin="60,10,60,0" Text="Giá"/>
         <TextBox  Margin="0,5,0,0" BorderThickness="1"
                  Height="40" Width="420" />
+        <Grid  Margin="60,30,60,0">
+            <Button VerticalAlignment="Top" Height="40"
+                    Content="+ HÌNH ẢNH" HorizontalAlignment="Left" Background="#FD9A3E"/>
+            <!--Insert image-->
+            <Rectangle Margin="0,60,0,0" Fill="#C4C4C4" Height="150" Width="150"></Rectangle>
+        </Grid>
 
-        <Button Height="40"
-                    Content="+ HÌNH ẢNH" Margin="60,30,0,0" HorizontalAlignment="Left" Background="#66A3FF"/>
-
-        <!--Insert image-->
-        <Image></Image>
         <!--Save, Cancel button-->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="btSave" Height="40" Width="100"
-                    Content="LƯU" Margin="0,30,0,0" Background="#66A3FF"/>
+                    Content="LƯU" Margin="0,25,0,0" Background="#66A3FF"/>
             <Button x:Name="btExit" Height="40" Width="100"
-                    Content="HỦY" Margin="10,30,0,0" Background="#F27047"/>
+                    Content="HỦY" Margin="10,25,0,0" Background="#F27047"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

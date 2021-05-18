@@ -32,6 +32,8 @@ namespace CoffeeStore.Account
             ((MainWindow)App.Current.MainWindow).Effect = objBlur;
             Window window = new Window
             {
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
                 Title = "Thêm nhóm tài khoản",
                 Content = new PopupAddGroupAccount(),
                 Width = 540,
