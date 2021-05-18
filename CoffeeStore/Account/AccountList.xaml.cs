@@ -32,9 +32,11 @@ namespace CoffeeStore.Account
             ((MainWindow)App.Current.MainWindow).Effect = objBlur;
             Window window = new Window
             {
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
                 Title = "Thêm tài khoản",
                 Content = new PopupAddAccount(),
-                Width = 570,
+                Width = 540,
                 Height = 430,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
                 Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,

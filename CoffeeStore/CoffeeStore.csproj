@@ -242,8 +242,6 @@
     </Compile>
     <Compile Include="ViewModel\ItemMenu.cs" />
     <Compile Include="ViewModel\SubItem.cs" />
-    <Compile Include="ViewModel\UIHelper.cs" />
-    <Compile Include="ViewModel\WindowTitleBehavior.cs" />
     <Compile Include="View\Cashier.xaml.cs">
       <DependentUpon>Cashier.xaml</DependentUpon>
     </Compile>
