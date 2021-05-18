@@ -40,7 +40,7 @@ namespace CoffeeStore.Inventory
         }
         public void LoadData()
         {
-            username = "EC001";
+            username = "Tran Le Bao Chau";
             var list = new ObservableCollection<InventoryImportObject>();
             BUS_InventoryImport import = new BUS_InventoryImport();
             DataTable temp = import.selectAll();
@@ -55,6 +55,7 @@ namespace CoffeeStore.Inventory
                 number0++;
             }
             this.dataGridImport.ItemsSource = list;
+            this.dataGridImport.Items.Refresh();
         }
         private void dataGridImport_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -63,7 +64,7 @@ namespace CoffeeStore.Inventory
 
         private void AddImport_Click(object sender, RoutedEventArgs e)
         {
-            var screen = new InventoryImportADD(username);
+            var screen = new InventoryImportADD(username, _context);
             if (screen != null)
             {
                 this._context.StackPanelMain.Children.Clear();

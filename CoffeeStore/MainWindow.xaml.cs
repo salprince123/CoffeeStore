@@ -41,7 +41,7 @@ namespace CoffeeStore
             var menuInventory = new List<SubItem>();
             menuInventory.Add(new SubItem("Thông tin kho",new Inventory.InventoryMainPage()));
             menuInventory.Add(new SubItem("Nhập kho", new Inventory.InventoryImport(this)));
-            menuInventory.Add(new SubItem("Xuất kho", new Inventory.InventoryExport()));
+            menuInventory.Add(new SubItem("Xuất kho"));
             var item4 = new ItemMenu("Kho", menuInventory, PackIconKind.Warehouse);
 
             var menuRevenue = new List<SubItem>();

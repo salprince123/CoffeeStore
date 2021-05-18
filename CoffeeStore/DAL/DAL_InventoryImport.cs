@@ -28,7 +28,7 @@ namespace CoffeeStore.DAL
             };
             
         }
-        public void Create(String employID)
+        public string Create(String name, String date)
         {
             //create auto increase ID
             //Get max MaterialID
@@ -39,19 +39,30 @@ namespace CoffeeStore.DAL
             da.Fill(maxId);
             foreach (DataRow row in maxId.Rows)
             {
-                id = row["MaterialID"].ToString();
+                id = row["importID"].ToString();
             }
             //auto increase ID
             string newID = "Imp" +
-                (Convert.ToInt32(id.Replace("Mater", "")) + 1)
+                (Convert.ToInt32(id.Replace("Imp", "")) + 1)
                     .ToString()
                     .PadLeft(7, '0');
+            //get employid from name 
+            String employId = "";
+            string tempSQL1 = $"select employeeid from Employees where employeename= '{name}' ";
+            SQLiteDataAdapter da1 = new SQLiteDataAdapter(tempSQL1, getConnection());
+            DataTable employid = new DataTable();
+            da1.Fill(employid);
+            foreach (DataRow row in employid.Rows)
+            {
+                employId = row["EmployeeID"].ToString();
+            }
             //insert SQLite 
-            string sql = $"insert into InventoryImport('ImportID','EmployeeID','ImportDate') VALUES ('{newID}','{employID}','{DateTime.Now.ToString()}');";
+            string sql = $"insert into InventoryImport('ImportID','EmployeeID','ImportDate') VALUES ('{newID}','{employId}','{date}');";
             SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
             try
             {
                 insert.ExecuteNonQuery();
+                return newID;
             }
             catch (Exception ex)
             {

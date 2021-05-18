@@ -64,7 +64,7 @@
                     <DataGridTextColumn Header="Nguyên vật liệu, thiết bị" 
                                         Binding="{Binding Path='name'}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Đơn giá"
-                                        Binding="{Binding Path='unitprice'}"></DataGridTextColumn>
+                                        Binding="{Binding Path='unitPrice'}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Số lượng"
                                         Binding="{Binding Path='amount'}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Đơn vị tính"

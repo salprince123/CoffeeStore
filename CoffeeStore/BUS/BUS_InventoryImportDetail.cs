@@ -10,6 +10,10 @@ namespace CoffeeStore.BUS
     public class BUS_InventoryImportDetail
     {
         DAL_InventoryImportDetail temp = new DAL_InventoryImportDetail();
+        public void ImportList(List<String> sqlList)
+        {
+            temp.ImportList(sqlList);
+        }
         public DataTable SelectAllImportDetail()
         {
             return temp.SelectAllImportDetail();

@@ -11,6 +11,23 @@ namespace CoffeeStore.DAL
 {
     class DAL_InventoryImportDetail : DBConnect
     {
+        public void ImportList(List<String> sqlList)
+        {
+            foreach(String s in sqlList)
+            {
+                try
+                {
+                    SQLiteCommand insert = new SQLiteCommand(s, getConnection().OpenAndReturn());
+                    insert.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+            
+            
+        }
         public DataTable SelectAllImportDetail()
         {
             try

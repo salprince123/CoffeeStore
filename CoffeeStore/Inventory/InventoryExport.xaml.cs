@@ -29,7 +29,7 @@ namespace CoffeeStore.Inventory
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            _context.SwitchToInventoryExportAdd();
+            //_context.SwitchToInventoryExportAdd();
         }
     }
 }
