@@ -242,6 +242,8 @@
     </Compile>
     <Compile Include="ViewModel\ItemMenu.cs" />
     <Compile Include="ViewModel\SubItem.cs" />
+    <Compile Include="ViewModel\UIHelper.cs" />
+    <Compile Include="ViewModel\WindowTitleBehavior.cs" />
     <Compile Include="View\Cashier.xaml.cs">
       <DependentUpon>Cashier.xaml</DependentUpon>
     </Compile>
@@ -250,6 +252,9 @@
     </Compile>
     <Compile Include="View\PopupEditMenuStatus.xaml.cs">
       <DependentUpon>PopupEditMenuStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TitleBar.xaml.cs">
+      <DependentUpon>TitleBar.xaml</DependentUpon>
     </Compile>
     <Page Include="Account\AccountList.xaml">
       <SubType>Designer</SubType>
@@ -422,6 +427,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PopupEditMenuStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TitleBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

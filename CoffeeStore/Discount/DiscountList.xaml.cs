@@ -32,6 +32,8 @@ namespace CoffeeStore.Discount
             ((MainWindow)App.Current.MainWindow).Effect = objBlur;
             Window window = new Window
             {
+                ResizeMode= ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
                 Title = "Thêm ưu đãi",
                 Content = new PopupDiscountAdd(),
                 Width = 540,
