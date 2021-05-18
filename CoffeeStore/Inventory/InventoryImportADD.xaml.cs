@@ -72,6 +72,8 @@ namespace CoffeeStore.Inventory
             ((MainWindow)App.Current.MainWindow).Effect = objBlur;
             Window window = new Window
             {
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
                 Title = "",
                 Content = new PopupMaterialToImport(),
                 Width = 540,
