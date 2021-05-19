@@ -10,9 +10,9 @@ namespace CoffeeStore.BUS
     public class BUS_InventoryImportDetail
     {
         DAL_InventoryImportDetail temp = new DAL_InventoryImportDetail();
-        public void DeleteAll(String id)
+        public void Delete(String id)
         {
-            temp.deleteAll(id);
+            temp.delete(id);
         }
         public void ImportList(List<String> sqlList)
         {

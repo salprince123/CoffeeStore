@@ -11,7 +11,7 @@ namespace CoffeeStore.DAL
 {
     class DAL_InventoryImportDetail : DBConnect
     {
-        public void deleteAll(String importID)
+        public void delete(String importID)
         {    
             String sql = $"delete from InventoryImportDetail where importID='{importID}'";
             SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());

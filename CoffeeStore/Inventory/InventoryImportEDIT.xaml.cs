@@ -147,7 +147,7 @@ namespace CoffeeStore.Inventory
                 sqlCommand.Add(temp);
             }
             BUS_InventoryImportDetail detail = new BUS_InventoryImportDetail();
-            detail.DeleteAll(selectionID);
+            detail.Delete(selectionID);
             detail.ImportList(sqlCommand);            
             var screen = new InventoryImport(_context);
             if (screen != null)

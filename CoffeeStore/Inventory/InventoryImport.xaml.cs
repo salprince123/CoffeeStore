@@ -90,7 +90,15 @@ namespace CoffeeStore.Inventory
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("vui long code xu li");
+            if (MessageBox.Show("Ban co chac chan xoa?","Thong bao", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                InventoryImportObject row = (InventoryImportObject)dataGridImport.SelectedItem;
+                BUS_InventoryImportDetail importDetail = new BUS_InventoryImportDetail();
+                BUS_InventoryImport import = new BUS_InventoryImport();
+                importDetail.Delete(row.ID);
+                import.Delete(row.ID);
+                LoadData();
+            }
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
