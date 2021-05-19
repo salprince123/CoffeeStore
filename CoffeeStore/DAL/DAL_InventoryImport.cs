@@ -99,7 +99,7 @@ namespace CoffeeStore.DAL
         {
             try
             {
-                string sql = $"select materialname as 'Tên',amount as 'Số lượng',price as 'Đơn giá',unit as 'Đơn vị tính' from InventoryImportDetail detail Join Material mater on detail.MaterialID= mater.MaterialID  where importID='{id}'";
+                string sql = $"select detail.materialid as 'ID' ,materialname as 'Tên',amount as 'Số lượng',price as 'Đơn giá',unit as 'Đơn vị tính' from InventoryImportDetail detail Join Material mater on detail.MaterialID= mater.MaterialID  where importID='{id}'";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 DataTable listImport = new DataTable();
                 da.Fill(listImport);

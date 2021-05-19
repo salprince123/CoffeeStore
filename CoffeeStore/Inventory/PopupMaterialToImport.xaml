@@ -86,7 +86,7 @@
             </Button>
             <Button x:Name="btnCancel" Grid.Column="1" Width="110" Margin="10,0,0,0"
                     Background="#F27047" FontWeight="Bold"
-                    VerticalAlignment="Top" HorizontalAlignment="Left">
+                    VerticalAlignment="Top" HorizontalAlignment="Left" Click="btnCancel_Click">
                 HỦY
             </Button>
         </Grid>

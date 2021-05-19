@@ -72,19 +72,6 @@ namespace CoffeeStore.Inventory
             }
         }
 
-        private void edit_click(object sender, RoutedEventArgs e)
-        {
-            if (this.selectionID != "")
-            {
-                Window window = new Window
-                {
-                    Title = "Chi tiết phiếu nhập",
-                    Content = new InventoryImportEDIT(selectionID, row.EmployName, row.InventoryDate)
-                };
-                window.ShowDialog();
-            }
-            else MessageBox.Show("Xin vui lòng chọn phiếu cần xem");
-        }
 
         private void btnWatch_Click(object sender, RoutedEventArgs e)
         {
@@ -109,14 +96,12 @@ namespace CoffeeStore.Inventory
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             InventoryImportObject row = (InventoryImportObject)dataGridImport.SelectedItem;
-            if (row != null)
+            if (row == null) return;
+                var screen = new InventoryImportEDIT(row.ID, row.EmployName, row.InventoryDate, _context);
+            if (screen != null)
             {
-                Window window = new Window
-                {
-                    Title = "Sua chi tiet phiếu nhập",
-                    Content = new InventoryImportEDIT(row.ID, row.EmployName, row.InventoryDate)
-                };
-                window.ShowDialog();
+                this._context.StackPanelMain.Children.Clear();
+                this._context.StackPanelMain.Children.Add(screen);
             }
         }
     }

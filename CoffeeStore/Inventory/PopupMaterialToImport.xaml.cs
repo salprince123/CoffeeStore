@@ -23,7 +23,7 @@ namespace CoffeeStore.Inventory
     /// </summary>
     public partial class PopupMaterialToImport : UserControl
     {
-        public InventoryImportADD parent { get; set; }
+        public UserControl parent { get; set; }
         List<String> temp = new List<string>();
         public class MAterialObject
         {
@@ -32,7 +32,7 @@ namespace CoffeeStore.Inventory
             public String unit { get; set; }
         
         }
-        public PopupMaterialToImport(InventoryImportADD parent)
+        public PopupMaterialToImport(UserControl parent)
         {
             InitializeComponent();
             LoadData();
@@ -63,7 +63,14 @@ namespace CoffeeStore.Inventory
 
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
-            parent.MaterName = temp;
+            if(parent.GetType()==new InventoryImportADD().GetType())
+                ((InventoryImportADD)parent).MaterName = temp;
+            else ((InventoryImportEDIT)parent).MaterName = temp;
+            Window.GetWindow(this).Close();
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
             Window.GetWindow(this).Close();
         }
     }

@@ -11,6 +11,18 @@ namespace CoffeeStore.DAL
 {
     class DAL_InventoryImportDetail : DBConnect
     {
+        public void deleteAll(String importID)
+        {    
+            String sql = $"delete from InventoryImportDetail where importID='{importID}'";
+            SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
+            try
+            {
+                insert.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+            }
+        }
         public void ImportList(List<String> sqlList)
         {
             foreach(String s in sqlList)

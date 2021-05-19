@@ -15,6 +15,7 @@ namespace CoffeeStore.DAL
         {
             try
             {
+                if (name == null) return null;
                 String selectedName = $"(";
                 for (int i = 0; i < name.Count - 1; i++)
                 {

@@ -76,6 +76,7 @@ namespace CoffeeStore.Inventory
             
             BUS_Material mater = new BUS_Material();
             DataTable temp = mater.selectByName( this.MaterName);
+            if (temp == null) return;
             foreach (DataRow row in temp.Rows)
             {
                 string name = row["MaterialName"].ToString();
@@ -129,7 +130,6 @@ namespace CoffeeStore.Inventory
                     list.RemoveAt(row.number - 1);
                     for (int i = 0; i < list.Count; i++)
                         list[i].number= i+1;
-
                     dataGridImport.Items.Refresh();
                 }
                 catch (Exception) { }
