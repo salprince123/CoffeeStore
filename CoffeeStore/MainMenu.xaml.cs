@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CoffeeStore.DTO;
+using CoffeeStore.BUS;
+using System.Data;
 
 namespace CoffeeStore
 {
@@ -20,10 +23,13 @@ namespace CoffeeStore
     /// </summary>
     public partial class MainMenu : UserControl
     {
+        BUS_Beverage bus;
         public MainMenu()
         {
             InitializeComponent();
+            bus = new BUS_Beverage();
             this.DataContext = this;
+            dgMenu.ItemsSource = bus.getAllBeverage().DefaultView;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -43,7 +49,30 @@ namespace CoffeeStore
 
         private void dgMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            DataGrid dg = (DataGrid)sender;
+            DataRowView row = dg.SelectedItem as DataRowView;
+            if (row != null)
+            {
+                tbName.Text = row["BeverageName"].ToString();
+                tbPrice.Text = row["Price"].ToString();
+                tbNote.Text = row["Unit"].ToString();
+            }
+            else
+                MessageBox.Show("Null");
+        }
 
+        private void dgMenu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DataGrid dg = (DataGrid)sender;
+            DataRowView row = dg.SelectedItem as DataRowView;
+            if (row != null)
+            {
+                tbName.Text = row["BeverageName"].ToString();
+                tbPrice.Text = row["Price"].ToString();
+                tbNote.Text = row["Unit"].ToString();
+            }
+            else
+                MessageBox.Show("Null");
         }
     }
 }

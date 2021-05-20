@@ -11,20 +11,41 @@ namespace CoffeeStore.DAL
 {
     public class DAL_Beverage : DBConnect
     {
-        public DataTable searchMA(string key)
+        public DataTable getAllBeverage()
         {
             try
             {
-                string sql = $"select MaMon, LoaiMon, TenMon, TinhTrang from MON where MaMon= '{key}'";
+                string sql = $"Select * From BeverageName";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 DataTable dsMon = new DataTable();
                 da.Fill(dsMon);
                 return dsMon;
             }
-            catch (Exception)
-            { 
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             };
             return null;
         }       
+        public int createNewBeverage(DTO_Beverage beverage)
+        {
+            int rs = 0;
+            return rs;
+        }
+        public int deleteBeverage(string id)
+        {
+            int rs = 0;
+            return rs;
+        }
+        public int editBeverage(DTO_Beverage beverage)
+        {
+            int rs = 0;
+            return rs;
+        }
+        public string createID()
+        {
+            string ID = "B";
+            return ID;
+        }
     }
 }

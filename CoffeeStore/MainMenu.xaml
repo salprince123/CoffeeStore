@@ -7,7 +7,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#FF72AFBD">
-        <DataGrid x:Name="dgMenu" HorizontalAlignment="Left" Height="260" Margin="39,172,0,0" VerticalAlignment="Top" Width="712" SelectionChanged="dgMenu_SelectionChanged"/>
+        <DataGrid x:Name="dgMenu" HorizontalAlignment="Left" Height="260" Margin="39,172,0,0" VerticalAlignment="Top" Width="712" SelectionChanged="dgMenu_SelectionChanged" MouseLeftButtonDown="dgMenu_MouseLeftButtonDown" IsReadOnly="True">
+            <DataGrid.ItemBindingGroup>
+                <BindingGroup/>
+            </DataGrid.ItemBindingGroup>
+        </DataGrid>
         <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="431,115,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.903,2.108" Click="Button_Click"/>
         <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="543,115,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.903,2.108" Click="btnDelete_Click"/>
         <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="665,115,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.903,2.108" Click="btnEdit_Click"/>

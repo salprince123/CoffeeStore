@@ -11,9 +11,9 @@ namespace CoffeeStore.BUS
     public class BUS_Beverage
     {
         DAL_Beverage dalmonan = new DAL_Beverage();
-        public DataTable searchMA(string key)
+        public DataTable getAllBeverage()
         {
-            return dalmonan.searchMA(key);
+            return dalmonan.getAllBeverage();
         }
         public void fillForm(String maMon, ref Home homepage)
         {
