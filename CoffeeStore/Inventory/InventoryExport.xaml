@@ -111,7 +111,7 @@
                             <ColumnDefinition Width="20"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid x:Name="dataGridImport" Grid.Column="1" Grid.Row="1" 
+                        <DataGrid x:Name="dataGridExport" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
                                   VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False">
@@ -119,10 +119,14 @@
                                 <materialDesign:DataGridTextColumn/>
                             </DataGrid.CurrentColumn>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="STT"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Mã phiếu xuất kho"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Ngày lập"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Người lập"></DataGridTextColumn>
+                                <DataGridTextColumn Header="STT"
+                                                    Binding="{Binding Path='number'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Mã phiếu xuất kho"
+                                                    Binding="{Binding Path='ID'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Ngày lập"
+                                                    Binding="{Binding Path='InventoryDate'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Người lập" 
+                                                    Binding="{Binding Path='EmployName'}"></DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>

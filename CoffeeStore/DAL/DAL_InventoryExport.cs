@@ -15,7 +15,7 @@ namespace CoffeeStore.DAL
         {
             try
             {
-                string sql = $"select * from InventoryExport";
+                string sql = $"select employeename, exportid, exportdate from InventoryExport Imp Join Employees employ on employ.EmployeeID=Imp.EmployeeID";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 DataTable listExport = new DataTable();
                 da.Fill(listExport);

@@ -131,6 +131,7 @@
     <Compile Include="BUS\BUS_AccessPermissionGroup.cs" />
     <Compile Include="BUS\BUS_Employees.cs" />
     <Compile Include="BUS\BUS_EmployeeType.cs" />
+    <Compile Include="BUS\BUS_InventoryExport.cs" />
     <Compile Include="BUS\BUS_Menu.cs" />
     <Compile Include="DAL\DAL_AccessPermission.cs" />
     <Compile Include="DAL\DAL_AccessPermissionGroup.cs" />
@@ -184,6 +185,9 @@
     <Compile Include="Inventory\PopupInventoryExportDETAIL.xaml.cs">
       <DependentUpon>PopupInventoryExportDETAIL.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\PopupMaterialToExport.xaml.cs">
+      <DependentUpon>PopupMaterialToExport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\PopupMaterialToImport.xaml.cs">
       <DependentUpon>PopupMaterialToImport.xaml</DependentUpon>
     </Compile>
@@ -215,9 +219,6 @@
     </Compile>
     <Compile Include="Inventory\InventoryMainPage.xaml.cs">
       <DependentUpon>InventoryMainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Inventory\PopupAddImportDetail.xaml.cs">
-      <DependentUpon>PopupAddImportDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="Inventory\PopupAddMaterial.xaml.cs">
       <DependentUpon>PopupAddMaterial.xaml</DependentUpon>
@@ -334,6 +335,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Inventory\PopupMaterialToExport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Inventory\PopupMaterialToImport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -359,10 +364,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Inventory\InventoryMainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Inventory\PopupAddImportDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
