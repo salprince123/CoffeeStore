@@ -38,5 +38,10 @@ namespace CoffeeStore.BUS
             DAL_Discount dal = new DAL_Discount();
             return dal.deleteDiscount(ID);
         }
+        public string ID()
+        {
+            DAL_Discount dal = new DAL_Discount();
+            return dal.createID();
+        }
     }
 }

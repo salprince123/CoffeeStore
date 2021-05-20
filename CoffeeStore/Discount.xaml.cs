@@ -24,6 +24,7 @@ namespace CoffeeStore
     public partial class Discount : UserControl
     {
         BUS_Discount busDiscount;
+        string ID;
         public Discount()
         {
             InitializeComponent();
@@ -44,7 +45,8 @@ namespace CoffeeStore
                 dgDiscount.ItemsSource = busDiscount.getAllDiscount().DefaultView;
             }
             else
-                MessageBox.Show("Fail");
+                MessageBox.Show("Fail"+busDiscount.ID());
+
             
         }
 
@@ -60,7 +62,7 @@ namespace CoffeeStore
                     dgDiscount.ItemsSource = busDiscount.getAllDiscount().DefaultView;
                 }
                 else
-                    MessageBox.Show("Fail");
+                    MessageBox.Show("Fail"+busDiscount.ID());
             }
             else
                 MessageBox.Show(dgDiscount.SelectedItem.ToString());
@@ -68,7 +70,19 @@ namespace CoffeeStore
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            DTO_Discount discount = new DTO_Discount();
+            discount.DiscountID = ID;
+            discount.DiscountName = tbName.Text;
+            discount.DiscountValue = float.Parse(tbPrice.Text);
+            discount.StartDate = dpStartDate.SelectedDate.Value.ToString("dd/MM/yyyy");
+            discount.EndDate = dpEndDate.SelectedDate.Value.ToString("dd/MM/yyyy");
+            if (busDiscount.editDiscount(discount) > 0)
+            {
+                MessageBox.Show("OK");
+                dgDiscount.ItemsSource = busDiscount.getAllDiscount().DefaultView;
+            }
+            else
+                MessageBox.Show("Fail");
         }
 
         private void dgDiscount_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -82,6 +96,7 @@ namespace CoffeeStore
             DataRowView row = dataGrid.SelectedItem as DataRowView;
             if (row != null)
             {
+                ID = row["DiscountID"].ToString();
                 tbName.Text = row["DiscountName"].ToString();
                 tbPrice.Text = row["DiscountValue"].ToString();
                 try
@@ -94,6 +109,11 @@ namespace CoffeeStore
                     MessageBox.Show(row["StartDate"].ToString());
                 }
             }
+        }
+
+        private void dgDiscount_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
