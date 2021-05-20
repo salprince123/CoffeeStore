@@ -35,6 +35,11 @@ namespace CoffeeStore.Inventory
             public String EmployName { get; set; }
         }
         public InventoryExportObject row;
+        public InventoryExport()
+        {
+            InitializeComponent();
+            LoadData();
+        }
         public InventoryExport(MainWindow mainWindow)
         {
             InitializeComponent();
@@ -62,7 +67,12 @@ namespace CoffeeStore.Inventory
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            //_context.SwitchToInventoryExportAdd();
+            var screen = new InventoryExportADD(username, _context);
+            if (screen != null)
+            {
+                this._context.StackPanelMain.Children.Clear();
+                this._context.StackPanelMain.Children.Add(screen);
+            }
         }
     }
 }

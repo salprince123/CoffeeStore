@@ -57,7 +57,8 @@
                     <materialDesign:DataGridTextColumn/>
                 </DataGrid.CurrentColumn>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="STT" IsReadOnly="True" Binding="{Binding Path='number'}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="STT" IsReadOnly="True" 
+                                        Binding="{Binding Path='number'}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" IsReadOnly="True" 
                                         Binding="{Binding Path='name'}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Đơn vị tính" IsReadOnly="True"
