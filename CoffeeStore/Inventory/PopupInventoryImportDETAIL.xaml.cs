@@ -22,18 +22,7 @@ namespace CoffeeStore.Inventory
     {
         public String selectionID = "";
         public String ImportName = "";
-        public class BindingObject
-        {
-            public string id { get; set; }
-            public string name { get; set; }
-            public string day { get; set; }
-            public BindingObject(String id0, string name0, string day0)
-            {
-                this.id = id0;
-                this.name = name0;
-                this.day = day0;
-            }
-        }
+        
         public class InventoryImportDetailObject
         {
             public int number { get; set; }
@@ -46,11 +35,7 @@ namespace CoffeeStore.Inventory
         public PopupInventoryImportDETAIL()
         {
             InitializeComponent();
-            //if (selectionID != "")
-            {               
-                LoadData();
-            }
-                
+            LoadData();
         }
         public PopupInventoryImportDETAIL(String id, String importname, String importdate)
         {

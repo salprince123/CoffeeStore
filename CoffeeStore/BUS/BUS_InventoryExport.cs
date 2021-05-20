@@ -15,6 +15,13 @@ namespace CoffeeStore.BUS
         {
             return export.SelectAllExport();
         }
-
+        public string Create(String name, String date)
+        {
+            return export.Create(name, date);
+        }
+        public DataTable SelectDetail(String id)
+        {
+            return export.SelectDetail(id);
+        }
     }
 }

@@ -74,5 +74,19 @@ namespace CoffeeStore.Inventory
                 this._context.StackPanelMain.Children.Add(screen);
             }
         }
+        private void btnWatch_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryExportObject row = (InventoryExportObject)dataGridExport.SelectedItem;
+            if (row != null)
+            {
+                Window window = new Window
+                {
+                    Title = "Chi tiết phiếu xuất",
+                    Content = new PopupInventoryExportDETAIL(row.ID, row.EmployName, row.InventoryDate)
+                    //Content = new PopupInventoryImportDETAIL("a","a","a")
+                };
+                window.ShowDialog();
+            }
+        }
     }
 }

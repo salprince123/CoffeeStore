@@ -110,7 +110,27 @@ namespace CoffeeStore.Inventory
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
-
+            // save in database
+            //insert InventoryExport
+            BUS_InventoryExport export = new BUS_InventoryExport();
+            String newExportID = export.Create(tbEmployeeName.Text, tbDate.Text);
+            //MessageBox.Show(newImportID);
+            //insert InventoryImportdetails
+            if (newExportID == null) return;
+            List<String> sqlString = new List<string>();
+            foreach (InventoryExportDetailObject obj in list)
+            {
+                string temp = $"insert into InventoryExportDetail values ('{newExportID}','{obj.id}','{obj.amount}','{tbDescription.Text}')";
+                sqlString.Add(temp);
+            }
+            BUS_InventoryImportDetail detail = new BUS_InventoryImportDetail();
+            detail.ImportList(sqlString);
+            var screen = new InventoryExport(_context);
+            if (screen != null)
+            {
+                this._context.StackPanelMain.Children.Clear();
+                this._context.StackPanelMain.Children.Add(screen);
+            }
         }
     }
 }

@@ -88,7 +88,7 @@ namespace CoffeeStore.DAL
         {
             try
             {
-                string sql = $"select materialname as 'Tên',amount as 'Số lượng',description as 'Mô tả' from InventoryExportDetail detail Join Material mater on detail.MaterialID= mater.MaterialID where exportID='{id}'";
+                string sql = $"select unit,materialname as 'Tên',amount as 'Số lượng',description as 'Mô tả' from InventoryExportDetail detail Join Material mater on detail.MaterialID= mater.MaterialID where exportID='{id}'";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 DataTable listImport = new DataTable();
                 da.Fill(listImport);
@@ -99,6 +99,47 @@ namespace CoffeeStore.DAL
                 Console.WriteLine("Exception AT" + e.ToString());
                 return new DataTable();
             };
+        }
+        public string Create(String name, String date)
+        {
+            //create auto increase ID
+            //Get max MaterialID
+            String id = "";
+            string tempSQL = "SELECT exportID FROM InventoryExport order by exportID desc LIMIT 1 ";
+            SQLiteDataAdapter da = new SQLiteDataAdapter(tempSQL, getConnection());
+            DataTable maxId = new DataTable();
+            da.Fill(maxId);
+            foreach (DataRow row in maxId.Rows)
+            {
+                id = row["exportID"].ToString();
+            }
+            //auto increase ID
+            string newID = "Exp" +
+                (Convert.ToInt32(id.Replace("Exp", "")) + 1)
+                    .ToString()
+                    .PadLeft(7, '0');
+            //get employid from name 
+            String employId = "";
+            string tempSQL1 = $"select employeeid from Employees where employeename= '{name}' ";
+            SQLiteDataAdapter da1 = new SQLiteDataAdapter(tempSQL1, getConnection());
+            DataTable employid = new DataTable();
+            da1.Fill(employid);
+            foreach (DataRow row in employid.Rows)
+            {
+                employId = row["EmployeeID"].ToString();
+            }
+            //insert SQLite 
+            string sql = $"insert into InventoryExport('ExportID','EmployeeID','ExportDate') VALUES ('{newID}','{employId}','{date}');";
+            SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
+            try
+            {
+                insert.ExecuteNonQuery();
+                return newID;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

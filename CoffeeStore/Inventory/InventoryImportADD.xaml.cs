@@ -112,7 +112,7 @@ namespace CoffeeStore.Inventory
             }
             BUS_InventoryImportDetail detail = new BUS_InventoryImportDetail();
             detail.ImportList(sqlString);
-            var screen = new InventoryImport(_context);
+            var screen = new InventoryExport(_context);
             if (screen != null)
             {
                 this._context.StackPanelMain.Children.Clear();
