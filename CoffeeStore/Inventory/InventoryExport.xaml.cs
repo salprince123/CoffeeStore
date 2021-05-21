@@ -88,5 +88,16 @@ namespace CoffeeStore.Inventory
                 window.ShowDialog();
             }
         }
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryExportObject row = (InventoryExportObject)dataGridExport.SelectedItem;
+            if (row == null) return;
+            var screen = new InventoryExportEDIT(row.ID, row.EmployName, row.InventoryDate, _context);
+            if (screen != null)
+            {
+                this._context.StackPanelMain.Children.Clear();
+                this._context.StackPanelMain.Children.Add(screen);
+            }
+        }
     }
 }

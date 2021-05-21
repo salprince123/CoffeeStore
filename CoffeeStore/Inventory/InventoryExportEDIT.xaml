@@ -125,10 +125,14 @@
                                 <materialDesign:DataGridTextColumn/>
                             </DataGrid.CurrentColumn>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="STT" IsReadOnly="True"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" IsReadOnly="True"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Số lượng"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Đơn vị tính" IsReadOnly="True"></DataGridTextColumn>
+                                <DataGridTextColumn Header="STT" IsReadOnly="True"
+                                                    Binding="{Binding Path='number'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" IsReadOnly="True"
+                                                    Binding="{Binding Path='name'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Số lượng"
+                                                    Binding="{Binding Path='amount'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Đơn vị tính" IsReadOnly="True"
+                                                    Binding="{Binding Path='unit'}"></DataGridTextColumn>
                                 <DataGridTextColumn Header=""></DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
@@ -169,9 +173,10 @@
                             VerticalAlignment="Top" HorizontalAlignment="Right">
                         LƯU
                     </Button>
-                    <Button Grid.Row="3" Grid.Column="1" Width="100" Margin="10,0,0,0"
+                    <Button x:Name="btExit" Grid.Row="3" Grid.Column="1" Width="100" Margin="10,0,0,0"
                             Background="#F27047" FontWeight="Bold"
-                            VerticalAlignment="Top" HorizontalAlignment="Left">
+                            VerticalAlignment="Top" HorizontalAlignment="Left"
+                            Click="btnCancel_Click">
                         HỦY
                     </Button>
                 </Grid>

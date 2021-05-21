@@ -135,7 +135,8 @@
                                                         Click="btnWatch_Click">
                                                     <materialDesign:PackIcon Kind="Eye" Height="10" Width="10" Foreground="Black" />
                                                 </Button>
-                                                <Button Margin="10,0,0,0" Name="btnEdit" Background="Blue">
+                                                <Button Margin="10,0,0,0" Name="btnEdit" Background="Blue"
+                                                        Click="btnEdit_Click">
                                                     <materialDesign:PackIcon Kind="PlaylistEdit" Height="10" Width="10"  />
                                                 </Button>
                                                 <Button Margin="10,0,0,0" Name="btnDelete" Background="Red">
