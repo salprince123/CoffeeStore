@@ -30,7 +30,7 @@ namespace CoffeeStore
             InitializeComponent();
             bus = new BUS_Beverage();
             this.DataContext = this;
-            dgMenu.ItemsSource = bus.getAllBeverage().DefaultView;
+            dgMenu.ItemsSource = bus.getTop5().DefaultView;
             cbBeverageType.ItemsSource = bus.getBeverageType();
         }
 

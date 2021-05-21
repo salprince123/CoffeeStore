@@ -140,5 +140,21 @@ namespace CoffeeStore.DAL
             }
             return beveragetypeID;
         }
+        public DataTable getTop5()
+        {
+            try
+            {
+                string sql = $"Select A.BeverageID as 'Mã đồ uống', BeverageName as 'Tên', Price as 'Giá', SoLuong as 'Tổng số ly đã bán' From BeverageName BN, (select BeverageID, sum(Amount) as SoLuong from ReceiptDetail group by BeverageID order by SoLuong DESC limit 5) A Where BN.BeverageID=A.BeverageID";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                DataTable dsMon = new DataTable();
+                da.Fill(dsMon);
+                return dsMon;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            };
+            return null;
+        }       
     }
 }
