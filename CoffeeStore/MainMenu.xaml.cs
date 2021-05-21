@@ -36,46 +36,56 @@ namespace CoffeeStore
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DTO_Beverage beverage = new DTO_Beverage();
-            beverage.BeverageID = bus.createID();
-            beverage.BeverageName = tbName.Text;
-            beverage.BeverageTypeID = bus.getBeverageTypeID(cbBeverageType.SelectedItem.ToString());
-            beverage.Price = Int32.Parse(tbPrice.Text);
-            if (bus.createNewBevverage(beverage) > 0)
+            if (checkCondition())
             {
-                MessageBox.Show("Success");
-                dgMenu.ItemsSource = bus.getAllBeverage().DefaultView;
+                DTO_Beverage beverage = new DTO_Beverage();
+                beverage.BeverageID = bus.createID();
+                beverage.BeverageName = tbName.Text;
+                beverage.BeverageTypeID = bus.getBeverageTypeID(cbBeverageType.SelectedItem.ToString());
+                beverage.Price = Int32.Parse(tbPrice.Text);
+                if (bus.createNewBevverage(beverage) > 0)
+                {
+                    MessageBox.Show("Thành công");
+                    dgMenu.ItemsSource = bus.getAllBeverage().DefaultView;
+                }
+                else
+                    MessageBox.Show("Thất bại");
             }
             else
-                MessageBox.Show("Fail");
+                MessageBox.Show("Không được để trống tên, giá và loại đồ uống");
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             if (bus.deleteBevverage(ID)>0)
             {
-                MessageBox.Show("Success");
+                MessageBox.Show("Thành công");
                 dgMenu.ItemsSource = bus.getAllBeverage().DefaultView;
             }
             else
-                MessageBox.Show("Fail");
+                MessageBox.Show("Thất bại");
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            DTO_Beverage beverage = new DTO_Beverage();
-            beverage.BeverageID = ID;
-            beverage.BeverageName = tbName.Text;
-            beverage.BeverageTypeID = bus.getBeverageTypeID(cbBeverageType.SelectedItem.ToString());
-            beverage.Price = Int32.Parse(tbPrice.Text);
-            beverage.Amount = Int32.Parse(tbExistingAmount.Text.ToString());
-            if (bus.editBevverage(beverage) > 0)
+            if (checkCondition())
             {
-                MessageBox.Show("Success");
-                dgMenu.ItemsSource = bus.getAllBeverage().DefaultView;
+                DTO_Beverage beverage = new DTO_Beverage();
+                beverage.BeverageID = ID;
+                beverage.BeverageName = tbName.Text;
+                beverage.BeverageTypeID = bus.getBeverageTypeID(cbBeverageType.SelectedItem.ToString());
+                beverage.Price = Int32.Parse(tbPrice.Text);
+                beverage.Amount = Int32.Parse(tbExistingAmount.Text.ToString());
+                if (bus.editBevverage(beverage) > 0)
+                {
+                    MessageBox.Show("Thành công");
+                    dgMenu.ItemsSource = bus.getAllBeverage().DefaultView;
+                }
+                else
+                    MessageBox.Show("Thất bại");
             }
             else
-                MessageBox.Show("Fail");
+                MessageBox.Show("Không được để trống tên, giá và loại đồ uống");
         }
 
         private void dgMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -101,6 +111,10 @@ namespace CoffeeStore
         private void tbExistingAmount_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !NumberCheck.IsNumber(e.Text);
+        }
+        private bool checkCondition()
+        {
+            return (tbName.Text != "" && tbPrice.Text != "" && cbBeverageType.SelectedItem != null);
         }
     }
 }

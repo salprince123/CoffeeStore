@@ -45,11 +45,11 @@ namespace CoffeeStore
                 discount.EndDate = dpEndDate.SelectedDate.Value.ToString("dd/MM/yyyy");
                 if (busDiscount.createNewDiscount(discount) > 0)
                 {
-                    MessageBox.Show("OK");
+                    MessageBox.Show("Thành công");
                     dgDiscount.ItemsSource = busDiscount.getAllDiscount().DefaultView;
                 }
                 else
-                    MessageBox.Show("Fail" + busDiscount.ID());
+                    MessageBox.Show("Thất bại" + busDiscount.ID());
             }
             else
                 MessageBox.Show("Tên discount, giá trị discount, ngày bắt đầu và ngày kết thúc là bắt buộc");
@@ -63,11 +63,11 @@ namespace CoffeeStore
                 String ID = row["Mã giảm giá"].ToString();
                 if (busDiscount.deleteDiscount(ID) > 0)
                 {
-                    MessageBox.Show("Success");
+                    MessageBox.Show("Thành công");
                     dgDiscount.ItemsSource = busDiscount.getAllDiscount().DefaultView;
                 }
                 else
-                    MessageBox.Show("Fail"+busDiscount.ID());
+                    MessageBox.Show("Thất bại"+busDiscount.ID());
             }
             else
                 MessageBox.Show(dgDiscount.SelectedItem.ToString());       
@@ -85,11 +85,11 @@ namespace CoffeeStore
                 discount.EndDate = dpEndDate.SelectedDate.Value.ToString("dd/MM/yyyy");
                 if (busDiscount.editDiscount(discount) > 0)
                 {
-                    MessageBox.Show("OK");
+                    MessageBox.Show("Thành công");
                     dgDiscount.ItemsSource = busDiscount.getAllDiscount().DefaultView;
                 }
                 else
-                    MessageBox.Show("Fail");
+                    MessageBox.Show("Thất bại");
             }
             else
                 MessageBox.Show("Tên discount, giá trị discount, ngày bắt đầu và ngày kết thúc là bắt buộc");
