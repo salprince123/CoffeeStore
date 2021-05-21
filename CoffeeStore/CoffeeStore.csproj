@@ -118,6 +118,7 @@
       <DependentUpon>Discount.xaml</DependentUpon>
     </Compile>
     <Compile Include="DTO\DTO_Discount.cs" />
+    <Compile Include="DTO\NumberCheck.cs" />
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>

@@ -30,24 +30,29 @@ namespace CoffeeStore
             InitializeComponent();
             busDiscount = new BUS_Discount();
             dgDiscount.ItemsSource = busDiscount.getAllDiscount().DefaultView;
+            dpStartDate.SelectedDate = DateTime.Today;
+            dpEndDate.SelectedDate = DateTime.Today;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DTO_Discount discount = new DTO_Discount();
-            discount.DiscountID = "1";
-            discount.DiscountName = tbName.Text;
-            discount.DiscountValue = float.Parse(tbPrice.Text);
-            discount.StartDate = dpStartDate.SelectedDate.Value.ToString("dd/MM/yyyy");
-            discount.EndDate = dpEndDate.SelectedDate.Value.ToString("dd/MM/yyyy");
-            if (busDiscount.createNewDiscount(discount) > 0)
+            if (checkCondition())
             {
-                MessageBox.Show("OK");
-                dgDiscount.ItemsSource = busDiscount.getAllDiscount().DefaultView;
+                DTO_Discount discount = new DTO_Discount();
+                discount.DiscountID = busDiscount.ID();
+                discount.DiscountName = tbName.Text;
+                discount.DiscountValue = float.Parse(tbPrice.Text);
+                discount.StartDate = dpStartDate.SelectedDate.Value.ToString("dd/MM/yyyy");
+                discount.EndDate = dpEndDate.SelectedDate.Value.ToString("dd/MM/yyyy");
+                if (busDiscount.createNewDiscount(discount) > 0)
+                {
+                    MessageBox.Show("OK");
+                    dgDiscount.ItemsSource = busDiscount.getAllDiscount().DefaultView;
+                }
+                else
+                    MessageBox.Show("Fail" + busDiscount.ID());
             }
             else
-                MessageBox.Show("Fail"+busDiscount.ID());
-
-            
+                MessageBox.Show("Tên discount, giá trị discount, ngày bắt đầu và ngày kết thúc là bắt buộc");
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -55,7 +60,7 @@ namespace CoffeeStore
             DataRowView row = dgDiscount.SelectedItem as DataRowView;
             if (row != null)
             {
-                String ID = row["DiscountID"].ToString();
+                String ID = row["Mã giảm giá"].ToString();
                 if (busDiscount.deleteDiscount(ID) > 0)
                 {
                     MessageBox.Show("Success");
@@ -65,55 +70,58 @@ namespace CoffeeStore
                     MessageBox.Show("Fail"+busDiscount.ID());
             }
             else
-                MessageBox.Show(dgDiscount.SelectedItem.ToString());
+                MessageBox.Show(dgDiscount.SelectedItem.ToString());       
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            DTO_Discount discount = new DTO_Discount();
-            discount.DiscountID = ID;
-            discount.DiscountName = tbName.Text;
-            discount.DiscountValue = float.Parse(tbPrice.Text);
-            discount.StartDate = dpStartDate.SelectedDate.Value.ToString("dd/MM/yyyy");
-            discount.EndDate = dpEndDate.SelectedDate.Value.ToString("dd/MM/yyyy");
-            if (busDiscount.editDiscount(discount) > 0)
+            if (checkCondition())
             {
-                MessageBox.Show("OK");
-                dgDiscount.ItemsSource = busDiscount.getAllDiscount().DefaultView;
+                DTO_Discount discount = new DTO_Discount();
+                discount.DiscountID = ID;
+                discount.DiscountName = tbName.Text;
+                discount.DiscountValue = float.Parse(tbPrice.Text);
+                discount.StartDate = dpStartDate.SelectedDate.Value.ToString("dd/MM/yyyy");
+                discount.EndDate = dpEndDate.SelectedDate.Value.ToString("dd/MM/yyyy");
+                if (busDiscount.editDiscount(discount) > 0)
+                {
+                    MessageBox.Show("OK");
+                    dgDiscount.ItemsSource = busDiscount.getAllDiscount().DefaultView;
+                }
+                else
+                    MessageBox.Show("Fail");
             }
             else
-                MessageBox.Show("Fail");
+                MessageBox.Show("Tên discount, giá trị discount, ngày bắt đầu và ngày kết thúc là bắt buộc");
         }
 
         private void dgDiscount_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            MessageBox.Show("Select");
-        }
-
-        private void dgDiscount_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
             DataGrid dataGrid = (DataGrid)sender;
             DataRowView row = dataGrid.SelectedItem as DataRowView;
             if (row != null)
             {
-                ID = row["DiscountID"].ToString();
-                tbName.Text = row["DiscountName"].ToString();
-                tbPrice.Text = row["DiscountValue"].ToString();
+                ID = row["Mã giảm giá"].ToString();
+                tbName.Text = row["Tên giảm giá"].ToString();
+                tbPrice.Text = row["Phần trăm giảm"].ToString();
                 try
                 {
-                    dpStartDate.SelectedDate = DateTime.ParseExact(row["StartDate"].ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                    dpEndDate.SelectedDate = DateTime.ParseExact(row["EndDate"].ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    dpStartDate.SelectedDate = DateTime.ParseExact(row["Ngày bắt đầu"].ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    dpEndDate.SelectedDate = DateTime.ParseExact(row["Ngày kết thúc"].ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(row["StartDate"].ToString());
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
-
-        private void dgDiscount_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void tbPrice_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-
+            e.Handled = !NumberCheck.IsNumber(e.Text);
+        }
+        private bool checkCondition()
+        {
+            return (tbName.Text != "" && tbPrice.Text != "" && dpStartDate.SelectedDate != null && dpEndDate.SelectedDate != null && dpStartDate.SelectedDate<dpEndDate.SelectedDate);
         }
     }
 }

@@ -5,22 +5,39 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using CoffeeStore.DTO;
 namespace CoffeeStore.BUS
 {
     public class BUS_Beverage
     {
-        DAL_Beverage dalmonan = new DAL_Beverage();
+        DAL_Beverage dalBeverage = new DAL_Beverage();
         public DataTable getAllBeverage()
         {
-            return dalmonan.getAllBeverage();
+            return dalBeverage.getAllBeverage();
         }
-        public void fillForm(String maMon, ref Home homepage)
+        public int createNewBevverage(DTO_Beverage beverage)
         {
-            /*DataTable temp = searchMA(maMon);
-            homepage.TenMon = temp.Rows[0]["TenMon"].ToString();
-            homepage.LoaiMon = temp.Rows[0]["LoaiMon"].ToString();
-            //tenMon = temp.Rows[1][1].ToString();*/
+            return dalBeverage.createNewBeverage(beverage);
+        }
+        public int editBevverage(DTO_Beverage beverage)
+        {
+            return dalBeverage.editBeverage(beverage);
+        }
+        public int deleteBevverage(string ID)
+        {
+            return dalBeverage.deleteBeverage(ID);
+        }
+        public string createID()
+        {
+            return dalBeverage.createID();
+        }
+        public List<String> getBeverageType()
+        {
+            return dalBeverage.GetBeverageType();
+        }
+        public string getBeverageTypeID(string beveragename)
+        {
+            return dalBeverage.getBeverageTypeID(beveragename);
         }
     }
 }
