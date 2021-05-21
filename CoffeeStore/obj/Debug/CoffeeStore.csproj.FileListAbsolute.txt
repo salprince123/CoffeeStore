@@ -180,13 +180,11 @@ D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventor
 D:\hocTap\20-21 HK 2\CNPM(NC)\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportDETAIL.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImport.g.cs
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportADD.g.cs
-E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportDETAIL.g.cs
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryMainPage.g.cs
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddMaterial.g.cs
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupEditMaterial.g.cs
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImport.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportADD.baml
-E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportDETAIL.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryMainPage.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddMaterial.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupEditMaterial.baml
@@ -446,7 +444,6 @@ E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupInventoryExportDETAI
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupMaterialToImport.g.cs
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\MainMenu.g.cs
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportEDIT.g.cs
-E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddImportDetail.g.cs
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\MenuList.g.cs
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupAddMenu.g.cs
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupDeleteConfirm.g.cs
@@ -471,9 +468,15 @@ E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupInventoryExportDETAI
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupMaterialToImport.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\MainMenu.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportEDIT.baml
-E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddImportDetail.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\MenuList.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupDeleteConfirm.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Login.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PopupEditMenuStatus.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\View\TitleBar.baml
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.csprojAssemblyReference.cache
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupMaterialToExport.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupInventoryImportDETAIL.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupMaterialToExport.baml
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupInventoryImportDETAIL.baml
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupEditMenu.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupEditMenu.baml

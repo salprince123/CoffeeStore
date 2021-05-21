@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0" Name="Title" Text="{Binding Path=Title}" />
         <StackPanel Grid.Column="1" Orientation="Horizontal">
-            <Button BorderThickness="0" Height="Auto" Background="#6B6158" Name="CloseButton" Click="CloseButton_Click">
+            <Button BorderBrush="Transparent" BorderThickness="0" Height="Auto" Background="Transparent" Name="CloseButton" Click="CloseButton_Click">
                 <materialDesign:PackIcon Kind="Close" Height="33" Width="33" />
             </Button>
         </StackPanel>
