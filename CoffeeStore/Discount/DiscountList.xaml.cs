@@ -20,6 +20,7 @@ namespace CoffeeStore.Discount
     /// </summary>
     public partial class DiscountList : UserControl
     {
+
         public DiscountList()
         {
             InitializeComponent();

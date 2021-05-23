@@ -139,6 +139,9 @@
     <Compile Include="Discount\DiscountList.xaml.cs">
       <DependentUpon>DiscountList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Discount\DiscountMain.xaml.cs">
+      <DependentUpon>DiscountMain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Discount\PopupDiscountAdd.xaml.cs">
       <DependentUpon>PopupDiscountAdd.xaml</DependentUpon>
     </Compile>
@@ -280,6 +283,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Discount\DiscountList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Discount\DiscountMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
