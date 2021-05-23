@@ -132,12 +132,10 @@
     <Compile Include="BUS\BUS_Employees.cs" />
     <Compile Include="BUS\BUS_EmployeeType.cs" />
     <Compile Include="BUS\BUS_InventoryExport.cs" />
-    <Compile Include="BUS\BUS_Menu.cs" />
     <Compile Include="DAL\DAL_AccessPermission.cs" />
     <Compile Include="DAL\DAL_AccessPermissionGroup.cs" />
     <Compile Include="DAL\DAL_Employees.cs" />
     <Compile Include="DAL\DAL_EmployeeType.cs" />
-    <Compile Include="DAL\DAL_Menu.cs" />
     <Compile Include="Discount\DiscountList.xaml.cs">
       <DependentUpon>DiscountList.xaml</DependentUpon>
     </Compile>
@@ -154,7 +152,6 @@
     <Compile Include="DTO\DTO_AccessPermission.cs" />
     <Compile Include="DTO\DTO_Employees.cs" />
     <Compile Include="DTO\DTO_EmployeeType.cs" />
-    <Compile Include="DTO\DTO_Menu.cs" />
     <Compile Include="IncomeAndPayment\PaymentList.xaml.cs">
       <DependentUpon>PaymentList.xaml</DependentUpon>
     </Compile>
@@ -191,6 +188,13 @@
     <Compile Include="Inventory\PopupMaterialToImport.xaml.cs">
       <DependentUpon>PopupMaterialToImport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BUS\BUS_Discount.cs" />
+    <Compile Include="DAL\DAL_Discount.cs" />
+    <Compile Include="Discount.xaml.cs">
+      <DependentUpon>Discount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DTO\DTO_Discount.cs" />
+    <Compile Include="DTO\NumberCheck.cs" />
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
@@ -291,6 +295,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Discount\PopupDiscountEdit.xaml">
+    <Page Include="Discount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -386,12 +391,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BUS\BUS_Mon.cs" />
+    <Compile Include="BUS\BUS_Beverage.cs" />
     <Compile Include="BUS\BUS_Material.cs" />
-    <Compile Include="DAL\DAL_Mon.cs" />
+    <Compile Include="DAL\DAL_Beverage.cs" />
     <Compile Include="DAL\DAL_Material.cs" />
     <Compile Include="DTO\DBConnect.cs" />
-    <Compile Include="DTO\DTO_Mon.cs" />
+    <Compile Include="DTO\DTO_Beverage.cs" />
     <Compile Include="DTO\DTO_Material.cs" />
     <Compile Include="Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>

@@ -13,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CoffeeStore.DTO;
+using CoffeeStore.BUS;
+using System.Data;
 
 namespace CoffeeStore
 {
@@ -21,30 +24,98 @@ namespace CoffeeStore
     /// </summary>
     public partial class MainMenu : UserControl
     {
+        BUS_Beverage bus;
+        string ID;
         public MainMenu()
         {
             InitializeComponent();
+            bus = new BUS_Beverage();
             this.DataContext = this;
+            dgMenu.ItemsSource = bus.getTop5().DefaultView;
+            cbBeverageType.ItemsSource = bus.getBeverageType();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if (checkCondition())
+            {
+                DTO_Beverage beverage = new DTO_Beverage();
+                beverage.BeverageID = bus.createID();
+                beverage.BeverageName = tbName.Text;
+                beverage.BeverageTypeID = bus.getBeverageTypeID(cbBeverageType.SelectedItem.ToString());
+                beverage.Price = Int32.Parse(tbPrice.Text);
+                if (bus.createNewBevverage(beverage) > 0)
+                {
+                    MessageBox.Show("Thành công");
+                    dgMenu.ItemsSource = bus.getAllBeverage().DefaultView;
+                }
+                else
+                    MessageBox.Show("Thất bại");
+            }
+            else
+                MessageBox.Show("Không được để trống tên, giá và loại đồ uống");
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            if (bus.deleteBevverage(ID)>0)
+            {
+                MessageBox.Show("Thành công");
+                dgMenu.ItemsSource = bus.getAllBeverage().DefaultView;
+            }
+            else
+                MessageBox.Show("Thất bại");
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            if (checkCondition())
+            {
+                DTO_Beverage beverage = new DTO_Beverage();
+                beverage.BeverageID = ID;
+                beverage.BeverageName = tbName.Text;
+                beverage.BeverageTypeID = bus.getBeverageTypeID(cbBeverageType.SelectedItem.ToString());
+                beverage.Price = Int32.Parse(tbPrice.Text);
+                beverage.Amount = Int32.Parse(tbExistingAmount.Text.ToString());
+                if (bus.editBevverage(beverage) > 0)
+                {
+                    MessageBox.Show("Thành công");
+                    dgMenu.ItemsSource = bus.getAllBeverage().DefaultView;
+                }
+                else
+                    MessageBox.Show("Thất bại");
+            }
+            else
+                MessageBox.Show("Không được để trống tên, giá và loại đồ uống");
         }
 
         private void dgMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            DataGrid dg = (DataGrid)sender;
+            DataRowView row = dg.SelectedItem as DataRowView;
+            if (row != null)
+            {
+                ID = row["Mã đồ uống"].ToString();
+                tbName.Text = row["Tên"].ToString();
+                tbPrice.Text = row["Giá"].ToString();
+                tbUnit.Text = row["Đơn vị"].ToString();
+                tbExistingAmount.Text = row["Số lượng"].ToString();
+                cbBeverageType.SelectedItem = row["Loại đồ uống"].ToString();
+            }
+        }
 
+        private void tbPrice_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !NumberCheck.IsNumber(e.Text);
+        }
+
+        private void tbExistingAmount_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !NumberCheck.IsNumber(e.Text);
+        }
+        private bool checkCondition()
+        {
+            return (tbName.Text != "" && tbPrice.Text != "" && cbBeverageType.SelectedItem != null);
         }
     }
 }
