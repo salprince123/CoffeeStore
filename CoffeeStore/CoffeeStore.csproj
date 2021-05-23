@@ -190,9 +190,6 @@
     </Compile>
     <Compile Include="BUS\BUS_Discount.cs" />
     <Compile Include="DAL\DAL_Discount.cs" />
-    <Compile Include="Discount.xaml.cs">
-      <DependentUpon>Discount.xaml</DependentUpon>
-    </Compile>
     <Compile Include="DTO\DTO_Discount.cs" />
     <Compile Include="DTO\NumberCheck.cs" />
     <Compile Include="MainMenu.xaml.cs">
@@ -295,7 +292,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Discount\PopupDiscountEdit.xaml">
-    <Page Include="Discount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
