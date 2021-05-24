@@ -39,7 +39,7 @@ namespace CoffeeStore.DAL
                 sqlite.Connection.Open();
                 result = sqlite.ExecuteNonQuery();
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 Console.WriteLine(sql);
             }
@@ -75,7 +75,7 @@ namespace CoffeeStore.DAL
                 sqlite.Connection.Open();
                 rs = sqlite.ExecuteNonQuery();
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 Console.WriteLine(sql);
             }
