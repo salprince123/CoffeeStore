@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using CoffeeStore.BUS;
+using CoffeeStore.DTO;
 namespace CoffeeStore.Menu
 {
     /// <summary>
@@ -20,9 +21,25 @@ namespace CoffeeStore.Menu
     /// </summary>
     public partial class PopupDeleteConfirm : UserControl
     {
+        BUS_Beverage bus = new BUS_Beverage();
+        private string ID;
         public PopupDeleteConfirm()
         {
             InitializeComponent();
+        }
+        public PopupDeleteConfirm(string id)
+        {
+            InitializeComponent();
+            ID = id;
+        }
+        private void btSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (bus.deleteBevverage(ID) > 0)
+            {
+                MessageBox.Show("Thành công");
+            }
+            else
+                MessageBox.Show("Thất bại");
         }
     }
 }

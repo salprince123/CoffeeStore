@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using CoffeeStore.BUS;
+using CoffeeStore.DTO;
 namespace CoffeeStore.Discount
 {
     /// <summary>
@@ -20,12 +23,35 @@ namespace CoffeeStore.Discount
     /// </summary>
     public partial class DiscountList : UserControl
     {
+        BUS_Discount bus = new BUS_Discount();
 
         public DiscountList()
         {
             InitializeComponent();
+            /*if (bus.getAllDiscount() != null) return ;
+            //dgDiscount.ItemsSource = bus.getAllDiscount().DefaultView;
+            else
+                MessageBox.Show("Null");*/
+            loadData();
         }
-
+        void loadData()
+        {
+            var list = new ObservableCollection<DTO_Discount>();
+            DataTable temp = bus.getAllDiscount();
+            foreach (DataRow row in temp.Rows)
+            {
+                string name = row["DiscountName"].ToString();
+                string id = row["DiscountID"].ToString();
+                int value = Int32.Parse(row["Price"].ToString());
+                string startdate = row["startdate"].ToString();
+                string enddate = row["enddate"].ToString();
+                list.Add(new DTO_Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate });
+            }
+            //list.Add(new DTO_Discount() { DiscountID = "sd", DiscountName = "a", DiscountValue = 50, StartDate = "2", EndDate = "1" });
+            dgDiscount.ItemsSource = list;
+            Console.WriteLine($"AMOUNT OF DISCOUNT : {list.Count}");
+            dgDiscount.Items.Refresh();
+        }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
@@ -46,6 +72,16 @@ namespace CoffeeStore.Discount
 
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
+        }
+
+        private void dgDiscount_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void btnFind_Click(object sender, RoutedEventArgs e)
+        {
+            dgDiscount.ItemsSource = bus.findDiscount(tbDateStart.Text, tbDateEnd.Text).DefaultView;
         }
     }
 }

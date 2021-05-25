@@ -9,7 +9,7 @@
     <StackPanel Background="White">
         <!--Discount name here-->
         <TextBlock Margin="60,10,60,0" Text="Tên ưu đãi"/>
-        <TextBox Margin="0,5,0,0" BorderThickness="1"
+        <TextBox x:Name="tbName" Margin="0,5,0,0" BorderThickness="1"
                  Height="40" Width="420" />
 
         <Grid Margin="60,10,60,0">
@@ -22,7 +22,7 @@
             <!--Date start here-->
             <StackPanel Margin="0,0,10,0" Grid.Column="0">
                 <TextBlock  Text="Ngày bắt đầu"/>
-                <TextBox BorderThickness="1"
+                <TextBox x:Name="tbStartDate" BorderThickness="1"
                  Height="40" />
             </StackPanel>
             <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -31,22 +31,22 @@
             <!--Date end here-->
             <StackPanel Margin="10,0,0,0" Grid.Column="2">
                 <TextBlock Text="Ngày kết thúc"/>
-                <TextBox BorderThickness="1"
+                <TextBox x:Name="tbEndDate" BorderThickness="1"
                  Height="40" />
             </StackPanel>
         </Grid>
 
         <TextBlock Margin="60,10,60,0" Text="Mức ưu đãi (%)"/>
-        <TextBox  Margin="0,5,0,0" BorderThickness="1"
-                 Height="40" Width="420" />
+        <TextBox x:Name="tbPrice"  Margin="0,5,0,0" BorderThickness="1"
+                 Height="40" Width="420" PreviewTextInput="tbPrice_PreviewTextInput_1" />
 
         <TextBlock Margin="60,10,60,0" Text="Mô tả"/>
-        <TextBox  Margin="60,5,60,0" BorderThickness="1"
+        <TextBox x:Name="tbDescription"  Margin="60,5,60,0" BorderThickness="1"
                  Height="102" Width="420" />
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="btSave" Height="40" Width="100"
-                    Content="LƯU" Margin="0,30,0,0" Background="#66A3FF"/>
+                    Content="LƯU" Margin="0,30,0,0" Background="#66A3FF" Click="btSave_Click"/>
             <Button x:Name="btExit" Height="40" Width="100"
                     Content="HỦY" Margin="10,30,0,0" Background="#F27047"/>
         </StackPanel>

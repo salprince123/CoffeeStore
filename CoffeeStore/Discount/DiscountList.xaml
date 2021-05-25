@@ -65,12 +65,12 @@
                 <TextBox x:Name="tbDateEnd" Grid.Column="2" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Đến ngày" Padding="5"/>
-                <TextBox x:Name="tbFind" Grid.Column="4" Height="40" 
+                <TextBox x:Name="tbName" Grid.Column="4" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Tên ưu đãi" Padding="5"/>
-                <Button x:Name="btnFind" Grid.Column="6" Height="40"
+                <Button x:Name="btnFind" Grid.Column="5" Height="40"
                     Background="#6B6158" Foreground="#FFE297" 
-                    BorderBrush="#FFE297" BorderThickness="1">
+                    BorderBrush="#FFE297" BorderThickness="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,0.333,0" Width="52" Click="btnFind_Click">
                     <materialDesign:PackIcon Kind="Search" Height="20" Width="20"/>
                 </Button>
             </Grid>
@@ -111,23 +111,33 @@
                             <ColumnDefinition Width="20"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid x:Name="dataGridAccount" Grid.Column="1" Grid.Row="1" 
+                        <DataGrid x:Name="dgDiscount" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False">
+                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" SelectionChanged="dgDiscount_SelectionChanged">
                             <DataGrid.CurrentColumn>
                                 <materialDesign:DataGridTextColumn/>
                             </DataGrid.CurrentColumn>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="STT"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Tên ưu đãi"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Ngày bắt đầu"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Người kết thúc"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Mức ưu đãi (%)"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Mã giảm giá" Binding="{Binding Path='DiscountID'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Tên ưu đãi" Binding="{Binding Path='DiscountName'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding Path='StartDate'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding Path='EndDate'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Mức ưu đãi (%)" Binding="{Binding Path='DiscountValue'}"></DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <!--Action here-->
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Margin="10,0,0,0" Name="btnWatch" Background="White" >
+                                                    <materialDesign:PackIcon Kind="Eye" Height="10" Width="10" Foreground="Black" />
+                                                </Button>
+                                                <Button Margin="10,0,0,0" Name="btnEdit" Background="Blue" >
+                                                    <materialDesign:PackIcon Kind="PlaylistEdit" Height="10" Width="10"  />
+                                                </Button>
+                                                <Button Margin="10,0,0,0" Name="btnDelete" Background="Red" >
+                                                    <materialDesign:PackIcon Kind="Delete" Height="10" Width="10"  />
+                                                </Button>
+                                            </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>

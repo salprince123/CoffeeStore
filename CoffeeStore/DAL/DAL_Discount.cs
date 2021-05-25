@@ -12,7 +12,7 @@ namespace CoffeeStore.DAL
     {
         public DataTable getAllDiscount()
         {
-            string sql = $"select DiscountID as 'Mã giảm giá', DiscountName as 'Tên giảm giá', DiscountValue as 'Phần trăm giảm', StartDate as 'Ngày bắt đầu', EndDate as 'Ngày kết thúc', Description as 'Mô tả' from discount order by enddate DESC";
+            string sql = $"select DiscountID as 'Mã giảm giá', DiscountName as 'Tên ưu đãi', StartDate as 'Ngày bắt đầu', EndDate as 'Ngày kết thúc', DiscountValue as 'Mức ưu đãi (%)'  from discount order by enddate DESC";
             SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -21,7 +21,7 @@ namespace CoffeeStore.DAL
 
         public DataTable findDiscount(string startdate, string enddate)
         {
-            string sql = $"select DiscountID as 'Mã giảm giá', DiscountName as 'Tên giảm giá', DiscountValue as 'Phần trăm giảm', StartDate as 'Ngày bắt đầu', EndDate as 'Ngày kết thúc', Description as 'Mô tả' from discount where startdate>=" + startdate + " and enddate<=" + enddate;
+            string sql = $"select DiscountID as 'Mã giảm giá', DiscountName as 'Tên ưu đãi', DiscountValue as 'Mức ưu đãi (%)', StartDate as 'Ngày bắt đầu', EndDate as 'Ngày kết thúc' from discount where startdate>=" + startdate + " and enddate<=" + enddate;
             SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -75,7 +75,7 @@ namespace CoffeeStore.DAL
                 sqlite.Connection.Open();
                 rs = sqlite.ExecuteNonQuery();
             }
-            catch(Exception)
+            catch(Exception )
             {
                 Console.WriteLine(sql);
             }
