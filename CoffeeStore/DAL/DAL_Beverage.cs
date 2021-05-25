@@ -15,7 +15,7 @@ namespace CoffeeStore.DAL
         {
             try
             {
-                string sql = $"Select BeverageID as 'Mã đồ uống', BeverageTypeName as 'Loại đồ uống', BeverageName as 'Tên', Price as 'Giá', ExistingAmount as 'Số lượng', Unit as 'Đơn vị' From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID";
+                string sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 DataTable dsMon = new DataTable();
                 da.Fill(dsMon);
@@ -144,7 +144,7 @@ namespace CoffeeStore.DAL
         {
             try
             {
-                string sql = $"Select A.BeverageID as 'Mã đồ uống', BeverageName as 'Tên', Price as 'Giá', SoLuong as 'Tổng số ly đã bán' From BeverageName BN, (select BeverageID, sum(Amount) as SoLuong from ReceiptDetail group by BeverageID order by SoLuong DESC limit 5) A Where BN.BeverageID=A.BeverageID";
+                string sql = $"Select A.BeverageID as 'Mã món', BeverageName as 'Tên món', Price as 'Giá', SoLuong as 'Tổng số ly đã bán' From BeverageName BN, (select BeverageID, sum(Amount) as SoLuong from ReceiptDetail group by BeverageID order by SoLuong DESC limit 5) A Where BN.BeverageID=A.BeverageID";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 DataTable dsMon = new DataTable();
                 da.Fill(dsMon);

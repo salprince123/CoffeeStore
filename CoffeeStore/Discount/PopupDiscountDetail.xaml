@@ -45,7 +45,7 @@
             </Grid.ColumnDefinitions>
             
             <TextBlock Grid.Row="0">Ngày bắt đầu</TextBlock>
-            <TextBox Name="tbDateStart" Grid.Row="2" Background="#DADADA"
+            <TextBox x:Name="tbStartDate" Grid.Row="2" Background="#DADADA"
                      Padding="5" Height="40"
                      BorderThickness="0" IsReadOnly="True">
             </TextBox>
@@ -53,7 +53,7 @@
                 <materialDesign:PackIcon Kind="Minus" HorizontalAlignment="Center"></materialDesign:PackIcon>
             </Label>
             <TextBlock Grid.Column="2">Ngày kết thúc</TextBlock>
-            <TextBox Grid.Row="2" Grid.Column="2" Name="tbDateEnd" Background="#DADADA"
+            <TextBox Grid.Row="2" Grid.Column="2" x:Name="tbEndDate" Background="#DADADA"
                      Padding="5"  Height="40"
                      BorderThickness="0" IsReadOnly="True">
             </TextBox>
