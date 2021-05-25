@@ -76,7 +76,6 @@ namespace CoffeeStore.DAL
                 rs = sqlite.ExecuteNonQuery();
             }
             catch(Exception)
- //(Discount &Menu: binding data for dataGrid)
             {
                 Console.WriteLine(sql);
             }
