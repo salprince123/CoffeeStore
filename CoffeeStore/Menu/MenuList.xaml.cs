@@ -87,5 +87,20 @@ namespace CoffeeStore.Menu
                 this._context.StackPanelMain.Children.Add(screen);
             }    
         }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            DTO_Beverage row = (DTO_Beverage)dgMenu.SelectedItem;
+            MessageBox.Show($" {row.BeverageID} {row.BeverageName} {row.Amount} {row.Price} ");
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Ban co chac chan xoa?", "Thong bao", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                DTO_Beverage row = (DTO_Beverage)dgMenu.SelectedItem;
+                MessageBox.Show($" {row.BeverageID} {row.BeverageName} {row.Amount} {row.Price} ");
+            }
+        }
     }
 }
