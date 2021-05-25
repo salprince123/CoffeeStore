@@ -59,11 +59,11 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <ComboBox x:Name="cbType" Height="40" 
+                <ComboBox x:Name="cbBeverageType" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Loại món" Padding="5">
                 </ComboBox>
-                <TextBox x:Name="tbFind" Grid.Column="2" Height="40" 
+                <TextBox x:Name="tbName" Grid.Column="2" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Tên món" Padding="5"/>
                 <Button x:Name="btnFind" Grid.Column="4" Height="40"
@@ -109,22 +109,15 @@
                             <ColumnDefinition Width="20"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid x:Name="dataGridAccount" Grid.Column="1" Grid.Row="1" 
+                        <DataGrid x:Name="dgMenu" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False">
+                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" MouseDoubleClick="dgMenu_MouseDoubleClick">
                             <DataGrid.CurrentColumn>
                                 <materialDesign:DataGridTextColumn/>
                             </DataGrid.CurrentColumn>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="STT"></DataGridTextColumn>
-                                <DataGridTemplateColumn Header="Hình ảnh">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <!--Action here-->
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Mã món"></DataGridTextColumn>     
                                 <DataGridTextColumn Header="Tên món"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Loại món"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Giá tiền (VNĐ)"></DataGridTextColumn>
