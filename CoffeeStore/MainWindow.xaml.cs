@@ -41,12 +41,12 @@ namespace CoffeeStore
             var menuInventory = new List<SubItem>();
             menuInventory.Add(new SubItem("Thông tin kho",new Inventory.InventoryMainPage()));
             menuInventory.Add(new SubItem("Nhập kho", new Inventory.InventoryImport(this)));
-            menuInventory.Add(new SubItem("Xuất kho"));
+            menuInventory.Add(new SubItem("Xuất kho", new Inventory.InventoryExport(this)));
             var item4 = new ItemMenu("Kho", menuInventory, PackIconKind.Warehouse);
 
             var menuRevenue = new List<SubItem>();
-            menuRevenue.Add(new SubItem("Danh sách hóa đơn"));
-            menuRevenue.Add(new SubItem("Danh sách chi"));
+            menuRevenue.Add(new SubItem("Danh sách hóa đơn", new IncomeAndPayment.ReceiptList()));
+            menuRevenue.Add(new SubItem("Danh sách chi", new IncomeAndPayment.PaymentList()));
             var item5 = new ItemMenu("Thu chi", menuRevenue, PackIconKind.ScaleBalance);
 
             var menuReport = new List<SubItem>();
@@ -55,8 +55,8 @@ namespace CoffeeStore
             var item6 = new ItemMenu("Báo cáo thống kê", menuReport, PackIconKind.ChartLineVariant);
 
             var menuAccount = new List<SubItem>();
-            menuAccount.Add(new SubItem("Tài khoản"));
-            menuAccount.Add(new SubItem("Nhóm tài khoản"));
+            menuAccount.Add(new SubItem("Tài khoản", new Account.AccountList()));
+            menuAccount.Add(new SubItem("Nhóm tài khoản", new Account.GroupAccountList()));
             var item7 = new ItemMenu("Tài khoản", menuAccount, PackIconKind.Register);
 
             Menu.Children.Add(new MenuItem(item0, this));

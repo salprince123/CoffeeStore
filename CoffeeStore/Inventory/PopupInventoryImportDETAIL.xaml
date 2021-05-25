@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CoffeeStore.Inventory"
+             xmlns:UserControls="clr-namespace:CoffeeStore.View"
              mc:Ignorable="d" 
              Height="Auto" Width="Auto">
     <Grid Background="White">
@@ -13,6 +14,7 @@
             <ColumnDefinition Width="20"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
@@ -21,8 +23,17 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
-        
-        <Grid Grid.Row="1" Grid.Column="1">
+        <Grid Grid.Row="0" Grid.ColumnSpan="3" Margin="0,-8,0,0" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <UserControls:TitleBar/>
+            <TextBlock Text="Chi tiết phiếu nhập" 
+                       FontFamily="Montserrat"
+                       FontSize="20" 
+                       FontWeight="Bold"
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"
+                       Foreground="#FFE297"/>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="5"></RowDefinition>
@@ -46,7 +57,7 @@
             </TextBox>
         </Grid>
         <!--Employee name here-->
-        <StackPanel Grid.Row="3" Grid.Column="1">
+        <StackPanel Grid.Row="4" Grid.Column="1">
             <TextBlock>Người lập</TextBlock>
             <TextBox Name="tbEmployeeName" Background="#DADADA"
                      Padding="5" Margin="0,5,0,0" Height="40"
@@ -54,7 +65,7 @@
             </TextBox>
         </StackPanel>
         <!--Material imported list here-->
-        <StackPanel Grid.Row="5" Grid.Column="1">
+        <StackPanel Grid.Row="6" Grid.Column="1">
             <TextBlock>Nguyên vật liệu, thiết bị đã nhập</TextBlock>
             <DataGrid x:Name="dataGridImport" Height="250" Margin="0,5,0,0" Background="#DADADA"
                       BorderThickness="0" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" 
@@ -71,9 +82,6 @@
                                         Binding="{Binding Path='unit'}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                <Button x:Name="btExit" Content="Huy" Click="btnCancel_Click"></Button>
-            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

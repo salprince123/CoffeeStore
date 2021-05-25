@@ -72,6 +72,21 @@ namespace CoffeeStore.Discount
             ((MainWindow)App.Current.MainWindow).Effect = null;
         }
 
+        private void btnWatch_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void dgDiscount_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
