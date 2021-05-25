@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CoffeeStore.Discount" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:UserControls="clr-namespace:CoffeeStore.View"
              mc:Ignorable="d" 
              Height="Auto" Width="400">
     <Grid Background="White">
@@ -13,6 +14,7 @@
             <ColumnDefinition Width="20"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
@@ -23,8 +25,19 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
+        <!--Title bar here-->
+        <Grid Grid.Row="0" Grid.ColumnSpan="3" Margin="0,-8,0,0" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <UserControls:TitleBar/>
+            <TextBlock Text="Chi tiết ưu đãi" 
+                       FontFamily="Montserrat"
+                       FontSize="20" 
+                       FontWeight="Bold"
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"
+                       Foreground="#FFE297"/>
+        </Grid>
         <!--Discount name here-->
-        <StackPanel Grid.Row="1" Grid.Column="1">
+        <StackPanel Grid.Row="2" Grid.Column="1">
             <TextBlock>Tên ưu đãi</TextBlock>
             <TextBox Name="tbDiscountName" Background="#DADADA"
                      Padding="5" Margin="0,5,0,0" Height="40"
@@ -32,7 +45,7 @@
             </TextBox>
         </StackPanel>
         <!--Date here-->
-        <Grid Grid.Row="3" Grid.Column="1">
+        <Grid Grid.Row="4" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="5"></RowDefinition>
@@ -59,7 +72,7 @@
             </TextBox>
         </Grid>
         <!--Discount rate here-->
-        <StackPanel Grid.Row="5" Grid.Column="1">
+        <StackPanel Grid.Row="6" Grid.Column="1">
             <TextBlock>Mức ưu đãi (%)</TextBlock>
             <TextBox Name="tbDiscountRate" Background="#DADADA"
                      Padding="5" Margin="0,5,0,0" Height="40"
@@ -67,7 +80,7 @@
             </TextBox>
         </StackPanel>
         <!--Description here-->
-        <StackPanel Grid.Row="7" Grid.Column="1">
+        <StackPanel Grid.Row="8" Grid.Column="1">
             <TextBlock>Mô tả</TextBlock>
             <TextBox Name="tbDescription" Background="#DADADA"
                      Padding="5" Margin="0,5,0,0" Height="80"
