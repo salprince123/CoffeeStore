@@ -117,14 +117,21 @@
                                 <materialDesign:DataGridTextColumn/>
                             </DataGrid.CurrentColumn>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Mã món"></DataGridTextColumn>     
-                                <DataGridTextColumn Header="Tên món"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Loại món"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Giá tiền (VNĐ)"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Mã món" Binding="{Binding Path='BeverageID'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Tên món" Binding="{Binding Path='BeverageName'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Loại món" Binding="{Binding Path='BeverageTypeID'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Giá tiền (VNĐ)" Binding="{Binding Path='Price'}"></DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <!--Action here-->
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Margin="10,0,0,0" Name="btnEdit" Background="Blue" Click="btnEdit_Click" >
+                                                    <materialDesign:PackIcon Kind="PlaylistEdit" Height="10" Width="10"  />
+                                                </Button>
+                                                <Button Margin="10,0,0,0" Name="btnDelete" Background="Red" Click="btnDelete_Click">
+                                                    <materialDesign:PackIcon Kind="Delete" Height="10" Width="10"  />
+                                                </Button>
+                                            </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
