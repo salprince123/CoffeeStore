@@ -88,7 +88,7 @@ namespace CoffeeStore.DAL
         {
             try
             {
-                string sql = $"select unit,materialname as 'Tên',amount as 'Số lượng',description as 'Mô tả' from InventoryExportDetail detail Join Material mater on detail.MaterialID= mater.MaterialID where exportID='{id}'";
+                string sql = $"select detail.MaterialID,unit,materialname as 'Tên',amount as 'Số lượng',description as 'Mô tả' from InventoryExportDetail detail Join Material mater on detail.MaterialID= mater.MaterialID where exportID='{id}'";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 DataTable listImport = new DataTable();
                 da.Fill(listImport);
