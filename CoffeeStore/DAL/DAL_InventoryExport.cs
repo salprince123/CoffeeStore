@@ -11,6 +11,19 @@ namespace CoffeeStore.DAL
 {
     class DAL_InventoryExport : DBConnect
     {
+        public bool Delete(String id)
+        {
+            string sql = $"delete from inventoryExport where ExportID='{id}'";
+            SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
+            try
+            {
+                return insert.ExecuteNonQuery() > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
         public DataTable SelectAllExport()
         {
             try

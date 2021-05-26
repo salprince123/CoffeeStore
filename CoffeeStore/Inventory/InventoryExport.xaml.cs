@@ -112,7 +112,15 @@ namespace CoffeeStore.Inventory
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            if (MessageBox.Show("Ban co chac chan xoa?", "Thong bao", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                InventoryExportObject row = (InventoryExportObject)dataGridExport.SelectedItem;
+                BUS_InventoryExportDetail detail = new BUS_InventoryExportDetail();
+                BUS_InventoryExport export = new BUS_InventoryExport();
+                detail.Delete(row.ID);
+                export.Delete(row.ID);
+                LoadData();
+            }
         }
     }
 }
