@@ -109,5 +109,10 @@ namespace CoffeeStore.Inventory
                 this._context.StackPanelMain.Children.Add(screen);
             }
         }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -58,6 +58,15 @@ namespace CoffeeStore.Inventory
             }
         }
 
+        public bool containInList(String id)
+        {
+            foreach (InventoryExportDetailObject obj in list)
+            {
+                if (obj.id == id)
+                    return true;
+            }
+            return false;
+        }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
@@ -87,7 +96,8 @@ namespace CoffeeStore.Inventory
                 string name = row["MaterialName"].ToString();
                 string unit = row["Unit"].ToString();
                 string id = row["MaterialID"].ToString();
-                list.Add(new InventoryExportDetailObject() { id = id, number = list.Count + 1, name = name, unit = unit });
+                if (!containInList(id))
+                    list.Add(new InventoryExportDetailObject() { id = id, number = list.Count + 1, name = name, unit = unit });
             }
             dataGridImport.ItemsSource = list;
             dataGridImport.Items.Refresh();
