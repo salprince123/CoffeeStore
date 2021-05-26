@@ -27,6 +27,8 @@ namespace CoffeeStore.Inventory
         public String selectionName = "";
         MainWindow _context;
         public String username { get; set; }
+        public List<InventoryExportObject> list = new List<InventoryExportObject>();
+        public List<InventoryExportObject> findList = new List<InventoryExportObject>();
         public class InventoryExportObject
         {
             public int number { get; set; }
@@ -49,7 +51,6 @@ namespace CoffeeStore.Inventory
         public void LoadData()
         {
             username = "Tran Le Bao Chau";
-            var list = new ObservableCollection<InventoryExportObject>();
             BUS_InventoryExport export = new BUS_InventoryExport();
             DataTable temp = export.SelectAll();
             int number0 = 1;
@@ -121,6 +122,94 @@ namespace CoffeeStore.Inventory
                 export.Delete(row.ID);
                 LoadData();
             }
+        }
+        private void dpFrom_CalendarClosed(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                tbDateStart.Text = dpFrom.SelectedDate.Value.ToString("dd/MM/yyyy");
+                dpFrom.Text = "";
+                Keyboard.Focus(tbDateStart);
+            }
+            catch (Exception)
+            { }
+            
+        }
+
+        private void dpTo_CalendarClosed(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                tbDateEnd.Text = dpTo.SelectedDate.Value.ToString("dd/MM/yyyy");
+                dpTo.Text = "";
+                Keyboard.Focus(tbDateEnd);
+            }
+            catch (Exception)
+            { }
+        }
+        public void findExport()
+        {
+            findList.Clear();
+            String from = tbDateStart.Text;
+            String to = tbDateEnd.Text;
+            String id = tbFind.Text.Trim();
+            if (from == "" && to == "" && id == "")
+            {
+                this.dataGridExport.ItemsSource = list;
+                this.dataGridExport.Items.Refresh();
+                return;
+            }
+            foreach (InventoryExportObject obj in list.ToList())
+            {
+                if (obj.ID.Contains(id) && id != "")
+                {
+                    findList.Add(new InventoryExportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate, number = findList.Count + 1 });
+                    continue;
+                }
+                if (obj.EmployName.Contains(id) && id != "")
+                {
+                    findList.Add(new InventoryExportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate, number = findList.Count + 1 });
+                    continue;
+                }
+                if (from != "" || to != "")
+                {
+                    DateTime dtFind = DateTime.ParseExact(obj.InventoryDate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    if (from != "" && to != "")
+                    {
+                        DateTime dtFrom = DateTime.ParseExact(from, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                        DateTime dtTo = DateTime.ParseExact(to, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                        if (dtFrom <= dtFind && dtTo >= dtFind)
+                        {
+                            findList.Add(new InventoryExportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate, number = findList.Count + 1 });
+                            continue;
+                        }
+                    }
+                    else if (from != "" && to == "")
+                    {
+                        DateTime dtFrom = DateTime.ParseExact(from, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                        if (dtFrom <= dtFind)
+                        {
+                            findList.Add(new InventoryExportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate, number = findList.Count + 1 });
+                            continue;
+                        }
+                    }
+                    else if (from == "" && to != "")
+                    {
+                        DateTime dtTo = DateTime.ParseExact(to, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                        if (dtTo >= dtFind)
+                        {
+                            findList.Add(new InventoryExportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate, number = findList.Count + 1 });
+                            continue;
+                        }
+                    }
+                }
+            }
+            dataGridExport.ItemsSource = findList;
+            dataGridExport.Items.Refresh();
+        }
+        private void btnFind_Click(object sender, RoutedEventArgs e)
+        {
+            findExport();
         }
     }
 }
