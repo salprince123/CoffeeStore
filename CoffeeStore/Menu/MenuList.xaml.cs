@@ -25,6 +25,13 @@ namespace CoffeeStore.Menu
     {
         BUS_Beverage bus;
         MainWindow _context;
+        class Beverage
+        {   
+            public String ID { get; set; }
+            public String Name { get; set; }
+            public String Type { get; set; }
+            public int Price { get; set; }
+        }
         public MenuList()
         {
             InitializeComponent();
@@ -40,6 +47,7 @@ namespace CoffeeStore.Menu
         void loadData()
         {
             var list = new ObservableCollection<DTO_Beverage>();
+            cbBeverageType.ItemsSource = bus.getBeverageType();
             DataTable temp = bus.getAllBeverage();
             foreach (DataRow row in temp.Rows)
             {
@@ -79,8 +87,9 @@ namespace CoffeeStore.Menu
         private void dgMenu_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             DataGrid dt = (DataGrid)sender;
-            DataRowView row = dt.SelectedItem as DataRowView;
-            var screen = new PopupEditMenu(row[1].ToString(), row[2].ToString(), row[3].ToString(), row[0].ToString());
+            DTO_Beverage row = (DTO_Beverage) dt.SelectedItem;
+            MessageBox.Show(row.BeverageID);
+            var screen = new PopupEditMenu(row.BeverageName, row.BeverageTypeID, row.Price.ToString(), row.BeverageID);
             if (screen!=null)
             {
                 this._context.StackPanelMain.Children.Clear();
@@ -91,16 +100,63 @@ namespace CoffeeStore.Menu
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             DTO_Beverage row = (DTO_Beverage)dgMenu.SelectedItem;
-            MessageBox.Show($" {row.BeverageID} {row.BeverageName} {row.Amount} {row.Price} ");
+            MessageBox.Show(row.BeverageID);
+            var rowView = dgMenu.SelectedItem;
+            if (rowView != null)
+            {
+                /*var screen = new PopupEditMenu(row[1].ToString(), row[2].ToString(), row[3].ToString(), row[0].ToString());
+                if (screen != null)
+                {
+                    this._context.StackPanelMain.Children.Clear();
+                    this._context.StackPanelMain.Children.Add(screen);
+                }*/
+
+            }
+            else
+                MessageBox.Show("Row is null");
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Ban co chac chan xoa?", "Thong bao", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            //var screen = new PopupDeleteConfirm(row[0].ToString());
+            //if (screen != null)
+            //{
+            //    this._context.StackPanelMain.Children.Clear();
+            //    this._context.StackPanelMain.Children.Add(screen);
+            //}
+        }
+
+        private void dgMenu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DataGrid dt = (DataGrid)sender;
+            dynamic selctedItem = dt.SelectedItem;
+            if (selctedItem != null)
             {
-                DTO_Beverage row = (DTO_Beverage)dgMenu.SelectedItem;
-                MessageBox.Show($" {row.BeverageID} {row.BeverageName} {row.Amount} {row.Price} ");
+                string value = selctedItem.ID;
+                MessageBox.Show(value);
             }
+/*
+            if (rowView!=null)
+            {
+                MessageBox.Show("Selected"+ rowView.
+            }
+            else
+                MessageBox.Show("Not selected");*/
+        }
+
+        private void dgMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //DataGrid dg = (DataGrid)sender;
+            //row = dg.SelectedItem as DataRowView;
+            //if (row != null)
+            //{
+            //    MessageBox.Show("OK");
+            //}
+           
+        }
+
+        private void dgMenu_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
         }
     }
 }
