@@ -75,8 +75,8 @@ namespace CoffeeStore.Menu
                 Content = new PopupAddMenu(),
                 Width = 540,
                 Height = 350,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 900 / 2) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 1000 / 2) / 2,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
             };
             window.ShowDialog();
 
