@@ -112,12 +112,12 @@
                         <DataGrid x:Name="dgMenu" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" MouseDoubleClick="dgMenu_MouseDoubleClick">
+                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" MouseDoubleClick="dgMenu_MouseDoubleClick" MouseLeftButtonDown="dgMenu_MouseLeftButtonDown" SelectionChanged="dgMenu_SelectionChanged" MouseLeftButtonUp="dgMenu_MouseLeftButtonUp">
                             <DataGrid.CurrentColumn>
                                 <materialDesign:DataGridTextColumn/>
                             </DataGrid.CurrentColumn>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Mã món" Binding="{Binding Path='BeverageID'}"></DataGridTextColumn>
+                                <DataGridTextColumn x:Name="ID" Header="Mã món" Binding="{Binding Path='BeverageID'}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Tên món" Binding="{Binding Path='BeverageName'}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Loại món" Binding="{Binding Path='BeverageTypeID'}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Giá tiền (VNĐ)" Binding="{Binding Path='Price'}"></DataGridTextColumn>
