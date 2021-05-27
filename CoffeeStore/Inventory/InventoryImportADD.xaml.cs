@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace CoffeeStore.Inventory
         public List<String> MaterName { get; set; }
         public List<InventoryImportDetailObject> list = new List<InventoryImportDetailObject>();
         MainWindow _context;
+        
         public class InventoryImportDetailObject : INotifyPropertyChanged
         {
             public int number { get; set; }
