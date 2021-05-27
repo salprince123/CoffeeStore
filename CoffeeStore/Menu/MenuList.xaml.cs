@@ -25,16 +25,12 @@ namespace CoffeeStore.Menu
     {
         BUS_Beverage bus;
         MainWindow _context;
-        public MenuList()
-        {
-            InitializeComponent();
-            bus = new BUS_Beverage();
-            loadData();
-        }
+       
         public MenuList(MainWindow mainWindow)
         {
             InitializeComponent();
             this._context = mainWindow;
+            bus = new BUS_Beverage();
             loadData();
         }
         void loadData()

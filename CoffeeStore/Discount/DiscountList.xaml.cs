@@ -24,13 +24,9 @@ namespace CoffeeStore.Discount
     public partial class DiscountList : UserControl
     {
         BUS_Discount bus = new BUS_Discount();
-        Window _context;
-        public DiscountList()
-        {
-            InitializeComponent();
-            loadData();
-        }
-        public DiscountList(Window window)
+        MainWindow _context;
+        
+        public DiscountList(MainWindow window)
         {
             InitializeComponent();
             this._context = window;
