@@ -24,14 +24,16 @@ namespace CoffeeStore.Discount
     public partial class DiscountList : UserControl
     {
         BUS_Discount bus = new BUS_Discount();
-
+        Window _context;
         public DiscountList()
         {
             InitializeComponent();
-            /*if (bus.getAllDiscount() != null) return ;
-            //dgDiscount.ItemsSource = bus.getAllDiscount().DefaultView;
-            else
-                MessageBox.Show("Null");*/
+            loadData();
+        }
+        public DiscountList(Window window)
+        {
+            InitializeComponent();
+            this._context = window;
             loadData();
         }
         void loadData()
@@ -47,9 +49,7 @@ namespace CoffeeStore.Discount
                 string enddate = row["enddate"].ToString();
                 list.Add(new DTO_Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate });
             }
-            //list.Add(new DTO_Discount() { DiscountID = "sd", DiscountName = "a", DiscountValue = 50, StartDate = "2", EndDate = "1" });
             dgDiscount.ItemsSource = list;
-            Console.WriteLine($"AMOUNT OF DISCOUNT : {list.Count}");
             dgDiscount.Items.Refresh();
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -76,11 +76,28 @@ namespace CoffeeStore.Discount
 
         private void btnWatch_Click(object sender, RoutedEventArgs e)
         {
-            
+            DTO_Discount row = (DTO_Discount)dgDiscount.SelectedItem;
+            MessageBox.Show(row.DiscountID);
+            var rowView = dgDiscount.SelectedItem;
+            var screen = new PopupDiscountEdit(row.DiscountID, row.DiscountName, row.StartDate, row.EndDate, row.DiscountValue.ToString());
+            if (screen != null)
+            {
+                this._context.StackPanelMain.Children.Clear();
+                this._context.StackPanelMain.Children.Add(screen);
+            }
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+            DTO_Discount row = (DTO_Discount)dgDiscount.SelectedItem;
+            MessageBox.Show(row.DiscountID);
+            var rowView = dgDiscount.SelectedItem;
+            var screen = new PopupDiscountEdit(row.DiscountID, row.DiscountName, row.StartDate, row.EndDate, row.DiscountValue.ToString());
+            if (screen != null)
+            {
+                this._context.StackPanelMain.Children.Clear();
+                this._context.StackPanelMain.Children.Add(screen);
+            }
 
         }
 

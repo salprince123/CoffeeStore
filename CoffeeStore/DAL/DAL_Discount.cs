@@ -18,7 +18,30 @@ namespace CoffeeStore.DAL
             da.Fill(dt);
             return dt;
         }
+        public DTO_Discount findDiscount(string ID)
+        {
+            string sql = $"select * from discount where discountID ='"+ID+"'";
+            DTO_Discount dto = new DTO_Discount();
+            try
+            {
+                SQLiteCommand command = new SQLiteCommand(sql, getConnection());
+                command.Connection.Open();
+                SQLiteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    dto.DiscountID = ID;
+                    dto.DiscountName = reader["DiscountName"].ToString();
+                    dto.StartDate = reader["StartDate"].ToString();
+                    dto.EndDate = reader["EndDate"].ToString();
+                    dto.DiscountValue = float.Parse(reader["DiscountValue"].ToString());
+                }    
+            }
+            catch(Exception e)
+            {
 
+            }
+            return dto;
+        }
         public DataTable findDiscount(string startdate, string enddate)
         {
             string sql = $"select DiscountID as 'Mã giảm giá', DiscountName as 'Tên ưu đãi', DiscountValue as 'Mức ưu đãi (%)', StartDate as 'Ngày bắt đầu', EndDate as 'Ngày kết thúc' from discount where startdate>=" + startdate + " and enddate<=" + enddate;

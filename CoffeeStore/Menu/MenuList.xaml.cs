@@ -25,13 +25,6 @@ namespace CoffeeStore.Menu
     {
         BUS_Beverage bus;
         MainWindow _context;
-        class Beverage
-        {   
-            public String ID { get; set; }
-            public String Name { get; set; }
-            public String Type { get; set; }
-            public int Price { get; set; }
-        }
         public MenuList()
         {
             InitializeComponent();
@@ -102,28 +95,24 @@ namespace CoffeeStore.Menu
             DTO_Beverage row = (DTO_Beverage)dgMenu.SelectedItem;
             MessageBox.Show(row.BeverageID);
             var rowView = dgMenu.SelectedItem;
-            if (rowView != null)
-            {
-                /*var screen = new PopupEditMenu(row[1].ToString(), row[2].ToString(), row[3].ToString(), row[0].ToString());
+                var screen = new PopupEditMenu(row.BeverageName, row.BeverageTypeID, row.Price.ToString(), row.BeverageID);
                 if (screen != null)
                 {
                     this._context.StackPanelMain.Children.Clear();
                     this._context.StackPanelMain.Children.Add(screen);
-                }*/
+                }
 
-            }
-            else
-                MessageBox.Show("Row is null");
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            //var screen = new PopupDeleteConfirm(row[0].ToString());
-            //if (screen != null)
-            //{
-            //    this._context.StackPanelMain.Children.Clear();
-            //    this._context.StackPanelMain.Children.Add(screen);
-            //}
+            DTO_Beverage row = (DTO_Beverage)dgMenu.SelectedItem;
+            var screen = new PopupDeleteConfirm(row.BeverageID);
+            if (screen != null)
+            {
+                this._context.StackPanelMain.Children.Clear();
+                this._context.StackPanelMain.Children.Add(screen);
+            }
         }
 
         private void dgMenu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

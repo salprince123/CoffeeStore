@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using CoffeeStore.BUS;
+using CoffeeStore.DTO;
 namespace CoffeeStore.Discount
 {
     /// <summary>
@@ -20,9 +21,22 @@ namespace CoffeeStore.Discount
     /// </summary>
     public partial class PopupDiscountDetail : UserControl
     {
+        BUS_Discount bus;
+        DTO_Discount dto;
         public PopupDiscountDetail()
         {
             InitializeComponent();
+        }
+        public PopupDiscountDetail(string ID)
+        {
+            InitializeComponent();
+            bus = new BUS_Discount();
+            dto = bus.findDiscount(ID);
+            tbDiscountName.Text = dto.DiscountName;
+            tbStartDate.Text = dto.StartDate;
+            tbEndDate.Text = dto.EndDate;
+            tbDiscountRate.Text = dto.DiscountValue.ToString();
+            tbDescription.Text = dto.Description;
         }
     }
 }
