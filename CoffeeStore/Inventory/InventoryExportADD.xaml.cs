@@ -26,6 +26,24 @@ namespace CoffeeStore.Inventory
         public List<String> MaterName { get; set; }
         public List<InventoryExportDetailObject> list = new List<InventoryExportDetailObject>();
         MainWindow _context;
+        public class CourseValidationRule : ValidationRule
+        {
+            public override ValidationResult Validate(object value,
+                System.Globalization.CultureInfo cultureInfo)
+            {
+                InventoryExportDetailObject course = (value as BindingGroup).Items[0] as InventoryExportDetailObject;
+                int s;
+                if (Int32.TryParse(course.amount, out s) && s < 2)
+                {
+                    return new ValidationResult(false,
+                        "Start Date must be earlier than End Date.");
+                }
+                else
+                {
+                    return ValidationResult.ValidResult;
+                }
+            }
+        }
         public class InventoryExportDetailObject
         {
             public int number { get; set; }
@@ -35,6 +53,7 @@ namespace CoffeeStore.Inventory
             public String amount { get; set; }
             public String unit { get; set; }
             public String reason { get; set; }
+            
         }
         public InventoryExportADD()
         {
@@ -141,6 +160,11 @@ namespace CoffeeStore.Inventory
                 this._context.StackPanelMain.Children.Clear();
                 this._context.StackPanelMain.Children.Add(screen);
             }
+        }
+
+        private void DataGridTextColumn_Error(object sender, ValidationErrorEventArgs e)
+        {
+
         }
     }
 }
