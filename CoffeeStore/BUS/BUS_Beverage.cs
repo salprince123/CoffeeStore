@@ -19,6 +19,10 @@ namespace CoffeeStore.BUS
         {
             return dalBeverage.getTop5();
         }
+        public DataTable findBeverage(string type, string name)
+        {
+            return dalBeverage.findBeverage(type, name);
+        }
         public int createNewBevverage(DTO_Beverage beverage)
         {
             return dalBeverage.createNewBeverage(beverage);

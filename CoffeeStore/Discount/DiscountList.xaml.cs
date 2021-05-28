@@ -24,13 +24,13 @@ namespace CoffeeStore.Discount
     public partial class DiscountList : UserControl
     {
         BUS_Discount bus = new BUS_Discount();
-        Window _context;
+        MainWindow _context;
         public DiscountList()
         {
             InitializeComponent();
             loadData();
         }
-        public DiscountList(Window window)
+        public DiscountList(MainWindow window)
         {
             InitializeComponent();
             this._context = window;
@@ -62,7 +62,7 @@ namespace CoffeeStore.Discount
                 ResizeMode= ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
                 Title = "Thêm ưu đãi",
-                Content = new PopupDiscountAdd(),
+                Content = new PopupDiscountAdd(_context),
                 Width = 540,
                 Height = 500,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,

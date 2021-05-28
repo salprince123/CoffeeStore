@@ -68,7 +68,7 @@
                          materialDesign:HintAssist.Hint="Tên món" Padding="5"/>
                 <Button x:Name="btnFind" Grid.Column="4" Height="40"
                     Background="#6B6158" Foreground="#FFE297" 
-                    BorderBrush="#FFE297" BorderThickness="1">
+                    BorderBrush="#FFE297" BorderThickness="1" Click="btnFind_Click">
                     <materialDesign:PackIcon Kind="Search" Height="20" Width="20"/>
                 </Button>
             </Grid>

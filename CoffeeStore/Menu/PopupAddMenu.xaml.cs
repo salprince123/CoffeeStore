@@ -23,12 +23,16 @@ namespace CoffeeStore.Menu
     public partial class PopupAddMenu : UserControl
     {
         BUS_Beverage bus = new BUS_Beverage();
-
+        MainWindow main;
         public PopupAddMenu()
         {
             InitializeComponent();
         }
-
+        public PopupAddMenu(MainWindow window)
+        {
+            InitializeComponent();
+            main = window;
+        }
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
             if (checkCondition())
@@ -44,6 +48,12 @@ namespace CoffeeStore.Menu
                 }
                 else
                     MessageBox.Show("Thất bại");
+                var screen = new MenuList(main);
+                if (screen != null)
+                {
+                    this.main.StackPanelMain.Children.Clear();
+                    this.main.StackPanelMain.Children.Add(screen);
+                }
             }
             else
                 MessageBox.Show("Không được để trống tên, giá và loại đồ uống");
@@ -57,6 +67,16 @@ namespace CoffeeStore.Menu
         private void tbPrice_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !NumberCheck.IsNumber(e.Text);
+        }
+       
+        private void btExit_Click(object sender, RoutedEventArgs e)
+        {
+            var screen = new MenuList(main);
+            if (screen != null)
+            {
+                this.main.StackPanelMain.Children.Clear();
+                this.main.StackPanelMain.Children.Add(screen);
+            }
         }
     }
 }

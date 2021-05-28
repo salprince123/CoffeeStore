@@ -22,12 +22,18 @@ namespace CoffeeStore.Discount
     public partial class PopupDiscountAdd : UserControl
     {
         BUS_Discount busDiscount;
+        MainWindow mainWindow;
         public PopupDiscountAdd()
         {
             InitializeComponent();
             busDiscount = new BUS_Discount();
         }
-        
+        public PopupDiscountAdd(MainWindow window)
+        {
+            InitializeComponent();
+            busDiscount = new BUS_Discount();
+            mainWindow = window;
+        }
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
             if (checkCondition())
@@ -44,6 +50,12 @@ namespace CoffeeStore.Discount
                 }
                 else
                     MessageBox.Show("Thất bại" + busDiscount.ID());
+                var screen = new DiscountList(mainWindow);
+                if (screen!=null)
+                {
+                    this.mainWindow.StackPanelMain.Children.Clear();
+                    this.mainWindow.StackPanelMain.Children.Add(screen);
+                }    
             }
             else
                 MessageBox.Show("Tên discount, giá trị discount, ngày bắt đầu và ngày kết thúc là bắt buộc");
