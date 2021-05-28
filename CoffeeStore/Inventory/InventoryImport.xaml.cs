@@ -146,13 +146,22 @@ namespace CoffeeStore.Inventory
             InventoryImportObject row = (InventoryImportObject)dataGridImport.SelectedItem;
             if (row != null)
             {
+                System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+                ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+                ((MainWindow)App.Current.MainWindow).Effect = objBlur;
                 Window window = new Window
                 {
+                    ResizeMode = ResizeMode.NoResize,
+                    WindowStyle = WindowStyle.None,
                     Title = "Chi tiết phiếu nhập",
-                    Content = new PopupInventoryImportDETAIL(row.ID, row.EmployName, row.InventoryDate)
+                    Content = new PopupInventoryImportDETAIL(row.ID, row.EmployName, row.InventoryDate),
+                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1800 / 2) / 2,
+                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 1000 / 2) / 2,
                     //Content = new PopupInventoryImportDETAIL("a","a","a")
                 };
                 window.ShowDialog();
+                ((MainWindow)App.Current.MainWindow).Opacity = 1;
+                ((MainWindow)App.Current.MainWindow).Effect = null;
             }
         }
 

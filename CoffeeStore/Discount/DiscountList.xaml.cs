@@ -66,12 +66,27 @@ namespace CoffeeStore.Discount
                 Width = 540,
                 Height = 500,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 1000 / 2) / 2,
             };
             window.ShowDialog();
 
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
+        }
+
+        private void btnWatch_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void dgDiscount_SelectionChanged(object sender, SelectionChangedEventArgs e)

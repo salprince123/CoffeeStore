@@ -72,7 +72,6 @@
                                     <Button Margin="10,0,0,0" Name="btnDelete" Background="Red" Click="btnDelete_Click">
                                         <materialDesign:PackIcon Kind="Delete" Height="20" Width="20"  />
                                     </Button>
-
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

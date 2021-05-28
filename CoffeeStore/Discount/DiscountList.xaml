@@ -119,23 +119,23 @@
                                 <materialDesign:DataGridTextColumn/>
                             </DataGrid.CurrentColumn>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Mã giảm giá" Binding="{Binding Path='DiscountID'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Tên ưu đãi" Binding="{Binding Path='DiscountName'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding Path='StartDate'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding Path='EndDate'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Mức ưu đãi (%)" Binding="{Binding Path='DiscountValue'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Mã giảm giá"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Tên ưu đãi"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Ngày bắt đầu"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Ngày kết thúc"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Mức ưu đãi (%)"></DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <Button Margin="10,0,0,0" Name="btnWatch" Background="White" >
-                                                    <materialDesign:PackIcon Kind="Eye" Height="10" Width="10" Foreground="Black" />
+                                                <Button Margin="10,0,0,0" Name="btnWatch" BorderBrush="#9FA2B4" Background="White" Click="btnWatch_Click">
+                                                    <materialDesign:PackIcon Kind="FileDocument" Height="20" Width="20" Foreground="#9FA2B4" />
                                                 </Button>
-                                                <Button Margin="10,0,0,0" Name="btnEdit" Background="Blue" >
-                                                    <materialDesign:PackIcon Kind="PlaylistEdit" Height="10" Width="10"  />
+                                                <Button Margin="10,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5" Click="btnEdit_Click">
+                                                    <materialDesign:PackIcon Kind="GreasePencil" Foreground="White" Height="20" Width="20"  />
                                                 </Button>
-                                                <Button Margin="10,0,0,0" Name="btnDelete" Background="Red" >
-                                                    <materialDesign:PackIcon Kind="Delete" Height="10" Width="10"  />
+                                                <Button Margin="10,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252" Click="btnDelete_Click">
+                                                    <materialDesign:PackIcon Kind="Delete" Height="20" Width="20" />
                                                 </Button>
                                             </StackPanel>
                                         </DataTemplate>
