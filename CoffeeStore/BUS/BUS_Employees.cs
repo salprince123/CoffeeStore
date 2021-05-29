@@ -1,6 +1,7 @@
 ﻿using CoffeeStore.DAL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,12 @@ namespace CoffeeStore.BUS
         public string GetPasswordByID(string ID)
         {
             return dalEmp.GetPasswordByID(ID);
-        }    
+        }
+
+        public DataTable GetActiveEmployees()
+        {
+            return dalEmp.GetActiveEmployees();
+        }
+        
     }
 }
