@@ -12,15 +12,15 @@ namespace CoffeeStore.Account
     /// </summary>
     public partial class AccountList : UserControl
     {
-        class accountInfo
+        class AccountInfo
         {
             public string id { get; set; }
             public string name { get; set; }
             public string type { get; set; }
             public string pass { get; set; }
 
-            public accountInfo() { }
-            public accountInfo(string newid, string newname, string newtype, string newpass)
+            public AccountInfo() { }
+            public AccountInfo(string newid, string newname, string newtype, string newpass)
             {
                 id = newid;
                 name = newname;
@@ -31,11 +31,9 @@ namespace CoffeeStore.Account
 
         public AccountList()
         {
-            
             InitializeComponent();
             dataGridAccount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             LoadData();
-            
         }      
 
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
@@ -45,7 +43,7 @@ namespace CoffeeStore.Account
 
         public void LoadData()
         {
-            List<accountInfo> employees = new List<accountInfo>();
+            List<AccountInfo> employees = new List<AccountInfo>();
             BUS_Employees bus_employees = new BUS_Employees();
             DataTable temp = bus_employees.GetActiveEmployees();
             
@@ -55,7 +53,7 @@ namespace CoffeeStore.Account
                 string name = row["EmployeeName"].ToString();
                 string type = row["EmployeeTypeName"].ToString();
                 string pass = row["Password"].ToString();
-                employees.Add(item: new accountInfo(id, name, type, pass));
+                employees.Add(item: new AccountInfo(id, name, type, pass));
             }
             this.dataGridAccount.ItemsSource = employees;
             this.dataGridAccount.Items.Refresh();
