@@ -44,5 +44,21 @@ namespace CoffeeStore.DAL
             }
             return employees;
         }
+
+        public bool CreateEmployee(DTO_Employees newEmp)
+        {
+            //insert SQLite 
+            string sql = $"insert into Employees('EmployeeID','EmployeeName','EmployeeTypeID','Password', 'State') VALUES ('{newEmp.EmployeeID}','{newEmp.EmployeeName}','{newEmp.EmployeeTypeID}','{newEmp.Password}', '1')";
+            SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
+            try
+            {
+                insert.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }    
     }
 }

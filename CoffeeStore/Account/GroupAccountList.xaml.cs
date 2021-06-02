@@ -65,7 +65,7 @@ namespace CoffeeStore.Account
             List<GroupAccountInfo> groupAccountInfos = new List<GroupAccountInfo>();
             BUS_AccessPermission bus_accper = new BUS_AccessPermission();
             DataTable temp = bus_accper.GetAccessInfo();
-
+            bool flag = true;
             foreach (DataRow row in temp.Rows)
             {
                 string name = row["EmployeeType"].ToString();
@@ -113,7 +113,7 @@ namespace CoffeeStore.Account
                 Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
             };
             window.ShowDialog();
-            
+            LoadData();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
         }

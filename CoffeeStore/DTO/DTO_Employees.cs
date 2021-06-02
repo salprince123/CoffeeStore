@@ -9,10 +9,10 @@ namespace CoffeeStore.DTO
     public class DTO_Employees
     {
         #region Atrributes
-        private string EmployeeID;
-        private string EmployeeName;
-        private string EmployeeTypeName;
-        private string Password;
+        public string EmployeeID { get; set; }
+        public string EmployeeName { get; set; }
+        public string EmployeeTypeID { get; set; }
+        public string Password { get; set; }
         #endregion
 
         #region Method
@@ -20,46 +20,16 @@ namespace CoffeeStore.DTO
         {
             EmployeeID = "";
             EmployeeName = "";
-            EmployeeTypeName = "";
+            EmployeeTypeID = "";
             Password = "";
         }
-        public DTO_Employees(string ID, string name, string typeName, string pass)
+        public DTO_Employees(string ID, string name, string typeID, string pass)
         {
             EmployeeID = ID;
             EmployeeName = name;
-            EmployeeTypeName = typeName;
+            EmployeeTypeID = typeID;
             Password = pass;
         }
-        #region GetSetMethod
-        public string GetEmployeeID()
-        {
-            return EmployeeID;
-        }
-        public string GetEmployeeName()
-        {
-            return EmployeeName;
-        }
-        public string GetEmployeeTypeName()
-        {
-            return EmployeeTypeName;
-        }
-        public string GetEmployeePassword()
-        {
-            return Password;
-        }
-        public void SetEmployeeName(string newName)
-        {
-            EmployeeName = newName;
-        }
-        public void SetEmployeeTypeName(string newTypeName)
-        {
-            EmployeeTypeName = newTypeName;
-        }
-        public void SetPassword(string newPass)
-        {
-            Password = newPass;
-        }
-        #endregion
         #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CoffeeStore.DAL;
+using CoffeeStore.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,5 +22,9 @@ namespace CoffeeStore.BUS
             return dalEmp.GetActiveEmployees();
         }
         
+        public bool CreateEmployee(DTO_Employees newEmp)
+        {
+            return dalEmp.CreateEmployee(newEmp);
+        }    
     }
 }
