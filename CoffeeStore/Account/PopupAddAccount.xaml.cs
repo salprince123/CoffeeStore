@@ -112,10 +112,5 @@ namespace CoffeeStore.Account
             }     
             else MessageBox.Show($"Tên tài khoản bị trùng với một trong những tài khoản đã được tạo"); 
         }
-
-        private void comboboxEmpType_SourceUpdated(object sender, DataTransferEventArgs e)
-        {
-
-        }
     }
 }

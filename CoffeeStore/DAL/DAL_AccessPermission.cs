@@ -77,5 +77,23 @@ namespace CoffeeStore.DAL
             }
             return accessInfo;
         }
+
+        public DataTable GetAccessPermissions()
+        {
+            DataTable accPers = new DataTable();
+
+            try
+            {
+                string sql = $"select * from AccessPermission";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(accPers);
+            }
+            catch
+            {
+
+            }
+
+            return accPers;
+        }    
     }
 }

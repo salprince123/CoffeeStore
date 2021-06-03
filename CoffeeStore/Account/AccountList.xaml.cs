@@ -76,7 +76,7 @@ namespace CoffeeStore.Account
                 Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
             };
             window.ShowDialog();
-
+            LoadData();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
         }

@@ -14,6 +14,11 @@ namespace CoffeeStore.BUS
         public DataTable GetAccessInfo()
         {
             return dalAccPer.GetAccessInfo();
+        }
+
+        public DataTable GetAccessPermission()
+        {
+            return dalAccPer.GetAccessPermissions();
         }    
     }
 }

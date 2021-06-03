@@ -1,4 +1,5 @@
 ﻿using CoffeeStore.DAL;
+using CoffeeStore.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,6 +16,11 @@ namespace CoffeeStore.BUS
         public DataTable GetEmployeeTypes()
         {
             return dalEmpType.GetEmployeeTypes();
+        }
+
+        public string CreateEmployeeTypes(DTO_EmployeeType newEmpType)
+        {
+            return dalEmpType.CreateEmployeeType(newEmpType);
         }
     }
 }

@@ -65,7 +65,7 @@ namespace CoffeeStore.Account
             List<GroupAccountInfo> groupAccountInfos = new List<GroupAccountInfo>();
             BUS_AccessPermission bus_accper = new BUS_AccessPermission();
             DataTable temp = bus_accper.GetAccessInfo();
-            bool flag = true;
+
             foreach (DataRow row in temp.Rows)
             {
                 string name = row["EmployeeType"].ToString();
