@@ -127,6 +127,7 @@ namespace CoffeeStore
         {
             var screen = new Discount.DiscountList();
             gridLogin.Children.Clear();
+            StackPanelMain.Children.Clear();
             StackPanelMain.Children.Add(screen);
         }
 
@@ -134,6 +135,7 @@ namespace CoffeeStore
         {
             var screen = new Menu.MenuList();
             gridLogin.Children.Clear();
+            StackPanelMain.Children.Clear();
             StackPanelMain.Children.Add(screen);
         }
 
