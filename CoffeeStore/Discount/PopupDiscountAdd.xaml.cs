@@ -34,7 +34,18 @@ namespace CoffeeStore.Discount
             busDiscount = new BUS_Discount();
             mainWindow = window;
         }
-        private void btSave_Click(object sender, RoutedEventArgs e)
+     
+        private bool checkCondition()
+        {
+            return (tbName.Text != "" && tbPrice.Text != "" && dpStartDate.SelectedDate != null && dpEndDate.SelectedDate != null && dpStartDate.SelectedDate < dpEndDate.SelectedDate);
+        }
+
+        private void tbPrice_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !NumberCheck.IsNumber(e.Text);
+        }
+
+        private void btSave_Click_1(object sender, RoutedEventArgs e)
         {
             if (checkCondition())
             {
@@ -51,24 +62,25 @@ namespace CoffeeStore.Discount
                 else
                     MessageBox.Show("Thất bại" + busDiscount.ID());
                 var screen = new DiscountList(mainWindow);
-                if (screen!=null)
+                if (screen != null)
                 {
                     this.mainWindow.StackPanelMain.Children.Clear();
                     this.mainWindow.StackPanelMain.Children.Add(screen);
-                }    
+                }
             }
             else
                 MessageBox.Show("Tên discount, giá trị discount, ngày bắt đầu và ngày kết thúc là bắt buộc");
 
         }
-        private bool checkCondition()
-        {
-            return (tbName.Text != "" && tbPrice.Text != "" && dpStartDate.SelectedDate != null && dpEndDate.SelectedDate != null && dpStartDate.SelectedDate < dpEndDate.SelectedDate);
-        }
 
-        private void tbPrice_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void btExit_Click(object sender, RoutedEventArgs e)
         {
-            e.Handled = !NumberCheck.IsNumber(e.Text);
+            var screen = new DiscountList(mainWindow);
+            if (screen != null)
+            {
+                this.mainWindow.StackPanelMain.Children.Clear();
+                this.mainWindow.StackPanelMain.Children.Add(screen);
+            }
         }
     }
 }
