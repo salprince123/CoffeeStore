@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CoffeeStore.Discount" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              MinWidth="650" MinHeight="600">
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -59,13 +60,18 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="10"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="tbDateStart" Height="40" 
-                         BorderThickness="1" VerticalContentAlignment="Center"
+                <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
+                    <DatePicker x:Name="tbDateStart" Height="40"
+                         VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
-                <TextBox x:Name="tbDateEnd" Grid.Column="2" Height="40" 
+                </Border>
+                <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1,1,1,0">
+                    <DatePicker x:Name="tbDateEnd" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"
-                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5"/>
-                <TextBox x:Name="tbName" Grid.Column="4" Height="40" 
+                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5"
+                         SelectedDate="{x:Static sys:DateTime.Now}"/>
+                </Border>
+                <TextBox x:Name="tbName" Grid.Column="4" 
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Tên ưu đãi" Padding="5"/>
                 <Button x:Name="btnFind" Grid.Column="5" Height="40"
@@ -85,7 +91,7 @@
             <Grid Grid.Row="3" Grid.ColumnSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <!--List header here-->
@@ -102,7 +108,7 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"></RowDefinition>
-                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="40"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -114,7 +120,8 @@
                         <DataGrid x:Name="dgDiscount" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" SelectionChanged="dgDiscount_SelectionChanged">
+                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" SelectionChanged="dgDiscount_SelectionChanged"
+                                  >
                             <DataGrid.CurrentColumn>
                                 <materialDesign:DataGridTextColumn/>
                             </DataGrid.CurrentColumn>
