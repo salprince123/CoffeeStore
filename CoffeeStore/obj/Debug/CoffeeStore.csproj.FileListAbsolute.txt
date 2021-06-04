@@ -473,7 +473,6 @@ E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupDeleteConfirm.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Login.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PopupEditMenuStatus.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\View\TitleBar.baml
-E:\Project\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.csprojAssemblyReference.cache
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupMaterialToExport.g.cs
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupInventoryImportDETAIL.g.cs
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupMaterialToExport.baml
@@ -614,3 +613,15 @@ C:\Users\pacif\Desktop\CNPM CS\CoffeeStore\obj\Debug\XamlC.stamp
 C:\Users\pacif\Desktop\CNPM CS\CoffeeStore\obj\Debug\CoffeeStore.csproj.CopyComplete
 C:\Users\pacif\Desktop\CNPM CS\CoffeeStore\obj\Debug\CoffeeStore.exe
 C:\Users\pacif\Desktop\CNPM CS\CoffeeStore\obj\Debug\CoffeeStore.pdb
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupChangePassword.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDisableAccount.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditAccount.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditGroupAccount.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Discount\DiscountMain.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Report\ReportProfit.g.cs
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupChangePassword.baml
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDisableAccount.baml
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditAccount.baml
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditGroupAccount.baml
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Discount\DiscountMain.baml
+E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Report\ReportProfit.baml
