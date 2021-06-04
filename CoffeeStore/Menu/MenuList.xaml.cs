@@ -87,5 +87,15 @@ namespace CoffeeStore.Menu
                 this._context.StackPanelMain.Children.Add(screen);
             }    
         }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

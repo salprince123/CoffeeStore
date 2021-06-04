@@ -27,7 +27,7 @@ namespace CoffeeStore.Discount
             InitializeComponent();
             busDiscount = new BUS_Discount();
         }
-        
+
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
             if (checkCondition())
@@ -57,6 +57,11 @@ namespace CoffeeStore.Discount
         private void tbPrice_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !NumberCheck.IsNumber(e.Text);
+        }
+
+        private void btExit_Click(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this).Close();
         }
     }
 }

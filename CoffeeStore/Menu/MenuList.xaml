@@ -113,7 +113,7 @@
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
 
-                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" MouseDoubleClick="dgMenu_MouseDoubleClick" MouseLeftButtonDown="dgMenu_MouseLeftButtonDown" SelectionChanged="dgMenu_SelectionChanged" MouseLeftButtonUp="dgMenu_MouseLeftButtonUp">
+                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" MouseDoubleClick="dgMenu_MouseDoubleClick" >
 
                             <DataGrid.CurrentColumn>
                                 <materialDesign:DataGridTextColumn/>

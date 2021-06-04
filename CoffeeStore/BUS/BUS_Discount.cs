@@ -16,11 +16,11 @@ namespace CoffeeStore.BUS
             DAL_Discount dal = new DAL_Discount();
             return dal.getAllDiscount();
         }
-        
+
         public DataTable findDiscount(string startdate, string enddate)
         {
             DAL_Discount dal = new DAL_Discount();
-            return dal.findDiscount(startdate,enddate);
+            return dal.findDiscount(startdate, enddate);
         }
 
         public int createNewDiscount(DTO_Discount dto)

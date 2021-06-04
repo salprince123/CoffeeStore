@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using CoffeeStore.DTO;
 namespace CoffeeStore.DAL
 {
-    class DAL_Discount: DBConnect
+    class DAL_Discount : DBConnect
     {
         public DataTable getAllDiscount()
         {
-            string sql = $"select DiscountID as 'Mã giảm giá', DiscountName as 'Tên ưu đãi', StartDate as 'Ngày bắt đầu', EndDate as 'Ngày kết thúc', DiscountValue as 'Mức ưu đãi (%)'  from discount order by enddate DESC";
+            string sql = $"select DiscountID , DiscountName , StartDate, EndDate, DiscountValue  from discount order by enddate DESC";
             SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -39,7 +39,7 @@ namespace CoffeeStore.DAL
                 sqlite.Connection.Open();
                 result = sqlite.ExecuteNonQuery();
             }
-            catch (Exception )
+            catch (Exception e)
             {
                 Console.WriteLine(sql);
             }
@@ -55,18 +55,18 @@ namespace CoffeeStore.DAL
             sqlite.Connection.Open();
             SQLiteDataReader reader = sqlite.ExecuteReader();
             while (reader.Read())
-                {
-                    count = Int32.Parse(reader["DiscountID"].ToString().Remove(0, 2));
+            {
+                count = Int32.Parse(reader["DiscountID"].ToString().Remove(0, 2));
                 if (count > max)
                     max = count;
-                };
+            };
             max++;
             ID = ID + max.ToString();
             return ID;
         }
         public int editDiscount(DTO_Discount dTO_Discount)
         {
-            string sql = $"Update Discount set Discountname = '"+dTO_Discount.DiscountName + "', StartDate = '" + dTO_Discount.StartDate + "', EndDate = '" + dTO_Discount.EndDate + "', DiscountValue = " + dTO_Discount.DiscountValue + ", Description = '" + dTO_Discount.Description + "' Where DiscountID = '"+dTO_Discount.DiscountID+"'";
+            string sql = $"Update Discount set Discountname = '" + dTO_Discount.DiscountName + "', StartDate = '" + dTO_Discount.StartDate + "', EndDate = '" + dTO_Discount.EndDate + "', DiscountValue = " + dTO_Discount.DiscountValue + ", Description = '" + dTO_Discount.Description + "' Where DiscountID = '" + dTO_Discount.DiscountID + "'";
             int rs = 0;
             try
             {
@@ -75,7 +75,7 @@ namespace CoffeeStore.DAL
                 sqlite.Connection.Open();
                 rs = sqlite.ExecuteNonQuery();
             }
-            catch(Exception )
+            catch (Exception ex)
             {
                 Console.WriteLine(sql);
             }
@@ -84,7 +84,7 @@ namespace CoffeeStore.DAL
 
         public int deleteDiscount(string discountID)
         {
-            string sql = $"Delete from Discount where DiscountID = '"+discountID+"'";
+            string sql = $"Delete from Discount where DiscountID = '" + discountID + "'";
             SQLiteCommand sqlite = getConnection().CreateCommand();
             sqlite.CommandText = sql;
             sqlite.Connection.Open();

@@ -42,7 +42,7 @@ namespace CoffeeStore.Discount
             {
                 string name = row["DiscountName"].ToString();
                 string id = row["DiscountID"].ToString();
-                int value = Int32.Parse(row["Price"].ToString());
+                int value = Int32.Parse(row["DiscountValue"].ToString());
                 string startdate = row["startdate"].ToString();
                 string enddate = row["enddate"].ToString();
                 list.Add(new DTO_Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate });
@@ -70,6 +70,7 @@ namespace CoffeeStore.Discount
 
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
+            loadData();
         }
         private void dgDiscount_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -79,6 +80,21 @@ namespace CoffeeStore.Discount
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
             dgDiscount.ItemsSource = bus.findDiscount(tbDateStart.Text, tbDateEnd.Text).DefaultView;
+        }
+
+        private void btnWatch_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
