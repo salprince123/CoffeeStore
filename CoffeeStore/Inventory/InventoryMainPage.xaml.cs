@@ -32,7 +32,7 @@ namespace CoffeeStore.Inventory
             public String Unit { get; set; }
             public String Amount { get; set; }
             //this variable for button add/del/edit
-            public String IsUsing { get; set; }
+            public String Action { get; set; }
         }
         public InventoryMainPage()
         {
@@ -52,9 +52,7 @@ namespace CoffeeStore.Inventory
             {
                 string name = row["Tên"].ToString();
                 string amount = row["Số lượng"].ToString();
-                string use = row["isUse"].ToString();
-                if (use == "1")
-                    mapNameAmount[name] = int.Parse(amount);
+                mapNameAmount[name] = int.Parse(amount);
             }
             //With unit
             BUS_Material mater = new BUS_Material();
@@ -63,9 +61,7 @@ namespace CoffeeStore.Inventory
             {
                 string name = row["MaterialName"].ToString();
                 string unit = row["Unit"].ToString();
-                string use = row["isUse"].ToString();
-                if (use == "1")
-                    mapNameUnit[name] = unit;
+                mapNameUnit[name] = unit;
             }
             //calculate amount in stock = import - export (if have)
             BUS_InventoryExportDetail export = new BUS_InventoryExportDetail();
@@ -84,7 +80,7 @@ namespace CoffeeStore.Inventory
                 int amount = 0;
                 if (mapNameAmount.ContainsKey(name.Key))
                     amount = mapNameAmount[name.Key];
-                list.Add(new InventoryObject() { number = number0, Name = name.Key, Amount = amount.ToString(), Unit = name.Value});
+                list.Add(new InventoryObject() { number = number0, Name = name.Key, Amount = amount.ToString(), Unit = name.Value, Action = "" });
                 number0++;
             }
             this.dataGridInfo.ItemsSource = list;
@@ -172,22 +168,19 @@ namespace CoffeeStore.Inventory
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Ban co chac chan xoa?", "Thong bao", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            InventoryObject row = (InventoryObject)dataGridInfo.SelectedItem;
+            if (row != null)
             {
-                InventoryObject row = (InventoryObject)dataGridInfo.SelectedItem;
-                if (row != null)
+                try
                 {
-                    try
-                    {
-                        BUS_Material material = new BUS_Material();
-                        bool result = material.Delete(row.Name);
-                        if (result)
-                            MessageBox.Show($"Đã xóa thành công vật liệu {row.Name}");
-                        else MessageBox.Show($"Xóa không thành công");
-                        LoadData();
-                    }
-                    catch (Exception) { }
+                    BUS_Material material = new BUS_Material();
+                    bool result = material.Delete(row.Name);
+                    if (result)
+                        MessageBox.Show($"Đã xóa thành công vật liệu {row.Name}");
+                    else MessageBox.Show($"Xóa không thành công");
+                    LoadData();
                 }
+                catch (Exception) { }
             }
            
         }

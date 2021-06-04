@@ -27,30 +27,9 @@ namespace CoffeeStore.View
             _context = mainWindow;
         }
 
-        private void MenuStatus_Click(object sender, RoutedEventArgs e)
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
-            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
-            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
-            Window window = new Window
-            {
-                ResizeMode = ResizeMode.NoResize,
-                WindowStyle = WindowStyle.None,
-                Content = new PopupEditMenuStatus(),
-                Width = 450,
-                Height = 450,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width/2 + 450 / 2) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height/2 - 460 / 2) / 2,
-            };
-            window.ShowDialog();
 
-            ((MainWindow)App.Current.MainWindow).Opacity = 1;
-            ((MainWindow)App.Current.MainWindow).Effect = null;
-        }
-
-        private void Menu_Click(object sender, RoutedEventArgs e)
-        {
-            _context.SwitchToMenu();
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
@@ -61,11 +40,6 @@ namespace CoffeeStore.View
         private void FilterButton_Click(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        private void Discount_Click(object sender, RoutedEventArgs e)
-        {
-            _context.SwitchToDiscount();
         }
     }
 }

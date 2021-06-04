@@ -58,7 +58,7 @@
             <Grid Grid.Row="3" Grid.ColumnSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 
                 <!--List header here-->
@@ -75,7 +75,7 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
                             <RowDefinition Height="40"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -87,50 +87,21 @@
                         <DataGrid x:Name="dataGridGroupAccount" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False"
-                                  HeadersVisibility="All">
+                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False">
                             <DataGrid.CurrentColumn>
                                 <materialDesign:DataGridTextColumn/>
                             </DataGrid.CurrentColumn>
                             <DataGrid.Columns>
-                                <DataGridTextColumn 
-                                    Header="Tên nhóm tài khoản"
-                                    Binding="{Binding Path='name'}"></DataGridTextColumn>
-                                <DataGridCheckBoxColumn 
-                                    Header="Thu ngân"
-                                    IsThreeState="True" 
-                                    Binding="{Binding Path=cashier}"></DataGridCheckBoxColumn>
-                                <DataGridCheckBoxColumn 
-                                    Header="Thêm Sửa tài khoản"
-                                    IsThreeState="True"
-                                    Binding="{Binding Path=changeAccount}"></DataGridCheckBoxColumn>
-                                <DataGridCheckBoxColumn 
-                                    Header="Nhập kho"
-                                    IsThreeState="True" 
-                                    Binding="{Binding Path=importInventory}"></DataGridCheckBoxColumn>
-                                <DataGridCheckBoxColumn 
-                                    Header="Xuất kho"
-                                    IsThreeState="True" 
-                                    Binding="{Binding Path=exportInventory}"></DataGridCheckBoxColumn>
+                                <DataGridTextColumn Header="STT"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Tên nhóm tài khoản"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Quyền 1"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Quyền 2"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Quyền 3"></DataGridTextColumn>
+                                <DataGridTextColumn Header="..."></DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Button Margin="10,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5" Click="btnEdit_Click">
-                                                    <materialDesign:PackIcon Kind="GreasePencil" Foreground="White" Height="20" Width="20"  />
-                                                </Button>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTemplateColumn Header="">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Button Margin="10,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252" Click="btnDelete_Click">
-                                                    <materialDesign:PackIcon Kind="Delete" Height="20" Width="20" />
-                                                </Button>
-                                            </StackPanel>
+                                            <!--Action here-->
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>

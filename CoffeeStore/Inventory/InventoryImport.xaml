@@ -60,39 +60,13 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="10"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-
-                
                 <TextBox x:Name="tbDateStart" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Từ ngày" Padding="5" >
                 </TextBox>
-                <DatePicker Name="dpFrom"  HorizontalAlignment="Right" 
-                            VerticalAlignment="Center" CalendarClosed="dpFrom_CalendarClosed"
-                            Width="20">
-                    <DatePicker.Resources>
-                        <Style TargetType="DatePickerTextBox">
-                            <Setter Property="IsReadOnly" Value="True"/>
-                            <Setter Property="Focusable" Value="True"/>
-                            <Setter Property="IsEnabled" Value="True" />
-                            <Setter Property="IsHitTestVisible" Value="False"/>
-                        </Style>
-                    </DatePicker.Resources>
-                </DatePicker>
                 <TextBox x:Name="tbDateEnd" Grid.Column="2" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Đến ngày" Padding="5"/>
-                <DatePicker Name="dpTo"  HorizontalAlignment="Right" Grid.Column="2"
-                            VerticalAlignment="Center" CalendarClosed="dpTo_CalendarClosed"
-                            Width="20">
-                    <DatePicker.Resources>
-                        <Style TargetType="DatePickerTextBox">
-                            <Setter Property="IsReadOnly" Value="True"/>
-                            <Setter Property="Focusable" Value="True"/>
-                            <Setter Property="IsEnabled" Value="True" />
-                            <Setter Property="IsHitTestVisible" Value="False"/>
-                        </Style>
-                    </DatePicker.Resources>
-                </DatePicker>
                 <TextBox x:Name="tbIDFind" Grid.Column="4" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Mã phiếu nhập hoặc người lập" Padding="5"/>
@@ -197,6 +171,5 @@
                 </Border>
             </Grid>
         </Grid>
-        
     </Grid>
 </UserControl>

@@ -51,11 +51,11 @@ namespace CoffeeStore
 
             var menuReport = new List<SubItem>();
             menuReport.Add(new SubItem("Mặt hàng bán chạy"));
-            menuReport.Add(new SubItem("Lợi nhuận", new Report.ReportProfit()));
+            menuReport.Add(new SubItem("Lợi nhuận"));
             var item6 = new ItemMenu("Báo cáo thống kê", menuReport, PackIconKind.ChartLineVariant);
 
             var menuAccount = new List<SubItem>();
-            menuAccount.Add(new SubItem("Tài khoản", new Account.AccountList(this)));
+            menuAccount.Add(new SubItem("Tài khoản", new Account.AccountList()));
             menuAccount.Add(new SubItem("Nhóm tài khoản", new Account.GroupAccountList()));
             var item7 = new ItemMenu("Tài khoản", menuAccount, PackIconKind.Register);
 
@@ -70,7 +70,6 @@ namespace CoffeeStore
             loginScreen.btnManager.Click += LoginScreen_BtnManager_Click;
             loginScreen.btnSale.Click += LoginScreen_BtnSale_Click;
         }
-
         private void LoginScreen_BtnSale_Click(object sender, RoutedEventArgs e)
         {
             bool checkResult = loginScreen.CheckPassword();
@@ -121,22 +120,6 @@ namespace CoffeeStore
         public void SwitchBackHome()
         {
             gridLogin.Children.Clear();
-        }
-
-        internal void SwitchToDiscount()
-        {
-            var screen = new Discount.DiscountList();
-            gridLogin.Children.Clear();
-            StackPanelMain.Children.Clear();
-            StackPanelMain.Children.Add(screen);
-        }
-
-        internal void SwitchToMenu()
-        {
-            var screen = new Menu.MenuList();
-            gridLogin.Children.Clear();
-            StackPanelMain.Children.Clear();
-            StackPanelMain.Children.Add(screen);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

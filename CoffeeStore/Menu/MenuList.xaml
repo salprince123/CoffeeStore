@@ -112,8 +112,7 @@
                         <DataGrid x:Name="dgMenu" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" MouseDoubleClick="dgMenu_MouseDoubleClick"
-                                  MinRowHeight="10">
+                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" MouseDoubleClick="dgMenu_MouseDoubleClick" MouseLeftButtonDown="dgMenu_MouseLeftButtonDown" SelectionChanged="dgMenu_SelectionChanged" MouseLeftButtonUp="dgMenu_MouseLeftButtonUp">
                             <DataGrid.CurrentColumn>
                                 <materialDesign:DataGridTextColumn/>
                             </DataGrid.CurrentColumn>

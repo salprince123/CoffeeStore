@@ -11,35 +11,6 @@ namespace CoffeeStore.DAL
 {
     class DAL_InventoryExportDetail : DBConnect
     {
-        public void delete(String exportID)
-        {
-            String sql = $"delete from InventoryExportDetail where exportID='{exportID}'";
-            SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
-            try
-            {
-                insert.ExecuteNonQuery();
-            }
-            catch (Exception)
-            {
-            }
-        }
-        public void ImportList(List<String> sqlList)
-        {
-            foreach (String s in sqlList)
-            {
-                try
-                {
-                    SQLiteCommand insert = new SQLiteCommand(s, getConnection().OpenAndReturn());
-                    insert.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message);
-                }
-            }
-
-
-        }
         public DataTable SelectAllExportDetail()
         {
             try
