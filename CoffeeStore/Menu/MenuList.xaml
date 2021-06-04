@@ -112,7 +112,8 @@
                         <DataGrid x:Name="dgMenu" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" MouseDoubleClick="dgMenu_MouseDoubleClick" MouseLeftButtonDown="dgMenu_MouseLeftButtonDown" SelectionChanged="dgMenu_SelectionChanged" MouseLeftButtonUp="dgMenu_MouseLeftButtonUp">
+                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" MouseDoubleClick="dgMenu_MouseDoubleClick"
+                                  MinRowHeight="10">
                             <DataGrid.CurrentColumn>
                                 <materialDesign:DataGridTextColumn/>
                             </DataGrid.CurrentColumn>
@@ -125,13 +126,13 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <Button Margin="10,0,0,0" Name="btnEdit" Background="Blue" Click="btnEdit_Click" >
-                                                    <materialDesign:PackIcon Kind="PlaylistEdit" Height="10" Width="10"  />
+                                                <Button Margin="10,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5" Click="btnEdit_Click">
+                                                    <materialDesign:PackIcon Kind="GreasePencil" Foreground="White" Height="20" Width="20"  />
                                                 </Button>
-                                                <Button Margin="10,0,0,0" Name="btnDelete" Background="Red" Click="btnDelete_Click">
-                                                    <materialDesign:PackIcon Kind="Delete" Height="10" Width="10"  />
+                                                <Button Margin="10,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252" Click="btnDelete_Click">
+                                                    <materialDesign:PackIcon Kind="Delete" Height="20" Width="20" />
                                                 </Button>
-                                            </StackPanel>
+                                            </StackPanel>                                          
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>

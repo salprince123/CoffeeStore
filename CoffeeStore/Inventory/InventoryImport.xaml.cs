@@ -195,6 +195,19 @@ namespace CoffeeStore.Inventory
             findImport();
         }
 
+        private void dpFrom_CalendarClosed(object sender, RoutedEventArgs e)
+        {
+            tbDateStart.Text = dpFrom.SelectedDate.Value.ToString("dd/MM/yyyy");
+            dpFrom.Text = "";
+            Keyboard.Focus(tbDateStart);
+        }
+
+        private void dpTo_CalendarClosed(object sender, RoutedEventArgs e)
+        {
+            tbDateEnd.Text = dpTo.SelectedDate.Value.ToString("dd/MM/yyyy");
+            dpTo.Text = "";
+            Keyboard.Focus(tbDateEnd);
+        }
     }
 
 

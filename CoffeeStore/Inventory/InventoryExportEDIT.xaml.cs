@@ -60,7 +60,6 @@ namespace CoffeeStore.Inventory
         }
         public void LoadData()
         {
-            var list = new ObservableCollection<InventoryObject>();
             BUS_InventoryExport export = new BUS_InventoryExport();
             DataTable temp = export.SelectDetail(selectionID);
             Console.WriteLine(temp.Rows.Count);
@@ -70,7 +69,8 @@ namespace CoffeeStore.Inventory
                 string amount = row["Số lượng"].ToString();
                 string descrip = row["Mô tả"].ToString();
                 string unit = row["Unit"].ToString();
-                list.Add(new InventoryObject() { number = list.Count + 1, amount = amount, name = name, description = descrip, unit = unit });
+                string materID = row["MaterialID"].ToString();
+                list.Add(new InventoryObject() { number = list.Count + 1, amount = amount, name = name, description = descrip, unit = unit, id= materID });
             }
             this.dataGridImport.ItemsSource = list;
             if (list.Count == 0) return;
@@ -87,6 +87,82 @@ namespace CoffeeStore.Inventory
             }
         }
 
-        
+        private void btSave_Click(object sender, RoutedEventArgs e)
+        {            
+            foreach (InventoryObject obj in list)
+            {
+                string temp = $"insert into InventoryExportDetail values ('{selectionID}','{obj.id}','{obj.amount}','{tbDescription.Text}')";
+                sqlCommand.Add(temp);
+            }
+            BUS_InventoryExportDetail detail = new BUS_InventoryExportDetail();
+            detail.Delete(selectionID);
+            detail.ImportList(sqlCommand);
+            var screen = new InventoryExport(_context);
+            if (screen != null)
+            {
+                this._context.StackPanelMain.Children.Clear();
+                this._context.StackPanelMain.Children.Add(screen);
+            }
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryObject row = (InventoryObject)dataGridImport.SelectedItem;
+            if (row != null)
+            {
+                try
+                {
+                    list.RemoveAt(row.number - 1);
+                    for (int i = 0; i < list.Count; i++)
+                        list[i].number = i + 1;
+                    dataGridImport.Items.Refresh();
+                }
+                catch (Exception) { }
+            }
+        }
+        public bool containInList(String id)
+        {
+            foreach (InventoryObject obj in list)
+            {
+                if (obj.id == id)
+                    return true;
+            }
+            return false;
+        }
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            Window window = new Window
+            {
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
+                Title = "",
+                Content = new PopupMaterialToExport(this),
+                Width = 540,
+                Height = 450,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
+            };
+            window.ShowDialog();
+
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
+
+            BUS_Material mater = new BUS_Material();
+            DataTable temp = mater.selectByName(this.MaterName);
+            if (temp == null) return;
+            foreach (DataRow row in temp.Rows)
+            {
+                string name = row["MaterialName"].ToString();
+                string unit = row["Unit"].ToString();
+                string id = row["MaterialID"].ToString();
+                if (!containInList(id))
+                    list.Add(new InventoryObject() { id = id, number = list.Count + 1, name = name, unit = unit });
+            }
+            dataGridImport.ItemsSource = list;
+            dataGridImport.Items.Refresh();
+        }
     }
 }
