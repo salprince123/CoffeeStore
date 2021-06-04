@@ -84,48 +84,22 @@
                             <ColumnDefinition Width="20"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid x:Name="dataGridAccount" Grid.Column="1" Grid.Row="1"
+                        <DataGrid x:Name="dataGridAccount" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False"
-                                  HeadersVisibility="All"
-                                  >
-                            
+                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False">
                             <DataGrid.CurrentColumn>
                                 <materialDesign:DataGridTextColumn/>
                             </DataGrid.CurrentColumn>
                             <DataGrid.Columns>
-                                <DataGridTextColumn 
-                                    Header="Tài khoản" 
-                                    Binding="{Binding Path='id'}"></DataGridTextColumn>
-                                <DataGridTextColumn 
-                                    Header="Tên nhân viên" 
-                                    Binding="{Binding Path='name'}"></DataGridTextColumn>
-                                <DataGridTextColumn 
-                                    Header="Nhóm tài khoản" 
-                                    Binding="{Binding Path='type'}"></DataGridTextColumn>
-                                <DataGridTextColumn 
-                                    Header="Mật khẩu" 
-                                    Binding="{Binding Path='pass'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="STT"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Tài khoản"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Tên nhân viên"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Nhóm tài khoản"></DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Button Margin="10,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5" Click="btnEdit_Click">
-                                                    <materialDesign:PackIcon Kind="GreasePencil" Foreground="White" Height="20" Width="20"  />
-                                                </Button>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTemplateColumn Header="">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Button Margin="10,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252" Click="btnDelete_Click">
-                                                    <materialDesign:PackIcon Kind="Delete" Height="20" Width="20" />
-                                                </Button>
-                                            </StackPanel>
+                                            <!--Action here-->
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>

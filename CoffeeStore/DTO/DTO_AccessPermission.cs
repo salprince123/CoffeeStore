@@ -6,24 +6,42 @@ using System.Threading.Tasks;
 
 namespace CoffeeStore.DTO
 {
-    public class DTO_AccessPermission
+    class DTO_AccessPermission
     {
         #region Atrributes
-        public string AccessPermissionID { get; set; }
-        public string AccessPermissionName { get; set; }
+        private string AccessPermissionID;
+        private string AccessPermissionName;
         #endregion
 
         #region Method
-        public DTO_AccessPermission()
+        DTO_AccessPermission()
         {
             AccessPermissionID = "";
             AccessPermissionName = "";
         }
-        public DTO_AccessPermission(string ID, string name)
+        DTO_AccessPermission(string ID, string name)
         {
             AccessPermissionID = ID;
             AccessPermissionName = name;
         }
+        #region GetSetMethod
+        string GetEmployeeID()
+        {
+            return AccessPermissionID;
+        }
+        string GetAccessPermissionName()
+        {
+            return AccessPermissionName;
+        }
+        void SetAccessPermissionID(string newTypeId)
+        {
+            AccessPermissionID = newTypeId;
+        }
+        void SetAccessPermissionName(string newName)
+        {
+            AccessPermissionName = newName;
+        }
+        #endregion
         #endregion
     }
 }

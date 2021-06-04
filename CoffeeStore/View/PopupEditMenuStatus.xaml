@@ -4,12 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CoffeeStore.View" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:UserControls="clr-namespace:CoffeeStore.View"
              mc:Ignorable="d" 
              Width="Auto" Height="Auto">
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="10"></RowDefinition>
@@ -18,18 +16,8 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="10"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,0,0" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <UserControls:TitleBar/>
-            <TextBlock
-                       FontFamily="Montserrat"
-                       FontSize="20" 
-                       FontWeight="Bold"
-                       VerticalAlignment="Center" 
-                       HorizontalAlignment="Center"
-                       Foreground="#FFE297"/>
-        </Grid>
         <!--Search + Filter here-->
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -48,7 +36,7 @@
             </Button>
         </Grid>
         <!--List here-->
-        <Grid Grid.Row="4">
+        <Grid Grid.Row="3">
             <DataGrid x:Name="dataGrid" Margin="10,0,10,0"
                       BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
                       VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" >
@@ -70,7 +58,7 @@
             </DataGrid>
         </Grid>
         <!--Button here-->
-        <Grid Grid.Row="6">
+        <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>

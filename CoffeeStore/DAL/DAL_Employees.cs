@@ -16,7 +16,7 @@ namespace CoffeeStore.DAL
             string pass = "";
             try
             {
-                string sql = $"select Password from Employees where EmployeeID = '{ID}' and State = '1'";
+                string sql = $"select Password from Employees where EmployeeID = '{ID}'";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 DataTable listPass = new DataTable();
                 da.Fill(listPass);
@@ -27,117 +27,6 @@ namespace CoffeeStore.DAL
 
             }
             return pass;
-        }
-
-        public DataTable GetActiveEmployees()
-        {
-            DataTable employees = new DataTable();
-            try
-            {
-                string sql = $"select EmployeeID, EmployeeName, EmployeeType.EmployeeTypeName, Password from Employees join EmployeeType on Employees.EmployeeTypeID = EmployeeType.EmployeeTypeID where State = '1'";
-                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
-                da.Fill(employees);
-            }
-            catch
-            {
-
-            }
-            return employees;
-        }
-
-        public bool CreateEmployee(DTO_Employees newEmp)
-        {
-            //insert SQLite 
-            string sql = $"insert into Employees('EmployeeID','EmployeeName','EmployeeTypeID','Password', 'State') VALUES ('{newEmp.EmployeeID}','{newEmp.EmployeeName}','{newEmp.EmployeeTypeID}','{newEmp.Password}', '1')";
-            SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
-            try
-            {
-                insert.ExecuteNonQuery();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }    
-
-        public bool EditEmployee(DTO_Employees editedEmp)
-        {
-            string sql = $"update Employees set EmployeeName = '{editedEmp.EmployeeName}', EmployeeTypeID = '{editedEmp.EmployeeTypeID}', Password = '{editedEmp.Password}' where EmployeeID = '{editedEmp.EmployeeID}'";
-            SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
-            try
-            {
-                insert.ExecuteNonQuery();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }    
-
-        public int Delete(string empID)
-        {
-            bool isDelete = IsDoingAnything(empID);
-            if (isDelete)
-            {
-                string sql = $"delete from Employees where EmployeeID = '{empID}'";
-                SQLiteCommand delete = new SQLiteCommand(sql, getConnection().OpenAndReturn());
-                try
-                {
-                    delete.ExecuteNonQuery();
-                    return 1;
-                }
-                catch
-                {
-                    return 0;
-                }
-            }
-            else
-            {
-                string sql = $"update Employees set State = '0' where EmployeeID = '{empID}'";
-                SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
-                try
-                {
-                    insert.ExecuteNonQuery();
-                    return -1;
-                }
-                catch
-                {
-                    return 0;
-                }
-            }
-        }    
-
-        public bool IsDoingAnything(string empID)
-        {
-            try
-            {
-                DataTable countData = new DataTable();
-                string sql = $"select count(EmployeeID) from InventoryImport where EmployeeID = '{empID}'";
-                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
-                da.Fill(countData);
-                if (countData.Rows[0].ItemArray[0].ToString() != "0")
-                    return false;
-
-                sql = $"select count(EmployeeID) from InventoryExport where EmployeeID = '{empID}'";
-                da = new SQLiteDataAdapter(sql, getConnection());
-                da.Fill(countData);
-                if (countData.Rows[0].ItemArray[0].ToString() != "0")
-                    return false;
-
-                sql = $"select count(EmployeeID) from Receipt where EmployeeID = '{empID}'";
-                da = new SQLiteDataAdapter(sql, getConnection());
-                da.Fill(countData);
-                if (countData.Rows[0].ItemArray[0].ToString() != "0")
-                    return false;
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
         }    
     }
 }
