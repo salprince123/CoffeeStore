@@ -97,17 +97,14 @@
                       Width="210" Height="Auto" >
                 <MenuItem Header="Danh sách món" 
                           Template="{StaticResource VsMenuSub}" 
-                          Click="Menu_Click"
                           Height="35" Width="210" />
                 <MenuItem Header="Cập nhật tình trạng món" 
-                          Template="{StaticResource VsMenuSub}"
-                          Click="MenuStatus_Click"
+                          Template="{StaticResource VsMenuSub}" 
                           Width="210"/>
             </MenuItem>
             <MenuItem  Foreground="White" Header="Ưu đãi" 
                        Template="{StaticResource VsMenuTop}" 
-                       Width="216" Height="Auto" 
-                       Click="Discount_Click">
+                       Width="216" Height="Auto" >
             </MenuItem>
         </Menu>
 
@@ -224,32 +221,21 @@
                     <ColumnDefinition Width="6*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <!--Food image here-->
-                <ScrollViewer Grid.Column="0">
-                    <StackPanel>
-                        <StackPanel Margin="20 0">
-                            <ItemsControl x:Name="ListViewMenu" >
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Border Margin="10" Width="110" Height="165" Background="#EBEBEB">
-                                            <StackPanel>
-                                                <Border Height="100" Background="Gray"/>
-                                                <TextBlock Name="Money" Margin="5" Text="Tên món" FontSize="14"/>
-                                                <TextBlock Name="FoodName" Margin="5 0" Text="20.000 VND" FontSize="14"/>
-                                                <!--<TextBlock Name="Status" Margin="5 0" Text="Hết hàng" FontSize="10" HorizontalAlignment="Right"/>-->
-                                            </StackPanel>
-                                        </Border>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <WrapPanel/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                            </ItemsControl>
-                        </StackPanel>
-                    </StackPanel>
-                </ScrollViewer>
+                <!--Product image here-->
+                <Viewbox Grid.Column="0">
+                    <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                        </Grid>
+                    </ScrollViewer>
+                </Viewbox>
                 <!--Filter button here-->
                 <Grid Grid.Column="1" Margin="5,20,5,0">
                     <Button Background="#FF7A00" Click="FilterButton_Click" VerticalAlignment="Top" Height="46">

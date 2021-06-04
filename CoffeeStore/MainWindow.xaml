@@ -1,4 +1,4 @@
-﻿<Window x:Class="CoffeeStore.MainWindow"
+<Window x:Class="CoffeeStore.MainWindow"
 		FontFamily="Open Sans"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -13,54 +13,6 @@
         Closing="Window_Closing"
         WindowStartupLocation="CenterScreen" WindowState="Maximized"
         >
-    <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="btv" />
-
-        <!-- style a top level menu item -->
-        <ControlTemplate x:Key="VsMenuTop" TargetType="MenuItem">
-            <StackPanel TextBlock.FontSize="15px" Height="40" Background="#EAEAEA" >
-                <!-- label, icons, etc. -->
-                <Label Content="{TemplateBinding Header}" HorizontalAlignment="Center" Margin="5" Foreground="#EAEAEA" />
-
-                <!-- sub items -->
-                <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False">
-                    <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
-                        <StackPanel IsItemsHost="True" />
-                    </Border>
-                </Popup>
-                <StackPanel.Style>
-                    <Style TargetType="StackPanel">
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver"  Value="True">
-                                <Setter Property="Background" Value="#EAEAEA" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </StackPanel.Style>
-            </StackPanel>
-        </ControlTemplate>
-
-        <!-- style a non-top level menu item -->
-        <ControlTemplate x:Key="VsMenuSub" TargetType="MenuItem">
-            <DockPanel TextBlock.FontSize="15px" x:Name="panel">
-                <!-- label, icons, etc. -->
-                <Label Content="{TemplateBinding Header}" Foreground="Black" Margin="0,5,5,5" />
-
-                <!-- sub items -->
-                <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False" Placement="Right" >
-                    <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
-                        <StackPanel IsItemsHost="True" />
-                    </Border>
-                </Popup>
-            </DockPanel>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsHighlighted" Value="True">
-                    <Setter Property="Background" TargetName="panel" Value="#EFF6FC" />
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
-
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -71,24 +23,9 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <!--Username here-->
-        <Menu Background="White" IsMainMenu="True" Grid.Row="0" Grid.ColumnSpan="2" FlowDirection="RightToLeft">
-            <MenuItem Background="#EAEAEA" Foreground="#011F3B" Height="40"
-                      Width="180" FlowDirection="LeftToRight" Margin="50,0,0,0"
-                      Template="{StaticResource VsMenuTop}" >
-                <MenuItem.Header>
-                    <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
-                        <TextBlock Text="Username" Margin="0,0,40,0"/>
-                        <materialDesign:PackIcon Kind="ChevronDown" />
-                    </StackPanel>
-                </MenuItem.Header>
-                <MenuItem Template="{StaticResource VsMenuSub}" 
-                          Height="35" Width="180"
-                          Header="Đổi mật khẩu"/>
-                <MenuItem Template="{StaticResource VsMenuSub}" 
-                          Height="35" Width="180"
-                          Header="Đăng xuất"/>
-            </MenuItem>
-        </Menu>
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+            
+        </Grid>
         <!--Navigation menu here-->
         <Grid HorizontalAlignment="Stretch" Grid.RowSpan="2"  Background="#6B6158">
             <Grid.ColumnDefinitions>

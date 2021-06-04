@@ -11,14 +11,6 @@ namespace CoffeeStore.BUS
     public class BUS_InventoryExportDetail
     {
         DAL_InventoryExportDetail temp = new DAL_InventoryExportDetail();
-        public void Delete(String id)
-        {
-            temp.delete(id);
-        }
-        public void ImportList(List<String> sqlList)
-        {
-            temp.ImportList(sqlList);
-        }
         public DataTable SelectAllImportDetail()
         {
             return temp.SelectAllExportDetail();

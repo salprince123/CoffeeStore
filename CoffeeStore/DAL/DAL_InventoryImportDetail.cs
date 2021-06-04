@@ -61,7 +61,7 @@ namespace CoffeeStore.DAL
         {
             try
             {
-                string sql = $" select isUse ,materialname as 'Tên',unit as 'Đơn vị tính', sum(amount) as 'Số lượng' " +
+                string sql = $" select materialname as 'Tên',unit as 'Đơn vị tính', sum(amount) as 'Số lượng' " +
                             $"from InventoryImportDetail detail Join Material mater " +
                             $"on detail.MaterialID= mater.MaterialID " +
                             $"group by materialname";

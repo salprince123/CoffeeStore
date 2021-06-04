@@ -86,7 +86,7 @@
                 </Grid.ColumnDefinitions>
                 <Button Name="btnAdd" 
                         BorderBrush="#6B6158" BorderThickness="1"
-                        Background="#FFE297" Foreground="#6B6158" Click="btnAdd_Click">
+                        Background="#FFE297" Foreground="#6B6158">
                     + THÊM
                 </Button>
             </Grid>
@@ -137,7 +137,7 @@
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Name="btnDelete" Background="Red" Click="btnDelete_Click">
+                                            <Button Name="btnDelete" Background="Red" >
                                                 <materialDesign:PackIcon Kind="Delete" Height="20" Width="20"  />
                                             </Button>
                                         </DataTemplate>
@@ -170,8 +170,7 @@
                     <!--Button here-->
                     <Button Grid.Row="3" Width="100" Margin="0,0,10,0"
                             Background="#66A3FF" FontWeight="Bold"
-                            VerticalAlignment="Top" HorizontalAlignment="Right"
-                            Click="btSave_Click">
+                            VerticalAlignment="Top" HorizontalAlignment="Right">
                         LƯU
                     </Button>
                     <Button x:Name="btExit" Grid.Row="3" Grid.Column="1" Width="100" Margin="10,0,0,0"

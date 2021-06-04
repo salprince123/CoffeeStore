@@ -62,40 +62,15 @@
                 <TextBox x:Name="tbDateStart" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
-                <DatePicker Name="dpFrom"  HorizontalAlignment="Right" 
-                            VerticalAlignment="Center" CalendarClosed="dpFrom_CalendarClosed"
-                            Width="20">
-                    <DatePicker.Resources>
-                        <Style TargetType="DatePickerTextBox">
-                            <Setter Property="IsReadOnly" Value="True"/>
-                            <Setter Property="Focusable" Value="True"/>
-                            <Setter Property="IsEnabled" Value="True" />
-                            <Setter Property="IsHitTestVisible" Value="False"/>
-                        </Style>
-                    </DatePicker.Resources>
-                </DatePicker>
                 <TextBox x:Name="tbDateEnd" Grid.Column="2" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Đến ngày" Padding="5"/>
-                <DatePicker Name="dpTo"  HorizontalAlignment="Right" Grid.Column="2"
-                            VerticalAlignment="Center" CalendarClosed="dpTo_CalendarClosed"
-                            Width="20">
-                    <DatePicker.Resources>
-                        <Style TargetType="DatePickerTextBox">
-                            <Setter Property="IsReadOnly" Value="True"/>
-                            <Setter Property="Focusable" Value="True"/>
-                            <Setter Property="IsEnabled" Value="True" />
-                            <Setter Property="IsHitTestVisible" Value="False"/>
-                        </Style>
-                    </DatePicker.Resources>
-                </DatePicker>
                 <TextBox x:Name="tbFind" Grid.Column="4" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Mã phiếu xuất hoặc người lập" Padding="5"/>
                 <Button x:Name="btnFind" Grid.Column="6" Height="40"
                     Background="#6B6158" Foreground="#FFE297" 
-                    BorderBrush="#FFE297" BorderThickness="1"
-                        Click="btnFind_Click">
+                    BorderBrush="#FFE297" BorderThickness="1">
                     <materialDesign:PackIcon Kind="Search" Height="20" Width="20"/>
                 </Button>
             </Grid>
@@ -156,16 +131,13 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <Button Margin="10,0,0,0" Name="btnWatch" BorderBrush="#9FA2B4" Background="White"
-                                                        Click="btnWatch_Click">
+                                                <Button Margin="10,0,0,0" Name="btnWatch" BorderBrush="#9FA2B4" Background="White">
                                                     <materialDesign:PackIcon Kind="FileDocument" Height="20" Width="20" Foreground="#9FA2B4" />
                                                 </Button>
-                                                <Button Margin="10,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5"
-                                                        Click="btnEdit_Click">
+                                                <Button Margin="10,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5">
                                                     <materialDesign:PackIcon Kind="GreasePencil" Foreground="White" Height="20" Width="20"  />
                                                 </Button>
-                                                <Button Margin="10,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252"
-                                                        Click="btnDelete_Click">
+                                                <Button Margin="10,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252">
                                                     <materialDesign:PackIcon Kind="Delete" Height="20" Width="20" />
                                                 </Button>
                                             </StackPanel>

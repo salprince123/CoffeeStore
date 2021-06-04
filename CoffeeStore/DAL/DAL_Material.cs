@@ -50,38 +50,15 @@ namespace CoffeeStore.DAL
             };
             return null;
         }
-        public void UpdateUsing(string name)
-        {
-            string sql = $"UPDATE Material SET isuse = '1' WHERE materialName= '{name}'";
-            SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
-            try
-            {
-                insert.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
         public bool Create(String name, String unit)
         {
             //checking if material is already exist
-            string checkMaterial = $"SELECT * FROM Material where MaterialName= '{name}' ";
+            string checkMaterial = $"SELECT materialId FROM Material where MaterialName= '{name}' ";
             SQLiteDataAdapter checkDA = new SQLiteDataAdapter(checkMaterial, getConnection());
             DataTable checkMater = new DataTable();
             checkDA.Fill(checkMater);
             if(checkMater.Rows.Count!=0)
-            {
-                foreach (DataRow row in checkMater.Rows)
-                {
-                    string isUse = row["isUse"].ToString();
-                    if(isUse== "1")
-                        return false;
-                }
-                UpdateUsing(name);
-                return true;
-
-            }               
+               return false;
             //create auto increase ID
             //Get max MaterialID
             String id = "";
@@ -99,7 +76,7 @@ namespace CoffeeStore.DAL
                     .ToString()
                     .PadLeft(5, '0');
             //insert SQLite 
-            string sql = $"insert into Material VALUES ('{newID}','{name}','{unit}','1');";
+            string sql = $"insert into Material VALUES ('{newID}','{name}','{unit}');";
             SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
             try
             {
@@ -115,7 +92,7 @@ namespace CoffeeStore.DAL
         }
         public bool Delete (String name)
         {
-            string sql = $"UPDATE Material SET isuse = '0' WHERE materialName= '{name}'";
+            string sql = $"delete from material where MaterialName='{name}'";
             SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
             try
             {

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,65 +28,15 @@ namespace CoffeeStore.Inventory
         public List<String> MaterName { get; set; }
         public List<InventoryImportDetailObject> list = new List<InventoryImportDetailObject>();
         MainWindow _context;
-        
-        public class InventoryImportDetailObject : INotifyPropertyChanged
+        public class InventoryImportDetailObject
         {
             public int number { get; set; }
             public String name { get; set; }
             public String id { get; set; }
-            public string _unitPrice;
-            public string unitPrice
-            {
-                get
-                {
-                    return this._unitPrice;
-                }
-
-                set
-                {
-                    if (value != _unitPrice)
-                    {
-                        _unitPrice = value;
-                        OnPropertyChanged();
-                        OnPropertyChanged("totalCost");
-                    }
-                }
-            }
-            public String _amount;
-            public string amount
-            {
-                get
-                {
-                    return this._amount;
-                }
-
-                set
-                {
-                    if (value != _amount)
-                    {
-                        _amount = value;
-                        OnPropertyChanged();
-                        OnPropertyChanged("totalCost");
-                    }
-                }
-            }
+            public String unitPrice { get; set; }
+            public String amount { get; set; }
             public String unit { get; set; }
-            public String totalCost
-            {
-                get {
-                    int temp, temp1;
-                    if(int.TryParse(unitPrice, out temp )&& int.TryParse(amount, out temp1))
-                        return (temp*temp1).ToString();
-                    return null;
-                }
-            }
-
-            public event PropertyChangedEventHandler PropertyChanged;
-            protected void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
-            {
-                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
-            
+            public String totalCost { get; set; }
         }
         public InventoryImportADD()
         {
@@ -103,15 +52,7 @@ namespace CoffeeStore.Inventory
             this._context = mainWindow;
         }
         
-        public bool containInList (String id)
-        {
-            foreach (InventoryImportDetailObject obj in list)
-            {
-                if (obj.id == id)
-                    return true ;
-            }
-            return false;
-        }
+
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
@@ -141,8 +82,7 @@ namespace CoffeeStore.Inventory
                 string name = row["MaterialName"].ToString();
                 string unit = row["Unit"].ToString();
                 string id = row["MaterialID"].ToString();
-                if(!containInList(id))
-                    list.Add(new InventoryImportDetailObject() { id=id,number=list.Count+1, name=name, unit=unit });
+                list.Add(new InventoryImportDetailObject() { id=id,number=list.Count+1, name=name, unit=unit });
             }
             dataGridImport.ItemsSource = list;
             dataGridImport.Items.Refresh();
@@ -150,7 +90,12 @@ namespace CoffeeStore.Inventory
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
-            
+            //calculate total cost
+            foreach (InventoryImportDetailObject obj in list)
+            {
+                if (obj.unitPrice != null && obj.amount != null)
+                    obj.totalCost = (int.Parse(obj.unitPrice) * int.Parse(obj.amount)).ToString();
+            }
             dataGridImport.Items.Refresh();
             // save in database
             //insert InventoryImport

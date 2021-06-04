@@ -6,30 +6,60 @@ using System.Threading.Tasks;
 
 namespace CoffeeStore.DTO
 {
-    public class DTO_Employees
+    class DTO_Employees
     {
         #region Atrributes
-        public string EmployeeID { get; set; }
-        public string EmployeeName { get; set; }
-        public string EmployeeTypeID { get; set; }
-        public string Password { get; set; }
+        private string EmployeeID;
+        private string EmployeeName;
+        private string EmployeeTypeID;
+        private string Password;
         #endregion
 
         #region Method
-        public DTO_Employees()
+        DTO_Employees()
         {
             EmployeeID = "";
             EmployeeName = "";
             EmployeeTypeID = "";
             Password = "";
         }
-        public DTO_Employees(string ID, string name, string typeID, string pass)
+        DTO_Employees(string ID, string name, string typeId, string pass)
         {
             EmployeeID = ID;
             EmployeeName = name;
-            EmployeeTypeID = typeID;
+            EmployeeTypeID = typeId;
             Password = pass;
         }
+        #region GetSetMethod
+        string GetEmployeeID()
+        {
+            return EmployeeID;
+        }    
+        string GetEmployeeName()
+        {
+            return EmployeeName;
+        }    
+        string GetEmployeeTypeID()
+        {
+            return EmployeeTypeID;
+        }
+        string GetEmployeePassword()
+        {
+            return Password;
+        }
+        void SetEmployeeName(string newName)
+        {
+            EmployeeName = newName;
+        }
+        void SetEmployeeTypeID(string newTypeId)
+        {
+            EmployeeTypeID = newTypeId;
+        }
+        void SetPassword(string newPass)
+        {
+            Password = newPass;
+        }
+        #endregion
         #endregion
     }
 }

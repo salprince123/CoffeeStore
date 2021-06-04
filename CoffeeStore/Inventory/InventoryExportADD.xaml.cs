@@ -26,24 +26,6 @@ namespace CoffeeStore.Inventory
         public List<String> MaterName { get; set; }
         public List<InventoryExportDetailObject> list = new List<InventoryExportDetailObject>();
         MainWindow _context;
-        public class CourseValidationRule : ValidationRule
-        {
-            public override ValidationResult Validate(object value,
-                System.Globalization.CultureInfo cultureInfo)
-            {
-                InventoryExportDetailObject course = (value as BindingGroup).Items[0] as InventoryExportDetailObject;
-                int s;
-                if (Int32.TryParse(course.amount, out s) && s < 2)
-                {
-                    return new ValidationResult(false,
-                        "Start Date must be earlier than End Date.");
-                }
-                else
-                {
-                    return ValidationResult.ValidResult;
-                }
-            }
-        }
         public class InventoryExportDetailObject
         {
             public int number { get; set; }
@@ -53,7 +35,6 @@ namespace CoffeeStore.Inventory
             public String amount { get; set; }
             public String unit { get; set; }
             public String reason { get; set; }
-            
         }
         public InventoryExportADD()
         {
@@ -77,15 +58,6 @@ namespace CoffeeStore.Inventory
             }
         }
 
-        public bool containInList(String id)
-        {
-            foreach (InventoryExportDetailObject obj in list)
-            {
-                if (obj.id == id)
-                    return true;
-            }
-            return false;
-        }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
@@ -115,8 +87,7 @@ namespace CoffeeStore.Inventory
                 string name = row["MaterialName"].ToString();
                 string unit = row["Unit"].ToString();
                 string id = row["MaterialID"].ToString();
-                if (!containInList(id))
-                    list.Add(new InventoryExportDetailObject() { id = id, number = list.Count + 1, name = name, unit = unit });
+                list.Add(new InventoryExportDetailObject() { id = id, number = list.Count + 1, name = name, unit = unit });
             }
             dataGridImport.ItemsSource = list;
             dataGridImport.Items.Refresh();
@@ -160,11 +131,6 @@ namespace CoffeeStore.Inventory
                 this._context.StackPanelMain.Children.Clear();
                 this._context.StackPanelMain.Children.Add(screen);
             }
-        }
-
-        private void DataGridTextColumn_Error(object sender, ValidationErrorEventArgs e)
-        {
-
         }
     }
 }
