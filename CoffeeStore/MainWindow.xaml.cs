@@ -55,7 +55,7 @@ namespace CoffeeStore
             var item6 = new ItemMenu("Báo cáo thống kê", menuReport, PackIconKind.ChartLineVariant);
 
             var menuAccount = new List<SubItem>();
-            menuAccount.Add(new SubItem("Tài khoản", new Account.AccountList()));
+            menuAccount.Add(new SubItem("Tài khoản", new Account.AccountList(this)));
             menuAccount.Add(new SubItem("Nhóm tài khoản", new Account.GroupAccountList()));
             var item7 = new ItemMenu("Tài khoản", menuAccount, PackIconKind.Register);
 

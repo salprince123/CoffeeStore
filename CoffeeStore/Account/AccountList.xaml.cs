@@ -1,4 +1,5 @@
 ﻿using CoffeeStore.BUS;
+using CoffeeStore.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,6 +13,7 @@ namespace CoffeeStore.Account
     /// </summary>
     public partial class AccountList : UserControl
     {
+        MainWindow _context;
         class AccountInfo
         {
             public string id { get; set; }
@@ -34,7 +36,15 @@ namespace CoffeeStore.Account
             InitializeComponent();
             dataGridAccount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             LoadData();
-        }      
+        }
+
+        public AccountList(MainWindow mainWindow)
+        {
+            InitializeComponent();
+            dataGridAccount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
+            this._context = mainWindow;
+            LoadData();
+        }
 
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
@@ -83,27 +93,53 @@ namespace CoffeeStore.Account
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            //if (MessageBox.Show("Ban co chac chan xoa?", "Thong bao", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-            //{
-            //    InventoryImportObject row = (InventoryImportObject)dataGridImport.SelectedItem;
-            //    BUS_InventoryImportDetail importDetail = new BUS_InventoryImportDetail();
-            //    BUS_InventoryImport import = new BUS_InventoryImport();
-            //    importDetail.Delete(row.ID);
-            //    import.Delete(row.ID);
-            //    LoadData();
-            //}
+            AccountInfo row = (AccountInfo)dataGridAccount.SelectedItem;
+            if (row == null) return;
+
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            Window window = new Window
+            {
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
+                Title = "Xóa tài khoản",
+                Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa tài khoản {row.id} của nhân viên {row.name} không?", row.id),
+                Width = 540,
+                Height = 430,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
+            };
+            window.ShowDialog();
+            LoadData();
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            //InventoryImportObject row = (InventoryImportObject)dataGridImport.SelectedItem;
-            //if (row == null) return;
-            //var screen = new InventoryImportEDIT(row.ID, row.EmployName, row.InventoryDate, _context);
-            //if (screen != null)
-            //{
-            //    this._context.StackPanelMain.Children.Clear();
-            //    this._context.StackPanelMain.Children.Add(screen);
-            //}
+            AccountInfo row = (AccountInfo)dataGridAccount.SelectedItem;
+            if (row == null) return;
+            DTO_Employees editEmp = new DTO_Employees(row.id, row.name, row.type, row.pass);
+
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            Window window = new Window
+            {
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
+                Title = "Thêm tài khoản",
+                Content = new PopupEditAccount(editEmp),
+                Width = 540,
+                Height = 430,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
+            };
+            window.ShowDialog();
+            LoadData();
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
         }
     }
 }

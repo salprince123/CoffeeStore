@@ -26,5 +26,15 @@ namespace CoffeeStore.BUS
         {
             return dalEmp.CreateEmployee(newEmp);
         }    
+
+        public bool EditEmployee(DTO_Employees editEmp)
+        {
+            return dalEmp.EditEmployee(editEmp);
+        }
+
+        public int DeleteEmployee(string deleteEmpID)
+        {
+            return dalEmp.Delete(deleteEmpID);
+        }    
     }
 }

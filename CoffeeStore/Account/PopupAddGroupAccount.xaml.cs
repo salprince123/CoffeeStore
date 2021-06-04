@@ -91,6 +91,7 @@ namespace CoffeeStore.Account
                 }    
 
                 MessageBox.Show($"Loại tài khoản {newEmpType.EmployeeTypeName} đã được tạo.");
+                Window.GetWindow(this).Close();
             }
         }
 

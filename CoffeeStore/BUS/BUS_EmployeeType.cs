@@ -22,5 +22,15 @@ namespace CoffeeStore.BUS
         {
             return dalEmpType.CreateEmployeeType(newEmpType);
         }
+
+        public string GetNameByID(string id)
+        {
+            return dalEmpType.GetNameByID(id);
+        }
+
+        public string GetIDByName(string name)
+        {
+            return dalEmpType.GetIDByName(name);
+        }
     }
 }

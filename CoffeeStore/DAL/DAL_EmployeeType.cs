@@ -27,6 +27,42 @@ namespace CoffeeStore.DAL
             return empTypes;
         }
 
+        public string GetNameByID(string id)
+        {
+            string name = "";
+            DataTable empTypeName = new DataTable();
+            try
+            {
+                string sql = $"select EmployeeTypeName from EmployeeType where EmployeeTypeID = '{id}'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(empTypeName);
+                name = empTypeName.Rows[0].ItemArray[0].ToString();
+            }
+            catch
+            {
+
+            }
+            return name;
+        }
+
+        public string GetIDByName(string name)
+        {
+            string id = "";
+            DataTable empTypeName = new DataTable();
+            try
+            {
+                string sql = $"select EmployeeTypeID from EmployeeType where EmployeeTypeName = '{name}'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(empTypeName);
+                id = empTypeName.Rows[0].ItemArray[0].ToString();
+            }
+            catch
+            {
+
+            }
+            return id;
+        }
+
         public string CreateEmployeeType(DTO_EmployeeType newEmpType)
         {
             DataTable employeeType = GetEmployeeTypes();
@@ -49,5 +85,7 @@ namespace CoffeeStore.DAL
                 return "";
             }
         }
+
+
     }
 }
