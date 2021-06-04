@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:UserControls="clr-namespace:CoffeeStore.View"
              mc:Ignorable="d" 
-             Height="580" Width="540">
+             Height="350" Width="540">
     <StackPanel Background="White">
         <!--Title bar here-->
         <Grid Margin="0,0,0,0" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
@@ -24,18 +24,13 @@
                  Height="40" Width="420" />
 
         <TextBlock Margin="60,10,60,0" Text="Loại món"/>
-        <TextBox x:Name="cbBeverageType"  Margin="0,5,0,0" BorderThickness="1"
+        <ComboBox x:Name="cbBeverageType"  Margin="0,5,0,0" BorderThickness="1"
                  Height="40" Width="420" />
 
         <TextBlock Margin="60,10,60,0" Text="Giá"/>
         <TextBox x:Name="tbPrice"  Margin="0,5,0,0" BorderThickness="1"
                  Height="40" Width="420" PreviewTextInput="tbPrice_PreviewTextInput_1" />
-        <Grid  Margin="60,30,60,0">
-            <Button VerticalAlignment="Top" Height="40"
-                    Content="+ HÌNH ẢNH" HorizontalAlignment="Left" Background="#FD9A3E"/>
-            <!--Insert image-->
-            <Rectangle Margin="0,60,0,0" Fill="#C4C4C4" Height="150" Width="150"></Rectangle>
-        </Grid>
+
 
         <!--Save, Cancel button-->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
