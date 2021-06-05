@@ -58,6 +58,7 @@ namespace CoffeeStore.Discount
                 if (busDiscount.createNewDiscount(discount) > 0)
                 {
                     MessageBox.Show("Thành công");
+                    Window.GetWindow(this).Close();
                 }
                 else
                     MessageBox.Show("Thất bại" + busDiscount.ID());
@@ -76,13 +77,14 @@ namespace CoffeeStore.Discount
 
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
-            var screen = new DiscountList(mainWindow);
-            if (screen != null)
-            {
-                this.mainWindow.StackPanelMain.Children.Clear();
-                this.mainWindow.StackPanelMain.Children.Add(screen);
-            }
-            else MessageBox.Show("Screen is null");
+            /*var screen = new DiscountList(mainWindow);
+             if (screen != null)
+             {
+                 this.mainWindow.StackPanelMain.Children.Clear();
+                 this.mainWindow.StackPanelMain.Children.Add(screen);
+             }
+             else MessageBox.Show("Screen is null");*/
+            Window.GetWindow(this).Close();
         }
     }
 }
