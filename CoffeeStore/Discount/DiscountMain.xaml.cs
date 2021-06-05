@@ -57,20 +57,7 @@ namespace CoffeeStore.Discount
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView row = dgDiscount.SelectedItem as DataRowView;
-            if (row != null)
-            {
-                String ID = row["Mã giảm giá"].ToString();
-                if (busDiscount.deleteDiscount(ID) > 0)
-                {
-                    MessageBox.Show("Thành công");
-                    dgDiscount.ItemsSource = busDiscount.getAllDiscount().DefaultView;
-                }
-                else
-                    MessageBox.Show("Thất bại" + busDiscount.ID());
-            }
-            else
-                MessageBox.Show(dgDiscount.SelectedItem.ToString());
+            
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)

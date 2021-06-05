@@ -94,7 +94,10 @@ namespace CoffeeStore.Discount
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            if (MessageBox.Show("Ban co chac chan xoa?", "Thong bao", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                return;
+            }
         }
     }
 }

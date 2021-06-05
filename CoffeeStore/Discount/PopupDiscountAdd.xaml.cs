@@ -41,6 +41,7 @@ namespace CoffeeStore.Discount
                 if (busDiscount.createNewDiscount(discount) > 0)
                 {
                     MessageBox.Show("Thành công");
+                    Window.GetWindow(this).Close();
                 }
                 else
                     MessageBox.Show("Thất bại" + busDiscount.ID());
