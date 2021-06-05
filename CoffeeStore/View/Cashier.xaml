@@ -205,6 +205,7 @@
                     Padding="0,0,10,0"/>
                 </Grid>
             </Viewbox>
+            <!--Pay Button and Print Button here-->
             <Grid Grid.Row="2" Background="#FF7A00">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
@@ -232,10 +233,14 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Border Margin="10" Width="110" Height="165" Background="#EBEBEB">
+                                            <!--If database has image-->
+                                            <!--<Border.Background>
+                                                <ImageBrush ImageSource="{Binding Image}"/>
+                                            </Border.Background>-->
                                             <StackPanel>
                                                 <Border Height="100" Background="Gray"/>
-                                                <TextBlock Name="Money" Margin="5" Text="Tên món" FontSize="14"/>
-                                                <TextBlock Name="FoodName" Margin="5 0" Text="20.000 VND" FontSize="14"/>
+                                                <TextBlock Name="FoodName" Margin="5" Text="Tên món" FontSize="14"/>
+                                                <TextBlock Name="Value" Margin="5 0" Text="20.000 VND" FontSize="14"/>
                                                 <!--<TextBlock Name="Status" Margin="5 0" Text="Hết hàng" FontSize="10" HorizontalAlignment="Right"/>-->
                                             </StackPanel>
                                         </Border>

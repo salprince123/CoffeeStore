@@ -29,14 +29,23 @@ namespace CoffeeStore.Report
 
         private void LoadBarChartData()
         {
-            List<KeyValuePair<string, int>> valueList = new List<KeyValuePair<string, int>>();
-            valueList.Add(new KeyValuePair<string, int>("Developer", 60));
-            valueList.Add(new KeyValuePair<string, int>("Misc", 20));
-            valueList.Add(new KeyValuePair<string, int>("Tester", 50));
-            valueList.Add(new KeyValuePair<string, int>("QA", 30));
-            valueList.Add(new KeyValuePair<string, int>("Project Manager", 40));
-            //barChart.DataContext = valueList;
+            List<KeyValuePair<string, int>> valueListGeneral = new List<KeyValuePair<string, int>>();
+            valueListGeneral.Add(new KeyValuePair<string, int>("Chi phí", 60));
+            valueListGeneral.Add(new KeyValuePair<string, int>("Doanh thu", 20));
+            valueListGeneral.Add(new KeyValuePair<string, int>("Lợi nhuận", 50));
+            barChartGeneral.DataContext = valueListGeneral;
 
+            List<KeyValuePair<string, int>> valueListPayment = new List<KeyValuePair<string, int>>();
+            valueListPayment.Add(new KeyValuePair<string, int>("Nguyên liệu 1", 60));
+            valueListPayment.Add(new KeyValuePair<string, int>("Nguyên liệu 2", 20));
+            valueListPayment.Add(new KeyValuePair<string, int>("Nguyên liệu 3", 50));
+            barChartPayment.DataContext = valueListPayment;
+
+            List<KeyValuePair<string, int>> valueListProfit = new List<KeyValuePair<string, int>>();
+            valueListProfit.Add(new KeyValuePair<string, int>("Món 1", 60));
+            valueListProfit.Add(new KeyValuePair<string, int>("Món 2", 20));
+            valueListProfit.Add(new KeyValuePair<string, int>("Món 3", 50));
+            barChartProfit.DataContext = valueListProfit;
         }
     }
 }
