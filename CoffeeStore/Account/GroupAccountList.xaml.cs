@@ -142,9 +142,9 @@ namespace CoffeeStore.Account
                 Title = "Thêm nhóm tài khoản",
                 Content = new PopupAddGroupAccount(),
                 Width = 540,
-                Height = 800,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
+                Height = 400,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
             };
             window.ShowDialog();
             LoadData();
@@ -193,9 +193,9 @@ namespace CoffeeStore.Account
                 Title = "Sửa loại tài khoản",
                 Content = new PopupEditGroupAccount(editGrAcc),
                 Width = 540,
-                Height = 430,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
+                Height = 400,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
             };
             window.ShowDialog();
             LoadData();

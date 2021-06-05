@@ -21,7 +21,7 @@
         <!--Group account name-->
         <TextBlock Margin="40,10,40,0" Text="Tên nhóm tài khoản"/>
         <TextBox  x:Name="tbName" Margin="40,5,40,0" BorderThickness="1"
-                 Height="40" />
+                 Height="40" Padding="5" />
         <!--Permission-->
         <Grid Margin="40,20,40,0" DataContext="{Binding }" >
             <Grid.RowDefinitions>
@@ -84,16 +84,20 @@
             <DockPanel Margin="0,0,10,0" Grid.RowSpan="2" >
                 <TextBox IsReadOnly="True" DockPanel.Dock="Top" Text="Quyền chưa chọn" />
                 <DataGrid x:Name="dgUnselected" HeadersVisibility="None" IsReadOnly="True" 
+                          MaxHeight="150"
                           SelectedItem="{Binding Path=AccessPermissionName, Mode=TwoWay}"
                           SelectionUnit="FullRow"
-                          SelectedCellsChanged="dgUnselected_SelectedCellsChanged"/>
+                          SelectedCellsChanged="dgUnselected_SelectedCellsChanged"
+                          ScrollViewer.CanContentScroll="True"/>
             </DockPanel>
             <DockPanel  Margin="0,0,10,0" Grid.Column="2">
                 <TextBox IsReadOnly="True" DockPanel.Dock="Top" Text="Quyền đã chọn" />
                 <DataGrid x:Name="dgSelected" HeadersVisibility="None" IsReadOnly="True" 
+                          MaxHeight="150"
                           SelectedItem="{Binding Path=AccessPermissionName, Mode=TwoWay}"
                           SelectionUnit="FullRow"
-                          SelectedCellsChanged="dgSelected_SelectedCellsChanged"/>
+                          SelectedCellsChanged="dgSelected_SelectedCellsChanged"
+                          ScrollViewer.CanContentScroll="True"/>
             </DockPanel>
         </Grid>
         <!--Save, Cancel button-->

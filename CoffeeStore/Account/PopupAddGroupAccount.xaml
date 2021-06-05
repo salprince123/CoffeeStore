@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:UserControls="clr-namespace:CoffeeStore.View"
               mc:Ignorable="d" 
-             Height="369" Width="540">
+             Height="400" Width="540">
     <StackPanel Background="White">
         <!--Title bar here-->
-        <Grid Margin="0,-16,0,0" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <Grid Margin="0,0,0,0" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <UserControls:TitleBar/>
             <TextBlock Text="Thêm nhóm tài khoản" 
                        FontFamily="Montserrat"
@@ -84,20 +84,24 @@
             <DockPanel Margin="0,0,10,0" Grid.RowSpan="2" >
                 <TextBox IsReadOnly="True" DockPanel.Dock="Top" Text="Quyền chưa chọn" />
                 <DataGrid x:Name="dgUnselected"
+                          MaxHeight="150"
                           HeadersVisibility="None" IsReadOnly="True"
                           SelectedItem="{Binding Path=AccessPermissionName, Mode=TwoWay}"
                           SelectionUnit="FullRow"
                           SelectedCellsChanged="dgUnselected_SelectedCellsChanged"
+                          ScrollViewer.CanContentScroll="True"
                           >
                 </DataGrid>
             </DockPanel>
             <DockPanel  Margin="0,0,10,0" Grid.Column="2">
                 <TextBox IsReadOnly="True" DockPanel.Dock="Top" Text="Quyền đã chọn" />
                 <DataGrid x:Name="dgSelected" 
+                          MaxHeight="150"
                           HeadersVisibility="None" IsReadOnly="True"
                           SelectedItem="{Binding Path=AccessPermissionName, Mode=TwoWay}"
                           SelectionUnit="FullRow"
-                          SelectedCellsChanged="dgSelected_SelectedCellsChanged"/>
+                          SelectedCellsChanged="dgSelected_SelectedCellsChanged"
+                          ScrollViewer.CanContentScroll="True"/>
             </DockPanel>
         </Grid>
         <!--Save, Cancel button-->
