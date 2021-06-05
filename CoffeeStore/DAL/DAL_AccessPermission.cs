@@ -95,5 +95,23 @@ namespace CoffeeStore.DAL
 
             return accPers;
         }    
+
+        public string GetIDByName(string name)
+        {
+            string id = "";
+            DataTable empTypeName = new DataTable();
+            try
+            {
+                string sql = $"select AccessPermissionID from AccessPermission where AccessPermissionName = '{name}'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(empTypeName);
+                id = empTypeName.Rows[0].ItemArray[0].ToString();
+            }
+            catch
+            {
+
+            }
+            return id;
+        }    
     }
 }

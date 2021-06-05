@@ -25,5 +25,35 @@ namespace CoffeeStore.DAL
                 return false;
             }
         }
+
+        public bool DeleteAccessPermissionGroup(DTO_AccessPermissionGroup deleteAccPerGr)
+        {
+            string sql = $"delete from AccessPermissionGroup where AccessPermissionID = '{deleteAccPerGr.AccessPermissionID}' and EmployeeTypeID = '{deleteAccPerGr.EmployeeTypeID}'";
+            SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
+            try
+            {
+                insert.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteByEmpTypeID(string id)
+        {
+            string sql = $"delete from AccessPermissionGroup where EmployeeTypeID = '{id}'";
+            SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
+            try
+            {
+                insert.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }    
     }
 }

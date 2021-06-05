@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static CoffeeStore.Account.GroupAccountList;
 
 namespace CoffeeStore.Account
 {
@@ -21,33 +22,36 @@ namespace CoffeeStore.Account
     /// </summary>
     public partial class PopupDeleteConfirm : UserControl
     {
-        string deleteEmpId;
+        string deleteEmpTypeId;
         public PopupDeleteConfirm()
         {
             InitializeComponent();
         }
 
-        public PopupDeleteConfirm(string content, string empID)
+        public PopupDeleteConfirm(string content, string empTypeID)
         {
             InitializeComponent();
             this.tblockContent.Text = content;
-            deleteEmpId = empID;
+            BUS_EmployeeType busEmp = new BUS_EmployeeType();
+            deleteEmpTypeId = busEmp.GetIDByName(empTypeID);
         }
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
-            BUS_Employees busEmp = new BUS_Employees();
-            int result = busEmp.DeleteEmployee(deleteEmpId);
+            BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
+            busAccPerGr.DeleteByEmpTypeID(deleteEmpTypeId);
+
+            BUS_EmployeeType busEmp = new BUS_EmployeeType();
+            int result = busEmp.DeleteEmployeeType(deleteEmpTypeId);
             if (result == 0)
             {
-                MessageBox.Show($"Đã xảy ra lỗi trong quá trình xóa tài khoản.");
+                MessageBox.Show($"Không thể xóa do vẫn còn tài khoản có loại tài khoản này.");
             }
             else
             {
-                MessageBox.Show($"Đã xóa tài khoản {deleteEmpId}.");
+                MessageBox.Show($"Đã xóa loại tài khoản {deleteEmpTypeId}.");
                 Window.GetWindow(this).Close();
-            } 
-                
+            }
         }
 
         private void btExit_Click(object sender, RoutedEventArgs e)

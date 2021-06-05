@@ -23,7 +23,7 @@ namespace CoffeeStore.Account
     /// </summary>
     public partial class PopupAddGroupAccount : UserControl
     {
-        class AccessPermissionName
+        public class AccessPermissionName
         {
             public string name { get; set; }
             public AccessPermissionName(object toString) { }

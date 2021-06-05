@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Controls.DataVisualization;
+//using System.Windows.Controls.DataVisualization;
 
 namespace CoffeeStore.Report
 {
@@ -35,7 +35,7 @@ namespace CoffeeStore.Report
             valueList.Add(new KeyValuePair<string, int>("Tester", 50));
             valueList.Add(new KeyValuePair<string, int>("QA", 30));
             valueList.Add(new KeyValuePair<string, int>("Project Manager", 40));
-            barChart.DataContext = valueList;
+            //barChart.DataContext = valueList;
 
         }
     }

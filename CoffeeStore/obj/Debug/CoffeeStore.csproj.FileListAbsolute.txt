@@ -535,3 +535,7 @@ E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditAccount.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditGroupAccount.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Discount\DiscountMain.baml
 E:\Project\CoffeeStore\CoffeeStore\obj\Debug\Report\ReportProfit.baml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditGroupAccount.g.cs
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Report\ReportProfit.g.cs
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditGroupAccount.baml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Report\ReportProfit.baml

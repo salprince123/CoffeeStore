@@ -86,6 +86,61 @@ namespace CoffeeStore.DAL
             }
         }
 
+        public int Delete(string typeID)
+        {
+            bool isDelete = IsHaveEmployee(typeID);
+            if (isDelete)
+            {
+                string sql = $"delete from EmployeeType where EmployeeTypeID = '{typeID}'";
+                SQLiteCommand delete = new SQLiteCommand(sql, getConnection().OpenAndReturn());
+                try
+                {
+                    delete.ExecuteNonQuery();
+                    return 1;
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return 0;
+            }
+        }    
 
+        public bool IsHaveEmployee(string typeID)
+        {
+            try
+            {
+                DataTable countData = new DataTable();
+                string sql = $"select count(EmployeeTypeID) from Employees where EmployeeTypeID = '{typeID}'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(countData);
+                if (countData.Rows[0].ItemArray[0].ToString() != "0")
+                    return false;
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }    
+
+        public bool EditEmployeeType(DTO_EmployeeType editEmpType)
+        {
+            string sql = $"update EmployeeType set EmployeeTypeName = '{editEmpType.EmployeeTypeName}' where EmployeeTypeID = '{editEmpType.EmployeeTypeID}'";
+            SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
+            try
+            {
+                insert.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }    
     }
 }

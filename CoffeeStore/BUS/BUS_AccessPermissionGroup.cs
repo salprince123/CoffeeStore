@@ -15,5 +15,15 @@ namespace CoffeeStore.BUS
         {
             return dalAccPerGr.CreateAccessPermissionGroup(newAccPerGr);
         }    
+
+        public bool DeleteAccessPermissionGroup(DTO_AccessPermissionGroup accPerGr)
+        {
+            return dalAccPerGr.DeleteAccessPermissionGroup(accPerGr);
+        }    
+
+        public bool DeleteByEmpTypeID(string empTypeID)
+        {
+            return dalAccPerGr.DeleteByEmpTypeID(empTypeID);
+        }    
     }
 }

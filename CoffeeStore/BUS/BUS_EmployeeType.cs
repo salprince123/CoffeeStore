@@ -32,5 +32,15 @@ namespace CoffeeStore.BUS
         {
             return dalEmpType.GetIDByName(name);
         }
+
+        public int DeleteEmployeeType(string id)
+        {
+            return dalEmpType.Delete(id);
+        }
+
+        public bool EditEmployeeType(DTO_EmployeeType editEmpType)
+        {
+            return dalEmpType.EditEmployeeType(editEmpType);
+        }    
     }
 }
