@@ -17,10 +17,14 @@ using System.Windows.Shapes;
 
 static class Constants
 {
-    public const string cashier = "Thu ngân";
-    public const string changeAccount = "Thêm/Sửa tài khoản";
-    public const string importInventory = "Nhập kho";
-    public const string exportInventory = "Xuất kho";
+    public const string CASHIER = "Thu ngân";
+    public const string ACCOUNT = "Quản lý tài khoản";
+    public const string ACCOUNTTYPE = "Quản lý loại tài khoản";
+    public const string INVENTORY = "Quản lý kho";
+    public const string COST = "Quản lý chi phí";
+    public const string MENU = "Quản lý menu";
+    public const string DISCOUNT = "Quản lý ưu đãi";
+    public const string REPORT = "Báo cáo";
 }
 
 namespace CoffeeStore.Account
@@ -34,18 +38,25 @@ namespace CoffeeStore.Account
         {
             public string name { get; set; }
             public bool cashier { get; set; }
-            public bool changeAccount { get; set; }
-            public bool importInventory { get; set; }
-            public bool exportInventory { get; set; }
-
+            public bool account { get; set; }
+            public bool accountType { get; set; }
+            public bool inventory { get; set; }
+            public bool cost { get; set; }
+            public bool menu { get; set; }
+            public bool discount { get; set; }
+            public bool report { get; set; }
             public GroupAccountInfo() { }
-            public GroupAccountInfo(string newName, bool newCashPer, bool newChangeAcc, bool newImport, bool newExport)
+            public GroupAccountInfo(string newName, bool newCashPer, bool newAcc, bool newAccType, bool newInv, bool newCost, bool newMenu, bool newDiscount, bool newReport)
             {
                 name = newName;
                 cashier = newCashPer;
-                changeAccount = newChangeAcc;
-                importInventory = newImport;
-                exportInventory = newExport;
+                account = newAcc;
+                accountType = newAccType;
+                inventory = newInv;
+                cost = newCost;
+                menu = newMenu;
+                discount = newDiscount;
+                report = newReport;
             }
         }
         public GroupAccountList()
@@ -68,28 +79,51 @@ namespace CoffeeStore.Account
 
             foreach (DataRow row in temp.Rows)
             {
-                string name = row["EmployeeType"].ToString();
-                bool cashier;
-                if (row[columnName: Constants.cashier].ToString() == "0")
-                    cashier = false;
+                GroupAccountInfo newGrAccInfo = new GroupAccountInfo();
+
+                newGrAccInfo.name = row["EmployeeType"].ToString();
+
+                if (row[columnName: Constants.CASHIER].ToString() == "0")
+                    newGrAccInfo.cashier = false;
                 else
-                    cashier = true;
-                bool changeAccount;
-                if (row[columnName: Constants.changeAccount].ToString() == "0")
-                    changeAccount = false;
+                    newGrAccInfo.cashier = true;
+
+                if (row[columnName: Constants.ACCOUNT].ToString() == "0")
+                    newGrAccInfo.account = false;
                 else
-                    changeAccount = true;
-                bool importInventory;
-                if (row[columnName: Constants.importInventory].ToString() == "0")
-                    importInventory = false;
+                    newGrAccInfo.account = true;
+
+                if (row[columnName: Constants.ACCOUNTTYPE].ToString() == "0")
+                    newGrAccInfo.accountType = false;
                 else
-                    importInventory = true;
-                bool exportInventory;
-                if (row[columnName: Constants.exportInventory].ToString() == "0")
-                    exportInventory = false;
+                    newGrAccInfo.accountType = true;
+
+                if (row[columnName: Constants.INVENTORY].ToString() == "0")
+                    newGrAccInfo.inventory = false;
                 else
-                    exportInventory = true;
-                groupAccountInfos.Add(item: new GroupAccountInfo(name, cashier, changeAccount, importInventory, exportInventory));
+                    newGrAccInfo.inventory = true;
+
+                if (row[columnName: Constants.COST].ToString() == "0")
+                    newGrAccInfo.cost = false;
+                else
+                    newGrAccInfo.cost = true;
+
+                if (row[columnName: Constants.MENU].ToString() == "0")
+                    newGrAccInfo.menu = false;
+                else
+                    newGrAccInfo.menu = true;
+
+                if (row[columnName: Constants.DISCOUNT].ToString() == "0")
+                    newGrAccInfo.discount = false;
+                else
+                    newGrAccInfo.discount = true;
+
+                if (row[columnName: Constants.REPORT].ToString() == "0")
+                    newGrAccInfo.report = false;
+                else
+                    newGrAccInfo.report = true;
+
+                groupAccountInfos.Add(item: newGrAccInfo);
             }
 
             this.dataGridGroupAccount.ItemsSource = groupAccountInfos;
@@ -108,7 +142,7 @@ namespace CoffeeStore.Account
                 Title = "Thêm nhóm tài khoản",
                 Content = new PopupAddGroupAccount(),
                 Width = 540,
-                Height = 400,
+                Height = 800,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
                 Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
             };
@@ -147,7 +181,7 @@ namespace CoffeeStore.Account
         {
             GroupAccountInfo row = (GroupAccountInfo)dataGridGroupAccount.SelectedItem;
             if (row == null) return;
-            GroupAccountInfo editGrAcc = new GroupAccountInfo(row.name, row.cashier, row.changeAccount, row.importInventory, row.exportInventory);
+            GroupAccountInfo editGrAcc = new GroupAccountInfo(row.name, row.cashier, row.account, row.accountType, row.inventory, row.cost, row.menu, row.discount, row.report);
 
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
             ((MainWindow)App.Current.MainWindow).Opacity = 0.5;

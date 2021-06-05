@@ -1,4 +1,5 @@
 ﻿using BeautySolutions.View.ViewModel;
+using CoffeeStore.BUS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,16 +33,34 @@ namespace CoffeeStore
         }
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _context.SwitchScreen(((SubItem)((ListView)sender).SelectedItem).Screen);
+            SubItem item = (SubItem)((ListView)sender).SelectedItem;
+            string perID = item.APID;
+            BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
+            bool isHavePermission = busAccPerGr.IsHavePermission(_context.GetCurrentEmpType(), perID);
+            if (isHavePermission)
+                _context.SwitchScreen(item.Screen);
+            else
+                MessageBox.Show("Bạn không có quyền sử dụng chức năng này!");
         }
 
         private void ListViewItemMenu_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-           // if(sender.Equals(Cashier))
-           if(((ItemMenu)((ListBoxItem)sender).DataContext)._Cashier!=null)
-            _context.SwitchWindow(((ItemMenu)((ListBoxItem)sender).DataContext)._Cashier, 1);
-           else
-            _context.SwitchWindow(((ItemMenu)((ListBoxItem)sender).DataContext).Screen);
+            // if(sender.Equals(Cashier))
+            ItemMenu item = (ItemMenu)((ListBoxItem)sender).DataContext;
+            string perID = item.APID;
+            bool isHavePermission = true;
+            if (perID.Length == 5)
+            {
+                BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
+                isHavePermission = busAccPerGr.IsHavePermission(_context.GetCurrentEmpType(), perID);
+            }
+            if (isHavePermission) 
+                if (item._Cashier!=null)
+                    _context.SwitchWindow(item._Cashier, 1);
+                else
+                    _context.SwitchWindow(item.Screen);
+            else
+                MessageBox.Show("Bạn không có quyền sử dụng chức năng này!");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CoffeeStore.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
@@ -54,6 +55,24 @@ namespace CoffeeStore.DAL
             {
                 return false;
             }
+        }    
+
+        public bool isHavePermission(string typeId, string permissionID)
+        {
+            DataTable data = new DataTable();
+            try
+            {
+                string sql = $"select count(EmployeeTypeID) from AccessPermissionGroup where AccessPermissionID = '{permissionID}' and EmployeeTypeID = '{typeId}'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(data);
+                if (data.Rows[0].ItemArray[0].ToString() == "1")
+                    return true;
+            }
+            catch
+            {
+
+            }
+            return false;
         }    
     }
 }

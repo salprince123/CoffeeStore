@@ -24,39 +24,40 @@ namespace CoffeeStore
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {        
+    {
+        string currentEmpType;
         public MainWindow()
         {
             
             InitializeComponent();
 
-            var item0 = new ItemMenu("Trang chủ", new UserControl(), PackIconKind.ViewDashboard);
+            var item0 = new ItemMenu("Trang chủ", "0", new UserControl(), PackIconKind.ViewDashboard);
 
             var item1 = new ItemMenu("Thu ngân", new Cashier(this), PackIconKind.Schedule);
 
-            var item2 = new ItemMenu("Menu", new Menu.MenuList(), PackIconKind.CalendarTextOutline);
+            var item2 = new ItemMenu("Menu", "AP006", new Menu.MenuList(), PackIconKind.CalendarTextOutline);
 
-            var item3 = new ItemMenu("Ưu đãi", new Discount.DiscountList(), PackIconKind.ShoppingBasket);
+            var item3 = new ItemMenu("Ưu đãi", "AP007", new Discount.DiscountList(), PackIconKind.ShoppingBasket);
 
             var menuInventory = new List<SubItem>();
-            menuInventory.Add(new SubItem("Thông tin kho",new Inventory.InventoryMainPage()));
-            menuInventory.Add(new SubItem("Nhập kho", new Inventory.InventoryImport(this)));
-            menuInventory.Add(new SubItem("Xuất kho", new Inventory.InventoryExport(this)));
+            menuInventory.Add(new SubItem("Thông tin kho", "AP003", new Inventory.InventoryMainPage()));
+            menuInventory.Add(new SubItem("Nhập kho", "AP003", new Inventory.InventoryImport(this)));
+            menuInventory.Add(new SubItem("Xuất kho", "AP003", new Inventory.InventoryExport(this)));
             var item4 = new ItemMenu("Kho", menuInventory, PackIconKind.Warehouse);
 
             var menuRevenue = new List<SubItem>();
-            menuRevenue.Add(new SubItem("Danh sách hóa đơn", new IncomeAndPayment.ReceiptList()));
-            menuRevenue.Add(new SubItem("Danh sách chi", new IncomeAndPayment.PaymentList()));
+            menuRevenue.Add(new SubItem("Danh sách hóa đơn", "AP001", new IncomeAndPayment.ReceiptList()));
+            menuRevenue.Add(new SubItem("Danh sách chi", "AP005" , new IncomeAndPayment.PaymentList()));
             var item5 = new ItemMenu("Thu chi", menuRevenue, PackIconKind.ScaleBalance);
 
             var menuReport = new List<SubItem>();
-            menuReport.Add(new SubItem("Mặt hàng bán chạy"));
-            menuReport.Add(new SubItem("Lợi nhuận", new Report.ReportProfit()));
+            menuReport.Add(new SubItem("Mặt hàng bán chạy", "AP008"));
+            menuReport.Add(new SubItem("Lợi nhuận", "AP008", new Report.ReportProfit()));
             var item6 = new ItemMenu("Báo cáo thống kê", menuReport, PackIconKind.ChartLineVariant);
 
             var menuAccount = new List<SubItem>();
-            menuAccount.Add(new SubItem("Tài khoản", new Account.AccountList(this)));
-            menuAccount.Add(new SubItem("Nhóm tài khoản", new Account.GroupAccountList()));
+            menuAccount.Add(new SubItem("Tài khoản", "AP002", new Account.AccountList(this)));
+            menuAccount.Add(new SubItem("Nhóm tài khoản", "AP003", new Account.GroupAccountList()));
             var item7 = new ItemMenu("Tài khoản", menuAccount, PackIconKind.Register);
 
             Menu.Children.Add(new MenuItem(item0, this));
@@ -74,10 +75,13 @@ namespace CoffeeStore
         private void LoginScreen_BtnSale_Click(object sender, RoutedEventArgs e)
         {
             bool checkResult = loginScreen.CheckPassword();
-            var screen = new Cashier(this);
             if (checkResult)
             {
+                tblockUsername.Text = loginScreen.txtBoxAccount.Text;
+                BUS_Employees busEmp = new BUS_Employees();
+                currentEmpType = busEmp.GetEmpTypeByID(tblockUsername.Text);
                 gridLogin.Children.Clear();
+                var screen = new Cashier(this);
                 gridLogin.Children.Add(screen);
             }
         }
@@ -87,6 +91,9 @@ namespace CoffeeStore
             bool checkResult = loginScreen.CheckPassword();
             if (checkResult)
             {
+                tblockUsername.Text = loginScreen.txtBoxAccount.Text;
+                BUS_Employees busEmp = new BUS_Employees();
+                currentEmpType = busEmp.GetEmpTypeByID(tblockUsername.Text);
                 gridLogin.Children.Clear();
             }
         }
@@ -143,5 +150,10 @@ namespace CoffeeStore
         {
             Application.Current.Shutdown();
         }
+
+        public string GetCurrentEmpType()
+        {
+            return currentEmpType;
+        }    
     }
 }

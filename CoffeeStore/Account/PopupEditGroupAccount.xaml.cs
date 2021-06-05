@@ -56,39 +56,68 @@ namespace CoffeeStore.Account
 
             editGrAccInfo = grAccInfo;
             tbName.Text = editGrAccInfo.name;
-            this.dgUnselected.ItemsSource = dgUnselectedList;
-            this.dgSelected.ItemsSource = dgSelectedList;
+            
 
             #region change list item
             if (grAccInfo.cashier == true)
             {
-                dgSelectedList.Add(new AccessPermissionName(Constants.cashier));
-                AccessPermissionName item = dgUnselectedList.Find(x => x.name == Constants.cashier);
+                dgSelectedList.Add(new AccessPermissionName(Constants.CASHIER));
+                AccessPermissionName item = dgUnselectedList.Find(x => x.name == Constants.CASHIER);
                 dgUnselectedList.Remove(item);
             }
 
-            if (grAccInfo.changeAccount == true)
+            if (grAccInfo.account == true)
             {
-                dgSelectedList.Add(new AccessPermissionName(Constants.changeAccount));
-                AccessPermissionName item = dgUnselectedList.Find(x => x.name == Constants.changeAccount);
+                dgSelectedList.Add(new AccessPermissionName(Constants.ACCOUNT));
+                AccessPermissionName item = dgUnselectedList.Find(x => x.name == Constants.ACCOUNT);
                 dgUnselectedList.Remove(item);
             }
 
-            if (grAccInfo.importInventory == true)
+            if (grAccInfo.accountType == true)
             {
-                dgSelectedList.Add(new AccessPermissionName(Constants.importInventory));
-                AccessPermissionName item = dgUnselectedList.Find(x => x.name == Constants.importInventory);
+                dgSelectedList.Add(new AccessPermissionName(Constants.ACCOUNTTYPE));
+                AccessPermissionName item = dgUnselectedList.Find(x => x.name == Constants.ACCOUNTTYPE);
                 dgUnselectedList.Remove(item);
             }
 
-            if (grAccInfo.exportInventory == true)
+            if (grAccInfo.inventory == true)
             {
-                dgSelectedList.Add(new AccessPermissionName(Constants.exportInventory));
-                AccessPermissionName item = dgUnselectedList.Find(x => x.name == Constants.exportInventory);
+                dgSelectedList.Add(new AccessPermissionName(Constants.INVENTORY));
+                AccessPermissionName item = dgUnselectedList.Find(x => x.name == Constants.INVENTORY);
+                dgUnselectedList.Remove(item);
+            }
+
+            if (grAccInfo.cost == true)
+            {
+                dgSelectedList.Add(new AccessPermissionName(Constants.COST));
+                AccessPermissionName item = dgUnselectedList.Find(x => x.name == Constants.COST);
+                dgUnselectedList.Remove(item);
+            }
+
+            if (grAccInfo.menu == true)
+            {
+                dgSelectedList.Add(new AccessPermissionName(Constants.MENU));
+                AccessPermissionName item = dgUnselectedList.Find(x => x.name == Constants.MENU);
+                dgUnselectedList.Remove(item);
+            }
+
+            if (grAccInfo.discount == true)
+            {
+                dgSelectedList.Add(new AccessPermissionName(Constants.DISCOUNT));
+                AccessPermissionName item = dgUnselectedList.Find(x => x.name == Constants.DISCOUNT);
+                dgUnselectedList.Remove(item);
+            }
+
+            if (grAccInfo.report == true)
+            {
+                dgSelectedList.Add(new AccessPermissionName(Constants.REPORT));
+                AccessPermissionName item = dgUnselectedList.Find(x => x.name == Constants.REPORT);
                 dgUnselectedList.Remove(item);
             }
             #endregion
 
+            this.dgUnselected.ItemsSource = dgUnselectedList;
+            this.dgSelected.ItemsSource = dgSelectedList;
             this.dgUnselected.Items.Refresh();
             this.dgSelected.Items.Refresh();
         }
@@ -167,20 +196,32 @@ namespace CoffeeStore.Account
             List<AccessPermissionName> oldPerList = new List<AccessPermissionName>();
 
             if (editGrAccInfo.cashier)
-                oldPerList.Add(new AccessPermissionName(Constants.cashier));
+                oldPerList.Add(new AccessPermissionName(Constants.CASHIER));
 
-            if (editGrAccInfo.changeAccount)
-                oldPerList.Add(new AccessPermissionName(Constants.changeAccount));
+            if (editGrAccInfo.account)
+                oldPerList.Add(new AccessPermissionName(Constants.ACCOUNT));
 
-            if (editGrAccInfo.importInventory)
-                oldPerList.Add(new AccessPermissionName(Constants.importInventory));
+            if (editGrAccInfo.accountType)
+                oldPerList.Add(new AccessPermissionName(Constants.ACCOUNTTYPE));
 
-            if (editGrAccInfo.exportInventory)
-                oldPerList.Add(new AccessPermissionName(Constants.exportInventory));
+            if (editGrAccInfo.inventory)
+                oldPerList.Add(new AccessPermissionName(Constants.INVENTORY));
+
+            if (editGrAccInfo.cost)
+                oldPerList.Add(new AccessPermissionName(Constants.COST));
+
+            if (editGrAccInfo.menu)
+                oldPerList.Add(new AccessPermissionName(Constants.MENU));
+
+            if (editGrAccInfo.discount)
+                oldPerList.Add(new AccessPermissionName(Constants.DISCOUNT));
+
+            if (editGrAccInfo.report)
+                oldPerList.Add(new AccessPermissionName(Constants.REPORT));
 
             #endregion
             // per deleted
-            foreach(AccessPermissionName name in oldPerList)
+            foreach (AccessPermissionName name in oldPerList)
             {
                 if (!dgSelectedList.Contains(name))
                 {

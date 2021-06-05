@@ -101,17 +101,33 @@
                                     IsThreeState="True" 
                                     Binding="{Binding Path=cashier}"></DataGridCheckBoxColumn>
                                 <DataGridCheckBoxColumn 
-                                    Header="Thêm Sửa tài khoản"
+                                    Header="Quản lý tài khoản"
                                     IsThreeState="True"
-                                    Binding="{Binding Path=changeAccount}"></DataGridCheckBoxColumn>
+                                    Binding="{Binding Path=account}"></DataGridCheckBoxColumn>
                                 <DataGridCheckBoxColumn 
-                                    Header="Nhập kho"
+                                    Header="Quản lý loại tài khoản"
                                     IsThreeState="True" 
-                                    Binding="{Binding Path=importInventory}"></DataGridCheckBoxColumn>
+                                    Binding="{Binding Path=accountType}"></DataGridCheckBoxColumn>
                                 <DataGridCheckBoxColumn 
-                                    Header="Xuất kho"
+                                    Header="Quản lý kho"
                                     IsThreeState="True" 
-                                    Binding="{Binding Path=exportInventory}"></DataGridCheckBoxColumn>
+                                    Binding="{Binding Path=inventory}"></DataGridCheckBoxColumn>
+                                <DataGridCheckBoxColumn 
+                                    Header="Quản lý chi phí"
+                                    IsThreeState="True" 
+                                    Binding="{Binding Path=cost}"></DataGridCheckBoxColumn>
+                                <DataGridCheckBoxColumn 
+                                    Header="Quản lý menu"
+                                    IsThreeState="True" 
+                                    Binding="{Binding Path=menu}"></DataGridCheckBoxColumn>
+                                <DataGridCheckBoxColumn 
+                                    Header="Quản lý ưu đãi"
+                                    IsThreeState="True" 
+                                    Binding="{Binding Path=discount}"></DataGridCheckBoxColumn>
+                                <DataGridCheckBoxColumn 
+                                    Header="Báo cáo"
+                                    IsThreeState="True" 
+                                    Binding="{Binding Path=report}"></DataGridCheckBoxColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>

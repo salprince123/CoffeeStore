@@ -35,6 +35,11 @@ namespace CoffeeStore.BUS
         public int DeleteEmployee(string deleteEmpID)
         {
             return dalEmp.Delete(deleteEmpID);
+        }
+
+        public string GetEmpTypeByID(string id)
+        {
+            return dalEmp.GetEmpTypeByID(id);
         }    
     }
 }

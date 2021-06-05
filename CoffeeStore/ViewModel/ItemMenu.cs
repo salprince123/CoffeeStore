@@ -17,13 +17,15 @@ namespace BeautySolutions.View.ViewModel
             Header = header;
             SubItems = subItems;
             Icon = icon;
+            APID = "";
         }
 
-        public ItemMenu(string header, UserControl screen, PackIconKind icon)
+        public ItemMenu(string header, string id, UserControl screen, PackIconKind icon)
         {
             Header = header;
             Screen = screen;
             Icon = icon;
+            APID = id;
         }
 
         public ItemMenu(string header, Cashier cashier, PackIconKind icon)
@@ -31,6 +33,7 @@ namespace BeautySolutions.View.ViewModel
             Header = header;
             _Cashier = cashier;
             Icon = icon;
+            APID = "";
         }
 
         public string Header { get; private set; }
@@ -39,5 +42,6 @@ namespace BeautySolutions.View.ViewModel
         public UserControl Screen { get; private set; }
 
         public Cashier _Cashier { get; private set; }
+        public string APID { get; private set; }
     }
 }

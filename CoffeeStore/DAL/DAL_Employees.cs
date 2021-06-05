@@ -29,6 +29,24 @@ namespace CoffeeStore.DAL
             return pass;
         }
 
+        public string GetEmpTypeByID(string ID)
+        {
+            string pass = "";
+            try
+            {
+                string sql = $"select EmployeeTypeID from Employees where EmployeeID = '{ID}'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                DataTable listPass = new DataTable();
+                da.Fill(listPass);
+                pass = listPass.Rows[0].ItemArray[0].ToString();
+            }
+            catch
+            {
+
+            }
+            return pass;
+        }
+
         public DataTable GetActiveEmployees()
         {
             DataTable employees = new DataTable();
