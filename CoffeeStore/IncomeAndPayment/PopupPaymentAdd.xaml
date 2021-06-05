@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:UserControls="clr-namespace:CoffeeStore.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              Height="350" Width="450">
     <StackPanel Background="White">
@@ -30,7 +31,11 @@
             </Grid.ColumnDefinitions>
             <StackPanel Margin="0,0,5,0" Grid.Column="0">
                 <TextBlock  Text="Ngày lập"/>
-                <DatePicker Name="dp1" DisplayDate="" Height="40" />
+                <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
+                    <DatePicker x:Name="dp1" Height="39"
+                         VerticalContentAlignment="Center"
+                         materialDesign:HintAssist.Hint="Chọn ngày" Padding="5"/>
+                </Border>
             </StackPanel>
             <StackPanel Margin="5,0,0,0" Grid.Column="1">
                 <TextBlock  Text="Số tiền"/>
