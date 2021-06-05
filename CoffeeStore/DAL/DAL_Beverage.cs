@@ -155,6 +155,22 @@ namespace CoffeeStore.DAL
                 Console.WriteLine(e.Message);
             };
             return null;
-        }       
+        }
+        public DataTable findBeverage(string type, string name)
+        {
+            try
+            {
+                string sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                DataTable dsMon = new DataTable();
+                da.Fill(dsMon);
+                return dsMon;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            };
+            return null;
+        }
     }
 }
