@@ -27,7 +27,8 @@ namespace CoffeeStore.Account
 
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
-
+            var window = Window.GetWindow(this);
+            window.Close();
         }
     }
 }

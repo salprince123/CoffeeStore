@@ -24,5 +24,10 @@ namespace CoffeeStore.View
         {
             InitializeComponent();
         }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this).Close();
+        }
     }
 }

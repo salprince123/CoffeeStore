@@ -58,5 +58,10 @@ namespace CoffeeStore.Menu
         {
             e.Handled = !NumberCheck.IsNumber(e.Text);
         }
+
+        private void btExit_Click(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this).Close();
+        }
     }
 }

@@ -24,5 +24,10 @@ namespace CoffeeStore.IncomeAndPayment
         {
             InitializeComponent();
         }
+
+        private void btExit_Click(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this).Close();
+        }
     }
 }
