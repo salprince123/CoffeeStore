@@ -84,10 +84,6 @@
     <Reference Include="System.Data.SQLite.Linq, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.113.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=3.5.40128.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -130,6 +126,9 @@
     </Compile>
     <Compile Include="Account\PopupChangePassword.xaml.cs">
       <DependentUpon>PopupChangePassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Account\PopupDeclineAccess.xaml.cs">
+      <DependentUpon>PopupDeclineAccess.xaml</DependentUpon>
     </Compile>
     <Compile Include="Account\PopupDeleteConfirm.xaml.cs">
       <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
@@ -300,6 +299,10 @@
     <Page Include="Account\PopupChangePassword.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Account\PopupDeclineAccess.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Account\PopupDeleteConfirm.xaml">
       <SubType>Designer</SubType>
