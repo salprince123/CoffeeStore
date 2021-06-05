@@ -83,10 +83,10 @@
                 </MenuItem.Header>
                 <MenuItem Template="{StaticResource VsMenuSub}" 
                           Height="35" Width="180"
-                          Header="Đổi mật khẩu"/>
+                          Header="Đổi mật khẩu" Click="ChangePasswordBtn_Click"/>
                 <MenuItem Template="{StaticResource VsMenuSub}" 
                           Height="35" Width="180"
-                          Header="Đăng xuất"/>
+                          Header="Đăng xuất" Click="LogOutBtn_Click"/>
             </MenuItem>
         </Menu>
         <!--Navigation menu here-->

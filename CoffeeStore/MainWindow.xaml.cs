@@ -31,8 +31,6 @@ namespace CoffeeStore
             
             InitializeComponent();
 
-            var item0 = new ItemMenu("Trang chủ", "0", new UserControl(), PackIconKind.ViewDashboard);
-
             var item1 = new ItemMenu("Thu ngân", new Cashier(this), PackIconKind.Schedule);
 
             var item2 = new ItemMenu("Menu", "AP006", new Menu.MenuList(), PackIconKind.CalendarTextOutline);
@@ -60,7 +58,6 @@ namespace CoffeeStore
             menuAccount.Add(new SubItem("Nhóm tài khoản", "AP003", new Account.GroupAccountList()));
             var item7 = new ItemMenu("Tài khoản", menuAccount, PackIconKind.Register);
 
-            Menu.Children.Add(new MenuItem(item0, this));
             Menu.Children.Add(new MenuItem(item1, this));
             Menu.Children.Add(new MenuItem(item2, this));
             Menu.Children.Add(new MenuItem(item3, this));
@@ -70,6 +67,9 @@ namespace CoffeeStore
             Menu.Children.Add(new MenuItem(item7, this));
             loginScreen.btnManager.Click += LoginScreen_BtnManager_Click;
             loginScreen.btnSale.Click += LoginScreen_BtnSale_Click;
+
+            //var screen = new Menu.MenuList();
+            //StackPanelMain.Children.Add(screen);
         }
 
         private void LoginScreen_BtnSale_Click(object sender, RoutedEventArgs e)
@@ -97,6 +97,35 @@ namespace CoffeeStore
                 gridLogin.Children.Clear();
             }
         }
+
+        private void ChangePasswordBtn_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            Window window = new Window
+            {
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
+                Title = "Đổi mật khẩu",
+                Content = new Account.PopupChangePassword(),
+                Width = 540,
+                Height = 330,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 330 ) / 2,
+            };
+            window.ShowDialog();
+
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
+        }
+
+        private void LogOutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            gridLogin.Children.Clear();
+            gridLogin.Children.Add(loginScreen);
+        }
+
         internal void SwitchScreen(object sender)
         {
             var screen = ((UserControl)sender);

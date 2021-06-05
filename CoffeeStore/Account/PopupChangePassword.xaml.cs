@@ -24,5 +24,10 @@ namespace CoffeeStore.Account
         {
             InitializeComponent();
         }
+
+        private void btExit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
