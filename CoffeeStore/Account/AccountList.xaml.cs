@@ -1,17 +1,9 @@
-﻿using System;
+﻿using CoffeeStore.BUS;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CoffeeStore.Account
 {
@@ -20,10 +12,54 @@ namespace CoffeeStore.Account
     /// </summary>
     public partial class AccountList : UserControl
     {
+        class accountInfo
+        {
+            public string id { get; set; }
+            public string name { get; set; }
+            public string type { get; set; }
+            public string pass { get; set; }
+
+            public accountInfo() { }
+            public accountInfo(string newid, string newname, string newtype, string newpass)
+            {
+                id = newid;
+                name = newname;
+                type = newtype;
+                pass = newpass;
+            }
+        }
+
         public AccountList()
         {
+            
             InitializeComponent();
+            dataGridAccount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
+            LoadData();
+            
+        }      
+
+        void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
         }
+
+        public void LoadData()
+        {
+            List<accountInfo> employees = new List<accountInfo>();
+            BUS_Employees bus_employees = new BUS_Employees();
+            DataTable temp = bus_employees.GetActiveEmployees();
+            
+            foreach (DataRow row in temp.Rows)
+            {
+                string id = row["EmployeeID"].ToString();
+                string name = row["EmployeeName"].ToString();
+                string type = row["EmployeeTypeName"].ToString();
+                string pass = row["Password"].ToString();
+                employees.Add(item: new accountInfo(id, name, type, pass));
+            }
+            this.dataGridAccount.ItemsSource = employees;
+            this.dataGridAccount.Items.Refresh();
+        }    
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -45,6 +81,31 @@ namespace CoffeeStore.Account
 
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            //if (MessageBox.Show("Ban co chac chan xoa?", "Thong bao", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            //{
+            //    InventoryImportObject row = (InventoryImportObject)dataGridImport.SelectedItem;
+            //    BUS_InventoryImportDetail importDetail = new BUS_InventoryImportDetail();
+            //    BUS_InventoryImport import = new BUS_InventoryImport();
+            //    importDetail.Delete(row.ID);
+            //    import.Delete(row.ID);
+            //    LoadData();
+            //}
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            //InventoryImportObject row = (InventoryImportObject)dataGridImport.SelectedItem;
+            //if (row == null) return;
+            //var screen = new InventoryImportEDIT(row.ID, row.EmployName, row.InventoryDate, _context);
+            //if (screen != null)
+            //{
+            //    this._context.StackPanelMain.Children.Clear();
+            //    this._context.StackPanelMain.Children.Add(screen);
+            //}
         }
     }
 }

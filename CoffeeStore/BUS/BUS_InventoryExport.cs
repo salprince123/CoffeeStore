@@ -19,6 +19,10 @@ namespace CoffeeStore.BUS
         {
             return export.Create(name, date);
         }
+        public bool Delete(String id)
+        {
+            return export.Delete(id);
+        }
         public DataTable SelectDetail(String id)
         {
             return export.SelectDetail(id);

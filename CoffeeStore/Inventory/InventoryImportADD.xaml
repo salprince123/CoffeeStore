@@ -121,7 +121,7 @@
                                 <DataGridTextColumn Header="Đơn giá" Binding="{Binding Path='unitPrice',Mode=TwoWay}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Số lượng" Binding="{Binding Path='amount' ,Mode=TwoWay}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding Path='unit'}" IsReadOnly="True"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Tổng tiền" Binding="{Binding Path='totalCost',Mode=TwoWay}" IsReadOnly="True"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Tổng tiền" Binding="{Binding Path='totalCost',Mode=OneWay}" IsReadOnly="True"></DataGridTextColumn>
                                 <DataGridTextColumn Header=""></DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>

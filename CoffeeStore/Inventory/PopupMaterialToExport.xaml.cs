@@ -108,6 +108,8 @@ namespace CoffeeStore.Inventory
                 ((InventoryImportADD)parent).MaterName = temp;
             else if (parent.GetType() == new InventoryExportADD().GetType())
                 ((InventoryExportADD)parent).MaterName = temp;
+            else if (parent.GetType() == new InventoryExportEDIT().GetType())
+                ((InventoryExportEDIT)parent).MaterName = temp;
             else ((InventoryImportEDIT)parent).MaterName = temp;
             Window.GetWindow(this).Close();
         }

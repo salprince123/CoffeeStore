@@ -118,14 +118,14 @@
                             <DataGrid.CurrentColumn>
                                 <materialDesign:DataGridTextColumn/>
                             </DataGrid.CurrentColumn>
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Mã giảm giá" Binding="{Binding Path= 'DiscountID'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Tên ưu đãi" Binding="{Binding Path= 'DiscountName'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding Path= 'StartDate'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding Path= 'EndDate'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Mức ưu đãi (%)" Binding="{Binding Path= 'DiscountValue'}"></DataGridTextColumn>
-                                <DataGridTemplateColumn Header="">
-                                    <DataGridTemplateColumn.CellTemplate>
+                            <DataGrid.Columns>                              
+                                <DataGridTextColumn Header="Mã giảm giá" Binding="{Binding Path='DiscountID'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Tên ưu đãi" Binding="{Binding Path='DiscountName'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding Path='StartDate'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding Path='EndDate'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Mức ưu đãi (%)" Binding="{Binding Path='DiscountValue'}"></DataGridTextColumn>
+                                 <DataGridTemplateColumn Header="">
+								  <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
                                                 <Button Margin="10,0,0,0" Name="btnWatch" BorderBrush="#9FA2B4" Background="White" Click="btnWatch_Click">

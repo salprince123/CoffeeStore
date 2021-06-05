@@ -32,6 +32,9 @@ namespace CoffeeStore.Menu
         {
             InitializeComponent();
             this._context = context;
+        public PopupDeleteConfirm(string id)
+        {
+            InitializeComponent();
             ID = id;
         }
         private void btSave_Click(object sender, RoutedEventArgs e)

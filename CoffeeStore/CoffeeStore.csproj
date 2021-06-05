@@ -125,8 +125,17 @@
     <Compile Include="Account\PopupAddGroupAccount.xaml.cs">
       <DependentUpon>PopupAddGroupAccount.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Account\PopupChangePassword.xaml.cs">
+      <DependentUpon>PopupChangePassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Account\PopupDeleteConfirm.xaml.cs">
       <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Account\PopupDisableAccount.xaml.cs">
+      <DependentUpon>PopupDisableAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Account\PopupEditAccount.xaml.cs">
+      <DependentUpon>PopupEditAccount.xaml</DependentUpon>
     </Compile>
     <Compile Include="BUS\BUS_AccessPermission.cs" />
     <Compile Include="BUS\BUS_AccessPermissionGroup.cs" />
@@ -279,9 +288,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Account\PopupChangePassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Account\PopupDeleteConfirm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Account\PopupDisableAccount.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Account\PopupEditAccount.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Discount\DiscountList.xaml">
       <SubType>Designer</SubType>

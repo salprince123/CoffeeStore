@@ -47,6 +47,11 @@ namespace CoffeeStore.Discount
 
         private void btSave_Click_1(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void btSave_Click(object sender, RoutedEventArgs e)
+        {
             if (checkCondition())
             {
                 DTO_Discount discount = new DTO_Discount();
@@ -68,22 +73,23 @@ namespace CoffeeStore.Discount
                     this.mainWindow.StackPanelMain.Children.Clear();
                     this.mainWindow.StackPanelMain.Children.Add(screen);
                 }
-                else MessageBox.Show("Screen is null");
             }
             else
                 MessageBox.Show("Tên discount, giá trị discount, ngày bắt đầu và ngày kết thúc là bắt buộc");
 
         }
+        private bool checkCondition()
+        {
+            return (tbName.Text != "" && tbPrice.Text != "" && dpStartDate.SelectedDate != null && dpEndDate.SelectedDate != null && dpStartDate.SelectedDate < dpEndDate.SelectedDate);
+        }
+
+        private void tbPrice_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !NumberCheck.IsNumber(e.Text);
+        }
 
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
-            /*var screen = new DiscountList(mainWindow);
-             if (screen != null)
-             {
-                 this.mainWindow.StackPanelMain.Children.Clear();
-                 this.mainWindow.StackPanelMain.Children.Add(screen);
-             }
-             else MessageBox.Show("Screen is null");*/
             Window.GetWindow(this).Close();
         }
     }

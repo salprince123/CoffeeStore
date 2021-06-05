@@ -34,7 +34,6 @@ namespace CoffeeStore.Discount
         {
             InitializeComponent();
             this._context = window;
-            loadData();
         }
         void loadData()
         {
@@ -42,11 +41,11 @@ namespace CoffeeStore.Discount
             DataTable temp = bus.getAllDiscount();
             foreach (DataRow row in temp.Rows)
             {
-                string name = row["Tên ưu đãi"].ToString();
-                string id = row["Mã giảm giá"].ToString();
-                int value = Int32.Parse(row["Mức ưu đãi (%)"].ToString());
-                string startdate = row["Ngày bắt đầu"].ToString();
-                string enddate = row["Ngày kết thúc"].ToString();
+                string name = row["DiscountName"].ToString();
+                string id = row["DiscountID"].ToString();
+                int value = Int32.Parse(row["DiscountValue"].ToString());
+                string startdate = row["startdate"].ToString();
+                string enddate = row["enddate"].ToString();
                 list.Add(new DTO_Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate });
             }
             dgDiscount.ItemsSource = list;
@@ -72,6 +71,25 @@ namespace CoffeeStore.Discount
 
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
+            loadData();
+        }
+        private void dgDiscount_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void btnFind_Click(object sender, RoutedEventArgs e)
+        {
+            dgDiscount.ItemsSource = bus.findDiscount(tbDateStart.Text, tbDateEnd.Text).DefaultView;
+        }
+
+       
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Ban co chac chan xoa?", "Thong bao", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                return;
+            }
         }
 
         private void btnWatch_Click(object sender, RoutedEventArgs e)
@@ -98,16 +116,6 @@ namespace CoffeeStore.Discount
                 this._context.StackPanelMain.Children.Clear();
                 this._context.StackPanelMain.Children.Add(screen);
             }
-
-        }
-
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void dgDiscount_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
         }
 

@@ -57,7 +57,7 @@ namespace CoffeeStore.Discount
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView row = dgDiscount.SelectedItem as DataRowView;
+            /*DataRowView row = dgDiscount.SelectedItem as DataRowView;
             if (row != null)
             {
                 String ID = row["Mã giảm giá"].ToString();
@@ -70,7 +70,7 @@ namespace CoffeeStore.Discount
                     MessageBox.Show("Thất bại" + busDiscount.ID());
             }
             else
-                MessageBox.Show(dgDiscount.SelectedItem.ToString());
+                MessageBox.Show(dgDiscount.SelectedItem.ToString());*/
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -97,13 +97,16 @@ namespace CoffeeStore.Discount
 
         private void dgDiscount_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DataGrid dataGrid = (DataGrid)sender;
+           /* DataGrid dataGrid = (DataGrid)sender;
             DataRowView row = dataGrid.SelectedItem as DataRowView;
             if (row != null)
             {
                 ID = row["Mã giảm giá"].ToString();
+
                 tbName.Text = row["Tên ưu đãi"].ToString();
                 tbPrice.Text = row["Mức ưu đãi (%)"].ToString();
+                tbName.Text = row["Tên giảm giá"].ToString();
+                tbPrice.Text = row["Phần trăm giảm"].ToString();
                 try
                 {
                     dpStartDate.SelectedDate = DateTime.ParseExact(row["Ngày bắt đầu"].ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
@@ -113,7 +116,7 @@ namespace CoffeeStore.Discount
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
+            }*/
         }
         private void tbPrice_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {

@@ -34,6 +34,7 @@ namespace CoffeeStore
 
             var item1 = new ItemMenu("Thu ngân", new Cashier(this), PackIconKind.Schedule);
 
+
             var item2 = new ItemMenu("Menu", new Menu.MenuList(this), PackIconKind.CalendarTextOutline);
 
             var item3 = new ItemMenu("Ưu đãi", new Discount.DiscountList(this), PackIconKind.ShoppingBasket);

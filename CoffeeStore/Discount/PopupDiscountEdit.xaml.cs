@@ -35,9 +35,7 @@ namespace CoffeeStore.Discount
             busDiscount = new BUS_Discount();
             ID = id;
             tbName.Text = name;
-
             tbStartDate.SelectedDate = DateTime.ParseExact(startdate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-
             tbEndDate.SelectedDate = DateTime.ParseExact(enddate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             MessageBox.Show(enddate + "   " + tbEndDate.Text);
             tbPrice.Text = value;

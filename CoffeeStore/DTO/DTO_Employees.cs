@@ -6,56 +6,56 @@ using System.Threading.Tasks;
 
 namespace CoffeeStore.DTO
 {
-    class DTO_Employees
+    public class DTO_Employees
     {
         #region Atrributes
         private string EmployeeID;
         private string EmployeeName;
-        private string EmployeeTypeID;
+        private string EmployeeTypeName;
         private string Password;
         #endregion
 
         #region Method
-        DTO_Employees()
+        public DTO_Employees()
         {
             EmployeeID = "";
             EmployeeName = "";
-            EmployeeTypeID = "";
+            EmployeeTypeName = "";
             Password = "";
         }
-        DTO_Employees(string ID, string name, string typeId, string pass)
+        public DTO_Employees(string ID, string name, string typeName, string pass)
         {
             EmployeeID = ID;
             EmployeeName = name;
-            EmployeeTypeID = typeId;
+            EmployeeTypeName = typeName;
             Password = pass;
         }
         #region GetSetMethod
-        string GetEmployeeID()
+        public string GetEmployeeID()
         {
             return EmployeeID;
-        }    
-        string GetEmployeeName()
+        }
+        public string GetEmployeeName()
         {
             return EmployeeName;
-        }    
-        string GetEmployeeTypeID()
-        {
-            return EmployeeTypeID;
         }
-        string GetEmployeePassword()
+        public string GetEmployeeTypeName()
+        {
+            return EmployeeTypeName;
+        }
+        public string GetEmployeePassword()
         {
             return Password;
         }
-        void SetEmployeeName(string newName)
+        public void SetEmployeeName(string newName)
         {
             EmployeeName = newName;
         }
-        void SetEmployeeTypeID(string newTypeId)
+        public void SetEmployeeTypeName(string newTypeName)
         {
-            EmployeeTypeID = newTypeId;
+            EmployeeTypeName = newTypeName;
         }
-        void SetPassword(string newPass)
+        public void SetPassword(string newPass)
         {
             Password = newPass;
         }

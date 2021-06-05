@@ -27,6 +27,22 @@ namespace CoffeeStore.DAL
 
             }
             return pass;
-        }    
+        }
+
+        public DataTable GetActiveEmployees()
+        {
+            DataTable employees = new DataTable();
+            try
+            {
+                string sql = $"select EmployeeID, EmployeeName, EmployeeType.EmployeeTypeName, Password from Employees join EmployeeType on Employees.EmployeeTypeID = EmployeeType.EmployeeTypeID where State = '1'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(employees);
+            }
+            catch
+            {
+
+            }
+            return employees;
+        }
     }
 }
