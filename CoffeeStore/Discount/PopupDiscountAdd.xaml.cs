@@ -67,6 +67,7 @@ namespace CoffeeStore.Discount
                     this.mainWindow.StackPanelMain.Children.Clear();
                     this.mainWindow.StackPanelMain.Children.Add(screen);
                 }
+                else MessageBox.Show("Screen is null");
             }
             else
                 MessageBox.Show("Tên discount, giá trị discount, ngày bắt đầu và ngày kết thúc là bắt buộc");
@@ -81,6 +82,7 @@ namespace CoffeeStore.Discount
                 this.mainWindow.StackPanelMain.Children.Clear();
                 this.mainWindow.StackPanelMain.Children.Add(screen);
             }
+            else MessageBox.Show("Screen is null");
         }
     }
 }

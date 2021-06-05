@@ -31,6 +31,7 @@ namespace CoffeeStore.Menu
         public PopupAddMenu(MainWindow window)
         {
             InitializeComponent();
+            cbBeverageType.ItemsSource = bus.getBeverageType();
             main = window;
         }
         private void btSave_Click(object sender, RoutedEventArgs e)

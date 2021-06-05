@@ -102,8 +102,8 @@ namespace CoffeeStore.Discount
             if (row != null)
             {
                 ID = row["Mã giảm giá"].ToString();
-                tbName.Text = row["Tên giảm giá"].ToString();
-                tbPrice.Text = row["Phần trăm giảm"].ToString();
+                tbName.Text = row["Tên ưu đãi"].ToString();
+                tbPrice.Text = row["Mức ưu đãi (%)"].ToString();
                 try
                 {
                     dpStartDate.SelectedDate = DateTime.ParseExact(row["Ngày bắt đầu"].ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);

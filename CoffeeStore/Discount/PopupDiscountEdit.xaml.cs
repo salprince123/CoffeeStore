@@ -23,21 +23,26 @@ namespace CoffeeStore.Discount
     {
         string ID;
         BUS_Discount busDiscount;
+        MainWindow mainWindow;
         public PopupDiscountEdit()
         {
             InitializeComponent();
             busDiscount = new BUS_Discount();
         }
-        public PopupDiscountEdit(string id, string name, string startdate, string enddate, string value)
+        public PopupDiscountEdit(string id, string name, string startdate, string enddate, string value, MainWindow window)
         {
             InitializeComponent();
             busDiscount = new BUS_Discount();
             ID = id;
             tbName.Text = name;
-            tbStartDate.Text = startdate;
-            tbEndDate.Text = enddate;
+
+            tbStartDate.SelectedDate = DateTime.ParseExact(startdate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+            tbEndDate.SelectedDate = DateTime.ParseExact(enddate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            MessageBox.Show(enddate + "   " + tbEndDate.Text);
             tbPrice.Text = value;
             tbDescription.Text = "";
+            this.mainWindow = window;
         }
 
         private void btSave_Click(object sender, RoutedEventArgs e)
@@ -56,6 +61,12 @@ namespace CoffeeStore.Discount
                 }
                 else
                     MessageBox.Show("Thất bại");
+                var screen = new DiscountList(mainWindow);
+                if (screen != null)
+                {
+                    this.mainWindow.StackPanelMain.Children.Clear();
+                    this.mainWindow.StackPanelMain.Children.Add(screen);
+                }
             }
             else
                 MessageBox.Show("Tên discount, giá trị discount, ngày bắt đầu và ngày kết thúc là bắt buộc");
@@ -73,7 +84,22 @@ namespace CoffeeStore.Discount
 
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
+            var screen = new DiscountList(mainWindow);
+            if (screen != null)
+            {
+                this.mainWindow.StackPanelMain.Children.Clear();
+                this.mainWindow.StackPanelMain.Children.Add(screen);
+            }
+        }
 
+        private void btExit_Click_1(object sender, RoutedEventArgs e)
+        {
+            var screen = new DiscountList(mainWindow);
+            if (screen != null)
+            {
+                this.mainWindow.StackPanelMain.Children.Clear();
+                this.mainWindow.StackPanelMain.Children.Add(screen);
+            }
         }
     }
 }

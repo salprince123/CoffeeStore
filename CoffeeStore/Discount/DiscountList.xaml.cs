@@ -42,11 +42,11 @@ namespace CoffeeStore.Discount
             DataTable temp = bus.getAllDiscount();
             foreach (DataRow row in temp.Rows)
             {
-                string name = row["DiscountName"].ToString();
-                string id = row["DiscountID"].ToString();
-                int value = Int32.Parse(row["Price"].ToString());
-                string startdate = row["startdate"].ToString();
-                string enddate = row["enddate"].ToString();
+                string name = row["Tên ưu đãi"].ToString();
+                string id = row["Mã giảm giá"].ToString();
+                int value = Int32.Parse(row["Mức ưu đãi (%)"].ToString());
+                string startdate = row["Ngày bắt đầu"].ToString();
+                string enddate = row["Ngày kết thúc"].ToString();
                 list.Add(new DTO_Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate });
             }
             dgDiscount.ItemsSource = list;
@@ -79,7 +79,7 @@ namespace CoffeeStore.Discount
             DTO_Discount row = (DTO_Discount)dgDiscount.SelectedItem;
             MessageBox.Show(row.DiscountID);
             var rowView = dgDiscount.SelectedItem;
-            var screen = new PopupDiscountEdit(row.DiscountID, row.DiscountName, row.StartDate, row.EndDate, row.DiscountValue.ToString());
+            var screen = new PopupDiscountDetail(row.DiscountID);
             if (screen != null)
             {
                 this._context.StackPanelMain.Children.Clear();
@@ -92,7 +92,7 @@ namespace CoffeeStore.Discount
             DTO_Discount row = (DTO_Discount)dgDiscount.SelectedItem;
             MessageBox.Show(row.DiscountID);
             var rowView = dgDiscount.SelectedItem;
-            var screen = new PopupDiscountEdit(row.DiscountID, row.DiscountName, row.StartDate, row.EndDate, row.DiscountValue.ToString());
+            var screen = new PopupDiscountEdit(row.DiscountID, row.DiscountName, row.StartDate, row.EndDate, row.DiscountValue.ToString(), _context);
             if (screen != null)
             {
                 this._context.StackPanelMain.Children.Clear();

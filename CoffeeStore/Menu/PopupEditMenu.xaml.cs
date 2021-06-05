@@ -34,9 +34,11 @@ namespace CoffeeStore.Menu
             bus = new BUS_Beverage();
             tbName.Text = name;
             tbPrice.Text = price;
-            cbBeverageType.Text = type;
+            cbBeverageType.ItemsSource = bus.getBeverageType();
+            cbBeverageType.SelectedItem = type;
             ID = id;
             window = context;
+            MessageBox.Show(type);
         }
 
         private void btSave_Click(object sender, RoutedEventArgs e)
