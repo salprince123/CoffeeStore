@@ -34,6 +34,7 @@ namespace CoffeeStore.Discount
         {
             InitializeComponent();
             this._context = window;
+            loadData();
         }
         void loadData()
         {
@@ -119,9 +120,5 @@ namespace CoffeeStore.Discount
 
         }
 
-        private void btnFind_Click(object sender, RoutedEventArgs e)
-        {
-            dgDiscount.ItemsSource = bus.findDiscount(tbDateStart.Text, tbDateEnd.Text).DefaultView;
-        }
     }
 }

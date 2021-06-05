@@ -6,7 +6,7 @@
              xmlns:UserControls="clr-namespace:CoffeeStore.View"
              mc:Ignorable="d" 
              Height="350" Width="540">
-    <StackPanel Background="White">
+    <StackPanel Background="White" Margin="0,0,0,-282">
         <!--Title bar here-->
         <Grid Margin="0,0,0,0" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <UserControls:TitleBar/>

@@ -31,7 +31,9 @@ namespace CoffeeStore.Menu
         public PopupDeleteConfirm(string id, MainWindow context)
         {
             InitializeComponent();
+            ID = id;
             this._context = context;
+        }
         public PopupDeleteConfirm(string id)
         {
             InitializeComponent();

@@ -34,12 +34,6 @@ namespace CoffeeStore.Discount
             busDiscount = new BUS_Discount();
             mainWindow = window;
         }
-     
-        private bool checkCondition()
-        {
-            return (tbName.Text != "" && tbPrice.Text != "" && dpStartDate.SelectedDate != null && dpEndDate.SelectedDate != null && dpStartDate.SelectedDate < dpEndDate.SelectedDate);
-        }
-
         private void tbPrice_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !NumberCheck.IsNumber(e.Text);
@@ -81,11 +75,6 @@ namespace CoffeeStore.Discount
         private bool checkCondition()
         {
             return (tbName.Text != "" && tbPrice.Text != "" && dpStartDate.SelectedDate != null && dpEndDate.SelectedDate != null && dpStartDate.SelectedDate < dpEndDate.SelectedDate);
-        }
-
-        private void tbPrice_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = !NumberCheck.IsNumber(e.Text);
         }
 
         private void btExit_Click(object sender, RoutedEventArgs e)

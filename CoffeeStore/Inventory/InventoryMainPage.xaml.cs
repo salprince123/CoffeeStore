@@ -52,8 +52,8 @@ namespace CoffeeStore.Inventory
             {
                 string name = row["Tên"].ToString();
                 string amount = row["Số lượng"].ToString();
-                string use = row["isUse"].ToString();
-                if (use == "1")
+                /*string use = row["isUse"].ToString();
+                if (use == "1")*/
                     mapNameAmount[name] = int.Parse(amount);
             }
             //With unit
@@ -63,8 +63,8 @@ namespace CoffeeStore.Inventory
             {
                 string name = row["MaterialName"].ToString();
                 string unit = row["Unit"].ToString();
-                string use = row["isUse"].ToString();
-                if (use == "1")
+                /*string use = row["isUse"].ToString();
+                if (use == "1")*/
                     mapNameUnit[name] = unit;
             }
             //calculate amount in stock = import - export (if have)

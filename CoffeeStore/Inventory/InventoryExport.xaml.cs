@@ -127,9 +127,9 @@ namespace CoffeeStore.Inventory
         {
             try
             {
-                tbDateStart.Text = dpFrom.SelectedDate.Value.ToString("dd/MM/yyyy");
+               /* tbDateStart.Text = dpFrom.SelectedDate.Value.ToString("dd/MM/yyyy");
                 dpFrom.Text = "";
-                Keyboard.Focus(tbDateStart);
+                Keyboard.Focus(tbDateStart);*/
             }
             catch (Exception)
             { }
@@ -140,9 +140,9 @@ namespace CoffeeStore.Inventory
         {
             try
             {
-                tbDateEnd.Text = dpTo.SelectedDate.Value.ToString("dd/MM/yyyy");
+                /*tbDateEnd.Text = dpTo.SelectedDate.Value.ToString("dd/MM/yyyy");
                 dpTo.Text = "";
-                Keyboard.Focus(tbDateEnd);
+                Keyboard.Focus(tbDateEnd);*/
             }
             catch (Exception)
             { }

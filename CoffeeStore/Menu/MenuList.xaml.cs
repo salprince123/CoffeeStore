@@ -171,26 +171,5 @@ namespace CoffeeStore.Menu
             dgMenu.Items.Refresh();
         }
 
-        private void dgMenu_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            DataGrid dt = (DataGrid)sender;
-            DataRowView row = dt.SelectedItem as DataRowView;
-            var screen = new PopupEditMenu(row[1].ToString(), row[2].ToString(), row[3].ToString(), row[0].ToString());
-            if (screen!=null)
-            {
-                this._context.StackPanelMain.Children.Clear();
-                this._context.StackPanelMain.Children.Add(screen);
-            }    
-        }
-
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
