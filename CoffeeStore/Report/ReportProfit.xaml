@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CoffeeStore.Report"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit" 
              mc:Ignorable="d" 
              MinWidth="650" MinHeight="600" Height="650">
 
@@ -122,11 +121,7 @@
                                 </Label>
                             </Grid>
                         </Grid>
-                        <DVC:Chart Grid.Row="1" BorderBrush="#A7AFB2" Name="barChartGeneral" Height="262">
-                            <DVC:BarSeries DependentValuePath="Value" Title="VNĐ"
-                                       IndependentValuePath="Key" ItemsSource="{Binding}" 
-                                       IsSelectionEnabled="False"></DVC:BarSeries>
-                        </DVC:Chart>
+                        
                     </Grid>
                 
                     <!--Payment chart here-->
@@ -146,12 +141,6 @@
                                 </Label>
                             </Grid>
                         </Grid>
-
-                        <DVC:Chart Grid.Row="1" BorderBrush="#A7AFB2" Name="barChartPayment" Height="262">
-                            <DVC:BarSeries DependentValuePath="Value" Title="VNĐ"
-                                       IndependentValuePath="Key" ItemsSource="{Binding}" 
-                                       IsSelectionEnabled="False"></DVC:BarSeries>
-                        </DVC:Chart>
                     </Grid>
 
                     <!--Profit chart here-->
@@ -171,12 +160,6 @@
                                 </Label>
                             </Grid>
                         </Grid>
-
-                        <DVC:Chart Grid.Row="1" BorderBrush="#A7AFB2" Name="barChartProfit" Height="262">
-                            <DVC:BarSeries DependentValuePath="Value" Title="VNĐ"
-                                       IndependentValuePath="Key" ItemsSource="{Binding}" 
-                                       IsSelectionEnabled="False"></DVC:BarSeries>
-                        </DVC:Chart>
                     </Grid>
                 </Grid>
         </Grid>
