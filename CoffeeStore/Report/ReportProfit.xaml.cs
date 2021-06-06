@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-//using System.Windows.Controls.DataVisualization;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace CoffeeStore.Report
 {
@@ -24,28 +25,58 @@ namespace CoffeeStore.Report
         public ReportProfit()
         {
             InitializeComponent();
-            LoadBarChartData();
-        }
+            LoadChart();
+            //SeriesCollection = new SeriesCollection
+            //{
+            //    new RowSeries
+            //    {
+            //        Title = "2015",
+            //        Values = new ChartValues<double> { 10, 50, 39, 50 }
+            //    }
+            //};
 
-        private void LoadBarChartData()
+            ////adding series will update and animate the chart automatically
+            //SeriesCollection.Add(new RowSeries
+            //{
+            //    Title = "2016",
+            //    Values = new ChartValues<double> { 11, 56, 42 }
+            //});
+
+            ////also adding values updates and animates the chart automatically
+            //SeriesCollection[1].Values.Add(48d);
+
+            //Labels = new[] { "Maria", "Susan", "Charles", "Frida" };
+            //Formatter = value => value.ToString("N");
+
+            //DataContext = this;
+        }
+        private void LoadChart()
         {
-            List<KeyValuePair<string, int>> valueListGeneral = new List<KeyValuePair<string, int>>();
-            valueListGeneral.Add(new KeyValuePair<string, int>("Chi phí", 60));
-            valueListGeneral.Add(new KeyValuePair<string, int>("Doanh thu", 20));
-            valueListGeneral.Add(new KeyValuePair<string, int>("Lợi nhuận", 50));
-            barChartGeneral.DataContext = valueListGeneral;
+            //SeriesCollection = new SeriesCollection
+            //{
+            //    new RowSeries
+            //    {
+            //        Title = "2015",
+            //        Values = new ChartValues<double> { 10, 50, 39, 50 }
+            //    }
+            //};
 
-            List<KeyValuePair<string, int>> valueListPayment = new List<KeyValuePair<string, int>>();
-            valueListPayment.Add(new KeyValuePair<string, int>("Nguyên liệu 1", 60));
-            valueListPayment.Add(new KeyValuePair<string, int>("Nguyên liệu 2", 20));
-            valueListPayment.Add(new KeyValuePair<string, int>("Nguyên liệu 3", 50));
-            barChartPayment.DataContext = valueListPayment;
+            //SeriesCollection.Add(new RowSeries
+            //{
+            //    Title = "2016",
+            //    Values = new ChartValues<double> { 11, 56, 42 }
+            //});
+            //SeriesCollection[1].Values.Add(48d);
 
-            List<KeyValuePair<string, int>> valueListProfit = new List<KeyValuePair<string, int>>();
-            valueListProfit.Add(new KeyValuePair<string, int>("Món 1", 60));
-            valueListProfit.Add(new KeyValuePair<string, int>("Món 2", 20));
-            valueListProfit.Add(new KeyValuePair<string, int>("Món 3", 50));
-            barChartProfit.DataContext = valueListProfit;
+            //Labels = new[] { "Maria", "Susan", "Charles", "Frida" };
+            //Formatter = value => value.ToString("N");
+
+            //DataContext = this;
         }
+
+        public SeriesCollection SeriesCollection { get; set; }
+        public string[] Labels { get; set; }
+        public Func<double, string> Formatter { get; set; }
+
     }
 }

@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CoffeeStore.Report"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DataContext="{d:DesignInstance  local:ReportProfit}"
              mc:Ignorable="d" 
              MinWidth="650" MinHeight="600" Height="650">
 
@@ -44,13 +46,10 @@
                 <RowDefinition Height="15"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="15"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <!--Textbox here-->
+            
+            <!--Datepicker here-->
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.5*"></ColumnDefinition>
@@ -87,7 +86,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="15"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="15"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="15"></RowDefinition>
@@ -112,16 +111,24 @@
                         </Grid.RowDefinitions>
 
                         <Grid Grid.Row="0" Background="#6B6158">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="15"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="1" HorizontalAlignment="Center">
-                                <Label  Foreground="#FFE297" FontSize="15" FontWeight="Bold" Content="Tổng quát">
-                                </Label>
-                            </Grid>
+                            <Label  Foreground="#FFE297" FontSize="15" FontWeight="Bold" Content="Tổng quát" HorizontalAlignment="Center">
+                            </Label>
+                        </Grid>
+                        <Grid Grid.Row="1" Height="Auto">
+                            <!--<lvc:CartesianChart  Series="{Binding SeriesCollection}" >
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Title="Salesman" LabelFormatter="{Binding Formatter}"></lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="Sold Apps" Labels="{Binding Labels}"></lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                                <lvc:CartesianChart.DataTooltip>
+                                    <lvc:DefaultTooltip SelectionMode="SharedYValues"></lvc:DefaultTooltip>
+                                </lvc:CartesianChart.DataTooltip>
+                            </lvc:CartesianChart>-->
                         </Grid>
                         
+
                     </Grid>
                 
                     <!--Payment chart here-->
