@@ -280,6 +280,9 @@
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PopupDeleteConfirm.xaml.cs">
+      <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PopupEditMenuStatus.xaml.cs">
       <DependentUpon>PopupEditMenuStatus.xaml</DependentUpon>
     </Compile>
@@ -485,6 +488,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PopupDeleteConfirm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
