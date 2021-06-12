@@ -100,30 +100,12 @@ namespace CoffeeStore
 
         private void ChangePasswordBtn_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
-            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
-            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
-            Window window = new Window
-            {
-                ResizeMode = ResizeMode.NoResize,
-                WindowStyle = WindowStyle.None,
-                Title = "Đổi mật khẩu",
-                Content = new Account.PopupChangePassword(),
-                Width = 540,
-                Height = 330,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 330 ) / 2,
-            };
-            window.ShowDialog();
-
-            ((MainWindow)App.Current.MainWindow).Opacity = 1;
-            ((MainWindow)App.Current.MainWindow).Effect = null;
+            PopupChangePassword();
         }
 
         private void LogOutBtn_Click(object sender, RoutedEventArgs e)
         {
-            gridLogin.Children.Clear();
-            gridLogin.Children.Add(loginScreen);
+            LogOut();
         }
 
         internal void SwitchScreen(object sender)
@@ -173,6 +155,34 @@ namespace CoffeeStore
             gridLogin.Children.Clear();
             StackPanelMain.Children.Clear();
             StackPanelMain.Children.Add(screen);
+        }
+
+        internal void LogOut()
+        {
+            gridLogin.Children.Clear();
+            gridLogin.Children.Add(loginScreen);
+        }
+
+        internal void PopupChangePassword()
+        {
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            Window window = new Window
+            {
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
+                Title = "Đổi mật khẩu",
+                Content = new Account.PopupChangePassword(),
+                Width = 540,
+                Height = 350,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 360) / 2,
+            };
+            window.ShowDialog();
+
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

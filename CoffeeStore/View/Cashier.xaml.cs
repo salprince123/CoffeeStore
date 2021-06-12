@@ -67,5 +67,14 @@ namespace CoffeeStore.View
         {
             _context.SwitchToDiscount();
         }
+
+        private void LogOutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            _context.LogOut();
+        }
+        private void ChangePasswordBtn_Click(object sender, RoutedEventArgs e)
+        {
+            _context.PopupChangePassword();
+        }
     }
 }

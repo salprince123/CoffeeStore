@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:CoffeeStore.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -57,7 +58,7 @@
         <!-- style a top level menu item -->
         <ControlTemplate x:Key="VsOnline" TargetType="MenuItem">
             <StackPanel TextBlock.FontSize="15px" Height="40" Background="#FF7A00" Width="180">
-                <Label Content="{TemplateBinding Header}" Margin="5"  HorizontalAlignment="Center" Foreground="White" />
+                <Label Content="{TemplateBinding Header}" Margin="5"  HorizontalAlignment="Left" Foreground="White" />
                 <Image  Height="20" />
 
                 <!-- sub items -->
@@ -87,27 +88,47 @@
         </Grid.ColumnDefinitions>
         <!--Tab menu here-->
         <Menu Background="#6B6158" IsMainMenu="True" Grid.Row="0" Grid.ColumnSpan="2">
-            <MenuItem Background="#FF7A00" Foreground="White" Header="Trang chủ" 
+            <MenuItem Background="#FF7A00" Foreground="White"
+                      Click="HomeButton_Click" Height="40" >
+                <MenuItem.Header>
+                    <materialDesign:PackIcon Kind="ArrowLeft" Height="22" Width="31"/>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Background="#FF7A00" Foreground="White" Header="Thu ngân" 
                       Template="{StaticResource VsOnline}" 
-                      Width="177" Height="40"
-                      Click="HomeButton_Click">
+                      Width="130" Height="40">
             </MenuItem>
             <MenuItem Foreground="White" Header="Menu" 
                       Template="{StaticResource VsMenuTop}" 
-                      Width="210" Height="Auto" >
+                      Width="205" Height="Auto" >
                 <MenuItem Header="Danh sách món" 
                           Template="{StaticResource VsMenuSub}" 
                           Click="Menu_Click"
-                          Height="35" Width="210" />
+                          Height="35" Width="205" />
                 <MenuItem Header="Cập nhật tình trạng món" 
                           Template="{StaticResource VsMenuSub}"
                           Click="MenuStatus_Click"
-                          Width="210"/>
+                          Width="205"/>
             </MenuItem>
             <MenuItem  Foreground="White" Header="Ưu đãi" 
                        Template="{StaticResource VsMenuTop}" 
-                       Width="216" Height="Auto" 
+                       Width="205" Height="Auto" 
                        Click="Discount_Click">
+            </MenuItem>
+            <MenuItem Background="#EAEAEA" Foreground="White" Width="180" Height="Auto"
+                      Template="{StaticResource VsMenuTop}" Margin="500,0,0,0">
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                        <TextBlock x:Name="tblockUsername" Text="Username" FontSize="16" Margin="0,0,40,0"/>
+                        <materialDesign:PackIcon Kind="ChevronDown" Height="23" Width="29" />
+                    </StackPanel>
+                </MenuItem.Header>
+                <MenuItem Template="{StaticResource VsMenuSub}" 
+                          Height="35" Width="180"
+                          Header="Đổi mật khẩu" Click="ChangePasswordBtn_Click"/>
+                <MenuItem Template="{StaticResource VsMenuSub}" 
+                          Height="35" Width="180"
+                          Header="Đăng xuất" Click="LogOutBtn_Click"/>
             </MenuItem>
         </Menu>
 
@@ -226,6 +247,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <!--Food image here-->
+                <!-- How to bind data to this https://youtu.be/_4qej7q6x30-->
                 <ScrollViewer Grid.Column="0">
                     <StackPanel>
                         <StackPanel Margin="20 0">
