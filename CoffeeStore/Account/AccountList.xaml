@@ -8,6 +8,20 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              MinWidth="650" MinHeight="600">
+    <UserControl.Resources>
+        <Style x:Key="DataGrid_Content_CenterVerticalAlign"
+        TargetType="{x:Type DataGridCell}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="90"></RowDefinition>
@@ -87,16 +101,13 @@
                         <DataGrid x:Name="dataGridAccount" Grid.Column="1" Grid.Row="1"
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False"
-                                  HeadersVisibility="All"
-                                  >
+                                  CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}"
+                                  VerticalScrollBarVisibility="Visible" HeadersVisibility="All"
+                                  AutoGenerateColumns="False">
                             
-                            <DataGrid.CurrentColumn>
-                                <materialDesign:DataGridTextColumn/>
-                            </DataGrid.CurrentColumn>
                             <DataGrid.Columns>
                                 <DataGridTextColumn 
-                                    Header="Tài khoản" 
+                                    Header="Tài khoản"
                                     Binding="{Binding Path='id'}"></DataGridTextColumn>
                                 <DataGridTextColumn 
                                     Header="Tên nhân viên" 
@@ -107,21 +118,13 @@
                                 <DataGridTextColumn 
                                     Header="Mật khẩu" 
                                     Binding="{Binding Path='pass'}"></DataGridTextColumn>
-                                <DataGridTemplateColumn Header="">
+                                <DataGridTemplateColumn Header="Thao tác">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
                                                 <Button Margin="10,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5" Click="btnEdit_Click">
                                                     <materialDesign:PackIcon Kind="GreasePencil" Foreground="White" Height="20" Width="20"  />
                                                 </Button>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTemplateColumn Header="">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
                                                 <Button Margin="10,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252" Click="btnDelete_Click">
                                                     <materialDesign:PackIcon Kind="Delete" Height="20" Width="20" />
                                                 </Button>
@@ -133,13 +136,6 @@
                         </DataGrid>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2">
-                            <Label VerticalAlignment="Center">Rows per page :</Label>
-                            <Rectangle Width="20"></Rectangle>
-                            <ComboBox x:Name="cbGridRow" BorderThickness="0" Foreground="Black">
-                                <ComboBoxItem Content="5" IsSelected="True"/>
-                                <ComboBoxItem Content="10"/>
-                            </ComboBox>
-                            <Rectangle Width="20"></Rectangle>
                             <Button Width="40" Height="Auto" 
                                     Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
                                     VerticalAlignment="Center">
