@@ -142,5 +142,10 @@ namespace CoffeeStore.Account
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
         }
+
+        private void dataGridAccount_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dataGridAccount.UnselectAllCells();
+        }
     }
 }

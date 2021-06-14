@@ -8,20 +8,6 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              MinWidth="650" MinHeight="600">
-    <UserControl.Resources>
-        <Style x:Key="DataGrid_Content_CenterVerticalAlign"
-        TargetType="{x:Type DataGridCell}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type DataGridCell}">
-                        <Grid Background="{TemplateBinding Background}">
-                            <ContentPresenter VerticalAlignment="Center" />
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="90"></RowDefinition>
@@ -98,40 +84,109 @@
                             <ColumnDefinition Width="20"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid x:Name="dataGridAccount" Grid.Column="1" Grid.Row="1"
-                                  IsReadOnly="True" BorderThickness="1"
+                        <DataGrid x:Name="dataGridAccount" Grid.Column="1" Grid.Row="1" IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}"
-                                  VerticalScrollBarVisibility="Visible" HeadersVisibility="All"
-                                  AutoGenerateColumns="False">
+                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False"
+                                  HeadersVisibility="All" SelectionChanged="dataGridAccount_SelectionChanged">
+                            <DataGrid.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Focusable" Value="False"/>
+                                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                </Style>
+                            </DataGrid.CellStyle>
+                            
+                            <DataGrid.Resources>
+                                <Style x:Key="DataGrid_Label_Style" 
+                                       TargetType="Label">
+                                    <Setter Property="Foreground" Value="#717171" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="Black" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                                <Style x:Key="DataGrid_Content_CenterVerticalAlign"
+                                       TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <ContentPresenter VerticalAlignment="Center" />
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+
+                                <Style x:Key="DataGrid_Content_Center"
+                                       TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGrid.Resources>
+                            
+                            <DataGrid.RowHeaderTemplate>
+                                <DataTemplate>
+                                    <Label HorizontalContentAlignment="Center" Width="50"
+                                           Content="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow},
+                                                             Path=Header}"/>
+                                </DataTemplate>
+                            </DataGrid.RowHeaderTemplate>
                             
                             <DataGrid.Columns>
                                 <DataGridTextColumn 
-                                    Header="Tài khoản"
-                                    Binding="{Binding Path='id'}"></DataGridTextColumn>
+                                    CellStyle="{StaticResource DataGrid_Content_Center}"
+                                    Binding="{Binding Path='id'}">
+                                    <DataGridTextColumn.Header>
+                                        <Label FontWeight="SemiBold" 
+                                               HorizontalContentAlignment="Center" Content="Tài khoản"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                
                                 <DataGridTextColumn 
-                                    Header="Tên nhân viên" 
-                                    Binding="{Binding Path='name'}"></DataGridTextColumn>
+                                    CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}"
+                                    Binding="{Binding Path='name'}">
+                                    <DataGridTextColumn.Header>
+                                        <Label FontWeight="SemiBold" Width="150"
+                                               HorizontalContentAlignment="Center" Content="Tên nhân viên"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                
                                 <DataGridTextColumn 
-                                    Header="Nhóm tài khoản" 
-                                    Binding="{Binding Path='type'}"></DataGridTextColumn>
-                                <DataGridTextColumn 
-                                    Header="Mật khẩu" 
-                                    Binding="{Binding Path='pass'}"></DataGridTextColumn>
-                                <DataGridTemplateColumn Header="Thao tác">
+                                    CellStyle="{StaticResource DataGrid_Content_Center}"
+                                    Binding="{Binding Path='type'}">
+                                    <DataGridTextColumn.Header>
+                                        <Label FontWeight="SemiBold" 
+                                               HorizontalContentAlignment="Center" Content="Nhóm tài khoản"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+
+                                <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Button Margin="10,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5" Click="btnEdit_Click">
-                                                    <materialDesign:PackIcon Kind="GreasePencil" Foreground="White" Height="20" Width="20"  />
+                                            <StackPanel Height="Auto" Orientation="Horizontal">
+                                                <Button Margin="15,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5" Click="btnEdit_Click">
+                                                    <materialDesign:PackIcon Kind="GreasePencil" Foreground="White" Height="18" Width="18"  />
                                                 </Button>
-                                                <Button Margin="10,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252" Click="btnDelete_Click">
-                                                    <materialDesign:PackIcon Kind="Delete" Height="20" Width="20" />
+                                                <Button Margin="15,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252" Click="btnDelete_Click">
+                                                    <materialDesign:PackIcon Kind="Delete" Height="18" Width="18" />
                                                 </Button>
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
+
                             </DataGrid.Columns>
                         </DataGrid>
 
