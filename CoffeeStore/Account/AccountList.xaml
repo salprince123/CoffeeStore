@@ -87,11 +87,18 @@
                         <DataGrid x:Name="dataGridAccount" Grid.Column="1" Grid.Row="1" IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
                                   VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False"
-                                  HeadersVisibility="All" SelectionChanged="dataGridAccount_SelectionChanged">
+                                  HeadersVisibility="All">
                             <DataGrid.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}">
-                                    <Setter Property="Focusable" Value="False"/>
-                                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
                                 </Style>
                             </DataGrid.CellStyle>
                             
@@ -118,19 +125,6 @@
                                         </Setter.Value>
                                     </Setter>
                                 </Style>
-
-                                <Style x:Key="DataGrid_Content_Center"
-                                       TargetType="{x:Type DataGridCell}">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                                <Grid Background="{TemplateBinding Background}">
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                                </Grid>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
                             </DataGrid.Resources>
                             
                             <DataGrid.RowHeaderTemplate>
@@ -143,7 +137,6 @@
                             
                             <DataGrid.Columns>
                                 <DataGridTextColumn 
-                                    CellStyle="{StaticResource DataGrid_Content_Center}"
                                     Binding="{Binding Path='id'}">
                                     <DataGridTextColumn.Header>
                                         <Label FontWeight="SemiBold" 
@@ -163,7 +156,6 @@
                                 </DataGridTextColumn>
                                 
                                 <DataGridTextColumn 
-                                    CellStyle="{StaticResource DataGrid_Content_Center}"
                                     Binding="{Binding Path='type'}">
                                     <DataGridTextColumn.Header>
                                         <Label FontWeight="SemiBold" 
