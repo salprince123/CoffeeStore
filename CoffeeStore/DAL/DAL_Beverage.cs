@@ -26,7 +26,7 @@ namespace CoffeeStore.DAL
                 Console.WriteLine(e.Message);
             };
             return null;
-        }       
+        }
         public int createNewBeverage(DTO_Beverage beverage)
         {
             int rs = 0;
@@ -37,7 +37,7 @@ namespace CoffeeStore.DAL
                 command.Connection.Open();
                 rs = command.ExecuteNonQuery();
             }
-            catch ( Exception ex)
+            catch (Exception ex)
             {
                 Console.Error.WriteLine(ex.Message);
             }
@@ -46,7 +46,7 @@ namespace CoffeeStore.DAL
         public int deleteBeverage(string id)
         {
             int rs = 0;
-            string sql = $"Delete From BeverageName Where BeverageID='" +id+ "'";
+            string sql = $"Delete From BeverageName Where BeverageID='" + id + "'";
             try
             {
                 SQLiteCommand command = new SQLiteCommand(sql, getConnection());
@@ -96,7 +96,7 @@ namespace CoffeeStore.DAL
                 max++;
                 ID += max.ToString();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.Error.WriteLine(e.Message);
             }
@@ -114,9 +114,9 @@ namespace CoffeeStore.DAL
                 while (reader.Read())
                 {
                     BeverageType.Add(reader["BeverageTypeName"].ToString());
-                }    
+                }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.Error.WriteLine(e.Message);
             }
@@ -160,7 +160,7 @@ namespace CoffeeStore.DAL
         {
             try
             {
-                string sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID";
+                string sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID and BT.BeverageTypeName='" + type + "'";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 DataTable dsMon = new DataTable();
                 da.Fill(dsMon);

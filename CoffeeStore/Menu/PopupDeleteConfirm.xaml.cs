@@ -23,9 +23,16 @@ namespace CoffeeStore.Menu
     {
         BUS_Beverage bus = new BUS_Beverage();
         private string ID;
+        MainWindow _context;
         public PopupDeleteConfirm()
         {
             InitializeComponent();
+        }
+        public PopupDeleteConfirm(string id, MainWindow context)
+        {
+            InitializeComponent();
+            ID = id;
+            this._context = context;
         }
         public PopupDeleteConfirm(string id)
         {
@@ -40,6 +47,22 @@ namespace CoffeeStore.Menu
             }
             else
                 MessageBox.Show("Thất bại");
+            var screen = new MenuList(_context);
+            if (screen != null)
+            {
+                this._context.StackPanelMain.Children.Clear();
+                this._context.StackPanelMain.Children.Add(screen);
+            }
+        }
+
+        private void btExit_Click(object sender, RoutedEventArgs e)
+        {
+            var screen = new MenuList(_context);
+            if (screen != null)
+            {
+                this._context.StackPanelMain.Children.Clear();
+                this._context.StackPanelMain.Children.Add(screen);
+            }
         }
     }
 }

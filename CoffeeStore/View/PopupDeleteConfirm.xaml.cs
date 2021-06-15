@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CoffeeStore.DTO;
 
 namespace CoffeeStore.View
 {
@@ -20,9 +21,18 @@ namespace CoffeeStore.View
     /// </summary>
     public partial class PopupDeleteConfirm : UserControl
     {
+        MainWindow _context;
+        String ID;
         public PopupDeleteConfirm()
         {
             InitializeComponent();
+        }
+
+        public PopupDeleteConfirm(DTO_Discount discount, MainWindow context)
+        {
+            InitializeComponent();
+            ID = discount.DiscountID;
+            this._context = context;
         }
 
         private void btSave_Click(object sender, RoutedEventArgs e)

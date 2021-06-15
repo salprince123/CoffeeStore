@@ -182,11 +182,11 @@
                             </DataGrid.RowHeaderTemplate>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Mã giảm giá" Binding="{Binding Path=''}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Tên ưu đãi" Binding="{Binding Path=''}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding Path=''}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding Path=''}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Mức ưu đãi (%)" Binding="{Binding Path=''}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Mã giảm giá" Binding="{Binding Path='DiscountID'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Tên ưu đãi" Binding="{Binding Path='DiscountName'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding Path='StartDate'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding Path='EndDate'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Mức ưu đãi (%)" Binding="{Binding Path='DiscountValue'}"></DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>

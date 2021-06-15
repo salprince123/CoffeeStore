@@ -33,9 +33,9 @@ namespace CoffeeStore
 
             var item1 = new ItemMenu("Thu ngân", new Cashier(this), PackIconKind.Schedule);
 
-            var item2 = new ItemMenu("Menu", "AP006", new Menu.MenuList(), PackIconKind.CalendarTextOutline);
+            var item2 = new ItemMenu("Menu", "AP006", new Menu.MenuList(this), PackIconKind.CalendarTextOutline);
 
-            var item3 = new ItemMenu("Ưu đãi", "AP007", new Discount.DiscountList(), PackIconKind.ShoppingBasket);
+            var item3 = new ItemMenu("Ưu đãi", "AP007", new Discount.DiscountList(this), PackIconKind.ShoppingBasket);
 
             var menuInventory = new List<SubItem>();
             menuInventory.Add(new SubItem("Thông tin kho", "AP003", new Inventory.InventoryMainPage()));
