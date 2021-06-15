@@ -69,6 +69,7 @@ namespace CoffeeStore.Account
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = e.Row.GetIndex() + 1;
+            e.Row.Height = 40;
         }
 
         public void LoadData()
