@@ -120,11 +120,67 @@
                         <DataGrid x:Name="dgDiscount" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" SelectionChanged="dgDiscount_SelectionChanged"
-                                  >
-                            <DataGrid.CurrentColumn>
-                                <materialDesign:DataGridTextColumn/>
-                            </DataGrid.CurrentColumn>
+                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False">
+
+                            <DataGrid.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="{x:Null}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.CellStyle>
+
+                            <DataGrid.Resources>
+                                <Style x:Key="DataGrid_Label_Style" 
+                                       TargetType="Label">
+                                    <Setter Property="Foreground" Value="#717171" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="Black" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                                <Style x:Key="DataGrid_Content_CenterVerticalAlign"
+                                       TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <ContentPresenter VerticalAlignment="Center" />
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="{x:Null}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.Resources>
+
+                            <DataGrid.RowHeaderTemplate>
+                                <DataTemplate>
+                                    <Label HorizontalContentAlignment="Center" Width="50"
+                                           Content="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow},
+                                                             Path=Header}"/>
+                                </DataTemplate>
+                            </DataGrid.RowHeaderTemplate>
+
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Mã giảm giá"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Tên ưu đãi"></DataGridTextColumn>
@@ -152,19 +208,20 @@
                         </DataGrid>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2">
-                            <Label VerticalAlignment="Center">Rows per page :</Label>
-                            <Rectangle Width="20"></Rectangle>
-                            <ComboBox x:Name="cbGridRow" BorderThickness="0" Foreground="Black">
-                                <ComboBoxItem Content="5" IsSelected="True"/>
-                                <ComboBoxItem Content="10"/>
-                            </ComboBox>
-                            <Rectangle Width="20"></Rectangle>
                             <Button Width="40" Height="Auto" 
                                     Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
                                     VerticalAlignment="Center">
                                 <materialDesign:PackIcon Kind="ChevronLeft" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
                             </Button>
-                            <Rectangle Width="20"></Rectangle>
+                            <TextBox Name="tbNumPage" Width="35" Height="30"
+                                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                                     Text="1" FontWeight="SemiBold" FontSize="14" 
+                                     Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,1"/>
+                            <Label VerticalContentAlignment="Center" 
+                                   Content="/" FontWeight="SemiBold" FontSize="14"/>
+                            <Label Name="lblMaxPage" Width="35" 
+                                   Content="10" FontWeight="SemiBold" FontSize="14"
+                                   HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             <Button Width="40" Height="Auto" 
                                     Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
                                     VerticalAlignment="Center">

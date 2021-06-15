@@ -95,11 +95,6 @@ namespace CoffeeStore.Discount
 
         }
 
-        private void dgDiscount_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
             dgDiscount.ItemsSource = bus.findDiscount(tbDateStart.Text, tbDateEnd.Text).DefaultView;
