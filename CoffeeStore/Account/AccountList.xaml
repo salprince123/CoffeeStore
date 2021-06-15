@@ -99,6 +99,12 @@
                                             </ControlTemplate>
                                         </Setter.Value>
                                     </Setter>
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="{x:Null}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
                                 </Style>
                             </DataGrid.CellStyle>
                             
@@ -124,6 +130,12 @@
                                             </ControlTemplate>
                                         </Setter.Value>
                                     </Setter>
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="{x:Null}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
                                 </Style>
                             </DataGrid.Resources>
                             
