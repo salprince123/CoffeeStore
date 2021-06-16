@@ -166,11 +166,11 @@ namespace CoffeeStore.Account
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
                 Title = "Xóa tài khoản",
-                Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa loại khoản {row.name} không?", row.name),
-                Width = 540,
-                Height = 430,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
+                Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa \nloại tài khoản {row.name} không?", row.name),
+                Width = 380,
+                Height = 210,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
             };
             window.ShowDialog();
             LoadData();

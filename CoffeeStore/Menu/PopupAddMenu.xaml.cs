@@ -69,14 +69,10 @@ namespace CoffeeStore.Menu
         {
             e.Handled = !NumberCheck.IsNumber(e.Text);
         }
+
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
-            var screen = new MenuList(main);
-            if (screen != null)
-            {
-                this.main.StackPanelMain.Children.Clear();
-                this.main.StackPanelMain.Children.Add(screen);
-            }
+            Window.GetWindow(this).Close();
         }
     }
 }

@@ -163,6 +163,9 @@
     <Compile Include="Discount\DiscountMain.xaml.cs">
       <DependentUpon>DiscountMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Discount\PopupDeleteConfirm.xaml.cs">
+      <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Discount\PopupDiscountAdd.xaml.cs">
       <DependentUpon>PopupDiscountAdd.xaml</DependentUpon>
     </Compile>
@@ -202,6 +205,9 @@
     </Compile>
     <Compile Include="Inventory\MaterialList.xaml.cs">
       <DependentUpon>MaterialList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\PopupDeleteConfirm.xaml.cs">
+      <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Inventory\PopupInventoryExportDETAIL.xaml.cs">
       <DependentUpon>PopupInventoryExportDETAIL.xaml</DependentUpon>
@@ -337,6 +343,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Discount\PopupDeleteConfirm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Discount\PopupDiscountAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -386,6 +396,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Inventory\MaterialList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Inventory\PopupDeleteConfirm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
