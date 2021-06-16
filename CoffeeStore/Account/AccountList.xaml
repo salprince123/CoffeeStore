@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:CoffeeStore.Inventory"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             MinWidth="650" MinHeight="600">
+             MinWidth="650" MaxHeight="600">
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="90"></RowDefinition>
@@ -86,7 +86,7 @@
 
                         <DataGrid x:Name="dataGridAccount" Grid.Column="1" Grid.Row="1" IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False"
+                                  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False"
                                   HeadersVisibility="All">
                             <DataGrid.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}">
@@ -180,10 +180,10 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Height="Auto" Orientation="Horizontal">
-                                                <Button Margin="15,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5" Click="btnEdit_Click">
+                                                <Button Margin="10,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5" Click="btnEdit_Click">
                                                     <materialDesign:PackIcon Kind="GreasePencil" Foreground="White" Height="18" Width="18"  />
                                                 </Button>
-                                                <Button Margin="15,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252" Click="btnDelete_Click">
+                                                <Button Margin="10,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252" Click="btnDelete_Click">
                                                     <materialDesign:PackIcon Kind="Delete" Height="18" Width="18" />
                                                 </Button>
                                             </StackPanel>
