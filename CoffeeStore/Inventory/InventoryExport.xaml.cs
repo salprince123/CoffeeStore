@@ -31,7 +31,6 @@ namespace CoffeeStore.Inventory
         public List<InventoryExportObject> findList = new List<InventoryExportObject>();
         public class InventoryExportObject
         {
-            public int number { get; set; }
             public String ID { get; set; }
             public String InventoryDate { get; set; }
             public String EmployName { get; set; }
@@ -40,28 +39,34 @@ namespace CoffeeStore.Inventory
         public InventoryExport()
         {
             InitializeComponent();
+            dataGridExport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             LoadData();
         }
         public InventoryExport(MainWindow mainWindow)
         {
             InitializeComponent();
+            dataGridExport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             this._context = mainWindow;
             LoadData();
+        }
+        void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+            e.Row.Height = 40;
         }
         public void LoadData()
         {
             username = "Tran Le Bao Chau";
             BUS_InventoryExport export = new BUS_InventoryExport();
             DataTable temp = export.SelectAll();
-            int number0 = 1;
             Console.WriteLine(temp.Rows.Count);
             foreach (DataRow row in temp.Rows)
             {
                 string employid = row["EmployeeName"].ToString();
                 string id = row["exportID"].ToString();
                 string date = row["exportDate"].ToString();
-                list.Add(new InventoryExportObject() { ID = id, EmployName = employid, InventoryDate = date, number = number0 });
-                number0++;
+                list.Add(new InventoryExportObject() { ID = id, EmployName = employid, InventoryDate = date });
+
             }
             this.dataGridExport.ItemsSource = list;
             this.dataGridExport.Items.Refresh();
@@ -182,12 +187,12 @@ namespace CoffeeStore.Inventory
             {
                 if (obj.ID.Contains(id) && id != "")
                 {
-                    findList.Add(new InventoryExportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate, number = findList.Count + 1 });
+                    findList.Add(new InventoryExportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate });
                     continue;
                 }
                 if (obj.EmployName.Contains(id) && id != "")
                 {
-                    findList.Add(new InventoryExportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate, number = findList.Count + 1 });
+                    findList.Add(new InventoryExportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate });
                     continue;
                 }
                 if (from != "" || to != "")
@@ -199,7 +204,7 @@ namespace CoffeeStore.Inventory
                         DateTime dtTo = DateTime.ParseExact(to, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
                         if (dtFrom <= dtFind && dtTo >= dtFind)
                         {
-                            findList.Add(new InventoryExportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate, number = findList.Count + 1 });
+                            findList.Add(new InventoryExportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate });
                             continue;
                         }
                     }
@@ -208,7 +213,7 @@ namespace CoffeeStore.Inventory
                         DateTime dtFrom = DateTime.ParseExact(from, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
                         if (dtFrom <= dtFind)
                         {
-                            findList.Add(new InventoryExportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate, number = findList.Count + 1 });
+                            findList.Add(new InventoryExportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate });
                             continue;
                         }
                     }
@@ -217,7 +222,7 @@ namespace CoffeeStore.Inventory
                         DateTime dtTo = DateTime.ParseExact(to, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
                         if (dtTo >= dtFind)
                         {
-                            findList.Add(new InventoryExportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate, number = findList.Count + 1 });
+                            findList.Add(new InventoryExportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate });
                             continue;
                         }
                     }
