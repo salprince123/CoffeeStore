@@ -112,7 +112,7 @@
                         <DataGrid x:Name="dgMenu" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" 
+                                  VerticalScrollBarVisibility="Visible"
                                   AutoGenerateColumns="False" MouseDoubleClick="dgMenu_MouseDoubleClick"
                                   HeadersVisibility="All">
                             <DataGrid.CellStyle>
