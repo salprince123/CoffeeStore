@@ -59,12 +59,16 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="10"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="tbDateStart" Height="40" 
-                         BorderThickness="1" VerticalContentAlignment="Center"
+                <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
+                    <DatePicker x:Name="tbDateStart" Height="40"
+                         VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
-                <TextBox x:Name="tbDateEnd" Grid.Column="2" Height="40" 
-                         BorderThickness="1" VerticalContentAlignment="Center"
-                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5"/>
+                </Border>
+                <Border BorderBrush="Gray" Grid.Column="2" BorderThickness="1,1,1,0">
+                    <DatePicker x:Name="tbDateEnd" Height="40"
+                         VerticalContentAlignment="Center"
+                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
+                </Border>
                 <TextBox x:Name="tbFind" Grid.Column="4" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Mã hóa đơn" Padding="5"/>

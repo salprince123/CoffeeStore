@@ -82,22 +82,7 @@ namespace CoffeeStore.Discount
 
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
-            var screen = new DiscountList(mainWindow);
-            if (screen != null)
-            {
-                this.mainWindow.StackPanelMain.Children.Clear();
-                this.mainWindow.StackPanelMain.Children.Add(screen);
-            }
-        }
-
-        private void btExit_Click_1(object sender, RoutedEventArgs e)
-        {
-            var screen = new DiscountList(mainWindow);
-            if (screen != null)
-            {
-                this.mainWindow.StackPanelMain.Children.Clear();
-                this.mainWindow.StackPanelMain.Children.Add(screen);
-            }
+            Window.GetWindow(this).Close();
         }
     }
 }

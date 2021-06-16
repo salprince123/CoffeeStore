@@ -167,6 +167,25 @@ namespace CoffeeStore.Inventory
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            //PLEASE USE THIS TO CREATE POPUP
+            //System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            //((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            //((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            //Window window = new Window
+            //{
+            //    ResizeMode = ResizeMode.NoResize,
+            //    WindowStyle = WindowStyle.None,
+            //    Title = "Xóa ... ",
+            //    Content = new PopupDeleteConfirm(), //Delete message
+            //    Width = 380,
+            //    Height = 210,
+            //    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
+            //    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+            //};
+            //window.ShowDialog();
+            //((MainWindow)App.Current.MainWindow).Opacity = 1;
+            //((MainWindow)App.Current.MainWindow).Effect = null;
+
             if (MessageBox.Show("Ban co chac chan xoa?","Thong bao", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 InventoryImportObject row = (InventoryImportObject)dataGridImport.SelectedItem;

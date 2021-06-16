@@ -38,7 +38,7 @@ namespace CoffeeStore.Menu
             cbBeverageType.SelectedItem = type;
             ID = id;
             window = context;
-            MessageBox.Show(type);
+            //MessageBox.Show(type);
         }
 
         private void btSave_Click(object sender, RoutedEventArgs e)
@@ -78,12 +78,7 @@ namespace CoffeeStore.Menu
 
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
-            var screen = new MenuList(window);
-            if (screen != null)
-            {
-                this.window.StackPanelMain.Children.Clear();
-                this.window.StackPanelMain.Children.Add(screen);
-            }
+            Window.GetWindow(this).Close();
         }
     }
 }

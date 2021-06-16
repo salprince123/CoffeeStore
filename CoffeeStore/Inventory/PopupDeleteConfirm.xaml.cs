@@ -12,9 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CoffeeStore.DTO;
 
-namespace CoffeeStore.View
+namespace CoffeeStore.Inventory
 {
     /// <summary>
     /// Interaction logic for PopupDeleteConfirm.xaml

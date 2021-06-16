@@ -59,6 +59,11 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="10"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
+                <!--<Border BorderBrush="Gray" BorderThickness="1,1,1,0">
+                    <DatePicker x:Name="tbDateStart" Height="40"
+                         VerticalContentAlignment="Center"
+                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
+                </Border>-->
                 <TextBox x:Name="tbDateStart" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>

@@ -58,7 +58,8 @@ namespace CoffeeStore.Menu
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            /*System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            //CREATE POPUP FROM HERE
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
             ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
             ((MainWindow)App.Current.MainWindow).Effect = objBlur;
             Window window = new Window
@@ -66,7 +67,7 @@ namespace CoffeeStore.Menu
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
                 Title = "Thêm món",
-                Content = new PopupAddMenu(this._context),
+                Content = new PopupAddMenu(_context),
                 Width = 540,
                 Height = 350,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
@@ -75,13 +76,16 @@ namespace CoffeeStore.Menu
             window.ShowDialog();
 
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
-            ((MainWindow)App.Current.MainWindow).Effect = null;*/
-            var screen = new PopupAddMenu(_context);
-            if (screen != null)
-            {
-                this._context.StackPanelMain.Children.Clear();
-                this._context.StackPanelMain.Children.Add(screen);
-            }
+            ((MainWindow)App.Current.MainWindow).Effect = null;
+            //CREATE POPUP TO HERE
+
+            //THIS IS NOT CREATE POPUP PLEASE DONT USE THIS
+            //var screen = new PopupAddMenu(_context);
+            //if (screen != null)
+            //{
+            //    this._context.StackPanelMain.Children.Clear();
+            //    this._context.StackPanelMain.Children.Add(screen);
+            //}
         }
 
         private void dgMenu_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -89,6 +93,7 @@ namespace CoffeeStore.Menu
             DataGrid dt = (DataGrid)sender;
             DTO_Beverage row = (DTO_Beverage)dt.SelectedItem;
             MessageBox.Show(row.BeverageID);
+            
             var screen = new PopupEditMenu(row.BeverageName, row.BeverageTypeID, row.Price.ToString(), row.BeverageID, this._context);
             if (screen != null)
             {
@@ -100,19 +105,62 @@ namespace CoffeeStore.Menu
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             DTO_Beverage row = (DTO_Beverage)dgMenu.SelectedItem;
-            MessageBox.Show(row.BeverageID);
+            //MessageBox.Show(row.BeverageID);
             var rowView = dgMenu.SelectedItem;
-            var screen = new PopupEditMenu(row.BeverageName, row.BeverageTypeID, row.Price.ToString(), row.BeverageID, this._context);
-            if (screen != null)
+
+            //CREATE POPUP FROM HERE
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            Window window = new Window
             {
-                this._context.StackPanelMain.Children.Clear();
-                this._context.StackPanelMain.Children.Add(screen);
-            }
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
+                Title = "Sửa món",
+                Content = new PopupEditMenu(row.BeverageName, row.BeverageTypeID, row.Price.ToString(), row.BeverageID, this._context),
+                Width = 540,
+                Height = 350,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
+            };
+            window.ShowDialog();
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
+            //CREATE POPUP TO HERE
+
+            //THIS IS NOT CREATE POPUP PLEASE DONT USE THIS
+            //var screen = new PopupEditMenu(row.BeverageName, row.BeverageTypeID, row.Price.ToString(), row.BeverageID, this._context);
+            //if (screen != null)
+            //{
+            //    this._context.StackPanelMain.Children.Clear();
+            //    this._context.StackPanelMain.Children.Add(screen);
+            //}
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             DTO_Beverage row = (DTO_Beverage)dgMenu.SelectedItem;
+
+            //PLEASE USE THIS TO CREATE POPUP
+            //System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            //((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            //((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            //Window window = new Window
+            //{
+            //    ResizeMode = ResizeMode.NoResize,
+            //    WindowStyle = WindowStyle.None,
+            //    Title = "Xóa món",
+            //    Content = new PopupDeleteConfirm(), //Delete message
+            //    Width = 380,
+            //    Height = 210,
+            //    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
+            //    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+            //};
+            //window.ShowDialog();
+            //((MainWindow)App.Current.MainWindow).Opacity = 1;
+            //((MainWindow)App.Current.MainWindow).Effect = null;
+
+            //NOT THIS
             var screen = new PopupDeleteConfirm(row.BeverageID, this._context);
             if (screen != null)
             {
