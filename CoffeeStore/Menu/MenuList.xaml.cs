@@ -84,38 +84,14 @@ namespace CoffeeStore.Menu
 
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
-            //CREATE POPUP TO HERE
-
-            //THIS IS NOT CREATE POPUP PLEASE DONT USE THIS
-            //var screen = new PopupAddMenu(_context);
-            //if (screen != null)
-            //{
-            //    this._context.StackPanelMain.Children.Clear();
-            //    this._context.StackPanelMain.Children.Add(screen);
-            //}
-        }
-
-        private void dgMenu_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            DataGrid dt = (DataGrid)sender;
-            DTO_Beverage row = (DTO_Beverage)dt.SelectedItem;
-            MessageBox.Show(row.BeverageID);
-            
-            var screen = new PopupEditMenu(row.BeverageName, row.BeverageTypeID, row.Price.ToString(), row.BeverageID, this._context);
-            if (screen != null)
-            {
-                this._context.StackPanelMain.Children.Clear();
-                this._context.StackPanelMain.Children.Add(screen);
-            }
+            loadData();
+ 
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             DTO_Beverage row = (DTO_Beverage)dgMenu.SelectedItem;
-            //MessageBox.Show(row.BeverageID);
             var rowView = dgMenu.SelectedItem;
-
-            //CREATE POPUP FROM HERE
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
             ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
             ((MainWindow)App.Current.MainWindow).Effect = objBlur;
@@ -133,80 +109,29 @@ namespace CoffeeStore.Menu
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
-            //CREATE POPUP TO HERE
-
-            //THIS IS NOT CREATE POPUP PLEASE DONT USE THIS
-            //var screen = new PopupEditMenu(row.BeverageName, row.BeverageTypeID, row.Price.ToString(), row.BeverageID, this._context);
-            //if (screen != null)
-            //{
-            //    this._context.StackPanelMain.Children.Clear();
-            //    this._context.StackPanelMain.Children.Add(screen);
-            //}
+            loadData();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             DTO_Beverage row = (DTO_Beverage)dgMenu.SelectedItem;
-
-            //PLEASE USE THIS TO CREATE POPUP
-            //System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
-            //((MainWindow)App.Current.MainWindow).Opacity = 0.5;
-            //((MainWindow)App.Current.MainWindow).Effect = objBlur;
-            //Window window = new Window
-            //{
-            //    ResizeMode = ResizeMode.NoResize,
-            //    WindowStyle = WindowStyle.None,
-            //    Title = "Xóa món",
-            //    Content = new PopupDeleteConfirm(), //Delete message
-            //    Width = 380,
-            //    Height = 210,
-            //    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-            //    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
-            //};
-            //window.ShowDialog();
-            //((MainWindow)App.Current.MainWindow).Opacity = 1;
-            //((MainWindow)App.Current.MainWindow).Effect = null;
-
-            //NOT THIS
-            var screen = new PopupDeleteConfirm(row.BeverageID, this._context);
-            if (screen != null)
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            Window window = new Window
             {
-                this._context.StackPanelMain.Children.Clear();
-                this._context.StackPanelMain.Children.Add(screen);
-            }
-        }
-
-        private void dgMenu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            DataGrid dt = (DataGrid)sender;
-            dynamic selctedItem = dt.SelectedItem;
-            if (selctedItem != null)
-            {
-                string value = selctedItem.ID;
-                MessageBox.Show(value);
-            }
-            /*
-                        if (rowView!=null)
-                        {
-                            MessageBox.Show("Selected"+ rowView.
-                        }
-                        else
-                            MessageBox.Show("Not selected");*/
-        }
-
-        private void dgMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //DataGrid dg = (DataGrid)sender;
-            //row = dg.SelectedItem as DataRowView;
-            //if (row != null)
-            //{
-            //    MessageBox.Show("OK");
-            //}
-
-        }
-
-        private void dgMenu_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
+                Title = "Xóa món",
+                Content = new PopupDeleteConfirm(row.BeverageID, this._context), 
+                Height = 210,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+            };
+            window.ShowDialog();
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
+            loadData();
         }
 
         private void btnFind_Click(object sender, RoutedEventArgs e)

@@ -23,6 +23,7 @@ namespace CoffeeStore.Discount
     {
         MainWindow _context;
         String ID;
+        BUS.BUS_Discount bus = new BUS.BUS_Discount();
         public PopupDeleteConfirm()
         {
             InitializeComponent();
@@ -30,14 +31,21 @@ namespace CoffeeStore.Discount
 
         public PopupDeleteConfirm(DTO_Discount discount, MainWindow context)
         {
-            InitializeComponent();
+            InitializeComponent()
+                ;
             ID = discount.DiscountID;
             this._context = context;
         }
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
-
+            if (bus.deleteDiscount(ID) > 0)
+            {
+                MessageBox.Show("Thành công");
+            }
+            else
+                MessageBox.Show("Thất bại");
+            Window.GetWindow(this).Close();
         }
 
         private void btExit_Click(object sender, RoutedEventArgs e)

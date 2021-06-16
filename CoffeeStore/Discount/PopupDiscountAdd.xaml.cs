@@ -57,12 +57,7 @@ namespace CoffeeStore.Discount
                 }
                 else
                     MessageBox.Show("Thất bại" + busDiscount.ID());
-                var screen = new DiscountList(mainWindow);
-                if (screen != null)
-                {
-                    this.mainWindow.StackPanelMain.Children.Clear();
-                    this.mainWindow.StackPanelMain.Children.Add(screen);
-                }
+                Window.GetWindow(this).Close();
             }
             else
                 MessageBox.Show("Tên discount, giá trị discount, ngày bắt đầu và ngày kết thúc là bắt buộc");
