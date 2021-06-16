@@ -149,7 +149,7 @@
                         <DataGrid x:Name="dataGridExport" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False"
+                                  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False"
                                   HeadersVisibility="All">
                             <DataGrid.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}">
