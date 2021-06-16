@@ -137,7 +137,9 @@
             </DataGrid.RowHeaderTemplate>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path=''}">
+                <DataGridTextColumn 
+                    Binding="{Binding Path=''}"
+                    CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}">
                     <DataGridTextColumn.Header>
                         <Label FontWeight="SemiBold" MinWidth="150"
                                HorizontalContentAlignment="Center" Content="Tên món"
@@ -155,8 +157,8 @@
                     Binding="{Binding Path=''}"
                     CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}">
                     <DataGridTextColumn.Header>
-                        <Label FontWeight="SemiBold" MinWidth="100"
-                               HorizontalContentAlignment="Center" Content="Giá tiền"
+                        <Label FontWeight="SemiBold" MinWidth="120"
+                               HorizontalContentAlignment="Center" Content="Giá tiền (VNĐ)"
                                Style="{StaticResource DataGrid_Label_Style}"/>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
