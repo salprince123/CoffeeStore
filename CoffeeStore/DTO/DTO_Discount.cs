@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeStore.DTO
 {
-    class DTO_Discount
+    public class DTO_Discount
     {
         public string DiscountID { get; set; }
         public string DiscountName { get; set; }
