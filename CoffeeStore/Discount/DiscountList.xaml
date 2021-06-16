@@ -120,7 +120,7 @@
                         <DataGrid x:Name="dgDiscount" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False">
+                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" HeadersVisibility="All">
 
                             <DataGrid.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}">
@@ -183,7 +183,8 @@
 
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Mã giảm giá" Binding="{Binding Path='DiscountID'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Tên ưu đãi" Binding="{Binding Path='DiscountName'}"></DataGridTextColumn>
+                                <DataGridTextColumn CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}"
+                                    Header="Tên ưu đãi" Binding="{Binding Path='DiscountName'}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding Path='StartDate'}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding Path='EndDate'}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Mức ưu đãi (%)" Binding="{Binding Path='DiscountValue'}"></DataGridTextColumn>

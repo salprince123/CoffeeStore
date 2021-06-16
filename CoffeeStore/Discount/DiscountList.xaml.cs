@@ -29,13 +29,20 @@ namespace CoffeeStore.Discount
         public DiscountList()
         {
             InitializeComponent();
+            dgDiscount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             loadData();
         }
         public DiscountList(MainWindow window)
         {
             InitializeComponent();
+            dgDiscount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             this._context = window;
             loadData();
+        }
+        void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+            e.Row.Height = 40;
         }
         void loadData()
         {
@@ -74,10 +81,6 @@ namespace CoffeeStore.Discount
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
             loadData();
-        }
-        private void dgDiscount_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void btnFind_Click(object sender, RoutedEventArgs e)

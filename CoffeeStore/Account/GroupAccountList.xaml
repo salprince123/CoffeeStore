@@ -158,37 +158,77 @@
                                     </DataGridTextColumn.Header>
                                 </DataGridTextColumn>
                                 <DataGridCheckBoxColumn 
-                                    Header="Thu ngân"
                                     IsThreeState="True" 
-                                    Binding="{Binding Path=cashier}"></DataGridCheckBoxColumn>
+                                    Binding="{Binding Path=cashier}">
+                                    <DataGridCheckBoxColumn.Header>
+                                        <Label FontWeight="SemiBold" 
+                                               HorizontalContentAlignment="Center" Content="Thu ngân"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridCheckBoxColumn.Header>
+                                </DataGridCheckBoxColumn>
                                 <DataGridCheckBoxColumn 
-                                    Header="Quản lý tài khoản"
                                     IsThreeState="True"
-                                    Binding="{Binding Path=account}"></DataGridCheckBoxColumn>
+                                    Binding="{Binding Path=account}">
+                                    <DataGridCheckBoxColumn.Header>
+                                        <Label FontWeight="SemiBold" 
+                                               HorizontalContentAlignment="Center" Content="Quản lý tài khoản"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridCheckBoxColumn.Header>
+                                </DataGridCheckBoxColumn>
                                 <DataGridCheckBoxColumn 
-                                    Header="Quản lý loại tài khoản"
                                     IsThreeState="True" 
-                                    Binding="{Binding Path=accountType}"></DataGridCheckBoxColumn>
+                                    Binding="{Binding Path=accountType}">
+                                    <DataGridCheckBoxColumn.Header>
+                                        <Label FontWeight="SemiBold" 
+                                               HorizontalContentAlignment="Center" Content="Quản lý loại tài khoản"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridCheckBoxColumn.Header>
+                                </DataGridCheckBoxColumn>
                                 <DataGridCheckBoxColumn 
-                                    Header="Quản lý kho"
                                     IsThreeState="True" 
-                                    Binding="{Binding Path=inventory}"></DataGridCheckBoxColumn>
+                                    Binding="{Binding Path=inventory}">
+                                    <DataGridCheckBoxColumn.Header>
+                                        <Label FontWeight="SemiBold" 
+                                               HorizontalContentAlignment="Center" Content="Quản lý kho"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridCheckBoxColumn.Header>
+                                </DataGridCheckBoxColumn>
                                 <DataGridCheckBoxColumn 
-                                    Header="Quản lý chi phí"
                                     IsThreeState="True" 
-                                    Binding="{Binding Path=cost}"></DataGridCheckBoxColumn>
+                                    Binding="{Binding Path=cost}">
+                                    <DataGridCheckBoxColumn.Header>
+                                        <Label FontWeight="SemiBold" 
+                                               HorizontalContentAlignment="Center" Content="Quản lý chi phí"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridCheckBoxColumn.Header>
+                                </DataGridCheckBoxColumn>
                                 <DataGridCheckBoxColumn 
-                                    Header="Quản lý menu"
                                     IsThreeState="True" 
-                                    Binding="{Binding Path=menu}"></DataGridCheckBoxColumn>
+                                    Binding="{Binding Path=menu}">
+                                    <DataGridCheckBoxColumn.Header>
+                                        <Label FontWeight="SemiBold" 
+                                               HorizontalContentAlignment="Center" Content="Quản lý menu"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridCheckBoxColumn.Header>
+                                </DataGridCheckBoxColumn>
                                 <DataGridCheckBoxColumn 
-                                    Header="Quản lý ưu đãi"
                                     IsThreeState="True" 
-                                    Binding="{Binding Path=discount}"></DataGridCheckBoxColumn>
+                                    Binding="{Binding Path=discount}">
+                                    <DataGridCheckBoxColumn.Header>
+                                        <Label FontWeight="SemiBold" 
+                                               HorizontalContentAlignment="Center" Content="Quản lý ưu đãi"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridCheckBoxColumn.Header>
+                                </DataGridCheckBoxColumn>
                                 <DataGridCheckBoxColumn 
-                                    Header="Báo cáo"
                                     IsThreeState="True" 
-                                    Binding="{Binding Path=report}"></DataGridCheckBoxColumn>
+                                    Binding="{Binding Path=report}">
+                                    <DataGridCheckBoxColumn.Header>
+                                        <Label FontWeight="SemiBold" 
+                                               HorizontalContentAlignment="Center" Content="Báo cáo"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridCheckBoxColumn.Header>
+                                </DataGridCheckBoxColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
