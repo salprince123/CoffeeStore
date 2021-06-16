@@ -31,9 +31,9 @@ namespace CoffeeStore.Discount
 
         public PopupDeleteConfirm(DTO_Discount discount, MainWindow context)
         {
-            InitializeComponent()
-                ;
+            InitializeComponent();
             ID = discount.DiscountID;
+            Content = "Dữ liệu về "+discount.DiscountName+" sẽ bị xóa vĩnh viễn.\n Bạn chắc chắn muốn xóa?";
             this._context = context;
         }
 

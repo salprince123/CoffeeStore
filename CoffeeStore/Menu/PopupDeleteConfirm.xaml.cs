@@ -28,10 +28,11 @@ namespace CoffeeStore.Menu
         {
             InitializeComponent();
         }
-        public PopupDeleteConfirm(string id, MainWindow context)
+        public PopupDeleteConfirm(DTO_Beverage beverage, MainWindow context)
         {
             InitializeComponent();
-            ID = id;
+            Content = "Dữ liệu về " + beverage.BeverageName + " sẽ bị xóa vĩnh viễn.\n Bạn chắc chắn muốn xóa?";
+            ID = beverage.BeverageID;
             this._context = context;
         }
         public PopupDeleteConfirm(string id)
