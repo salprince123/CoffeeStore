@@ -73,14 +73,91 @@
         </StackPanel>
         <!--Receipt detail here-->
         <DataGrid Grid.Row="6" Grid.Column="1"
-                  x:Name="dataGridImport" Height="200" Margin="0,5,0,0" Background="#DADADA"
+                  x:Name="dataGridReceiptDetail" Height="200" Margin="0,5,0,0" Background="#DADADA"
                   BorderThickness="0" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" 
-                  VerticalScrollBarVisibility="Visible" IsReadOnly="True">
+                  VerticalScrollBarVisibility="Visible" IsReadOnly="True"
+                  HeadersVisibility="All">
+            <DataGrid.CellStyle>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                <Grid Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Foreground" Value="Black" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{x:Null}"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+
+            <DataGrid.Resources>
+                <Style x:Key="DataGrid_Label_Style" 
+                                       TargetType="Label">
+                    <Setter Property="Foreground" Value="#717171" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+
+                <Style x:Key="DataGrid_Content_CenterVerticalAlign"
+                                       TargetType="{x:Type DataGridCell}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                <Grid Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Foreground" Value="Black" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{x:Null}"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.RowHeaderTemplate>
+                <DataTemplate>
+                    <Label HorizontalContentAlignment="Center" Width="50"
+                                           Content="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow},
+                                                             Path=Header}"/>
+                </DataTemplate>
+            </DataGrid.RowHeaderTemplate>
+
             <DataGrid.Columns>
-                <DataGridTextColumn Header="STT"></DataGridTextColumn>
-                <DataGridTextColumn Header="Tên món"></DataGridTextColumn>
-                <DataGridTextColumn Header="Số lượng"></DataGridTextColumn>
-                <DataGridTextColumn Header="Giá tiền"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path=''}">
+                    <DataGridTextColumn.Header>
+                        <Label FontWeight="SemiBold" MinWidth="150"
+                               HorizontalContentAlignment="Center" Content="Tên món"
+                               Style="{StaticResource DataGrid_Label_Style}"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path=''}">
+                    <DataGridTextColumn.Header>
+                        <Label FontWeight="SemiBold"
+                               HorizontalContentAlignment="Center" Content="Số lượng"
+                               Style="{StaticResource DataGrid_Label_Style}"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path=''}">
+                    <DataGridTextColumn.Header>
+                        <Label FontWeight="SemiBold" MinWidth="100"
+                               HorizontalContentAlignment="Center" Content="Giá tiền"
+                               Style="{StaticResource DataGrid_Label_Style}"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <!--Discount rate & Total amount here-->

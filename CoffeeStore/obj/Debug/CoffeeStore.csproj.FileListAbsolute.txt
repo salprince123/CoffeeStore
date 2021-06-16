@@ -678,7 +678,6 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDeclineAccess.g.
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDisableAccount.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditAccount.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditGroupAccount.g.cs
-E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Discount\DiscountMain.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupMaterialToExport.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupInventoryImportDETAIL.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupEditMenu.g.cs
@@ -690,7 +689,6 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDeclineAccess.ba
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDisableAccount.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditAccount.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditGroupAccount.baml
-E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Discount\DiscountMain.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupMaterialToExport.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupInventoryImportDETAIL.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupEditMenu.baml
