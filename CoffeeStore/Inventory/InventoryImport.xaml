@@ -61,7 +61,11 @@
                     <ColumnDefinition Width="10"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                
+                <!--<Border BorderBrush="Gray" BorderThickness="1,1,1,0">
+                    <DatePicker x:Name="dpFrom" Height="40"
+                         VerticalContentAlignment="Center"
+                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
+                </Border>-->
                 <TextBox x:Name="tbDateStart" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Từ ngày" Padding="5" >
@@ -78,6 +82,11 @@
                         </Style>
                     </DatePicker.Resources>
                 </DatePicker>
+                <!--<Border BorderBrush="Gray" BorderThickness="1,1,1,0">
+                    <DatePicker x:Name="dpTo" Height="40"
+                         VerticalContentAlignment="Center"
+                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5"/>
+                </Border>-->
                 <TextBox x:Name="tbDateEnd" Grid.Column="2" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Đến ngày" Padding="5"/>
