@@ -23,6 +23,12 @@ namespace CoffeeStore.Inventory
         public MaterialList()
         {
             InitializeComponent();
+            dataGridMaterial.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
+        }
+        void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+            e.Row.Height = 40;
         }
     }
 }
