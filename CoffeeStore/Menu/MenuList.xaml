@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:CoffeeStore.Inventory"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             MinWidth="650" MinHeight="600">
+             MinWidth="650" MaxHeight="600">
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="90"></RowDefinition>
@@ -112,16 +112,100 @@
                         <DataGrid x:Name="dgMenu" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" MouseDoubleClick="dgMenu_MouseDoubleClick"
-                                  MinRowHeight="10">
-                            <DataGrid.CurrentColumn>
-                                <materialDesign:DataGridTextColumn/>
-                            </DataGrid.CurrentColumn>
+                                  VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" 
+                                  AutoGenerateColumns="False" MouseDoubleClick="dgMenu_MouseDoubleClick"
+                                  HeadersVisibility="All">
+                            <DataGrid.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="{x:Null}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.CellStyle>
+
+                            <DataGrid.Resources>
+                                <Style x:Key="DataGrid_Label_Style" 
+                                       TargetType="Label">
+                                    <Setter Property="Foreground" Value="#717171" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="Black" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                                <Style x:Key="DataGrid_Content_CenterVerticalAlign"
+                                       TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <ContentPresenter VerticalAlignment="Center" />
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="{x:Null}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.Resources>
+
+                            <DataGrid.RowHeaderTemplate>
+                                <DataTemplate>
+                                    <Label HorizontalContentAlignment="Center" Width="50"
+                                           Content="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow},
+                                                             Path=Header}"/>
+                                </DataTemplate>
+                            </DataGrid.RowHeaderTemplate>
+
                             <DataGrid.Columns>
-                                <DataGridTextColumn x:Name="ID" Header="Mã món" Binding="{Binding Path='BeverageID'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Tên món" Binding="{Binding Path='BeverageName'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Loại món" Binding="{Binding Path='BeverageTypeID'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Giá tiền (VNĐ)" Binding="{Binding Path='Price'}"></DataGridTextColumn>
+                                <DataGridTextColumn x:Name="ID" Binding="{Binding Path='BeverageID'}">
+                                    <DataGridTextColumn.Header>
+                                        <Label FontWeight="SemiBold" 
+                                               HorizontalContentAlignment="Center" Content="Mã món"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn 
+                                    Binding="{Binding Path='BeverageName'}"
+                                    CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}">
+                                    <DataGridTextColumn.Header>
+                                        <Label FontWeight="SemiBold" MinWidth="150"
+                                               HorizontalContentAlignment="Center" Content="Tên món"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Path='BeverageTypeID'}">
+                                    <DataGridTextColumn.Header>
+                                        <Label FontWeight="SemiBold" MinWidth="120"
+                                               HorizontalContentAlignment="Center" Content="Loại món"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn 
+                                    Binding="{Binding Path='Price'}">
+                                    <DataGridTextColumn.Header>
+                                        <Label FontWeight="SemiBold" MinWidth="120"
+                                               HorizontalContentAlignment="Center" Content="Giá tiền (VNĐ)"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>

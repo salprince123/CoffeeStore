@@ -151,7 +151,9 @@
                                Style="{StaticResource DataGrid_Label_Style}"/>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Path=''}">
+                <DataGridTextColumn 
+                    Binding="{Binding Path=''}"
+                    CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}">
                     <DataGridTextColumn.Header>
                         <Label FontWeight="SemiBold" MinWidth="100"
                                HorizontalContentAlignment="Center" Content="Giá tiền"

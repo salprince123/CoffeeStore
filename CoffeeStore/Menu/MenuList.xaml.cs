@@ -28,15 +28,22 @@ namespace CoffeeStore.Menu
         public MenuList()
         {
             InitializeComponent();
+            dgMenu.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             bus = new BUS_Beverage();
             loadData();
         }
         public MenuList(MainWindow mainWindow)
         {
             InitializeComponent();
+            dgMenu.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             bus = new BUS_Beverage();
             this._context = mainWindow;
             loadData();
+        }
+        void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+            e.Row.Height = 40;
         }
         void loadData()
         {
