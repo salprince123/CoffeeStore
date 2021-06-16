@@ -23,8 +23,13 @@ namespace CoffeeStore.IncomeAndPayment
         public PaymentList()
         {
             InitializeComponent();
+            dataGridPayment.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
         }
-
+        void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+            e.Row.Height = 40;
+        }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();

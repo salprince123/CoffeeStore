@@ -751,3 +751,7 @@ C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\App.g.cs
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore_MarkupCompile.cache
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore_MarkupCompile.lref
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDeleteConfirm.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupDeleteConfirm.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDeleteConfirm.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupDeleteConfirm.baml
