@@ -161,7 +161,7 @@
                                     CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}"
                                     Binding="{Binding Path='name'}">
                                     <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" Width="150"
+                                        <Label FontWeight="SemiBold" MinWidth="150"
                                                HorizontalContentAlignment="Center" Content="Tên nhân viên"
                                                Style="{StaticResource DataGrid_Label_Style}"/>
                                     </DataGridTextColumn.Header>

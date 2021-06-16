@@ -182,12 +182,43 @@
                             </DataGrid.RowHeaderTemplate>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Mã giảm giá" Binding="{Binding Path='DiscountID'}"></DataGridTextColumn>
-                                <DataGridTextColumn CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}"
-                                    Header="Tên ưu đãi" Binding="{Binding Path='DiscountName'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding Path='StartDate'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding Path='EndDate'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Mức ưu đãi (%)" Binding="{Binding Path='DiscountValue'}"></DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Path='DiscountID'}">
+                                    <DataGridTextColumn.Header>
+                                        <Label FontWeight="SemiBold" 
+                                               HorizontalContentAlignment="Center" Content="Mã ưu đãi"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn 
+                                    CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}"
+                                    Binding="{Binding Path='DiscountName'}">
+                                    <DataGridTextColumn.Header>
+                                        <Label FontWeight="SemiBold" MinWidth="100"
+                                               HorizontalContentAlignment="Center" Content="Tên ưu đãi"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Path='StartDate'}">
+                                    <DataGridTextColumn.Header>
+                                        <Label FontWeight="SemiBold" 
+                                               HorizontalContentAlignment="Center" Content="Ngày bắt đầu"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Path='EndDate'}">
+                                    <DataGridTextColumn.Header>
+                                        <Label FontWeight="SemiBold" 
+                                               HorizontalContentAlignment="Center" Content="Ngày kết thúc"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Path='DiscountValue'}">
+                                    <DataGridTextColumn.Header>
+                                        <Label FontWeight="SemiBold" 
+                                               HorizontalContentAlignment="Center" Content="Mức ưu đãi (%)"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
