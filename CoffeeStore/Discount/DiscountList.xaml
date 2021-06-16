@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:CoffeeStore.Discount" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             MinWidth="650" MinHeight="600">
+             MinWidth="650" MaxHeight="600">
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="90"></RowDefinition>
