@@ -622,7 +622,6 @@ C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDisableAccount.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditAccount.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Discount\DiscountList.g.cs
-C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Discount\DiscountMain.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDiscountAdd.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDiscountDetail.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDiscountEdit.g.cs
@@ -646,7 +645,6 @@ C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDisableAccount.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditAccount.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Discount\DiscountList.baml
-C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Discount\DiscountMain.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDiscountAdd.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDiscountDetail.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDiscountEdit.baml
@@ -753,3 +751,17 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDeleteConfirm.g
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupDeleteConfirm.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDeleteConfirm.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupDeleteConfirm.baml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\LiveCharts.dll
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\LiveCharts.pdb
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\LiveCharts.xml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDeclineAccess.g.cs
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDeleteConfirm.g.cs
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupDeleteConfirm.g.cs
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\View\PopupDeleteConfirm.g.cs
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDeclineAccess.baml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDeleteConfirm.baml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupDeleteConfirm.baml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\View\PopupDeleteConfirm.baml
