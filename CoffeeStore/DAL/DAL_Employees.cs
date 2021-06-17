@@ -92,7 +92,22 @@ namespace CoffeeStore.DAL
             {
                 return false;
             }
-        }    
+        }
+
+        public bool EditPassword(string empID, string newPass)
+        {
+            string sql = $"update Employees set Password = '{newPass}' where EmployeeID = '{empID}'";
+            SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
+            try
+            {
+                insert.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         public int Delete(string empID)
         {

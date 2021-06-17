@@ -26,6 +26,7 @@ namespace CoffeeStore
     public partial class MainWindow : Window
     {
         string currentEmpType;
+        string currentEmpID;
         public MainWindow()
         {
             
@@ -79,6 +80,7 @@ namespace CoffeeStore
             {
                 tblockUsername.Text = loginScreen.txtBoxAccount.Text;
                 BUS_Employees busEmp = new BUS_Employees();
+                currentEmpID = tblockUsername.Text;
                 currentEmpType = busEmp.GetEmpTypeByID(tblockUsername.Text);
                 gridLogin.Children.Clear();
                 var screen = new Cashier(this);
@@ -93,6 +95,7 @@ namespace CoffeeStore
             {
                 tblockUsername.Text = loginScreen.txtBoxAccount.Text;
                 BUS_Employees busEmp = new BUS_Employees();
+                currentEmpID = tblockUsername.Text;
                 currentEmpType = busEmp.GetEmpTypeByID(tblockUsername.Text);
                 gridLogin.Children.Clear();
             }
@@ -106,6 +109,8 @@ namespace CoffeeStore
         private void LogOutBtn_Click(object sender, RoutedEventArgs e)
         {
             LogOut();
+            currentEmpID = "";
+            currentEmpType = "";
         }
 
         internal void SwitchScreen(object sender)
@@ -173,7 +178,7 @@ namespace CoffeeStore
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
                 Title = "Đổi mật khẩu",
-                Content = new Account.PopupChangePassword(),
+                Content = new Account.PopupChangePassword(currentEmpID),
                 Width = 540,
                 Height = 350,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,

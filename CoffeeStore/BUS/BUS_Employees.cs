@@ -32,6 +32,11 @@ namespace CoffeeStore.BUS
             return dalEmp.EditEmployee(editEmp);
         }
 
+        public bool EditPassword(string id, string newPass)
+        {
+            return dalEmp.EditPassword(id, newPass);
+        }    
+
         public int DeleteEmployee(string deleteEmpID)
         {
             return dalEmp.Delete(deleteEmpID);
