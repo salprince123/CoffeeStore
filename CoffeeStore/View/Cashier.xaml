@@ -142,6 +142,7 @@
                 <!--Bill data here-->
                 <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <DataGrid
+                        x:Name="dgBill"
                     ItemsSource="{Binding }"
                     CanUserAddRows="False"
                     SelectionUnit="Cell"
@@ -150,9 +151,9 @@
                     VerticalContentAlignment="Stretch"
                     HorizontalContentAlignment="Stretch" Height="Auto" Margin="0,20,0,0">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Món" Width="*" Binding="{ Binding }"/>
-                            <DataGridTextColumn Header="Số lượng" Width="*" Binding="{ Binding }" />
-                            <DataGridTextColumn Header="Giá tiền" Width="*"  Binding="{ Binding }" />
+                            <DataGridTextColumn Header="Món" Width="*" Binding="{ Binding Path='name'}"/>
+                            <DataGridTextColumn Header="Số lượng" Width="*" Binding="{ Binding Path='amount'}" />
+                            <DataGridTextColumn Header="Giá tiền" Width="*"  Binding="{ Binding Path='cost'}" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </ScrollViewer>
@@ -176,12 +177,14 @@
                     Grid.Column="0"
                     Margin="10"/>
                     <TextBox
+                        x:Name="tboxAmountReceived"
                     Text="0.000"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     Grid.Row="0"
                     Grid.Column="0"
-                    Padding="0,0,10,0"/>
+                    Padding="0,0,10,0"
+                        TextChanged="tboxAmountReceived_TextChanged"/>
                     <TextBlock
                     Text="Tiền thối"
                     VerticalAlignment="Center"
@@ -190,6 +193,7 @@
                     Grid.Column="0"
                     Margin="10"/>
                     <TextBlock
+                        x:Name="tblockChange"
                     Text="0 VND"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
@@ -204,6 +208,7 @@
                     Grid.Column="1"
                     Margin="10"/>
                     <TextBlock
+                        x:Name="tblockDiscount"
                     Text="0 %"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
@@ -218,6 +223,7 @@
                     Grid.Column="1"
                     Margin="10"/>
                     <TextBlock
+                        x:Name="tblockTotal"
                     Text="0 VND"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
@@ -254,19 +260,21 @@
                             <ItemsControl x:Name="ListViewMenu" >
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Margin="10" Width="110" Height="165" Background="#EBEBEB">
-                                            <!--If database has image-->
-                                            <StackPanel>
-                                                <Border Height="100">
-                                                    <Border.Background>
-                                                        <ImageBrush ImageSource="cafe-latte.jpg"/>
-                                                    </Border.Background>
-                                                </Border>
-                                                <TextBlock Name="FoodName" Margin="5" Text="{Binding Path='name'}" FontSize="14"/>
-                                                <TextBlock Name="Value" Margin="5 0" Text="{Binding Path='cost'}" FontSize="14"/>
-                                                <!--<TextBlock Name="Status" Margin="5 0" Text="Hết hàng" FontSize="10" HorizontalAlignment="Right"/>-->
-                                            </StackPanel>
-                                        </Border>
+                                        <Button x:Name="btnMenuItem" Tag="{Binding Path='id'}"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btnMenuItem_Click">
+                                            <Border Margin="10" Width="110" Height="165" Background="#EBEBEB">
+                                                <!--If database has image-->
+                                                <StackPanel>
+                                                    <Border Height="100">
+                                                        <Border.Background>
+                                                            <ImageBrush ImageSource="cafe-latte.jpg"/>
+                                                        </Border.Background>
+                                                    </Border>
+                                                    <TextBlock Name="FoodName" Margin="5" Text="{Binding Path='name'}" FontSize="14"/>
+                                                    <TextBlock Name="Value" Margin="5 0" Text="{Binding Path='cost'}" FontSize="14"/>
+                                                    <!--<TextBlock Name="Status" Margin="5 0" Text="Hết hàng" FontSize="10" HorizontalAlignment="Right"/>-->
+                                                </StackPanel>
+                                            </Border>
+                                        </Button>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                                 <ItemsControl.ItemsPanel>

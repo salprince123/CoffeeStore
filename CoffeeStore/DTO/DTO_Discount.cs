@@ -15,5 +15,17 @@ namespace CoffeeStore.DTO
         public float DiscountValue { get; set; }
         public string Description { get; set; }
 
+        public DTO_Discount() { }
+
+        public DTO_Discount(string id, string name, string start, string end, float value, string descrip)
+        {
+            DiscountID = id;
+            DiscountName = name;
+            StartDate = start;
+            EndDate = end;
+            DiscountValue = value;
+            Description = descrip;
+        }    
+
     }
 }

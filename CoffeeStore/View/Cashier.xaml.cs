@@ -1,4 +1,5 @@
 ﻿using CoffeeStore.BUS;
+using CoffeeStore.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,17 +27,41 @@ namespace CoffeeStore.View
 
         class MenuItem
         {
+            public string id { get; set; }
             public string name{ get; set;}
+            
             public int cost { get; set; }
             public bool state { get; set; }
-            public MenuItem(string newName, int newCost, bool newState)
+            public MenuItem(string newId, string newName, int newCost, bool newState)
             {
+                id = newId;
                 name = newName;
                 cost = newCost;
                 state = newState;
             }    
         }
 
+        class BillItem
+        {
+            public string id { get; set; }
+            public string name { get; set; }
+            public int unitCost { get; set; }
+            public int cost { get; set; }
+            public int amount { get; set; }
+            public BillItem(string newId, string newName, int newCost)
+            {
+                id = newId;
+                name = newName;
+                unitCost = newCost;
+                cost = newCost;
+                amount = 1;
+            }
+        }
+
+        List<MenuItem> menuItems;
+        List<BillItem> billItems;
+        int total;
+        int received;
         public Cashier(MainWindow mainWindow)
         {
             InitializeComponent();
@@ -46,22 +71,33 @@ namespace CoffeeStore.View
 
         public void LoadData()
         {
-            List<MenuItem> menuItems = new List<MenuItem>();
+            menuItems = new List<MenuItem>();
+            billItems = new List<BillItem>();
             BUS_Beverage busBev = new BUS_Beverage();
             DataTable BevsData = busBev.getAllBeverage();
             foreach (DataRow row in BevsData.Rows)
             {
+                string id = row["BeverageID"].ToString();
                 string name = row["BeverageName"].ToString();
                 int price = Int32.Parse(row["Price"].ToString());
                 bool state;
                 if (row["IsOutOfStock"].ToString() == "0")
                     state = false;
                 else state = true;
-                menuItems.Add(new MenuItem(name, price, state));
+                menuItems.Add(new MenuItem(id, name, price, state));
             }
 
             ListViewMenu.ItemsSource = menuItems;
             ListViewMenu.Items.Refresh();
+
+            dgBill.ItemsSource = billItems;
+            dgBill.Items.Refresh();
+
+            total = 0;
+            received = 0;
+            BUS_Discount busDiscount = new BUS_Discount();
+            DTO_Discount curDiscount = busDiscount.GetCurrentDiscount();
+            tblockDiscount.Text = curDiscount.DiscountValue.ToString() + " %";
         }
 
         private void MenuStatus_Click(object sender, RoutedEventArgs e)
@@ -112,6 +148,77 @@ namespace CoffeeStore.View
         private void ChangePasswordBtn_Click(object sender, RoutedEventArgs e)
         {
             _context.PopupChangePassword();
+        }
+
+        private void btnMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            string id = ((Button)sender).Tag.ToString();
+            string newName = "";
+            int newCost = 0;
+            for (int i = 0; i < menuItems.Count; i++)
+            {
+                if (id == menuItems[i].id)
+                {
+                    if (!menuItems[i].state)
+                    {
+                        MessageBox.Show("Món này đã hết hàng!");
+                        return;
+                    }
+                    newName = menuItems[i].name;
+                    newCost = menuItems[i].cost;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < billItems.Count; i++)
+            {
+                if (id == billItems[i].id)
+                {
+                    billItems[i].amount++;
+                    billItems[i].cost += billItems[i].unitCost;
+                    dgBill.Items.Refresh();
+                    total += billItems[i].unitCost;
+                    tblockTotal.Text = MoneyToString(total);
+                    tblockChange.Text = MoneyToString(received - total);
+                    return;
+                }
+            }
+
+            total += newCost;
+            tblockTotal.Text = MoneyToString(total);
+            tblockChange.Text = MoneyToString(received - total);
+
+            billItems.Add(new BillItem(id, newName, newCost));
+            dgBill.Items.Refresh();
+        }
+
+        private string MoneyToString(int amount)
+        {
+            string result = Math.Abs(amount).ToString();
+            int start = result.Length % 3;
+            if (start == 0)
+                start = 3;
+
+            for(int i = start; i < result.Length - 1; i = i + 4)
+            {
+                result = result.Insert(i, ".");
+            }
+            if (amount < 0)
+                result = "-" + result;
+            return result + " VNĐ";
+        }
+
+        private void tboxAmountReceived_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                received = Int32.Parse(tboxAmountReceived.Text);
+                tblockChange.Text = MoneyToString(received - total);
+            }
+            catch
+            {
+                // validate for user add text in Amount box
+            }
         }
     }
 }
