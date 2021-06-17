@@ -17,7 +17,7 @@
             <UserControls:TitleBar/>
         </Grid>
         <!--Popup content-->
-        <TextBlock Margin="30" HorizontalAlignment="Center"
+        <TextBlock x:Name="tblContent" Margin="30" HorizontalAlignment="Center"
                    Text="Dữ liệu về ... sẽ bị xóa vĩnh viễn. &#x0a;Bạn chắc chắn muốn xóa?" 
                    Height="39"
                    FontSize="15"/>

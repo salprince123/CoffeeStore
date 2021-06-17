@@ -31,7 +31,7 @@ namespace CoffeeStore.Menu
         public PopupDeleteConfirm(DTO_Beverage beverage, MainWindow context)
         {
             InitializeComponent();
-            Content = "Dữ liệu về " + beverage.BeverageName + " sẽ bị xóa vĩnh viễn.\n Bạn chắc chắn muốn xóa?";
+            tblContent.Text = "Dữ liệu về " + beverage.BeverageName + " sẽ bị xóa vĩnh viễn.\n Bạn chắc chắn muốn xóa?";
             ID = beverage.BeverageID;
             this._context = context;
         }

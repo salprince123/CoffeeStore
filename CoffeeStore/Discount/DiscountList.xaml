@@ -219,6 +219,13 @@
                                                Style="{StaticResource DataGrid_Label_Style}"/>
                                     </DataGridTextColumn.Header>
                                 </DataGridTextColumn>
+                                <DataGridTextColumn Binding="{Binding Path='Status'}">
+                                    <DataGridTextColumn.Header>
+                                        <Label FontWeight="SemiBold" 
+                                               HorizontalContentAlignment="Center" Content="Trạng thái"
+                                               Style="{StaticResource DataGrid_Label_Style}"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>

@@ -26,6 +26,11 @@ namespace CoffeeStore.Discount
     {
         BUS_Discount bus = new BUS_Discount();
         MainWindow _context;
+        class Discount: DTO_Discount
+            {
+                public String Status { get; set; }
+            }
+
         public DiscountList()
         {
             InitializeComponent();
@@ -46,7 +51,7 @@ namespace CoffeeStore.Discount
         }
         void loadData()
         {
-            var list = new ObservableCollection<DTO_Discount>();
+            var list = new ObservableCollection<Discount>();
             DataTable temp = bus.getAllDiscount();
             foreach (DataRow row in temp.Rows)
             {
@@ -55,10 +60,25 @@ namespace CoffeeStore.Discount
                 int value = Int32.Parse(row["DiscountValue"].ToString());
                 string startdate = row["startdate"].ToString();
                 string enddate = row["enddate"].ToString();
-                list.Add(new DTO_Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate });
+                string status = "";
+                DateTime time = DateTime.ParseExact(enddate, "dd/MM/yyyy", null);
+                if ( DateTime.Compare(time, DateTime.Now.Date) >=0)
+                {
+                    status = "Đang diễn ra";
+                }                       
+                else
+                {
+                    status = "Đã hết hạn";
+                }    
+                    
+                list.Add(new Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate, Status = status });
             }
             dgDiscount.ItemsSource = list;
-            dgDiscount.Items.Refresh();
+            //foreach (ItemsControl item in dgDiscount.Items)
+            //{
+            //   //MessageBox.Show(item.);
+            //}    
+            //dgDiscount.Items.Refresh();
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {

@@ -36,6 +36,7 @@ namespace CoffeeStore.Discount
             ID = id;
             tbName.Text = name;
             tbStartDate.SelectedDate = DateTime.ParseExact(startdate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            tbStartDate.IsEnabled = false;
             tbEndDate.SelectedDate = DateTime.ParseExact(enddate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             tbPrice.Text = value;
             tbDescription.Text = "";
@@ -46,18 +47,25 @@ namespace CoffeeStore.Discount
         {
             if (checkCondition())
             {
-                DTO_Discount discount = new DTO_Discount();
-                discount.DiscountID = ID;
-                discount.DiscountName = tbName.Text;
-                discount.DiscountValue = float.Parse(tbPrice.Text);
-                discount.StartDate = tbStartDate.Text;
-                discount.EndDate = tbEndDate.Text;
-                if (busDiscount.editDiscount(discount) > 0)
+                if (DateTime.Compare(DateTime.ParseExact(tbEndDate.SelectedDate.ToString(), "dd/MM/yyyy", null), DateTime.Now.Date) < 0)
                 {
-                    MessageBox.Show("Thành công");
+                    MessageBox.Show("Ngày kết thúc không được nhỏ hơn ngày hiện tại");
                 }
-                else
-                    MessageBox.Show("Thất bại");
+                else 
+                {
+                    DTO_Discount discount = new DTO_Discount();
+                    discount.DiscountID = ID;
+                    discount.DiscountName = tbName.Text;
+                    discount.DiscountValue = float.Parse(tbPrice.Text);
+                    discount.StartDate = tbStartDate.Text;
+                    discount.EndDate = tbEndDate.Text;
+                    if (busDiscount.editDiscount(discount) > 0)
+                    {
+                        MessageBox.Show("Thành công");
+                    }
+                    else
+                        MessageBox.Show("Thất bại");
+                }                
                 Window.GetWindow(this).Close();
             }
             else
