@@ -60,7 +60,8 @@
                          materialDesign:HintAssist.Hint="Tên nguyên vật liệu, thiết bị" Padding="5"/>
                 <Button x:Name="btnFind" Grid.Column="2" Height="40"
                     Background="#6B6158" Foreground="#FFE297" 
-                    BorderBrush="#FFE297" BorderThickness="1">
+                    BorderBrush="#FFE297" BorderThickness="1"
+                        Click="btnSearch_Click">
                     <materialDesign:PackIcon Kind="Search" Height="20" Width="20"/>
                 </Button>
             </Grid>
@@ -68,7 +69,8 @@
             <!--Button here-->
             <Button Grid.Row="1" Grid.Column="1" Height="Auto"
                     BorderBrush="#6B6158" BorderThickness="1"
-                    Background="#FFE297" Foreground="#6B6158">
+                    Background="#FFE297" Foreground="#6B6158"
+                    Click="btnAdd_Click">
                 + THÊM
             </Button>
             <!--List here-->
@@ -166,7 +168,7 @@
                             </DataGrid.RowHeaderTemplate>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Path=''}"
+                                <DataGridTextColumn Binding="{Binding Path='Name'}"
                                                     CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}">
                                     <DataGridTextColumn.Header>
                                         <Label FontWeight="SemiBold"
@@ -175,14 +177,14 @@
                                     </DataGridTextColumn.Header>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Binding="{Binding Path=''}">
+                                <DataGridTextColumn Binding="{Binding Path='Unit'}">
                                     <DataGridTextColumn.Header>
                                         <Label FontWeight="SemiBold" 
                                                HorizontalContentAlignment="Center" Content="Đơn vị tính"
                                                Style="{StaticResource DataGrid_Label_Style}"/>
                                     </DataGridTextColumn.Header>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding Path=''}">
+                                <DataGridTextColumn Binding="{Binding Path='Amount'}">
                                     <DataGridTextColumn.Header>
                                         <Label FontWeight="SemiBold" 
                                                HorizontalContentAlignment="Center" Content="Số lượng"
@@ -193,10 +195,12 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <Button Margin="10,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5">
+                                                <Button Margin="10,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5"
+                                                        Click="btnEdit_Click">
                                                     <materialDesign:PackIcon Kind="GreasePencil" Foreground="White" Height="20" Width="20"  />
                                                 </Button>
-                                                <Button Margin="10,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252">
+                                                <Button Margin="10,0,0,0" Name="btnDelete" Click="btnDelete_Click" 
+                                                        BorderBrush="#E55252" Background="#E55252">
                                                     <materialDesign:PackIcon Kind="Delete" Height="20" Width="20" />
                                                 </Button>
                                             </StackPanel>
