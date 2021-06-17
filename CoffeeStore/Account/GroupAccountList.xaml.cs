@@ -166,7 +166,7 @@ namespace CoffeeStore.Account
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
                 Title = "Xóa tài khoản",
-                Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa \nloại tài khoản {row.name} không?", row.name),
+                Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa \nloại tài khoản {row.name} không?", row.name, 2),
                 Width = 380,
                 Height = 210,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
