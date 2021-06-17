@@ -15,7 +15,7 @@ namespace CoffeeStore.DAL
         {
             try
             {
-                string sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID";
+                string sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price, IsOutOfStock From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 DataTable dsMon = new DataTable();
                 da.Fill(dsMon);
@@ -30,7 +30,7 @@ namespace CoffeeStore.DAL
         public int createNewBeverage(DTO_Beverage beverage)
         {
             int rs = 0;
-            string sql = $"Insert into BeverageName values ('" + beverage.BeverageID + "','" + beverage.BeverageTypeID + "','" + beverage.BeverageName + "'," + beverage.Price + "," + beverage.Amount + ",'" + beverage.Unit + "')";
+            string sql = $"Insert into BeverageName values ('" + beverage.BeverageID + "','" + beverage.BeverageTypeID + "','" + beverage.BeverageName + "'," + beverage.Price + ", false, 'Cup')";
             try
             {
                 SQLiteCommand command = new SQLiteCommand(sql, getConnection());
@@ -62,7 +62,7 @@ namespace CoffeeStore.DAL
         public int editBeverage(DTO_Beverage beverage)
         {
             int rs = 0;
-            string sql = $"Update BeverageName set BeverageTypeID='" + beverage.BeverageTypeID + "', BeverageName='" + beverage.BeverageName + "', Price=" + beverage.Price + ",ExistingAmount=" + beverage.Amount + ",Unit='" + beverage.Unit + "' Where BeverageID='" + beverage.BeverageID + "'";
+            string sql = $"Update BeverageName set BeverageTypeID='" + beverage.BeverageTypeID + "', BeverageName='" + beverage.BeverageName + "', Price=" + beverage.Price + ",ExistingAmount=" + beverage.IsOutOfStock + ",Unit='" + beverage.Unit + "' Where BeverageID='" + beverage.BeverageID + "'";
             try
             {
                 SQLiteCommand command = new SQLiteCommand(sql, getConnection());

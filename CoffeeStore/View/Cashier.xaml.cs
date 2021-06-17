@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CoffeeStore.BUS;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +23,45 @@ namespace CoffeeStore.View
     public partial class Cashier : UserControl
     {
         MainWindow _context;
+
+        class MenuItem
+        {
+            public string name{ get; set;}
+            public int cost { get; set; }
+            public bool state { get; set; }
+            public MenuItem(string newName, int newCost, bool newState)
+            {
+                name = newName;
+                cost = newCost;
+                state = newState;
+            }    
+        }
+
         public Cashier(MainWindow mainWindow)
         {
             InitializeComponent();
             _context = mainWindow;
+            LoadData();
+        }
+
+        public void LoadData()
+        {
+            List<MenuItem> menuItems = new List<MenuItem>();
+            BUS_Beverage busBev = new BUS_Beverage();
+            DataTable BevsData = busBev.getAllBeverage();
+            foreach (DataRow row in BevsData.Rows)
+            {
+                string name = row["BeverageName"].ToString();
+                int price = Int32.Parse(row["Price"].ToString());
+                bool state;
+                if (row["IsOutOfStock"].ToString() == "0")
+                    state = false;
+                else state = true;
+                menuItems.Add(new MenuItem(name, price, state));
+            }
+
+            ListViewMenu.ItemsSource = menuItems;
+            ListViewMenu.Items.Refresh();
         }
 
         private void MenuStatus_Click(object sender, RoutedEventArgs e)

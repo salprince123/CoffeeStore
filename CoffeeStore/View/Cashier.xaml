@@ -256,13 +256,14 @@
                                     <DataTemplate>
                                         <Border Margin="10" Width="110" Height="165" Background="#EBEBEB">
                                             <!--If database has image-->
-                                            <!--<Border.Background>
-                                                <ImageBrush ImageSource="{Binding Image}"/>
-                                            </Border.Background>-->
                                             <StackPanel>
-                                                <Border Height="100" Background="Gray"/>
-                                                <TextBlock Name="FoodName" Margin="5" Text="Tên món" FontSize="14"/>
-                                                <TextBlock Name="Value" Margin="5 0" Text="20.000 VND" FontSize="14"/>
+                                                <Border Height="100">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="cafe-latte.jpg"/>
+                                                    </Border.Background>
+                                                </Border>
+                                                <TextBlock Name="FoodName" Margin="5" Text="{Binding Path='name'}" FontSize="14"/>
+                                                <TextBlock Name="Value" Margin="5 0" Text="{Binding Path='cost'}" FontSize="14"/>
                                                 <!--<TextBlock Name="Status" Margin="5 0" Text="Hết hàng" FontSize="10" HorizontalAlignment="Right"/>-->
                                             </StackPanel>
                                         </Border>
