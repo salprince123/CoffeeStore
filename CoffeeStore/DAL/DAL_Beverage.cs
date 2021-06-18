@@ -47,22 +47,24 @@ namespace CoffeeStore.DAL
         {
             int rs = 0;
             string sql = $"Delete From BeverageName Where BeverageID='" + id + "'";
-            try
-            {
-                SQLiteCommand command = new SQLiteCommand(sql, getConnection());
-                command.Connection.Open();
-                rs = command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine(ex.Message);
-            }
+            if (checkConditionToDelete(id))
+                try
+                {
+                    SQLiteCommand command = new SQLiteCommand(sql, getConnection());
+                    command.Connection.Open();
+                    rs = command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex.Message);
+                }
             return rs;
         }
         public int editBeverage(DTO_Beverage beverage)
         {
             int rs = 0;
-            string sql = $"Update BeverageName set BeverageTypeID='" + beverage.BeverageTypeID + "', BeverageName='" + beverage.BeverageName + "', Price=" + beverage.Price + ",ExistingAmount=" + beverage.IsOutOfStock + ",Unit='" + beverage.Unit + "' Where BeverageID='" + beverage.BeverageID + "'";
+            Console.WriteLine(beverage.BeverageID);
+            string sql = $"Update BeverageName set BeverageTypeID='" + beverage.BeverageTypeID + "', BeverageName='" + beverage.BeverageName + "', Price=" + beverage.Price + ",IsOutOfStock=" + beverage.IsOutOfStock + ",Unit='" + beverage.Unit + "' Where BeverageID='" + beverage.BeverageID + "'";
             try
             {
                 SQLiteCommand command = new SQLiteCommand(sql, getConnection());
@@ -171,6 +173,23 @@ namespace CoffeeStore.DAL
                 Console.WriteLine(e.Message);
             };
             return null;
+        }
+        public bool checkConditionToDelete(string ID)
+        {
+            bool result = true;
+            try
+            {
+                string sql = $"Select BeverageID From ReceiptDetail Where BeverageID='" + ID + "'";
+                SQLiteCommand cmd = new SQLiteCommand(sql, getConnection());
+                SQLiteDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                    result = false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            };
+            return result;
         }
 
         public bool ChangeIsOutOfStockValue(string id, bool isOutOfStock)

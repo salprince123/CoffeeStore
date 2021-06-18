@@ -152,7 +152,7 @@ namespace CoffeeStore.Inventory
                 string temp = $"insert into InventoryExportDetail values ('{newExportID}','{obj.id}','{obj.amount}','{tbDescription.Text}')";
                 sqlString.Add(temp);
             }
-            BUS_InventoryImportDetail detail = new BUS_InventoryImportDetail();
+            BUS_InventoryExportDetail detail = new BUS_InventoryExportDetail();
             detail.ImportList(sqlString);
             var screen = new InventoryExport(_context);
             if (screen != null)

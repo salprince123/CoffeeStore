@@ -36,8 +36,8 @@ namespace CoffeeStore.Discount
             ID = id;
             tbName.Text = name;
             tbStartDate.SelectedDate = DateTime.ParseExact(startdate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            tbStartDate.IsEnabled = false;
             tbEndDate.SelectedDate = DateTime.ParseExact(enddate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            MessageBox.Show(enddate + "   " + tbEndDate.Text);
             tbPrice.Text = value;
             tbDescription.Text = "";
             this.mainWindow = window;
@@ -47,32 +47,35 @@ namespace CoffeeStore.Discount
         {
             if (checkCondition())
             {
-                DTO_Discount discount = new DTO_Discount();
-                discount.DiscountID = ID;
-                discount.DiscountName = tbName.Text;
-                discount.DiscountValue = float.Parse(tbPrice.Text);
-                discount.StartDate = tbStartDate.Text;
-                discount.EndDate = tbEndDate.Text;
-                if (busDiscount.editDiscount(discount) > 0)
+                if (DateTime.Compare((DateTime)tbEndDate.SelectedDate, DateTime.Now.Date) < 0)
                 {
-                    MessageBox.Show("Thành công");
+                    MessageBox.Show("Ngày kết thúc không được nhỏ hơn ngày hiện tại");
                 }
-                else
-                    MessageBox.Show("Thất bại");
-                var screen = new DiscountList(mainWindow);
-                if (screen != null)
+                else 
                 {
-                    this.mainWindow.StackPanelMain.Children.Clear();
-                    this.mainWindow.StackPanelMain.Children.Add(screen);
-                }
+                    DTO_Discount discount = new DTO_Discount();
+                    discount.DiscountID = ID;
+                    discount.DiscountName = tbName.Text;
+                    discount.DiscountValue = float.Parse(tbPrice.Text);
+                    discount.StartDate = tbStartDate.SelectedDate.Value.ToString("dd/MM/yyyy");
+                    discount.EndDate = tbEndDate.SelectedDate.Value.ToString("dd/MM/yyyy");
+                    if (busDiscount.editDiscount(discount) > 0)
+                    {
+                        MessageBox.Show("Thành công");
+                    }
+                    else
+                        MessageBox.Show("Thất bại");
+                }                
+                Window.GetWindow(this).Close();
             }
             else
                 MessageBox.Show("Tên discount, giá trị discount, ngày bắt đầu và ngày kết thúc là bắt buộc");
 
+
         }
         private bool checkCondition()
         {
-            return (tbName.Text != "" && tbPrice.Text != "" && tbStartDate.Text != "" && tbEndDate.Text != "" && DateTime.Parse(tbStartDate.Text) < DateTime.Parse(tbEndDate.Text));
+            return (tbName.Text != "" && tbPrice.Text != "" && tbStartDate.Text != "" && tbEndDate.Text != "" && DateTime.Parse(tbStartDate.Text) <=DateTime.Parse(tbEndDate.Text));
         }
 
         private void tbPrice_PreviewTextInput_1(object sender, TextCompositionEventArgs e)

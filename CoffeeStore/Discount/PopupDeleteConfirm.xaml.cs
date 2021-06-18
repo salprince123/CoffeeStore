@@ -23,6 +23,8 @@ namespace CoffeeStore.Discount
     {
         MainWindow _context;
         String ID;
+        DateTime time;
+        BUS.BUS_Discount bus = new BUS.BUS_Discount();
         public PopupDeleteConfirm()
         {
             InitializeComponent();
@@ -32,12 +34,28 @@ namespace CoffeeStore.Discount
         {
             InitializeComponent();
             ID = discount.DiscountID;
+            time = DateTime.ParseExact(discount.StartDate, "dd/MM/yyyy", null);
+            tblContent.Text = "Dữ liệu về "+discount.DiscountName+" sẽ bị xóa vĩnh viễn.\n Bạn chắc chắn muốn xóa?";
             this._context = context;
         }
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
-
+            if (DateTime.Compare(time, DateTime.Now.Date) <= 0)
+            {
+                MessageBox.Show("Không được xóa ưu đãi đang hoặc đã diễn ra");
+            }
+            else
+            {
+                if (bus.deleteDiscount(ID) > 0)
+                {
+                    MessageBox.Show("Thành công");
+                }
+                else
+                    MessageBox.Show("Thất bại");
+            }
+            
+            Window.GetWindow(this).Close();
         }
 
         private void btExit_Click(object sender, RoutedEventArgs e)

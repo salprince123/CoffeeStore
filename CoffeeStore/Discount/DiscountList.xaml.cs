@@ -26,6 +26,11 @@ namespace CoffeeStore.Discount
     {
         BUS_Discount bus = new BUS_Discount();
         MainWindow _context;
+        class Discount: DTO_Discount
+            {
+                public String Status { get; set; }
+            }
+
         public DiscountList()
         {
             InitializeComponent();
@@ -46,7 +51,7 @@ namespace CoffeeStore.Discount
         }
         void loadData()
         {
-            var list = new ObservableCollection<DTO_Discount>();
+            var list = new ObservableCollection<Discount>();
             DataTable temp = bus.getAllDiscount();
             foreach (DataRow row in temp.Rows)
             {
@@ -55,10 +60,58 @@ namespace CoffeeStore.Discount
                 int value = Int32.Parse(row["DiscountValue"].ToString());
                 string startdate = row["startdate"].ToString();
                 string enddate = row["enddate"].ToString();
-                list.Add(new DTO_Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate });
+                string status = "";
+                DateTime time = DateTime.ParseExact(enddate, "dd/MM/yyyy", null);
+                if (DateTime.Compare(time, DateTime.Now.Date) >= 0)
+                {
+                    status = "Đang diễn ra";
+                }
+                else
+                {
+                    status = "Đã hết hạn";
+                }
+
+                list.Add(new Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate, Status = status });
             }
             dgDiscount.ItemsSource = list;
-            dgDiscount.Items.Refresh();
+            //foreach (ItemsControl item in dgDiscount.Items)
+            //{
+            //   //MessageBox.Show(item.);
+            //}    
+            //dgDiscount.Items.Refresh();
+        }
+        void findDiscount(string startdatefind, string enddatefind)
+        {
+            var list = new ObservableCollection<Discount>();
+            DataTable temp = bus.getAllDiscount();
+            foreach (DataRow row in temp.Rows)
+            {
+                string name = row["DiscountName"].ToString();
+                string id = row["DiscountID"].ToString();
+                int value = Int32.Parse(row["DiscountValue"].ToString());
+                string startdate = row["startdate"].ToString();
+                string enddate = row["enddate"].ToString();
+                string status = "";
+                DateTime timeend = DateTime.ParseExact(enddate, "dd/MM/yyyy", null);
+                DateTime timestart = DateTime.ParseExact(startdate, "dd/MM/yyyy", null);
+                DateTime timeendfind = DateTime.ParseExact(enddatefind, "dd/MM/yyyy", null);
+                DateTime timestartfind = DateTime.ParseExact(startdatefind, "dd/MM/yyyy", null);
+                if (DateTime.Compare(timeend, DateTime.Now.Date) >= 0)
+                {
+                    status = "Đang diễn ra";
+                }
+                else
+                {
+                    status = "Đã hết hạn";
+                }
+                if ((DateTime.Compare(timeend, timeendfind) <= 0) &&(DateTime.Compare(timestart, timestartfind) >= 0))
+                {
+                    list.Add(new Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate, Status = status });
+                }
+                MessageBox.Show((DateTime.Compare(timeend, timeendfind)).ToString());
+                MessageBox.Show((DateTime.Compare(timestart, timestartfind) >= 0).ToString());
+            }
+            dgDiscount.ItemsSource = list;
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -85,46 +138,78 @@ namespace CoffeeStore.Discount
 
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
-            dgDiscount.ItemsSource = bus.findDiscount(tbDateStart.Text, tbDateEnd.Text).DefaultView;
+            this.findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
         }
 
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             DTO_Discount row = (DTO_Discount)dgDiscount.SelectedItem;
-            var screen = new PopupDeleteConfirm();
-            if (screen != null)
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            Window window = new Window
             {
-                this._context.StackPanelMain.Children.Clear();
-                this._context.StackPanelMain.Children.Add(screen);
-            }
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
+                Title = "Chi tiết ưu đãi",
+                Content = new PopupDeleteConfirm(row, _context),
+                Width = 540,
+                Height = 350,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
+            };
+            window.ShowDialog();
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
+            loadData();
         }
 
         private void btnWatch_Click(object sender, RoutedEventArgs e)
         {
             DTO_Discount row = (DTO_Discount)dgDiscount.SelectedItem;
-            MessageBox.Show(row.DiscountID);
             var rowView = dgDiscount.SelectedItem;
-            var screen = new PopupDiscountDetail(row.DiscountID);
-            if (screen != null)
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            Window window = new Window
             {
-                this._context.StackPanelMain.Children.Clear();
-                this._context.StackPanelMain.Children.Add(screen);
-            }
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
+                Title = "Chi tiết ưu đãi",
+                Content = new PopupDiscountDetail(row.DiscountID),
+                Width = 400,
+                Height = 480,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 400) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 480) / 2,
+            };
+            window.ShowDialog();
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             DTO_Discount row = (DTO_Discount)dgDiscount.SelectedItem;
-            MessageBox.Show(row.DiscountID);
             var rowView = dgDiscount.SelectedItem;
-            var screen = new PopupDiscountEdit(row.DiscountID, row.DiscountName, row.StartDate, row.EndDate, row.DiscountValue.ToString(), _context);
-            if (screen != null)
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            Window window = new Window
             {
-                this._context.StackPanelMain.Children.Clear();
-                this._context.StackPanelMain.Children.Add(screen);
-            }
-
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
+                Title = "Sửa ưu đãi",
+                Content = new PopupDiscountEdit(row.DiscountID, row.DiscountName, row.StartDate, row.EndDate, row.DiscountValue.ToString(), _context),
+                Width = 540,
+                Height = 480,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 480) / 2,
+            };
+            window.ShowDialog();
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
+            loadData();
         }
 
     }

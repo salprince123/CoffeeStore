@@ -49,9 +49,9 @@ namespace CoffeeStore.Inventory
         public void LoadData()
         {
             username = "Vo Dinh Ngoc Huyen";
+            mainList.Clear();
             BUS_InventoryImport import = new BUS_InventoryImport();
             DataTable temp = import.selectAll();
-            Console.WriteLine(temp.Rows.Count);
             foreach (DataRow row in temp.Rows)
             {
                 string employid = row["EmployeeName"].ToString();
@@ -59,8 +59,8 @@ namespace CoffeeStore.Inventory
                 string date = row["importDate"].ToString();
                 mainList.Add(new InventoryImportObject() { ID = id, EmployName = employid, InventoryDate = date });
             }
-            this.dataGridImport.ItemsSource = mainList;
             this.dataGridImport.Items.Refresh();
+            this.dataGridImport.ItemsSource = mainList;
         }
         public void findImport()
         {
@@ -213,7 +213,7 @@ namespace CoffeeStore.Inventory
             findImport();
         }
 
-        private void dpFrom_CalendarClosed(object sender, RoutedEventArgs e)
+       /* private void dpFrom_CalendarClosed(object sender, RoutedEventArgs e)
         {
             tbDateStart.Text = dpFrom.SelectedDate.Value.ToString("dd/MM/yyyy");
             dpFrom.Text = "";
@@ -225,7 +225,7 @@ namespace CoffeeStore.Inventory
             tbDateEnd.Text = dpTo.SelectedDate.Value.ToString("dd/MM/yyyy");
             dpTo.Text = "";
             Keyboard.Focus(tbDateEnd);
-        }
+        }*/
     }
 
 

@@ -46,15 +46,11 @@ namespace CoffeeStore.Menu
                 if (bus.createNewBevverage(beverage) > 0)
                 {
                     MessageBox.Show("Thành công");
+                    Window.GetWindow(this).Close();
                 }
                 else
                     MessageBox.Show("Thất bại");
-                var screen = new MenuList(main);
-                if (screen != null)
-                {
-                    this.main.StackPanelMain.Children.Clear();
-                    this.main.StackPanelMain.Children.Add(screen);
-                }
+                Window.GetWindow(this).Close();
             }
             else
                 MessageBox.Show("Không được để trống tên, giá và loại đồ uống");

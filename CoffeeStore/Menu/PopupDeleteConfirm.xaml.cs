@@ -28,10 +28,11 @@ namespace CoffeeStore.Menu
         {
             InitializeComponent();
         }
-        public PopupDeleteConfirm(string id, MainWindow context)
+        public PopupDeleteConfirm(DTO_Beverage beverage, MainWindow context)
         {
             InitializeComponent();
-            ID = id;
+            tblContent.Text = "Dữ liệu về " + beverage.BeverageName + " sẽ bị xóa vĩnh viễn.\n Bạn chắc chắn muốn xóa?";
+            ID = beverage.BeverageID;
             this._context = context;
         }
         public PopupDeleteConfirm(string id)
@@ -47,22 +48,13 @@ namespace CoffeeStore.Menu
             }
             else
                 MessageBox.Show("Thất bại");
-            var screen = new MenuList(_context);
-            if (screen != null)
-            {
-                this._context.StackPanelMain.Children.Clear();
-                this._context.StackPanelMain.Children.Add(screen);
-            }
+            Window.GetWindow(this).Close();
         }
 
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
-            var screen = new MenuList(_context);
-            if (screen != null)
-            {
-                this._context.StackPanelMain.Children.Clear();
-                this._context.StackPanelMain.Children.Add(screen);
-            }
+            Window.GetWindow(this).Close();
         }
+
     }
 }

@@ -219,5 +219,15 @@ namespace CoffeeStore.View
                 // validate for user add text in Amount box
             }
         }
+
+        private void btnPlus_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnMinus_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
