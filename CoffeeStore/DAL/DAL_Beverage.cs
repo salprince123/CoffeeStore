@@ -198,7 +198,7 @@ namespace CoffeeStore.DAL
             if (isOutOfStock)
                 isOutOfStockStr = "1";
 
-            string sql = $"Update BeverageName set IsOutOfStock = '{isOutOfStockStr}' Where BeverageID='{id}'";
+            string sql = $"Update BeverageName set IsOutOfStock = {isOutOfStockStr} Where BeverageID='{id}'";
             SQLiteCommand update = new SQLiteCommand(sql, getConnection().OpenAndReturn());
             try
             {
