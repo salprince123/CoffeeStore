@@ -30,7 +30,7 @@ namespace CoffeeStore.DAL
         public int createNewBeverage(DTO_Beverage beverage)
         {
             int rs = 0;
-            string sql = $"Insert into BeverageName values ('" + beverage.BeverageID + "','" + beverage.BeverageTypeID + "','" + beverage.BeverageName + "'," + beverage.Price + ", false, 'Cup')";
+            string sql = $"Insert into BeverageName values ('" + beverage.BeverageID + "','" + beverage.BeverageTypeID + "','" + beverage.BeverageName + "'," + beverage.Price + ", 0, 'Cup')";
             try
             {
                 SQLiteCommand command = new SQLiteCommand(sql, getConnection());
@@ -171,6 +171,26 @@ namespace CoffeeStore.DAL
                 Console.WriteLine(e.Message);
             };
             return null;
+        }
+
+        public bool ChangeIsOutOfStockValue(string id, bool isOutOfStock)
+        {
+            string isOutOfStockStr = "0";
+            if (isOutOfStock)
+                isOutOfStockStr = "1";
+
+            string sql = $"Update BeverageName set IsOutOfStock = '{isOutOfStockStr}' Where BeverageID='{id}'";
+            SQLiteCommand update = new SQLiteCommand(sql, getConnection().OpenAndReturn());
+            try
+            {
+                update.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+                return false;
+            }
         }
     }
 }

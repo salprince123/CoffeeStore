@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CoffeeStore.View" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:CoffeeStore.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:UserControls="clr-namespace:CoffeeStore.View"
              mc:Ignorable="d" 
              Width="Auto" Height="Auto">
@@ -35,7 +36,7 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="tbFind" Height="40" BorderThickness="1" Margin="10,0,10,0"/>
+            <TextBox x:Name="tbFind" TextChanged="tbFind_TextChanged" Height="40" BorderThickness="1" Margin="10,0,10,0"/>
             <Button x:Name="btnFind" Grid.Column="1" Height="40" Margin="0,0,10,0"
                     Background="#6B6158" Foreground="#FFE297" 
                     BorderBrush="#FFE297" BorderThickness="1">
@@ -49,20 +50,26 @@
         </Grid>
         <!--List here-->
         <Grid Grid.Row="4">
-            <DataGrid x:Name="dataGrid" Margin="10,0,10,0"
+            <DataGrid x:Name="dgMenu" Margin="10,0,10,0"
                       BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
                       VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" >
                 <DataGrid.CurrentColumn>
                     <materialDesign:DataGridTextColumn/>
                 </DataGrid.CurrentColumn>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="STT" IsReadOnly="True"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Tên món" IsReadOnly="True"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Giá" IsReadOnly="True"></DataGridTextColumn>
-                    <DataGridTemplateColumn Header="Hết hàng">
+                    <DataGridTextColumn Header="Tên món" IsReadOnly="True" Binding="{Binding Path=name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Giá" IsReadOnly="True" Binding="{Binding Path=cost}"></DataGridTextColumn>
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.Header>
+                            <Label FontWeight="SemiBold" 
+                            HorizontalContentAlignment="Center" Content="Hết hàng"
+                            />
+                            <!--Style="{StaticResource DataGrid_Label_Style}"-->
+                        </DataGridTemplateColumn.Header>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox x:Name="cbCheck"></CheckBox>
+                                <CheckBox Name="chbOutOfStock" Tag="{Binding Path=id}" IsChecked="{Binding Path=isOutOfStock, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -77,7 +84,8 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="btnConfirm" Width="110" Margin="0,0,10,0"
                     Background="#66A3FF" FontWeight="Bold"
-                    VerticalAlignment="Top" HorizontalAlignment="Right">
+                    VerticalAlignment="Top" HorizontalAlignment="Right"
+                    Click="btnConfirm_Click">
                 XÁC NHẬN
             </Button>
             <Button x:Name="btnCancel" Grid.Column="1" Width="110" Margin="10,0,0,0"

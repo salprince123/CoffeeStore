@@ -25,19 +25,18 @@ namespace CoffeeStore.View
     {
         MainWindow _context;
 
-        class MenuItem
+        public class MenuBeverage
         {
             public string id { get; set; }
             public string name{ get; set;}
-            
             public int cost { get; set; }
-            public bool state { get; set; }
-            public MenuItem(string newId, string newName, int newCost, bool newState)
+            public bool isOutOfStock { get; set; }
+            public MenuBeverage(string newId, string newName, int newCost, bool newState)
             {
                 id = newId;
                 name = newName;
                 cost = newCost;
-                state = newState;
+                isOutOfStock = newState;
             }    
         }
 
@@ -58,7 +57,7 @@ namespace CoffeeStore.View
             }
         }
 
-        List<MenuItem> menuItems;
+        List<MenuBeverage> menuItems;
         List<BillItem> billItems;
         int total;
         int received;
@@ -71,7 +70,7 @@ namespace CoffeeStore.View
 
         public void LoadData()
         {
-            menuItems = new List<MenuItem>();
+            menuItems = new List<MenuBeverage>();
             billItems = new List<BillItem>();
             BUS_Beverage busBev = new BUS_Beverage();
             DataTable BevsData = busBev.getAllBeverage();
@@ -80,11 +79,11 @@ namespace CoffeeStore.View
                 string id = row["BeverageID"].ToString();
                 string name = row["BeverageName"].ToString();
                 int price = Int32.Parse(row["Price"].ToString());
-                bool state;
+                bool isOutOfState;
                 if (row["IsOutOfStock"].ToString() == "0")
-                    state = false;
-                else state = true;
-                menuItems.Add(new MenuItem(id, name, price, state));
+                    isOutOfState = false;
+                else isOutOfState = true;
+                menuItems.Add(new MenuBeverage(id, name, price, isOutOfState));
             }
 
             ListViewMenu.ItemsSource = menuItems;
@@ -159,7 +158,7 @@ namespace CoffeeStore.View
             {
                 if (id == menuItems[i].id)
                 {
-                    if (!menuItems[i].state)
+                    if (menuItems[i].isOutOfStock)
                     {
                         MessageBox.Show("Món này đã hết hàng!");
                         return;

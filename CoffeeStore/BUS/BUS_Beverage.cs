@@ -43,9 +43,15 @@ namespace CoffeeStore.BUS
         {
             return dalBeverage.GetBeverageType();
         }
+
         public string getBeverageTypeID(string beveragename)
         {
             return dalBeverage.getBeverageTypeID(beveragename);
         }
+
+        public bool ChangeIsOutOfStockValue(string id, bool IsOutOfStock)
+        {
+            return dalBeverage.ChangeIsOutOfStockValue(id, IsOutOfStock);
+        }    
     }
 }
