@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="btv" />
         <Style x:Key="ColumnElementStyle" TargetType="TextBlock">
-            <Setter Property="Margin" Value="25,0,25,0" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
         <!-- style a top level menu item -->
         <ControlTemplate x:Key="VsMenuTop" TargetType="MenuItem">
@@ -154,45 +154,61 @@
                     SelectionUnit="Cell"
                     SelectionMode="Extended" 
                     VerticalAlignment="Stretch" AutoGenerateColumns="False"
+                    FrozenColumnCount="1" CanUserReorderColumns="False"
+                    CanUserResizeColumns="False"
                     VerticalContentAlignment="Stretch"
                     HorizontalContentAlignment="Stretch" Height="Auto" Margin="0,20,0,0"
                     ScrollViewer.CanContentScroll="True" 
                     ScrollViewer.VerticalScrollBarVisibility="Auto"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto">
-                    
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
                     <DataGrid.Columns>
+                        <!--Food Column-->
                         <DataGridTextColumn Header="Món" Width="*" Binding="{ Binding Path='name'}"/>
+                        <!--Plus button-->
                         <DataGridTemplateColumn Header="">
-                            <DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
-                                    <Button
-                                        Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                                        Background="#FF7A00"
-                                        Height="25" Width="25"
-                                        Margin="0,0,-15,0"
-                                        ToolTip="MaterialDesignFloatingActionMiniLightButton"
-                                        Click="btnPlus_Click">
+                                    <Button Width="20" Height="20" Margin="0,0,-50,0" Click="btnPlus_Click">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Grid>
+                                                    <Ellipse Fill="#FF7A00"/>
+                                                    <ContentPresenter Content="{TemplateBinding Content}" 
+                                                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Button.Template>
                                         <materialDesign:PackIcon Kind="Plus" Foreground="White"/>
                                     </Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Số lượng" Width="*" Binding="{ Binding Path='amount'}" ElementStyle="{StaticResource ColumnElementStyle}"/>
+                        <!--Amount Column-->
+                        <DataGridTextColumn Header="Số lượng" Width="*" Binding="{ Binding Path='amount'}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                        <!--Minus button-->
                         <DataGridTemplateColumn Header="">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button
-                                        Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                                        Background="#FF7A00"
-                                        Height="25" Width="25"
-                                        Margin="-50,0,0,0"
-                                        ToolTip="MaterialDesignFloatingActionMiniLightButton"
-                                        Click="btnMinus_Click">
+                                    <Button  Width="20" Height="20" Margin="-50,0,0,0" Click="btnMinus_Click">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Grid>
+                                                    <Ellipse Fill="#FF3D00"/>
+                                                    <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Button.Template>
                                         <materialDesign:PackIcon Kind="Minus" Foreground="White"/>
                                     </Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
+                        <!--Value Column-->
                         <DataGridTextColumn Header="Giá tiền" Width="*"  Binding="{ Binding Path='cost'}" />
                     </DataGrid.Columns>
                 </DataGrid>
@@ -350,11 +366,18 @@
                                             <Border Margin="10" Width="110" Height="165" Background="#EBEBEB">
                                                 <!--If database has image-->
                                                 <StackPanel>
-                                                    <Border Height="100">
-                                                        <Border.Background>
-                                                            <ImageBrush ImageSource="cafe-latte.jpg"/>
-                                                        </Border.Background>
-                                                    </Border>
+                                                    <Grid>
+                                                        <Border Height="100">
+                                                            <Border.Background>
+                                                                <ImageBrush ImageSource="cafe-latte.jpg"/>
+                                                            </Border.Background>
+                                                        </Border>
+                                                        <Border Height="100">
+                                                            <Border.Background>
+                                                                <ImageBrush ImageSource="outofstock.png"/>
+                                                            </Border.Background>
+                                                        </Border>
+                                                    </Grid>
                                                     <TextBlock Name="FoodName" Margin="5" Text="{Binding Path='name'}" FontSize="14"/>
                                                     <TextBlock Name="Value" Margin="5 0" Text="{Binding Path='cost'}" FontSize="14"/>
                                                     <!--<TextBlock Name="Status" Margin="5 0" Text="Hết hàng" FontSize="10" HorizontalAlignment="Right"/>-->
