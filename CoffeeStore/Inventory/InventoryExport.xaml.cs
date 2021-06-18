@@ -56,7 +56,7 @@ namespace CoffeeStore.Inventory
         }
         public void LoadData()
         {
-            username = "Tran Le Bao Chau";
+            username = _context.GetCurrentEmpName();
             list.Clear();
             BUS_InventoryExport export = new BUS_InventoryExport();
             DataTable temp = export.SelectAll();
@@ -75,7 +75,7 @@ namespace CoffeeStore.Inventory
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            var screen = new InventoryExportADD(username, _context);
+            var screen = new InventoryExportADD(_context.GetCurrentEmpName(), _context);
             if (screen != null)
             {
                 this._context.StackPanelMain.Children.Clear();
@@ -120,36 +120,34 @@ namespace CoffeeStore.Inventory
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            //PLEASE USE THIS TO CREATE POPUP
-            //System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
-            //((MainWindow)App.Current.MainWindow).Opacity = 0.5;
-            //((MainWindow)App.Current.MainWindow).Effect = objBlur;
-            //Window window = new Window
-            //{
-            //    ResizeMode = ResizeMode.NoResize,
-            //    WindowStyle = WindowStyle.None,
-            //    Title = "Xóa ... ",
-            //    Content = new PopupDeleteConfirm(), //Delete message
-            //    Width = 380,
-            //    Height = 210,
-            //    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-            //    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
-            //};
-            //window.ShowDialog();
-            //((MainWindow)App.Current.MainWindow).Opacity = 1;
-            //((MainWindow)App.Current.MainWindow).Effect = null;
-
-            if (MessageBox.Show("Ban co chac chan xoa?", "Thong bao", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            InventoryExportObject row = (InventoryExportObject)dataGridExport.SelectedItem;
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            Window window = new Window
             {
-                InventoryExportObject row = (InventoryExportObject)dataGridExport.SelectedItem;
-                BUS_InventoryExportDetail detail = new BUS_InventoryExportDetail();
-                BUS_InventoryExport export = new BUS_InventoryExport();
-                detail.Delete(row.ID);
-                export.Delete(row.ID);
-                LoadData();
-            }
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
+                Title = "xóa phiếu xuất kho! ",
+                Content = new PopupDeleteConfirm(this, row.ID), //delete message
+                Width = 380,
+                Height = 210,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+            };
+            window.ShowDialog();
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
+
         }
-        
+        public void Delete(String id)
+        {
+            BUS_InventoryExportDetail detail = new BUS_InventoryExportDetail();
+            BUS_InventoryExport export = new BUS_InventoryExport();
+            detail.Delete(id);
+            export.Delete(id);
+            LoadData();
+        }
         public void findExport()
         {
             findList.Clear();
@@ -174,10 +172,10 @@ namespace CoffeeStore.Inventory
                     findList.Add(new InventoryExportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate });
                     continue;
                 }
-                if (from != "" || to != "")
+                if (from != null || to != null)
                 {
                     DateTime dtFind = DateTime.ParseExact(obj.InventoryDate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                    if (from != "" && to != "")
+                    if (from != null && to != null)
                     {
                         DateTime dtFrom = DateTime.ParseExact(from, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
                         DateTime dtTo = DateTime.ParseExact(to, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
@@ -187,7 +185,7 @@ namespace CoffeeStore.Inventory
                             continue;
                         }
                     }
-                    else if (from != "" && to == "")
+                    else if (from != null && to == null)
                     {
                         DateTime dtFrom = DateTime.ParseExact(from, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
                         if (dtFrom <= dtFind)
@@ -196,7 +194,7 @@ namespace CoffeeStore.Inventory
                             continue;
                         }
                     }
-                    else if (from == "" && to != "")
+                    else if (from == null && to != null)
                     {
                         DateTime dtTo = DateTime.ParseExact(to, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
                         if (dtTo >= dtFind)

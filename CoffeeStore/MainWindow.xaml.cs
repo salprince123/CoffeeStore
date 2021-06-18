@@ -199,5 +199,10 @@ namespace CoffeeStore
         {
             return currentEmpType;
         }    
+        public string GetCurrentEmpName()
+        {
+            BUS_Employees bus = new BUS_Employees();
+            return bus.GetEmpNameByID(this.currentEmpID);
+        }
     }
 }
