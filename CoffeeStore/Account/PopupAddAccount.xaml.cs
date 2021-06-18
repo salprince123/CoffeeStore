@@ -71,22 +71,27 @@ namespace CoffeeStore.Account
             if (tboxAccName.Text == "")
             {
                 //Employee ID is empty
+                return;
             }
 
             if (tboxEmpName.Text == "")
             {
                 //Employee Name is empty
+                return;
             }
 
             if (tboxPassword.Text == "")
             {
                 //Password is empty
+                return;
             }
 
             if (tboxPassword.Text.Length < 4 || tboxPassword.Text.Length > 20)
             {
                 //Password < 4 characters or > 20 characters
+                return;
             }
+
             string newEmpTypeID = "";
             foreach (EmployeeType empType in empTypes)
             {

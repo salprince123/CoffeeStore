@@ -45,6 +45,16 @@ namespace CoffeeStore.BUS
         public string GetEmpTypeByID(string id)
         {
             return dalEmp.GetEmpTypeByID(id);
-        }    
+        }
+
+        public string GetEmpNameByID(string id)
+        {
+            return dalEmp.GetEmpNameByID(id);
+        }
+
+        public DTO_Employees GetEmpByID(string id)
+        {
+            return dalEmp.GetEmpByID(id);
+        }
     }
 }

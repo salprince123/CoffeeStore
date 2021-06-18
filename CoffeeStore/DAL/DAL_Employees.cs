@@ -31,21 +31,57 @@ namespace CoffeeStore.DAL
 
         public string GetEmpTypeByID(string ID)
         {
-            string pass = "";
+            string type = "";
             try
             {
                 string sql = $"select EmployeeTypeID from Employees where EmployeeID = '{ID}'";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 DataTable listPass = new DataTable();
                 da.Fill(listPass);
-                pass = listPass.Rows[0].ItemArray[0].ToString();
+                type = listPass.Rows[0].ItemArray[0].ToString();
             }
             catch
             {
 
             }
-            return pass;
+            return type;
         }
+
+        public string GetEmpNameByID(string ID)
+        {
+            string name = "";
+            try
+            {
+                string sql = $"select EmployeeName from Employees where EmployeeID = '{ID}'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                DataTable listPass = new DataTable();
+                da.Fill(listPass);
+                name = listPass.Rows[0].ItemArray[0].ToString();
+            }
+            catch
+            {
+
+            }
+            return name;
+        }
+
+        public DTO_Employees GetEmpByID(string ID)
+        {
+            DataTable empData = new DataTable();
+            DTO_Employees emp = new DTO_Employees();
+            try
+            {
+                string sql = $"select EmployeeID, EmployeeName, EmployeeType.EmployeeTypeName, Password from Employees join EmployeeType on Employees.EmployeeTypeID = EmployeeType.EmployeeTypeID where State = '1' and Employees.EmployeeID = '{ID}'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(empData);
+                emp = new DTO_Employees(empData.Rows[0]["EmployeeID"].ToString(), empData.Rows[0]["EmployeeName"].ToString(), empData.Rows[0]["EmployeeTypeName"].ToString(), empData.Rows[0]["Password"].ToString());
+            }
+            catch
+            {
+
+            }
+            return emp;
+        }    
 
         public DataTable GetActiveEmployees()
         {
