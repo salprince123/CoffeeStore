@@ -372,11 +372,11 @@
                                                                 <ImageBrush ImageSource="cafe-latte.jpg"/>
                                                             </Border.Background>
                                                         </Border>
-                                                        <Border Height="100">
+                                                        <!--<Border Height="100">
                                                             <Border.Background>
                                                                 <ImageBrush ImageSource="outofstock.png"/>
                                                             </Border.Background>
-                                                        </Border>
+                                                        </Border>-->
                                                     </Grid>
                                                     <TextBlock Name="FoodName" Margin="5" Text="{Binding Path='name'}" FontSize="14"/>
                                                     <TextBlock Name="Value" Margin="5 0" Text="{Binding Path='cost'}" FontSize="14"/>
