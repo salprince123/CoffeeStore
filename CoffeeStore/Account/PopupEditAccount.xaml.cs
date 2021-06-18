@@ -76,6 +76,7 @@ namespace CoffeeStore.Account
                 //Password < 4 characters or > 20 characters
                 return;
             }
+
             string newEmpTypeID = "";
             foreach (EmployeeType empType in empTypes)
             {

@@ -113,5 +113,30 @@ namespace CoffeeStore.DAL
             sqlite.Connection.Open();
             return sqlite.ExecuteNonQuery();
         }
+
+        public DTO_Discount GetCurrentDiscout()
+        {
+            DataTable discountData = getAllDiscount();
+            DTO_Discount result = new DTO_Discount();
+            foreach (DataRow row in discountData.Rows)
+            {
+                DateTime now = DateTime.Now.Date;
+                try
+                {
+                    DateTime start = DateTime.ParseExact(row["StartDate"].ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture).Date;
+                    if (now < start)
+                        continue;
+                    DateTime end = DateTime.ParseExact(row["EndDate"].ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture).Date;
+                    if (now > end)
+                        continue;
+                    result = new DTO_Discount(row["DiscountID"].ToString(), row["DiscountName"].ToString(), row["StartDate"].ToString(), row["EndDate"].ToString(), float.Parse(row["DiscountValue"].ToString()), "");
+                }
+                catch
+                {
+                    continue;
+                }
+            }    
+            return result;
+        }    
     }
 }

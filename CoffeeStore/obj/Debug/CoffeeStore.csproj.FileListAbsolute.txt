@@ -356,7 +356,6 @@ C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupAddAccount.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupAddGroupAccount.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDeleteConfirm.g.cs
-C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\MainMenu.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportEDIT.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Menu\MenuList.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupAddMenu.g.cs
@@ -367,7 +366,6 @@ C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupAddAccount.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupAddGroupAccount.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDeleteConfirm.baml
-C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\MainMenu.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportEDIT.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Menu\MenuList.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupAddMenu.baml
@@ -617,7 +615,6 @@ C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Report\ReportProfit.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditGroupAccount.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Report\ReportProfit.baml
-C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.csproj.AssemblyReference.cache
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupChangePassword.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDisableAccount.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditAccount.g.cs
@@ -765,3 +762,4 @@ C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDeleteConfirm.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupDeleteConfirm.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\View\PopupDeleteConfirm.baml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.csproj.AssemblyReference.cache

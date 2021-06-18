@@ -11,7 +11,7 @@ namespace CoffeeStore.DTO
         public string BeverageID { get; set; }
         public string BeverageTypeID { get; set; }
         public string BeverageName { get; set; }
-        public int Amount { get; set; }
+        public bool IsOutOfStock { get; set; }
         public int Price { get; set; }
         public string Unit { get; set; }
     }

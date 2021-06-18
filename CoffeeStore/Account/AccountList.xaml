@@ -180,10 +180,10 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Height="Auto" Orientation="Horizontal">
-                                                <Button Margin="10,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5" Click="btnEdit_Click">
+                                                <Button Margin="10,0,0,0" Name="btnEdit" Tag="{Binding Path='id'}" BorderBrush="#3D76B5" Background="#3D76B5" Click="btnEdit_Click">
                                                     <materialDesign:PackIcon Kind="GreasePencil" Foreground="White" Height="18" Width="18"  />
                                                 </Button>
-                                                <Button Margin="10,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252" Click="btnDelete_Click">
+                                                <Button Margin="10,0,0,0" Name="btnDelete" Tag="{Binding Path='id'}" BorderBrush="#E55252" Background="#E55252" Click="btnDelete_Click">
                                                     <materialDesign:PackIcon Kind="Delete" Height="18" Width="18" />
                                                 </Button>
                                             </StackPanel>

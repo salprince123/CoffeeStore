@@ -155,8 +155,7 @@ namespace CoffeeStore.Account
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            GroupAccountInfo row = (GroupAccountInfo)dataGridGroupAccount.SelectedItem;
-            if (row == null) return;
+            string name = ((Button)sender).Tag.ToString();
 
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
             ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
@@ -166,7 +165,7 @@ namespace CoffeeStore.Account
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
                 Title = "Xóa tài khoản",
-                Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa \nloại tài khoản {row.name} không?", row.name, 2),
+                Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa \nloại tài khoản {name} không?", name, 2),
                 Width = 380,
                 Height = 210,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
@@ -180,9 +179,14 @@ namespace CoffeeStore.Account
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            GroupAccountInfo row = (GroupAccountInfo)dataGridGroupAccount.SelectedItem;
-            if (row == null) return;
-            GroupAccountInfo editGrAcc = new GroupAccountInfo(row.name, row.cashier, row.account, row.accountType, row.inventory, row.cost, row.menu, row.discount, row.report);
+            string name = ((Button)sender).Tag.ToString();
+            GroupAccountInfo editGrAcc = new GroupAccountInfo();
+            for (int i = 0; i < dataGridGroupAccount.Items.Count; i++)
+            {
+
+                if (name == ((GroupAccountInfo)dataGridGroupAccount.Items[i]).name)
+                    editGrAcc = (GroupAccountInfo)dataGridGroupAccount.Items[i];
+            }    
 
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
             ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
