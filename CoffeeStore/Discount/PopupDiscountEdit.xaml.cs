@@ -47,7 +47,7 @@ namespace CoffeeStore.Discount
         {
             if (checkCondition())
             {
-                if (DateTime.Compare(DateTime.ParseExact(tbEndDate.SelectedDate.ToString(), "dd/MM/yyyy", null), DateTime.Now.Date) < 0)
+                if (DateTime.Compare((DateTime)tbEndDate.SelectedDate, DateTime.Now.Date) < 0)
                 {
                     MessageBox.Show("Ngày kết thúc không được nhỏ hơn ngày hiện tại");
                 }
@@ -57,8 +57,8 @@ namespace CoffeeStore.Discount
                     discount.DiscountID = ID;
                     discount.DiscountName = tbName.Text;
                     discount.DiscountValue = float.Parse(tbPrice.Text);
-                    discount.StartDate = tbStartDate.Text;
-                    discount.EndDate = tbEndDate.Text;
+                    discount.StartDate = tbStartDate.SelectedDate.Value.ToString("dd/MM/yyyy");
+                    discount.EndDate = tbEndDate.SelectedDate.Value.ToString("dd/MM/yyyy");
                     if (busDiscount.editDiscount(discount) > 0)
                     {
                         MessageBox.Show("Thành công");

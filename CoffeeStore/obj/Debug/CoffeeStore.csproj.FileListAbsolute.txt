@@ -784,7 +784,6 @@ C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImpo
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportADD.g.cs
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupInventoryImportDETAIL.g.cs
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportEDIT.g.cs
-C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryMainPage.g.cs
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddMaterial.g.cs
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupEditMaterial.g.cs
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\MainWindow.g.cs
@@ -838,7 +837,6 @@ C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImpo
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportADD.baml
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupInventoryImportDETAIL.baml
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportEDIT.baml
-C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryMainPage.baml
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddMaterial.baml
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupEditMaterial.baml
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\MainWindow.baml
@@ -862,4 +860,3 @@ C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\XamlC.stamp
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.csproj.CopyComplete
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.exe
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.pdb
-C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.csprojAssemblyReference.cache
