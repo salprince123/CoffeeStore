@@ -213,7 +213,7 @@ namespace CoffeeStore.Inventory
             findImport();
         }
 
-        private void dpFrom_CalendarClosed(object sender, RoutedEventArgs e)
+       /* private void dpFrom_CalendarClosed(object sender, RoutedEventArgs e)
         {
             tbDateStart.Text = dpFrom.SelectedDate.Value.ToString("dd/MM/yyyy");
             dpFrom.Text = "";
@@ -225,7 +225,7 @@ namespace CoffeeStore.Inventory
             tbDateEnd.Text = dpTo.SelectedDate.Value.ToString("dd/MM/yyyy");
             dpTo.Text = "";
             Keyboard.Focus(tbDateEnd);
-        }
+        }*/
     }
 
 

@@ -147,7 +147,7 @@ namespace CoffeeStore.Inventory
                 LoadData();
             }
         }
-        private void dpFrom_CalendarClosed(object sender, RoutedEventArgs e)
+        /*private void dpFrom_CalendarClosed(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -170,7 +170,7 @@ namespace CoffeeStore.Inventory
             }
             catch (Exception)
             { }
-        }
+        }*/
         public void findExport()
         {
             findList.Clear();
