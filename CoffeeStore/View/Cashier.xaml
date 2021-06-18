@@ -164,12 +164,12 @@
                     ScrollViewer.HorizontalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <!--Food Column-->
-                        <DataGridTextColumn Header="Món" Width="*" Binding="{ Binding Path='name'}"/>
+                        <DataGridTextColumn Header="Món" Width="2*" Binding="{ Binding Path='name'}"/>
                         <!--Plus button-->
-                        <DataGridTemplateColumn Header="">
+                        <DataGridTemplateColumn Header="      ">
                             <DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
-                                    <Button Width="20" Height="20" Margin="0,0,-50,0" Click="btnPlus_Click">
+                                    <Button Width="20" Height="20" Click="btnPlus_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="{x:Type Button}">
                                                 <Grid>
@@ -185,12 +185,12 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <!--Amount Column-->
-                        <DataGridTextColumn Header="Số lượng" Width="*" Binding="{ Binding Path='amount'}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Số lượng"  Binding="{ Binding Path='amount'}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
                         <!--Minus button-->
-                        <DataGridTemplateColumn Header="">
+                        <DataGridTemplateColumn Header="      ">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button  Width="20" Height="20" Margin="-50,0,0,0" Click="btnMinus_Click">
+                                    <Button  Width="20" Height="20" Click="btnMinus_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="{x:Type Button}">
                                                 <Grid>
