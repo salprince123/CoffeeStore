@@ -60,7 +60,7 @@
         <!-- style a top level menu item -->
         <ControlTemplate x:Key="VsOnline" TargetType="MenuItem">
             <StackPanel TextBlock.FontSize="15px" Height="40" Background="#FF7A00" Width="180">
-                <Label Content="{TemplateBinding Header}" Margin="5"  HorizontalAlignment="Left" Foreground="White" />
+                <Label Content="{TemplateBinding Header}" Margin="5"  HorizontalAlignment="Center" Foreground="White" />
                 <Image  Height="20" />
 
                 <!-- sub items -->
@@ -95,15 +95,14 @@
                     <DockPanel HorizontalAlignment="Stretch"/>
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-            <MenuItem Background="#FF7A00" Foreground="White"
-                      Click="HomeButton_Click" Height="40" >
-                <MenuItem.Header>
-                    <materialDesign:PackIcon Kind="ArrowLeft" Height="22" Width="31"/>
-                </MenuItem.Header>
-            </MenuItem>
             <MenuItem Background="#FF7A00" Foreground="White" Header="Thu ngân" 
                       Template="{StaticResource VsOnline}" 
-                      Width="130" Height="40">
+                      Width="180" Height="40">
+            </MenuItem>
+            <MenuItem  Foreground="White" Header="Quản lý" 
+                       Template="{StaticResource VsMenuTop}" 
+                       Width="205" Height="Auto" 
+                       Click="HomeButton_Click">
             </MenuItem>
             <MenuItem Foreground="White" Header="Menu" 
                       Template="{StaticResource VsMenuTop}" 
@@ -171,7 +170,8 @@
                                         Background="#FF7A00"
                                         Height="25" Width="25"
                                         Margin="0,0,-15,0"
-                                        ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                                        ToolTip="MaterialDesignFloatingActionMiniLightButton"
+                                        Click="btnPlus_Click">
                                         <materialDesign:PackIcon Kind="Plus" Foreground="White"/>
                                     </Button>
                                 </DataTemplate>
@@ -186,7 +186,8 @@
                                         Background="#FF7A00"
                                         Height="25" Width="25"
                                         Margin="-50,0,0,0"
-                                        ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                                        ToolTip="MaterialDesignFloatingActionMiniLightButton"
+                                        Click="btnMinus_Click">
                                         <materialDesign:PackIcon Kind="Minus" Foreground="White"/>
                                     </Button>
                                 </DataTemplate>
