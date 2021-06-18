@@ -156,16 +156,12 @@
                     VerticalAlignment="Stretch" AutoGenerateColumns="False"
                     FrozenColumnCount="1" CanUserReorderColumns="False"
                     CanUserResizeColumns="False"
+                    IsReadOnly="True"
                     VerticalContentAlignment="Stretch"
                     HorizontalContentAlignment="Stretch" Height="Auto" Margin="0,20,0,0"
                     ScrollViewer.CanContentScroll="True" 
                     ScrollViewer.VerticalScrollBarVisibility="Auto"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto">
-                    <DataGrid.ColumnHeaderStyle>
-                        <Style TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                        </Style>
-                    </DataGrid.ColumnHeaderStyle>
                     <DataGrid.Columns>
                         <!--Food Column-->
                         <DataGridTextColumn Header="Món" Width="*" Binding="{ Binding Path='name'}"/>
