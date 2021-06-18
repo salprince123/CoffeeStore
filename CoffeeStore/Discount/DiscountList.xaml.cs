@@ -201,10 +201,10 @@ namespace CoffeeStore.Discount
                 WindowStyle = WindowStyle.None,
                 Title = "Sửa ưu đãi",
                 Content = new PopupDiscountEdit(row.DiscountID, row.DiscountName, row.StartDate, row.EndDate, row.DiscountValue.ToString(), _context),
-            Width = 540,
-                Height = 350,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
+                Width = 540,
+                Height = 480,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 480) / 2,
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
