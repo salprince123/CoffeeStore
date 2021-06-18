@@ -63,7 +63,8 @@ namespace CoffeeStore.DAL
         public int editBeverage(DTO_Beverage beverage)
         {
             int rs = 0;
-            string sql = $"Update BeverageName set BeverageTypeID='" + beverage.BeverageTypeID + "', BeverageName='" + beverage.BeverageName + "', Price=" + beverage.Price + ",ExistingAmount=" + beverage.IsOutOfStock + ",Unit='" + beverage.Unit + "' Where BeverageID='" + beverage.BeverageID + "'";
+            Console.WriteLine(beverage.BeverageID);
+            string sql = $"Update BeverageName set BeverageTypeID='" + beverage.BeverageTypeID + "', BeverageName='" + beverage.BeverageName + "', Price=" + beverage.Price + ",IsOutOfStock=" + beverage.IsOutOfStock + ",Unit='" + beverage.Unit + "' Where BeverageID='" + beverage.BeverageID + "'";
             try
             {
                 SQLiteCommand command = new SQLiteCommand(sql, getConnection());

@@ -38,7 +38,6 @@ namespace CoffeeStore.Menu
             cbBeverageType.SelectedItem = type;
             ID = id;
             window = context;
-            //MessageBox.Show(type);
         }
 
         private void btSave_Click(object sender, RoutedEventArgs e)

@@ -44,12 +44,12 @@ namespace CoffeeStore.Discount
         {
             if (checkCondition())
             {
-                if (DateTime.Compare(DateTime.ParseExact(dpEndDate.SelectedDate.ToString(), "dd/MM/yyyy", null), DateTime.Now.Date) < 0)
+                if (DateTime.Compare((DateTime)dpEndDate.SelectedDate, DateTime.Now.Date) < 0)
                 {
                     MessageBox.Show("Ngày kết thúc phải lớn hơn hoặc bằng hiện tại.");
                 }   
                 else
-                    if (DateTime.Compare(DateTime.ParseExact(dpStartDate.SelectedDate.ToString(), "dd/MM/yyyy", null), DateTime.Now.Date) < 0)
+                    if (DateTime.Compare((DateTime)dpEndDate.SelectedDate, DateTime.Now.Date) < 0)
                     {
                         MessageBox.Show("Ngày bắt đầu phải lớn hơn hoặc bằng hiện tại.");
                     }    
@@ -77,7 +77,7 @@ namespace CoffeeStore.Discount
         }
         private bool checkCondition()
         {
-            return (tbName.Text != "" && tbPrice.Text != "" && dpStartDate.SelectedDate != null && dpEndDate.SelectedDate != null && dpStartDate.SelectedDate < dpEndDate.SelectedDate);
+            return (tbName.Text != "" && tbPrice.Text != "" && dpStartDate.SelectedDate != null && dpEndDate.SelectedDate != null && dpStartDate.SelectedDate <= dpEndDate.SelectedDate);
         }
 
         private void btExit_Click(object sender, RoutedEventArgs e)
