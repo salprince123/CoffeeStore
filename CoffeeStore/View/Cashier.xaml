@@ -88,6 +88,11 @@
         </Grid.ColumnDefinitions>
         <!--Tab menu here-->
         <Menu Background="#6B6158" IsMainMenu="True" Grid.Row="0" Grid.ColumnSpan="2">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
             <MenuItem Background="#FF7A00" Foreground="White"
                       Click="HomeButton_Click" Height="40" >
                 <MenuItem.Header>
@@ -116,7 +121,7 @@
                        Click="Discount_Click">
             </MenuItem>
             <MenuItem Background="#EAEAEA" Foreground="White" Width="180" Height="Auto"
-                      Template="{StaticResource VsMenuTop}" Margin="500,0,0,0">
+                      Template="{StaticResource VsMenuTop}" HorizontalAlignment="Right">
                 <MenuItem.Header>
                     <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
                         <TextBlock x:Name="tblockUsername" Text="Username" FontSize="16" Margin="0,0,40,0"/>
@@ -140,7 +145,6 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <!--Bill data here-->
-                <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <DataGrid
                         x:Name="dgBill"
                     ItemsSource="{Binding }"
@@ -149,14 +153,16 @@
                     SelectionMode="Extended" 
                     VerticalAlignment="Stretch" AutoGenerateColumns="False"
                     VerticalContentAlignment="Stretch"
-                    HorizontalContentAlignment="Stretch" Height="Auto" Margin="0,20,0,0">
+                    HorizontalContentAlignment="Stretch" Height="Auto" Margin="0,20,0,0"
+                    ScrollViewer.CanContentScroll="True" 
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Món" Width="*" Binding="{ Binding Path='name'}"/>
                             <DataGridTextColumn Header="Số lượng" Width="*" Binding="{ Binding Path='amount'}" />
                             <DataGridTextColumn Header="Giá tiền" Width="*"  Binding="{ Binding Path='cost'}" />
                         </DataGrid.Columns>
                     </DataGrid>
-                </ScrollViewer>
             </Grid>
             <!--Bill Calculation here-->
             <Viewbox Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
