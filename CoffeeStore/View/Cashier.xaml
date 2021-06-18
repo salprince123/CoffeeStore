@@ -120,6 +120,7 @@
                        Width="205" Height="Auto" 
                        Click="Discount_Click">
             </MenuItem>
+            <!--Username here-->
             <MenuItem Background="#EAEAEA" Foreground="White" Width="180" Height="Auto"
                       Template="{StaticResource VsMenuTop}" HorizontalAlignment="Right">
                 <MenuItem.Header>
@@ -139,13 +140,13 @@
 
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="0.75*"/>
-                <RowDefinition Height="0.75*"/>
+                <RowDefinition Height="51*"/>
+                <RowDefinition Height="19*"/>
+                <RowDefinition Height="11*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <!--Bill data here-->
-                    <DataGrid
+                <DataGrid
                         x:Name="dgBill"
                     ItemsSource="{Binding }"
                     CanUserAddRows="False"
@@ -157,87 +158,134 @@
                     ScrollViewer.CanContentScroll="True" 
                     ScrollViewer.VerticalScrollBarVisibility="Auto"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Món" Width="*" Binding="{ Binding Path='name'}"/>
-                            <DataGridTextColumn Header="Số lượng" Width="*" Binding="{ Binding Path='amount'}" />
-                            <DataGridTextColumn Header="Giá tiền" Width="*"  Binding="{ Binding Path='cost'}" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-            </Grid>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Món" Width="*" Binding="{ Binding Path='name'}"/>
+                        <DataGridTextColumn Header="Số lượng" Width="*" Binding="{ Binding Path='amount'}" />
+                        <DataGridTextColumn Header="Giá tiền" Width="*"  Binding="{ Binding Path='cost'}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid >
             <!--Bill Calculation here-->
-            <Viewbox Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                <Grid Width="363">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock
-                    Text="Khách đưa"
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--Discount-->
+                <TextBlock
+                    Text="Ưu đãi"
+                    FontSize="15"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
                     Grid.Row="0"
                     Grid.Column="0"
                     Margin="10"/>
-                    <TextBox
-                        x:Name="tboxAmountReceived"
-                    Text="0.000"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Right"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Padding="0,0,10,0"
-                        TextChanged="tboxAmountReceived_TextChanged"/>
-                    <TextBlock
-                    Text="Tiền thối"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Left"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Margin="10"/>
-                    <TextBlock
-                        x:Name="tblockChange"
-                    Text="0 VND"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Right"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Padding="0,0,10,0"/>
-                    <TextBlock
-                    Text="Khuyến mãi"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Left"
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Margin="10"/>
-                    <TextBlock
+                <TextBlock
                         x:Name="tblockDiscount"
+                    FontSize="15"
                     Text="0 %"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     Grid.Row="0"
+                    Grid.Column="0"
+                    Padding="0,0,10,0"/>
+                <!--Total-->
+                <TextBlock
+                    Text="Tổng tiền"
+                    FontSize="15"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="10"/>
+                <TextBlock
+                        x:Name="tblockTotal"
+                    FontSize="15"
+                    Text="0 VND"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Grid.Row="0"
                     Grid.Column="1"
                     Padding="0,0,10,0"/>
-                    <TextBlock
-                    Text="Tổng tiền"
+                <!--Discount Amount-->
+                <TextBlock
+                    Text="Tiền giảm"
+                    FontSize="15"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="10"/>
+                <TextBlock
+                        x:Name="tblockDiscountAmount"
+                    FontSize="15"
+                    Text="0 VND"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Padding="0,0,10,0"/>
+                <!--Pay Amount-->
+                <TextBlock
+                    Text="Khách phải trả"
+                    FontSize="15"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
                     Grid.Row="1"
                     Grid.Column="1"
                     Margin="10"/>
-                    <TextBlock
-                        x:Name="tblockTotal"
+                <TextBlock
+                        x:Name="tblockPayAmount"
                     Text="0 VND"
+                    FontSize="15"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     Grid.Row="1"
                     Grid.Column="1"
                     Padding="0,0,10,0"/>
-                </Grid>
-            </Viewbox>
+                <!--Receive Amount-->
+                <TextBlock
+                    Text="Khách đưa"
+                    FontSize="15"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Margin="10"/>
+                <TextBox
+                        x:Name="tboxAmountReceived"
+                    Text="0.000"
+                    FontSize="15"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Padding="0,0,10,0"
+                        TextChanged="tboxAmountReceived_TextChanged"/>
+                <!--Change-->
+                <TextBlock
+                    Text="Trả lại khách"
+                    FontSize="15"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="10"/>
+                <TextBlock
+                        x:Name="tblockChange"
+                    Text="0 VND"
+                    FontSize="15"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Padding="0,0,10,0"/>
+            </Grid>
             <!--Pay Button and Print Button here-->
             <Grid Grid.Row="2" Background="#FF7A00">
                 <Grid.ColumnDefinitions>
@@ -293,11 +341,25 @@
                     </StackPanel>
                 </ScrollViewer>
                 <!--Filter button here-->
-                <Grid Grid.Column="1" Margin="5,20,5,0">
-                    <Button Background="#FF7A00" Click="FilterButton_Click" VerticalAlignment="Top" Height="46">
-                        <TextBlock Text="Tất cả" TextWrapping="Wrap" TextAlignment="Center" FontSize="17"/>
-                    </Button>
-                </Grid>
+                <ItemsControl x:Name="ListFilterButton" >
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Background="#FF7A00" Tag="{Binding}"
+                                    Click="FilterButton_Click" 
+                                    VerticalAlignment="Top" Height="46">
+                                <TextBlock 
+                                    Text="Tất cả" 
+                                    TextWrapping="Wrap" TextAlignment="Center" 
+                                    FontSize="17"/>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                </ItemsControl>
             </Grid>
         </Grid>
     </Grid>
