@@ -62,15 +62,15 @@ namespace CoffeeStore.Discount
                 string enddate = row["enddate"].ToString();
                 string status = "";
                 DateTime time = DateTime.ParseExact(enddate, "dd/MM/yyyy", null);
-                if ( DateTime.Compare(time, DateTime.Now.Date) >=0)
+                if (DateTime.Compare(time, DateTime.Now.Date) >= 0)
                 {
                     status = "Đang diễn ra";
-                }                       
+                }
                 else
                 {
                     status = "Đã hết hạn";
-                }    
-                    
+                }
+
                 list.Add(new Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate, Status = status });
             }
             dgDiscount.ItemsSource = list;
@@ -79,6 +79,39 @@ namespace CoffeeStore.Discount
             //   //MessageBox.Show(item.);
             //}    
             //dgDiscount.Items.Refresh();
+        }
+        void findDiscount(string startdatefind, string enddatefind)
+        {
+            var list = new ObservableCollection<Discount>();
+            DataTable temp = bus.getAllDiscount();
+            foreach (DataRow row in temp.Rows)
+            {
+                string name = row["DiscountName"].ToString();
+                string id = row["DiscountID"].ToString();
+                int value = Int32.Parse(row["DiscountValue"].ToString());
+                string startdate = row["startdate"].ToString();
+                string enddate = row["enddate"].ToString();
+                string status = "";
+                DateTime timeend = DateTime.ParseExact(enddate, "dd/MM/yyyy", null);
+                DateTime timestart = DateTime.ParseExact(startdate, "dd/MM/yyyy", null);
+                DateTime timeendfind = DateTime.ParseExact(enddatefind, "dd/MM/yyyy", null);
+                DateTime timestartfind = DateTime.ParseExact(startdatefind, "dd/MM/yyyy", null);
+                if (DateTime.Compare(timeend, DateTime.Now.Date) >= 0)
+                {
+                    status = "Đang diễn ra";
+                }
+                else
+                {
+                    status = "Đã hết hạn";
+                }
+                if ((DateTime.Compare(timeend, timeendfind) <= 0) &&(DateTime.Compare(timestart, timestartfind) >= 0))
+                {
+                    list.Add(new Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate, Status = status });
+                }
+                MessageBox.Show((DateTime.Compare(timeend, timeendfind)).ToString());
+                MessageBox.Show((DateTime.Compare(timestart, timestartfind) >= 0).ToString());
+            }
+            dgDiscount.ItemsSource = list;
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -105,7 +138,7 @@ namespace CoffeeStore.Discount
 
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
-            dgDiscount.ItemsSource = bus.findDiscount(tbDateStart.Text, tbDateEnd.Text).DefaultView;
+            this.findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
         }
 
 
@@ -135,7 +168,6 @@ namespace CoffeeStore.Discount
         private void btnWatch_Click(object sender, RoutedEventArgs e)
         {
             DTO_Discount row = (DTO_Discount)dgDiscount.SelectedItem;
-            MessageBox.Show(row.DiscountID);
             var rowView = dgDiscount.SelectedItem;
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
             ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
