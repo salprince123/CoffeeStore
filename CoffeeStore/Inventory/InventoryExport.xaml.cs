@@ -57,6 +57,7 @@ namespace CoffeeStore.Inventory
         public void LoadData()
         {
             username = "Tran Le Bao Chau";
+            list.Clear();
             BUS_InventoryExport export = new BUS_InventoryExport();
             DataTable temp = export.SelectAll();
             Console.WriteLine(temp.Rows.Count);
@@ -68,8 +69,9 @@ namespace CoffeeStore.Inventory
                 list.Add(new InventoryExportObject() { ID = id, EmployName = employid, InventoryDate = date });
 
             }
-            this.dataGridExport.ItemsSource = list;
             this.dataGridExport.Items.Refresh();
+            this.dataGridExport.ItemsSource = list;
+            
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -147,30 +149,7 @@ namespace CoffeeStore.Inventory
                 LoadData();
             }
         }
-        /*private void dpFrom_CalendarClosed(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                tbDateStart.Text = dpFrom.SelectedDate.Value.ToString("dd/MM/yyyy");
-                dpFrom.Text = "";
-                Keyboard.Focus(tbDateStart);
-            }
-            catch (Exception)
-            { }
-            
-        }
-
-        private void dpTo_CalendarClosed(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                tbDateEnd.Text = dpTo.SelectedDate.Value.ToString("dd/MM/yyyy");
-                dpTo.Text = "";
-                Keyboard.Focus(tbDateEnd);
-            }
-            catch (Exception)
-            { }
-        }*/
+        
         public void findExport()
         {
             findList.Clear();
