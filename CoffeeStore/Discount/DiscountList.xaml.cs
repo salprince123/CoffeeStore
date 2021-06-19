@@ -126,8 +126,8 @@ namespace CoffeeStore.Discount
                 Content = new PopupDiscountAdd(_context),
                 Width = 540,
                 Height = 500,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 1000 / 2) / 2,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 500) / 2,
             };
             window.ShowDialog();
 
@@ -152,7 +152,7 @@ namespace CoffeeStore.Discount
             {
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
-                Title = "Chi tiết ưu đãi",
+                Title = "Xóa ưu đãi",
                 Content = new PopupDeleteConfirm(row, _context),
                 Width = 380,
                 Height = 210,
