@@ -56,7 +56,7 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TextBox x:Name="tbFind" Grid.Column="0" Height="40" 
-                         BorderThickness="1" VerticalContentAlignment="Center"
+                         BorderThickness="1" VerticalContentAlignment="Center" FontSize="15"
                          materialDesign:HintAssist.Hint="Tên nguyên vật liệu, thiết bị" Padding="5"/>
                 <Button x:Name="btnFind" Grid.Column="2" Height="40"
                     Background="#6B6158" Foreground="#FFE297" 

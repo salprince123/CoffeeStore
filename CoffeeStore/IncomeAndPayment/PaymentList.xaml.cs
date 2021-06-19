@@ -43,8 +43,8 @@ namespace CoffeeStore.IncomeAndPayment
                 Content = new PopupPaymentAdd(),
                 Width = 450,
                 Height = 400,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 900 / 2) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 450) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
             };
             window.ShowDialog();
 

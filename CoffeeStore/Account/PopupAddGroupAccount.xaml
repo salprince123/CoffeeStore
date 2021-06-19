@@ -20,7 +20,7 @@
         </Grid>
         <!--Group account name-->
         <TextBlock Margin="40,10,40,0" Text="Tên nhóm tài khoản"/>
-        <TextBox  x:Name="tbName" Margin="40,5,40,0" BorderThickness="1"
+        <TextBox  x:Name="tbName" Margin="40,5,40,0" BorderThickness="1" Padding="5"
                  Height="40" />
         <!--Permission-->
         <Grid Margin="40,20,40,0" DataContext="{Binding }" >
