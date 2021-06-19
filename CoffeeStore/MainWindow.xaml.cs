@@ -31,8 +31,8 @@ namespace CoffeeStore
         {
             
             InitializeComponent();
-
-            var item1 = new ItemMenu("Thu ngân", new Cashier(this), PackIconKind.Schedule);
+            currentEmpID = "";
+            var item1 = new ItemMenu("Thu ngân", new Cashier(this, currentEmpID), PackIconKind.Schedule);
 
             var item2 = new ItemMenu("Menu", "AP006", new Menu.MenuList(this), PackIconKind.CalendarTextOutline);
 
@@ -83,7 +83,7 @@ namespace CoffeeStore
                 currentEmpID = tblockUsername.Text;
                 currentEmpType = busEmp.GetEmpTypeByID(tblockUsername.Text);
                 gridLogin.Children.Clear();
-                var screen = new Cashier(this);
+                var screen = new Cashier(this, currentEmpID);
                 gridLogin.Children.Add(screen);
             }
         }
@@ -96,6 +96,7 @@ namespace CoffeeStore
                 tblockUsername.Text = loginScreen.txtBoxAccount.Text;
                 BUS_Employees busEmp = new BUS_Employees();
                 currentEmpID = tblockUsername.Text;
+                ((ItemMenu)((MenuItem)Menu.Children[0]).DataContext)._Cashier.SetCurrrentUser(currentEmpID);
                 currentEmpType = busEmp.GetEmpTypeByID(tblockUsername.Text);
                 gridLogin.Children.Clear();
             }

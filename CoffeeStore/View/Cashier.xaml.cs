@@ -85,17 +85,28 @@ namespace CoffeeStore.View
         List<MenuBeverage> menuItemsDisplay;
         List<BillItem> billItems;
         List<FilterButton> filterButtons;
+        string user;
         int total;
         int received;
-        public Cashier(MainWindow mainWindow)
+        public Cashier(MainWindow mainWindow, string userID)
         {
             InitializeComponent();
             _context = mainWindow;
             LoadData();
+            user = userID;
+            tblockUsername.Text = user;
         }
+
+        public void SetCurrrentUser(string userID)
+        {
+            user = userID;
+            tblockUsername.Text = user;
+        }    
 
         public void LoadData()
         {
+            tblockUsername.Text = user;
+
             menuItems = new List<MenuBeverage>();
             menuItemsDisplay = new List<MenuBeverage>();
             billItems = new List<BillItem>();
@@ -176,7 +187,6 @@ namespace CoffeeStore.View
         private void FilterButton_Click(object sender, RoutedEventArgs e)
         {
             string filterName = ((Button)sender).Tag.ToString();
-            MessageBox.Show(filterName);
             if (filterName == "Tất cả")
             {
                 menuItemsDisplay = menuItems;
