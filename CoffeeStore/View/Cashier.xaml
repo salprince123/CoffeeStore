@@ -12,6 +12,9 @@
         <Style x:Key="ColumnElementStyle" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
+        <Style x:Key="ColumnElementStyle2" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
         <!-- style a top level menu item -->
         <ControlTemplate x:Key="VsMenuTop" TargetType="MenuItem">
             <StackPanel TextBlock.FontSize="15px" Height="40"  >
@@ -85,7 +88,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.25*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <!--Tab menu here-->
@@ -164,7 +167,7 @@
                     ScrollViewer.HorizontalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <!--Food Column-->
-                        <DataGridTextColumn Header="Món" Width="2*" Binding="{ Binding Path='name'}"/>
+                        <DataGridTextColumn Header="Món" Width="1.5*" Binding="{ Binding Path='name'}"/>
                         <!--Plus button-->
                         <DataGridTemplateColumn Header="      ">
                             <DataGridTemplateColumn.CellTemplate >
@@ -186,7 +189,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <!--Amount Column-->
-                        <DataGridTextColumn Header="Số lượng"  Binding="{ Binding Path='amount'}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Số lượng" Binding="{ Binding Path='amount'}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
                         <!--Minus button-->
                         <DataGridTemplateColumn Header="      ">
                             <DataGridTemplateColumn.CellTemplate>
@@ -206,7 +209,8 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <!--Value Column-->
-                        <DataGridTextColumn Header="Giá tiền" Width="*"  Binding="{ Binding Path='cost', StringFormat=\{0:N0\} VNĐ}" />
+                        <DataGridTextColumn Header="Giá tiền" Width="*"  ElementStyle="{StaticResource ColumnElementStyle2}"
+                                            Binding="{ Binding Path='cost', StringFormat=\{0:N0\} VNĐ}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid >
@@ -350,19 +354,19 @@
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="6*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="1.05*"/>
                 </Grid.ColumnDefinitions>
                 <!--Food image here-->
                 <!-- How to bind data to this https://youtu.be/_4qej7q6x30-->
                 <ScrollViewer Grid.Column="0">
-                    <StackPanel>
-                        <StackPanel Margin="20 0">
+                    <StackPanel Margin="20,20,0,0">
+                        <StackPanel Margin="5">
                             <ItemsControl x:Name="ListViewMenu" >
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Button x:Name="btnMenuItem" Tag="{Binding Path='id'}"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="btnMenuItem_Click">
-                                            <Border Margin="10" Width="110" Height="165" Background="#EBEBEB">
+                                            <Border Width="110" Height="165" Background="#EBEBEB">
                                                 <!--If database has image-->
                                                 <StackPanel>
                                                     <Grid>
@@ -395,7 +399,8 @@
                     </StackPanel>
                 </ScrollViewer>
                 <!--Filter button here-->
-                <StackPanel Grid.Column="1" Margin="5,20,5,0" >
+                <ScrollViewer Grid.Column="1" >
+                    <StackPanel Margin="5,10,5,0" >
                 <ItemsControl x:Name="ListFilterButton" ItemsSource="{Binding Path=filterButtons}" >
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -403,7 +408,7 @@
                                     Click="FilterButton_Click" 
                                     HorizontalContentAlignment="Center"
                                     VerticalContentAlignment="Center"
-                                    VerticalAlignment="Stretch"  Margin="0,5,0,5" Height="50"
+                                    VerticalAlignment="Stretch"  Margin="0,5,0,5" MinHeight="55"
                                     HorizontalAlignment="Stretch">
                                 <TextBlock 
                                     Text="{Binding Path='text'}" 
@@ -420,6 +425,7 @@
                         </ItemsControl.ItemsPanel>
                 </ItemsControl>
                 </StackPanel>
+                </ScrollViewer>
             </Grid>
         </Grid>
     </Grid>
