@@ -393,12 +393,16 @@
                     </StackPanel>
                 </ScrollViewer>
                 <!--Filter button here-->
-                <ItemsControl x:Name="ListFilterButton" ItemsSource="{Binding Path=filterButtons}">
+                <StackPanel Grid.Column="1" Margin="5,20,5,0" >
+                <ItemsControl x:Name="ListFilterButton" ItemsSource="{Binding Path=filterButtons}" >
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Button Background="#FF7A00" Tag="{Binding Path='text'}"
                                     Click="FilterButton_Click" 
-                                    VerticalAlignment="Top" Height="46">
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    VerticalAlignment="Stretch"  Margin="0,5,0,5" Height="50"
+                                    HorizontalAlignment="Stretch">
                                 <TextBlock 
                                     Text="{Binding Path='text'}" 
                                     TextWrapping="Wrap" TextAlignment="Center" 
@@ -408,10 +412,12 @@
                     </ItemsControl.ItemTemplate>
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <WrapPanel/>
+                                <UniformGrid Columns="1"/>
+                                <!--<WrapPanel/>-->
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                 </ItemsControl>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>
