@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -88,8 +89,11 @@ namespace CoffeeStore.View
         string user;
         int total;
         int received;
+        float discount;
         public Cashier(MainWindow mainWindow, string userID)
         {
+            total = 0;
+            received = 0;
             InitializeComponent();
             _context = mainWindow;
             LoadData();
@@ -146,11 +150,11 @@ namespace CoffeeStore.View
             ListFilterButton.ItemsSource = filterButtons;
             ListFilterButton.Items.Refresh();
 
-            total = 0;
-            received = 0;
+            
             BUS_Discount busDiscount = new BUS_Discount();
             DTO_Discount curDiscount = busDiscount.GetCurrentDiscount();
             tblockDiscount.Text = curDiscount.DiscountValue.ToString() + " %";
+            discount = curDiscount.DiscountValue;
         }
 
         private void MenuStatus_Click(object sender, RoutedEventArgs e)
@@ -249,15 +253,20 @@ namespace CoffeeStore.View
                     dgBill.Items.Refresh();
                     total += billItems[i].unitCost;
                     tblockTotal.Text = MoneyToString(total);
-                    tblockChange.Text = MoneyToString(received - total);
+                    int discountAmount = (int)(total * discount / 100);
+                    tblockDiscountAmount.Text = MoneyToString(discountAmount);
+                    tblockPayAmount.Text = MoneyToString(total - discountAmount);
+                    tblockChange.Text = MoneyToString(received - total + discountAmount);
                     return;
                 }
             }
 
             total += newCost;
             tblockTotal.Text = MoneyToString(total);
-            tblockChange.Text = MoneyToString(received - total);
-
+            int disAmount = (int)(total * discount / 100);
+            tblockDiscountAmount.Text = MoneyToString(disAmount);
+            tblockPayAmount.Text = MoneyToString(total - disAmount);
+            tblockChange.Text = MoneyToString(received - total + disAmount);
             billItems.Add(new BillItem(id, newName, newCost));
             dgBill.Items.Refresh();
         }
@@ -271,7 +280,7 @@ namespace CoffeeStore.View
 
             for(int i = start; i < result.Length - 1; i = i + 4)
             {
-                result = result.Insert(i, ".");
+                result = result.Insert(i, ",");
             }
             if (amount < 0)
                 result = "-" + result;
@@ -283,11 +292,13 @@ namespace CoffeeStore.View
             try
             {
                 received = Int32.Parse(tboxAmountReceived.Text);
-                tblockChange.Text = MoneyToString(received - total);
+                if (tblockChange!=null)
+                    tblockChange.Text = MoneyToString(received - total);
             }
             catch
             {
                 // validate for user add text in Amount box
+                
             }
         }
 
@@ -304,7 +315,10 @@ namespace CoffeeStore.View
                     dgBill.Items.Refresh();
                     total += billItems[i].unitCost;
                     tblockTotal.Text = MoneyToString(total);
-                    tblockChange.Text = MoneyToString(received - total);
+                    int disAmount = (int)(total * discount / 100);
+                    tblockDiscountAmount.Text = MoneyToString(disAmount);
+                    tblockPayAmount.Text = MoneyToString(total - disAmount);
+                    tblockChange.Text = MoneyToString(received - total + disAmount);
                     return;
                 }
             }
@@ -328,10 +342,26 @@ namespace CoffeeStore.View
                     }
                     dgBill.Items.Refresh();
                     tblockTotal.Text = MoneyToString(total);
-                    tblockChange.Text = MoneyToString(received - total);
+                    int disAmount = (int)(total * discount / 100);
+                    tblockDiscountAmount.Text = MoneyToString(disAmount);
+                    tblockPayAmount.Text = MoneyToString(total - disAmount);
+                    tblockChange.Text = MoneyToString(received - total + disAmount);
                     return;
                 }
             }
+        }
+
+        private void tboxAmountReceived_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !e.Text.Any(x => Char.IsDigit(x));
+            if (e.Text.Contains(" "))
+                e.Handled = false;
+        }
+
+        private void tboxAmountReceived_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
         }
     }
 }

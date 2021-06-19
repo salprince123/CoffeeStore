@@ -135,6 +135,7 @@ namespace CoffeeStore
         internal void SwitchWindow(object sender, int type)
         {
             var screen = ((Cashier)sender);
+            screen.LoadData();
             if (screen != null)
             {
                 gridLogin.Children.Clear();

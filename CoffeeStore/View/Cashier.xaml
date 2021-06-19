@@ -206,7 +206,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <!--Value Column-->
-                        <DataGridTextColumn Header="Giá tiền" Width="*"  Binding="{ Binding Path='cost'}" />
+                        <DataGridTextColumn Header="Giá tiền" Width="*"  Binding="{ Binding Path='cost', StringFormat=\{0:N0\} VNĐ}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid >
@@ -304,13 +304,15 @@
                     Margin="10"/>
                 <TextBox
                         x:Name="tboxAmountReceived"
-                    Text="0.000"
+                    Text="000"
                     FontSize="15"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     Grid.Row="2"
                     Grid.Column="0"
                     Padding="0,0,10,0"
+                    PreviewKeyDown="tboxAmountReceived_PreviewKeyDown"
+                    PreviewTextInput="tboxAmountReceived_PreviewTextInput"
                         TextChanged="tboxAmountReceived_TextChanged"/>
                 <!--Change-->
                 <TextBlock
@@ -376,7 +378,7 @@
                                                         </Border>-->
                                                     </Grid>
                                                     <TextBlock Name="FoodName" Margin="5" Text="{Binding Path='name'}" FontSize="14"/>
-                                                    <TextBlock Name="Value" Margin="5 0" Text="{Binding Path='cost'}" FontSize="14"/>
+                                                    <TextBlock Name="Value" Margin="5 0" Text="{Binding Path='cost', StringFormat=\{0:N0\} VNĐ}" FontSize="14"/>
                                                     <!--<TextBlock Name="Status" Margin="5 0" Text="Hết hàng" FontSize="10" HorizontalAlignment="Right"/>-->
                                                 </StackPanel>
                                             </Border>
