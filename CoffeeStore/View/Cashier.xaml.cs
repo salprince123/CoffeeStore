@@ -363,5 +363,52 @@ namespace CoffeeStore.View
             if (e.Key == Key.Space)
                 e.Handled = true;
         }
+
+        private void btnCash_Click(object sender, RoutedEventArgs e)
+        {
+            if (billItems.Count == 0)
+            {
+                ///
+                return;
+            }    
+            BUS_Discount busDiscount = new BUS_Discount();
+            DTO_Discount curDiscount = busDiscount.GetCurrentDiscount();
+            string disID = "";
+            if (curDiscount.DiscountValue != 0)
+                disID = curDiscount.DiscountID;
+            DTO_Receipt newReceipt = new DTO_Receipt("", user, disID);
+
+            BUS_Receipt busReceipt = new BUS_Receipt();
+            string newID = busReceipt.CreateReceipt(newReceipt);
+            if (newID != "")
+            {
+                BUS_ReceiptDetail busReceiptDetail = new BUS_ReceiptDetail();
+                bool result = true;
+                foreach(BillItem item in billItems)
+                {
+                    DTO_ReceiptDetail newReceiptDetail = new DTO_ReceiptDetail(newID, item.id, item.amount, item.unitCost);
+                    result = result & busReceiptDetail.CreateReceiptDetail(newReceiptDetail);
+                }
+                if (result)
+                {
+                    MessageBox.Show("Tạo hóa đơn thành công!");
+                    billItems.Clear();
+                    dgBill.Items.Refresh();
+                }    
+                else
+                {
+                    MessageBox.Show("Đã xảy ra lỗi trong quá trình tạo chi tiết hóa đơn!");
+                }    
+            }
+            else
+            {
+                MessageBox.Show("Đã xảy ra lỗi trong quá trình tạo hóa đơn!");
+            }    
+        }
+
+        private void btnPrint_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

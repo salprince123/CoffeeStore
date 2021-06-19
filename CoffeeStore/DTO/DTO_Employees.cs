@@ -15,7 +15,7 @@ namespace CoffeeStore.DTO
         public string Password { get; set; }
         #endregion
 
-        #region Method
+        #region Methods
         public DTO_Employees()
         {
             EmployeeID = "";

@@ -30,5 +30,11 @@ namespace CoffeeStore.IncomeAndPayment
             e.Row.Header = e.Row.GetIndex() + 1;
             e.Row.Height = 40;
         }
+
+        private void btnFind_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime? datepicker = tbDateEnd.SelectedDate;
+            MessageBox.Show(datepicker.ToString());
+        }
     }
 }

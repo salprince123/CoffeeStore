@@ -169,7 +169,7 @@
                         <DataGridTemplateColumn Header="      ">
                             <DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
-                                   
+
                                     <Button Width="20" Height="20" Tag="{Binding Path='id'}" Click="btnPlus_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="{x:Type Button}">
@@ -339,10 +339,10 @@
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <Button Background="#FF7A00" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" FontSize="20">
+                <Button x:Name="btnCash" Background="#FF7A00" Grid.Column="0" HorizontalAlignment="Right" Height="Auto" FontSize="20" Margin="0,0,0,0.2" Width="160" Click="btnCash_Click">
                     <TextBlock Text="Thanh toán" TextWrapping="Wrap" TextAlignment="Center"/>
                 </Button>
-                <Button Background="#6B6158" Grid.Column="1" HorizontalAlignment="Stretch" Height="Auto" FontSize="20" >
+                <Button x:Name="btnPrint" Background="#6B6158" Grid.Column="1" HorizontalAlignment="Stretch" Height="Auto" FontSize="20" Click="btnPrint_Click">
                     <TextBlock Text="In hóa đơn" TextWrapping="Wrap" TextAlignment="Center"/>
                 </Button>
             </Grid>
@@ -396,29 +396,29 @@
                 </ScrollViewer>
                 <!--Filter button here-->
                 <StackPanel Grid.Column="1" Margin="5,20,5,0" >
-                <ItemsControl x:Name="ListFilterButton" ItemsSource="{Binding Path=filterButtons}" >
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Button Background="#FF7A00" Tag="{Binding Path='text'}"
+                    <ItemsControl x:Name="ListFilterButton" ItemsSource="{Binding Path=filterButtons}" >
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Background="#FF7A00" Tag="{Binding Path='text'}"
                                     Click="FilterButton_Click" 
                                     HorizontalContentAlignment="Center"
                                     VerticalContentAlignment="Center"
                                     VerticalAlignment="Stretch"  Margin="0,5,0,5" Height="50"
                                     HorizontalAlignment="Stretch">
-                                <TextBlock 
+                                    <TextBlock 
                                     Text="{Binding Path='text'}" 
                                     TextWrapping="Wrap" TextAlignment="Center" 
                                     FontSize="17"/>
-                            </Button>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <UniformGrid Columns="1"/>
                                 <!--<WrapPanel/>-->
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-                </ItemsControl>
+                    </ItemsControl>
                 </StackPanel>
             </Grid>
         </Grid>
