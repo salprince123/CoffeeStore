@@ -175,25 +175,38 @@ namespace CoffeeStore.Inventory
 
         }
 
+        public bool Delete(String name)
+        {
+            BUS_Material material = new BUS_Material();
+            bool result = material.Delete(name);
+            //if (result)
+            //    MessageBox.Show($"Đã xóa thành công vật liệu {row.Name}");
+            //else MessageBox.Show($"Xóa không thành công");
+            LoadData();
+            return result;
+        }
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Ban co chac chan xoa?", "Thong bao", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            InventoryObject row = (InventoryObject)dataGridMaterial.SelectedItem;
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            Window window = new Window
             {
-                InventoryObject row = (InventoryObject)dataGridMaterial.SelectedItem;
-                if (row != null)
-                {
-                    try
-                    {
-                        BUS_Material material = new BUS_Material();
-                        bool result = material.Delete(row.Name);
-                        if (result)
-                            MessageBox.Show($"Đã xóa thành công vật liệu {row.Name}");
-                        else MessageBox.Show($"Xóa không thành công");
-                        LoadData();
-                    }
-                    catch (Exception) { }
-                }
-            }
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
+                Title = "Xóa vật liệu ",
+                Content = new PopupDeleteConfirm(this, row.Name), //delete message
+                Width = 380,
+                Height = 210,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+            };
+            window.ShowDialog();
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
+
+           
 
         }
     }

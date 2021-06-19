@@ -60,22 +60,18 @@
                     <ColumnDefinition Width="10"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
-                    <DatePicker x:Name="tbDateStart" Height="40"
+                    <DatePicker x:Name="tbDateStart" Height="40" 
                          VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
                 </Border>
-                <!--<TextBox x:Name="tbDateStart" Height="40" 
-                         BorderThickness="1" VerticalContentAlignment="Center"
-                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>-->
 
                 <Border BorderBrush="Gray" BorderThickness="1,1,1,0" Grid.Column="2">
-                    <DatePicker x:Name="tbDateEnd" Height="40"
+                    <DatePicker x:Name="tbDateEnd" Height="40" 
                          VerticalContentAlignment="Center"
-                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5"/>
+                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5">
+                        
+                    </DatePicker>
                 </Border>
-                <!--<TextBox x:Name="tbDateEnd" Grid.Column="2" Height="40" 
-                         BorderThickness="1" VerticalContentAlignment="Center"
-                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5"/>-->
                 
                 <TextBox x:Name="tbFind" Grid.Column="4" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"

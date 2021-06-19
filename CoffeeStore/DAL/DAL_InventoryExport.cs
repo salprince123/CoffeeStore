@@ -117,7 +117,7 @@ namespace CoffeeStore.DAL
         {
             //create auto increase ID
             //Get max MaterialID
-            String id = "";
+            String id = "Exp0000000";
             string tempSQL = "SELECT exportID FROM InventoryExport order by exportID desc LIMIT 1 ";
             SQLiteDataAdapter da = new SQLiteDataAdapter(tempSQL, getConnection());
             DataTable maxId = new DataTable();

@@ -20,14 +20,53 @@ namespace CoffeeStore.Inventory
     /// </summary>
     public partial class PopupDeleteConfirm : UserControl
     {
+        private object _context;
+        private string deleteID;
         public PopupDeleteConfirm()
         {
             InitializeComponent();
         }
+        public PopupDeleteConfirm(object context, string deleteID)
+        {
+            InitializeComponent();
+            this._context = context;
+            this.deleteID = deleteID;
+            switch (_context)
+            {
+                case InventoryImport import:
+                    {
+                        //this.tbContent.HorizontalAlignment = HorizontalAlignment.Center;
+                        this.tbContent.Text = $"Dữ liệu về phiếu nhập kho {deleteID} sẽ bị xóa vĩnh viễn. \nBạn chắc chắn muốn xóa?";
+                        break;
+                    }
+
+            }
+        }
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
+            switch(_context)
+            {
+                case InventoryImport import:
+                    {
+                        import.Delete(deleteID);
+                        Window.GetWindow(this).Close();
+                        break;
+                    }
+                case InventoryExport export:
+                    {
+                        export.Delete(deleteID);
+                        Window.GetWindow(this).Close();
+                        break;
+                    }
+                case MaterialList materList:
+                    {
+                        materList.Delete(deleteID);
+                        Window.GetWindow(this).Close();
+                        break;
+                    }
 
+            }
         }
 
         private void btExit_Click(object sender, RoutedEventArgs e)
