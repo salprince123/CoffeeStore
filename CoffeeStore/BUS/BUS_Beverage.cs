@@ -43,6 +43,10 @@ namespace CoffeeStore.BUS
         {
             return dalBeverage.GetBeverageType();
         }
+        public DataTable GetBeverageTypeInfo()
+        {
+            return dalBeverage.GetBeverageTypeInfo();
+        }
 
         public string getBeverageTypeID(string beveragename)
         {

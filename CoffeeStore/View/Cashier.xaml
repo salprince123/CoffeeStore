@@ -173,7 +173,7 @@
                         <DataGridTemplateColumn Header="">
                             <DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
-                                    <Button Width="20" Height="20" Margin="0,0,-50,0" Click="btnPlus_Click">
+                                    <Button Width="20" Height="20" Margin="0,0,-50,0" Tag="{Binding Path='id'}" Click="btnPlus_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="{x:Type Button}">
                                                 <Grid>
@@ -194,7 +194,7 @@
                         <DataGridTemplateColumn Header="">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button  Width="20" Height="20" Margin="-50,0,0,0" Click="btnMinus_Click">
+                                    <Button  Width="20" Height="20" Margin="-50,0,0,0" Tag="{Binding Path='id'}" Click="btnMinus_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="{x:Type Button}">
                                                 <Grid>
@@ -396,14 +396,14 @@
                     </StackPanel>
                 </ScrollViewer>
                 <!--Filter button here-->
-                <ItemsControl x:Name="ListFilterButton" >
+                <ItemsControl x:Name="ListFilterButton" ItemsSource="{Binding Path=filterButtons}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button Background="#FF7A00" Tag="{Binding}"
+                            <Button Background="#FF7A00" Tag="{Binding Path='text'}"
                                     Click="FilterButton_Click" 
                                     VerticalAlignment="Top" Height="46">
                                 <TextBlock 
-                                    Text="Tất cả" 
+                                    Text="{Binding Path='text'}" 
                                     TextWrapping="Wrap" TextAlignment="Center" 
                                     FontSize="17"/>
                             </Button>

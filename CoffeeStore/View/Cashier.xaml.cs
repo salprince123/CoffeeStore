@@ -29,8 +29,19 @@ namespace CoffeeStore.View
         {
             public string id { get; set; }
             public string name{ get; set;}
+            public string type { get; set; }
             public int cost { get; set; }
             public bool isOutOfStock { get; set; }
+
+            public MenuBeverage(string newId, string newName, string newtype, int newCost, bool newState)
+            {
+                id = newId;
+                name = newName;
+                type = newtype;
+                cost = newCost;
+                isOutOfStock = newState;
+            }
+
             public MenuBeverage(string newId, string newName, int newCost, bool newState)
             {
                 id = newId;
@@ -57,8 +68,23 @@ namespace CoffeeStore.View
             }
         }
 
+        class FilterButton
+        {
+            public string id { get; set; }
+            public string text { get; set; }
+
+            public FilterButton() { }
+            public FilterButton(string newid, string newtext)
+            {
+                id = newid;
+                text = newtext;
+            }    
+        }
+
         List<MenuBeverage> menuItems;
+        List<MenuBeverage> menuItemsDisplay;
         List<BillItem> billItems;
+        List<FilterButton> filterButtons;
         int total;
         int received;
         public Cashier(MainWindow mainWindow)
@@ -71,6 +97,7 @@ namespace CoffeeStore.View
         public void LoadData()
         {
             menuItems = new List<MenuBeverage>();
+            menuItemsDisplay = new List<MenuBeverage>();
             billItems = new List<BillItem>();
             BUS_Beverage busBev = new BUS_Beverage();
             DataTable BevsData = busBev.getAllBeverage();
@@ -78,19 +105,35 @@ namespace CoffeeStore.View
             {
                 string id = row["BeverageID"].ToString();
                 string name = row["BeverageName"].ToString();
+                string type = row["BeverageTypeName"].ToString();
                 int price = Int32.Parse(row["Price"].ToString());
                 bool isOutOfStock;
                 if (row["IsOutOfStock"].ToString() == "0")
                     isOutOfStock = false;
                 else isOutOfStock = true;
-                menuItems.Add(new MenuBeverage(id, name, price, isOutOfStock));
+                menuItems.Add(new MenuBeverage(id, name, type, price, isOutOfStock));
+                menuItemsDisplay.Add(new MenuBeverage(id, name, type, price, isOutOfStock));
             }
 
-            ListViewMenu.ItemsSource = menuItems;
+            filterButtons = new List<FilterButton>();
+            filterButtons.Add(new FilterButton("Tất cả", "Tất cả"));
+
+            DataTable BevTypesData = busBev.GetBeverageTypeInfo();
+            foreach (DataRow row in BevTypesData.Rows)
+            {
+                string id = row["BeverageTypeID"].ToString();
+                string name = row["BeverageTypeName"].ToString();
+                filterButtons.Add(new FilterButton(id, name));
+            }    
+
+            ListViewMenu.ItemsSource = menuItemsDisplay;
             ListViewMenu.Items.Refresh();
 
             dgBill.ItemsSource = billItems;
             dgBill.Items.Refresh();
+
+            ListFilterButton.ItemsSource = filterButtons;
+            ListFilterButton.Items.Refresh();
 
             total = 0;
             received = 0;
@@ -132,7 +175,25 @@ namespace CoffeeStore.View
 
         private void FilterButton_Click(object sender, RoutedEventArgs e)
         {
-
+            string filterName = ((Button)sender).Tag.ToString();
+            MessageBox.Show(filterName);
+            if (filterName == "Tất cả")
+            {
+                menuItemsDisplay = menuItems;
+                ListViewMenu.ItemsSource = menuItemsDisplay;
+                ListViewMenu.Items.Refresh();
+                return;
+            }
+            menuItemsDisplay = new List<MenuBeverage>();
+            foreach (MenuBeverage item in menuItems)
+            {
+                if (item.type == filterName)
+                {
+                    menuItemsDisplay.Add(item);
+                }    
+            }
+            ListViewMenu.ItemsSource = menuItemsDisplay;
+            ListViewMenu.Items.Refresh();
         }
 
         private void Discount_Click(object sender, RoutedEventArgs e)
@@ -154,17 +215,17 @@ namespace CoffeeStore.View
             string id = ((Button)sender).Tag.ToString();
             string newName = "";
             int newCost = 0;
-            for (int i = 0; i < menuItems.Count; i++)
+            for (int i = 0; i < menuItemsDisplay.Count; i++)
             {
-                if (id == menuItems[i].id)
+                if (id == menuItemsDisplay[i].id)
                 {
-                    if (menuItems[i].isOutOfStock)
+                    if (menuItemsDisplay[i].isOutOfStock)
                     {
                         MessageBox.Show("Món này đã hết hàng!");
                         return;
                     }
-                    newName = menuItems[i].name;
-                    newCost = menuItems[i].cost;
+                    newName = menuItemsDisplay[i].name;
+                    newCost = menuItemsDisplay[i].cost;
                     break;
                 }
             }
@@ -222,12 +283,45 @@ namespace CoffeeStore.View
 
         private void btnPlus_Click(object sender, RoutedEventArgs e)
         {
+            string id = ((Button)sender).Tag.ToString();
 
+            for (int i = 0; i < billItems.Count; i++)
+            {
+                if (id == billItems[i].id)
+                {
+                    billItems[i].amount++;
+                    billItems[i].cost += billItems[i].unitCost;
+                    dgBill.Items.Refresh();
+                    total += billItems[i].unitCost;
+                    tblockTotal.Text = MoneyToString(total);
+                    tblockChange.Text = MoneyToString(received - total);
+                    return;
+                }
+            }
         }
 
         private void btnMinus_Click(object sender, RoutedEventArgs e)
         {
+            string id = ((Button)sender).Tag.ToString();
 
+            for (int i = 0; i < billItems.Count; i++)
+            {
+                if (id == billItems[i].id)
+                {
+                      
+                    billItems[i].amount--; 
+                    billItems[i].cost -= billItems[i].unitCost;
+                    total -= billItems[i].unitCost;
+                    if (billItems[i].amount == 0)
+                    {
+                        billItems.RemoveAt(i);
+                    }
+                    dgBill.Items.Refresh();
+                    tblockTotal.Text = MoneyToString(total);
+                    tblockChange.Text = MoneyToString(received - total);
+                    return;
+                }
+            }
         }
     }
 }
