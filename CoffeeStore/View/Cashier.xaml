@@ -156,24 +156,21 @@
                     VerticalAlignment="Stretch" AutoGenerateColumns="False"
                     FrozenColumnCount="1" CanUserReorderColumns="False"
                     CanUserResizeColumns="False"
+                    IsReadOnly="True"
                     VerticalContentAlignment="Stretch"
                     HorizontalContentAlignment="Stretch" Height="Auto" Margin="0,20,0,0"
                     ScrollViewer.CanContentScroll="True" 
                     ScrollViewer.VerticalScrollBarVisibility="Auto"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto">
-                    <DataGrid.ColumnHeaderStyle>
-                        <Style TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                        </Style>
-                    </DataGrid.ColumnHeaderStyle>
                     <DataGrid.Columns>
                         <!--Food Column-->
-                        <DataGridTextColumn Header="Món" Width="*" Binding="{ Binding Path='name'}"/>
+                        <DataGridTextColumn Header="Món" Width="2*" Binding="{ Binding Path='name'}"/>
                         <!--Plus button-->
-                        <DataGridTemplateColumn Header="">
+                        <DataGridTemplateColumn Header="      ">
                             <DataGridTemplateColumn.CellTemplate >
                                 <DataTemplate>
-                                    <Button Width="20" Height="20" Margin="0,0,-50,0" Tag="{Binding Path='id'}" Click="btnPlus_Click">
+                                   
+                                    <Button Width="20" Height="20" Tag="{Binding Path='id'}" Click="btnPlus_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="{x:Type Button}">
                                                 <Grid>
@@ -189,12 +186,12 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <!--Amount Column-->
-                        <DataGridTextColumn Header="Số lượng" Width="*" Binding="{ Binding Path='amount'}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Số lượng"  Binding="{ Binding Path='amount'}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
                         <!--Minus button-->
-                        <DataGridTemplateColumn Header="">
+                        <DataGridTemplateColumn Header="      ">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button  Width="20" Height="20" Margin="-50,0,0,0" Tag="{Binding Path='id'}" Click="btnMinus_Click">
+                                    <Button  Width="20" Height="20" Tag="{Binding Path='id'}" Click="btnMinus_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="{x:Type Button}">
                                                 <Grid>
@@ -372,11 +369,11 @@
                                                                 <ImageBrush ImageSource="cafe-latte.jpg"/>
                                                             </Border.Background>
                                                         </Border>
-                                                        <Border Height="100">
+                                                        <!--<Border Height="100">
                                                             <Border.Background>
                                                                 <ImageBrush ImageSource="outofstock.png"/>
                                                             </Border.Background>
-                                                        </Border>
+                                                        </Border>-->
                                                     </Grid>
                                                     <TextBlock Name="FoodName" Margin="5" Text="{Binding Path='name'}" FontSize="14"/>
                                                     <TextBlock Name="Value" Margin="5 0" Text="{Binding Path='cost'}" FontSize="14"/>
