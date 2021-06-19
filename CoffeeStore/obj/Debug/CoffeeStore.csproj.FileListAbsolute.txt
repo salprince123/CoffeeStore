@@ -229,7 +229,6 @@ E:\Study\Project\CoffeeStore\CoffeeStore\bin\Debug\Xamarin.Forms.Xaml.xml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Home.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImport.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportADD.g.cs
-E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryMainPage.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddMaterial.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupEditMaterial.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\MainWindow.g.cs
@@ -243,7 +242,6 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\App.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Home.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImport.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportADD.baml
-E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryMainPage.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddMaterial.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupEditMaterial.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\MainWindow.baml
@@ -337,8 +335,6 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupAddGroupAccount.
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDeleteConfirm.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\InventoryImportEDIT.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\GeneratedInternalTypeHelper.g.cs
-E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\MainMenu.g.cs
-E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\MainMenu.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\AccountList.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupAddAccount.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Menu\MenuList.g.cs

@@ -176,6 +176,14 @@
                                     </DataGridTextColumn.Header>
                                 </DataGridTextColumn>
 
+                                <DataGridTemplateColumn Header="Hoạt động">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox x:Name="cbCheck"></CheckBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
