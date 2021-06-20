@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace CoffeeStore.View
 {
     /// <summary>
-    /// Interaction logic for PrintForm.xaml
+    /// Interaction logic for ReceiptForm.xaml
     /// </summary>
-    public partial class PrintForm : UserControl
+    public partial class ReceiptForm : UserControl
     {
-        public PrintForm()
+        public ReceiptForm()
         {
             InitializeComponent();
         }

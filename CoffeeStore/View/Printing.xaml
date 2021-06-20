@@ -4,9 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CoffeeStore.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="1.25*"/>
+            <ColumnDefinition  Width="1.25*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer x:Name="receiptGrid" Grid.Column="1" >
+            <local:ReceiptForm x:Name="receiptForm">
+            </local:ReceiptForm>
+        </ScrollViewer>
+        <Button HorizontalAlignment="Right" Margin="10" Click="Button_Click" VerticalAlignment="Top">
+            <materialDesign:PackIcon Kind="Printer"/>
+        </Button>
     </Grid>
 </UserControl>
