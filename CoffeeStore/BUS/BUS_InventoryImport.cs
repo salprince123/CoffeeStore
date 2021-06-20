@@ -11,6 +11,10 @@ namespace CoffeeStore.BUS
     public class BUS_InventoryImport
     {
         DAL_InventoryImport import = new DAL_InventoryImport();
+        public DataTable SelectAllMaterialNameFromDetail(String id)
+        {
+            return import.SelectAllMaterialNameFromDetail(id);
+        }
         public DataTable selectAll()
         {
             return import.SelectAllImport();

@@ -114,5 +114,23 @@ namespace CoffeeStore.DAL
             };
 
         }
+        public DataTable SelectAllMaterialNameFromDetail(String id)
+        {
+            try
+            {
+                string sql = $"select materialname, impDetail.Amount from Material mater JOIN InventoryImportDetail impDetail on mater.materialid=impDetail.MaterialID " +
+                    $"JOIN InventoryImport imp on imp.ImportID= impDetail.ImportID where imp.ImportID='{id}'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                DataTable listImport = new DataTable();
+                da.Fill(listImport);
+                return listImport;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception AT" + e.ToString());
+                return new DataTable();
+            };
+
+        }
     }
 }

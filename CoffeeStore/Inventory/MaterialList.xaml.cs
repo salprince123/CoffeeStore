@@ -23,6 +23,7 @@ namespace CoffeeStore.Inventory
     /// </summary>
     public partial class MaterialList : UserControl
     {
+        
         public MaterialList()
         {
             InitializeComponent();
@@ -92,6 +93,7 @@ namespace CoffeeStore.Inventory
                 list.Add(new InventoryObject() { Name = name.Key, Amount = amount.ToString(), Unit = name.Value });
                 number0++;
             }
+            
             this.dataGridMaterial.ItemsSource = list;
         }
 
