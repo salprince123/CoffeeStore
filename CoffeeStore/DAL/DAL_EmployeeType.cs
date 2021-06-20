@@ -80,7 +80,7 @@ namespace CoffeeStore.DAL
                 insert.ExecuteNonQuery();
                 return newEmpType.EmployeeTypeID;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return "";
             }
@@ -137,7 +137,7 @@ namespace CoffeeStore.DAL
                 insert.ExecuteNonQuery();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return false;
             }

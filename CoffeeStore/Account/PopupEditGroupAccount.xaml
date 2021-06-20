@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:UserControls="clr-namespace:CoffeeStore.View"
               mc:Ignorable="d" 
-             Height="369" Width="540">
+              Height="Auto" Width="540">
     <StackPanel Background="White">
         <!--Title bar here-->
-        <Grid Margin="0,-18,0,0" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <Grid x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <UserControls:TitleBar/>
             <TextBlock Text="Sửa nhóm tài khoản" 
                        FontFamily="Montserrat"
@@ -21,7 +21,7 @@
         <!--Group account name-->
         <TextBlock Margin="40,10,40,0" Text="Tên nhóm tài khoản"/>
         <TextBox  x:Name="tbName" Margin="40,5,40,0" BorderThickness="1"
-                 Height="40" Padding="5" />
+                 Height="40" Padding="5" FontSize="15" VerticalContentAlignment="Center"/>
         <!--Permission-->
         <Grid Margin="40,20,40,0" DataContext="{Binding }" >
             <Grid.RowDefinitions>
@@ -29,59 +29,57 @@
                 <RowDefinition Height="23*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="240*"/>
-                <ColumnDefinition Width="68*"/>
-                <ColumnDefinition Width="241*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="1">
+            <StackPanel Grid.Column="2">
                 <!--Move permission button-->
                 <Button   
                     x:Name="btnSelectedToRight"
                         Command="{Binding }" 
                         Margin="0,10,0,0"
                         CommandParameter="{Binding}" 
-                        HorizontalAlignment="Center" 
-                        VerticalAlignment="Center" 
-                        Height="33"  Width="48" Background="#FFE297" BorderBrush="#6B6158"
+                        HorizontalContentAlignment="Center" 
+                        VerticalContentAlignment="Center" Foreground="#6B6158" Content=">"
+                        Height="36"  Width="52" Background="#FFE297" BorderBrush="#6B6158"
                     Click="btnSelectedToRight_Click">
-                    <TextBlock Text=">" Foreground="#6B6158"></TextBlock>
                 </Button>
                 <Button   
                     x:Name="btnAllToRight"
                         Command="{Binding AddDevice}" 
                         Margin="0,10,0,0"
                         CommandParameter="{Binding SelectedItem, ElementName=unSecure}" 
-                        HorizontalAlignment="Center" 
-                        VerticalAlignment="Center" 
-                        Height="33"  Width="48" Background="#6B6158" BorderBrush="#FFE297"
+                        HorizontalContentAlignment="Center" 
+                        VerticalContentAlignment="Center" Content=">>" Foreground="#FFE297"
+                        Height="36"  Width="52" Background="#6B6158" BorderBrush="#FFE297"
                     Click="btnAllToRight_Click">
-                    <TextBlock Text=">>" Foreground="#FFE297"></TextBlock>
                 </Button>
                 <Button   
                     x:Name="btnSelectedToLeft"
                         Command="{Binding AddDevice}" 
                         Margin="0,10,0,0"
                         CommandParameter="{Binding SelectedItem, ElementName=unSecure}" 
-                        HorizontalAlignment="Center" 
-                        VerticalAlignment="Center" 
-                        Height="33"  Width="48" Background="#FFE297" BorderBrush="#6B6158"
+                        HorizontalContentAlignment="Center" 
+                        VerticalContentAlignment="Center" Content="&lt;" Foreground="#6B6158"
+                        Height="36"  Width="52" Background="#FFE297" BorderBrush="#6B6158"
                     Click="btnSelectedToLeft_Click">
-                    <TextBlock Text="&lt;" Foreground="#6B6158"></TextBlock>
                 </Button>
                 <Button   
                     x:Name="btnAllToLeft"
                         Command="{Binding AddDevice}" 
                         Margin="0,10,0,0"
                         CommandParameter="{Binding SelectedItem, ElementName=unSecure}" 
-                        HorizontalAlignment="Center" 
-                        VerticalAlignment="Center" 
-                        Height="33"  Width="48" Background="#6B6158" BorderBrush="#FFE297"
+                        HorizontalContentAlignment="Center" 
+                        VerticalContentAlignment="Center" Content="&lt;&lt;" Foreground="#FFE297"
+                        Height="36"  Width="52" Background="#6B6158" BorderBrush="#FFE297"
                     Click="btnAllToLeft_Click">
-                    <TextBlock Text="&lt;&lt; Left" Foreground="#FFE297"></TextBlock>
                 </Button>
             </StackPanel>
             <!--Data grid-->
-            <DockPanel Margin="0,0,10,0" Grid.RowSpan="2" >
+            <DockPanel Grid.RowSpan="2" >
                 <TextBox IsReadOnly="True" DockPanel.Dock="Top" Text="Quyền chưa chọn" />
                 <DataGrid x:Name="dgUnselected" HeadersVisibility="None" IsReadOnly="True" 
                           MaxHeight="150"
@@ -90,7 +88,7 @@
                           SelectedCellsChanged="dgUnselected_SelectedCellsChanged"
                           ScrollViewer.CanContentScroll="True"/>
             </DockPanel>
-            <DockPanel  Margin="0,0,10,0" Grid.Column="2">
+            <DockPanel  Grid.Column="4">
                 <TextBox IsReadOnly="True" DockPanel.Dock="Top" Text="Quyền đã chọn" />
                 <DataGrid x:Name="dgSelected" HeadersVisibility="None" IsReadOnly="True" 
                           MaxHeight="150"
@@ -101,12 +99,12 @@
             </DockPanel>
         </Grid>
         <!--Save, Cancel button-->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Height="100" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="btSave" Height="40" Width="100"
-                    Content="LƯU" Margin="0,30,0,0"  Background="#66A3FF"
+                    Content="LƯU" Background="#66A3FF"
                     Click="btSave_Click"/>
             <Button x:Name="btExit" Height="40" Width="100"
-                    Content="HỦY" Margin="10,30,0,0" Background="#F27047"
+                    Content="HỦY" Margin="10,0,0,0" Background="#F27047"
                     Click="btExit_Click"/>
         </StackPanel>
     </StackPanel>

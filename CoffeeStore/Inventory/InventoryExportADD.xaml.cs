@@ -46,7 +46,6 @@ namespace CoffeeStore.Inventory
         }
         public class InventoryExportDetailObject
         {
-            public int number { get; set; }
             public String name { get; set; }
             public String id { get; set; }
             public String unitPrice { get; set; }
@@ -116,7 +115,7 @@ namespace CoffeeStore.Inventory
                 string unit = row["Unit"].ToString();
                 string id = row["MaterialID"].ToString();
                 if (!containInList(id))
-                    list.Add(new InventoryExportDetailObject() { id = id, number = list.Count + 1, name = name, unit = unit });
+                    list.Add(new InventoryExportDetailObject() { id = id, name = name, unit = unit });
             }
             dataGridImport.ItemsSource = list;
             dataGridImport.Items.Refresh();
@@ -126,14 +125,14 @@ namespace CoffeeStore.Inventory
             InventoryExportDetailObject row = (InventoryExportDetailObject)dataGridImport.SelectedItem;
             if (row != null)
             {
-                try
+                /*try
                 {
                     list.RemoveAt(row.number - 1);
                     for (int i = 0; i < list.Count; i++)
                         list[i].number = i + 1;
                     dataGridImport.Items.Refresh();
                 }
-                catch (Exception) { }
+                catch (Exception) { }*/
             }
         }
 

@@ -73,7 +73,7 @@
                          materialDesign:HintAssist.Hint="Đến ngày" Padding="5"
                          CalendarClosed="dpTo_CalendarClosed"/>
                 </Border>
-                
+
                 <TextBox x:Name="tbIDFind" Grid.Column="4" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Mã phiếu nhập hoặc người lập" Padding="5"/>
@@ -82,7 +82,7 @@
                     BorderBrush="#FFE297" BorderThickness="1" Click="btnFind_Click">
                     <materialDesign:PackIcon Kind="Search" Height="20" Width="20"/>
                 </Button>
-                
+
             </Grid>
 
             <!--Button here-->
@@ -254,6 +254,6 @@
                 </Border>
             </Grid>
         </Grid>
-        
+
     </Grid>
 </UserControl>

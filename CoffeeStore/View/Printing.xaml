@@ -4,9 +4,32 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CoffeeStore.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="150"/>
+            <ColumnDefinition  Width="0.5*"/>
+            <ColumnDefinition  Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer x:Name="receiptGrid" Grid.Column="1" >
+            <local:ReceiptForm x:Name="ReceiptForm">
+            </local:ReceiptForm>
+        </ScrollViewer>
+        <StackPanel>
+            <!--<Button Name="btnBack" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10" Background="#FF7A00" Click="btnBack_Click">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="ArrowLeft" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBlock>Quay lại</TextBlock>
+                </StackPanel>
+            </Button>-->
+            <Button Name="btnPrint" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10" Background="#6B6158" Click="btnPrint_Click">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Printer" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                    <TextBlock>In hóa đơn</TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -411,5 +411,10 @@ namespace CoffeeStore.View
             billItems.Clear();
             dgBill.Items.Refresh();
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
