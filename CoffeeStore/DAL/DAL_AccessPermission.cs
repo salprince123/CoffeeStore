@@ -11,14 +11,12 @@ namespace CoffeeStore.DAL
 {
     class DAL_AccessPermission : DBConnect
     {
-        public DataTable GetAccessInfo()
+        public DataTable GetAccessInfo(int limit, int offset)
         {
             DataTable accessData = new DataTable(); //datatable from database
             DataTable perListData = new DataTable();
-            DataTable empTypeListData = new DataTable();
             DataTable accessInfo = new DataTable(); //datatable for showwing
             DataColumn dtColumn;
-            DataRow dtRow;
             try
             {
                 // create columns of datatable for show
@@ -26,12 +24,10 @@ namespace CoffeeStore.DAL
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 da.Fill(perListData);
 
-                //Create first Column in datatable for showwing
-                dtColumn = new DataColumn();
-                dtColumn.DataType = Type.GetType("System.String");
-                dtColumn.ColumnName = "EmployeeType";
-                dtColumn.Caption = "Type Name";
-                accessInfo.Columns.Add(dtColumn);
+                // create rows of datatable for show
+                sql = $"select * from EmployeeType limit {limit} offset {offset}";
+                da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(accessInfo);
 
                 for (int i = 0; i < perListData.Rows.Count; i++)
                 {
@@ -41,19 +37,9 @@ namespace CoffeeStore.DAL
                     accessInfo.Columns.Add(dtColumn);
                 }
 
-                // create rows of datatable for show
-                sql = $"select EmployeeTypeName from EmployeeType";
-                da = new SQLiteDataAdapter(sql, getConnection());
-                da.Fill(empTypeListData);
-
-                for (int i = 0; i < empTypeListData.Rows.Count; i++)
-                {
-                    dtRow = accessInfo.NewRow();
-                    dtRow[0] = empTypeListData.Rows[i].ItemArray[0].ToString();
-                    for (int j = 1; j <= perListData.Rows.Count; j++)
-                        dtRow[perListData.Rows[j - 1].ItemArray[0].ToString()] = "0";
-                    accessInfo.Rows.Add(dtRow);
-                }
+                for (int i = 0; i < accessInfo.Rows.Count; i++)
+                    for (int j = 0; j < perListData.Rows.Count; j++)
+                        accessInfo.Rows[i][perListData.Rows[j].ItemArray[0].ToString()] = "0";
 
                 sql = $"select EmployeeType.EmployeeTypeName, AccessPermission.AccessPermissionName from EmployeeType join AccessPermission on EmployeeType.EmployeeTypeID = AccessPermissionGroup.EmployeeTypeID join AccessPermissionGroup on AccessPermissionGroup.AccessPermissionID = AccessPermission.AccessPermissionID";
                 da = new SQLiteDataAdapter(sql, getConnection());
@@ -61,9 +47,9 @@ namespace CoffeeStore.DAL
 
                 foreach (DataRow row in accessData.Rows)
                 {
-                    for (int i = 0; i < empTypeListData.Rows.Count; i++)
+                    for (int i = 0; i < accessInfo.Rows.Count; i++)
                     {
-                        if (row.ItemArray[0].ToString() == empTypeListData.Rows[i].ItemArray[0].ToString())
+                        if (row.ItemArray[0].ToString() == accessInfo.Rows[i].ItemArray[1].ToString())
                         {
                             accessInfo.Rows[i][columnName: row.ItemArray[1].ToString()] = "1";
                             break;

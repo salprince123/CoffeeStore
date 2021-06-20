@@ -26,7 +26,6 @@ namespace CoffeeStore.Account
         public class AccessPermissionName
         {
             public string name { get; set; }
-            public AccessPermissionName(object toString) { }
             public AccessPermissionName(string newName)
             {
                 name = newName;
@@ -102,6 +101,13 @@ namespace CoffeeStore.Account
 
         private void btnSelectedToRight_Click(object sender, RoutedEventArgs e)
         {
+            if (seletedItemLeft == null)
+                return;
+            foreach (AccessPermissionName accPerName in dgSelectedList)
+            {
+                if (accPerName.name == seletedItemLeft.name)
+                    return;
+            }    
             dgSelectedList.Add(seletedItemLeft);
             dgUnselectedList.Remove(seletedItemLeft);
             this.dgUnselected.Items.Refresh();
@@ -121,6 +127,13 @@ namespace CoffeeStore.Account
 
         private void btnSelectedToLeft_Click(object sender, RoutedEventArgs e)
         {
+            if (seletedItemRight == null)
+                return;
+            foreach (AccessPermissionName accPerName in dgUnselectedList)
+            {
+                if (accPerName.name == seletedItemRight.name)
+                    return;
+            }
             dgUnselectedList.Add(seletedItemRight);
             dgSelectedList.Remove(seletedItemRight);
             this.dgSelected.Items.Refresh();

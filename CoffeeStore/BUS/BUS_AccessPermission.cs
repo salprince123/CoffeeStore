@@ -11,9 +11,9 @@ namespace CoffeeStore.BUS
     class BUS_AccessPermission
     {
         DAL_AccessPermission dalAccPer = new DAL_AccessPermission();
-        public DataTable GetAccessInfo()
+        public DataTable GetAccessInfo(int limit, int offset)
         {
-            return dalAccPer.GetAccessInfo();
+            return dalAccPer.GetAccessInfo(limit, offset);
         }
 
         public DataTable GetAccessPermission()

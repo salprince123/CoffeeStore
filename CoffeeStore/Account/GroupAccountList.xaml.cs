@@ -34,6 +34,8 @@ namespace CoffeeStore.Account
     /// </summary>
     public partial class GroupAccountList : UserControl
     {
+        int limitRow;
+        int currentPage;
         public class GroupAccountInfo
         {
             public string name { get; set; }
@@ -62,27 +64,50 @@ namespace CoffeeStore.Account
         public GroupAccountList()
         {
             InitializeComponent();
+            
             dataGridGroupAccount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
+            limitRow = 5;
+            currentPage = 1;
+            tbNumPage.Text = "1";
+            btnPagePre.IsEnabled = false;
             LoadData();
         }
 
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
-            e.Row.Header = e.Row.GetIndex() + 1;
+            e.Row.Header = e.Row.GetIndex() + 1 + limitRow * (currentPage - 1);
             e.Row.Height = 40;
         }
 
         public void LoadData()
         {
             List<GroupAccountInfo> groupAccountInfos = new List<GroupAccountInfo>();
+
+            BUS_EmployeeType busEmpType = new BUS_EmployeeType();
+            int empTypeCount = busEmpType.CountEmployeeTypes();
+            if (empTypeCount % limitRow == 0)
+                lblMaxPage.Content = empTypeCount / limitRow;
+            else
+                lblMaxPage.Content = empTypeCount / limitRow + 1;
+            if (currentPage == (int)lblMaxPage.Content)
+                btnPageNext.IsEnabled = false;
+            else
+                btnPageNext.IsEnabled = true;
+
+            ReloadDGGroupAccount();
+        }
+
+        void ReloadDGGroupAccount()
+        {
+            List<GroupAccountInfo> groupAccountInfos = new List<GroupAccountInfo>();
             BUS_AccessPermission bus_accper = new BUS_AccessPermission();
-            DataTable temp = bus_accper.GetAccessInfo();
+            DataTable temp = bus_accper.GetAccessInfo(limitRow, limitRow * (currentPage - 1));
 
             foreach (DataRow row in temp.Rows)
             {
                 GroupAccountInfo newGrAccInfo = new GroupAccountInfo();
 
-                newGrAccInfo.name = row["EmployeeType"].ToString();
+                newGrAccInfo.name = row["EmployeeTypeName"].ToString();
 
                 if (row[columnName: Constants.CASHIER].ToString() == "0")
                     newGrAccInfo.cashier = false;
@@ -129,7 +154,7 @@ namespace CoffeeStore.Account
 
             this.dataGridGroupAccount.ItemsSource = groupAccountInfos;
             this.dataGridGroupAccount.Items.Refresh();
-        }    
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -148,7 +173,20 @@ namespace CoffeeStore.Account
                 Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
             };
             window.ShowDialog();
-            LoadData();
+
+            BUS_EmployeeType busEmpType = new BUS_EmployeeType();
+            int empTypeCount = busEmpType.CountEmployeeTypes();
+            if (empTypeCount % limitRow == 0)
+                lblMaxPage.Content = empTypeCount / limitRow;
+            else
+                lblMaxPage.Content = empTypeCount / limitRow + 1;
+
+            if (currentPage < (int)lblMaxPage.Content)
+                btnPageNext.IsEnabled = true;
+            else
+                btnPageNext.IsEnabled = false;
+
+            ReloadDGGroupAccount();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
         }
@@ -172,7 +210,29 @@ namespace CoffeeStore.Account
                 Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
             };
             window.ShowDialog();
-            LoadData();
+
+            BUS_EmployeeType busEmpType = new BUS_EmployeeType();
+            int empTypeCount = busEmpType.CountEmployeeTypes();
+            if (empTypeCount % limitRow == 0)
+                lblMaxPage.Content = empTypeCount / limitRow;
+            else
+                lblMaxPage.Content = empTypeCount / limitRow + 1;
+            if (currentPage > (int)lblMaxPage.Content)
+            {
+                tbNumPage.Text = (--currentPage).ToString();
+            }
+
+            if (currentPage == (int)lblMaxPage.Content)
+                btnPageNext.IsEnabled = false;
+            else
+                btnPageNext.IsEnabled = true;
+
+            if (currentPage == 1)
+                btnPagePre.IsEnabled = false;
+            else
+                btnPagePre.IsEnabled = true;
+
+            ReloadDGGroupAccount();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
         }
@@ -206,6 +266,67 @@ namespace CoffeeStore.Account
             LoadData();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
+        }
+
+        private void btnPagePre_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                tbNumPage.Text = (--currentPage).ToString();
+                btnPageNext.IsEnabled = true;
+                ReloadDGGroupAccount();
+            }
+            if (currentPage == 1)
+                btnPagePre.IsEnabled = false;
+        }
+
+        private void tbNumPage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                int newPage = Int32.Parse(tbNumPage.Text);
+                if (newPage > (int)lblMaxPage.Content)
+                {
+                    MessageBox.Show("Không có trang này!");
+                    return;
+                }
+                currentPage = newPage;
+                if (currentPage == 1)
+                    btnPagePre.IsEnabled = false;
+                else
+                    btnPagePre.IsEnabled = true;
+                if (currentPage == (int)lblMaxPage.Content)
+                    btnPageNext.IsEnabled = false;
+                else
+                    btnPageNext.IsEnabled = true;
+
+                ReloadDGGroupAccount();
+            }
+        }
+
+        private void btnPageNext_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentPage < (int)lblMaxPage.Content)
+            {
+                tbNumPage.Text = (++currentPage).ToString();
+                btnPagePre.IsEnabled = true;
+                ReloadDGGroupAccount();
+            }
+            if (currentPage == (int)lblMaxPage.Content)
+                btnPageNext.IsEnabled = false;
+        }
+
+        private void tbNumPage_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
+
+        private void tbNumPage_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !e.Text.Any(x => Char.IsDigit(x));
+            if (e.Text.Contains(" "))
+                e.Handled = false;
         }
     }
 }
