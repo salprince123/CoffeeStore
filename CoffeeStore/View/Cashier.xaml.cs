@@ -294,17 +294,9 @@ namespace CoffeeStore.View
 
         private void tboxAmountReceived_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try
-            {
-                received = Int32.Parse(tboxAmountReceived.Text);
-                if (tblockChange!=null)
-                    tblockChange.Text = MoneyToString(received - total);
-            }
-            catch
-            {
-                // validate for user add text in Amount box
-                
-            }
+            received = Int32.Parse(tboxAmountReceived.Text);
+            if (tblockChange!=null)
+                tblockChange.Text = MoneyToString(received - total);
         }
 
         private void btnPlus_Click(object sender, RoutedEventArgs e)
@@ -397,8 +389,6 @@ namespace CoffeeStore.View
                 if (result)
                 {
                     MessageBox.Show("Tạo hóa đơn thành công!");
-                    billItems.Clear();
-                    dgBill.Items.Refresh();
                 }    
                 else
                 {
@@ -418,7 +408,8 @@ namespace CoffeeStore.View
 
         private void btnNewReceipt_Click(object sender, RoutedEventArgs e)
         {
-
+            billItems.Clear();
+            dgBill.Items.Refresh();
         }
     }
 }

@@ -133,9 +133,6 @@
     <Compile Include="Account\PopupChangePassword.xaml.cs">
       <DependentUpon>PopupChangePassword.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Account\PopupDeclineAccess.xaml.cs">
-      <DependentUpon>PopupDeclineAccess.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Account\PopupDeleteConfirm.xaml.cs">
       <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
     </Compile>
@@ -320,10 +317,6 @@
     <Page Include="Account\PopupChangePassword.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Account\PopupDeclineAccess.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Account\PopupDeleteConfirm.xaml">
       <SubType>Designer</SubType>

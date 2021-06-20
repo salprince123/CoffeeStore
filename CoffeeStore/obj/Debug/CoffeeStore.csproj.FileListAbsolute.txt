@@ -694,11 +694,9 @@ C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\LiveChar
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\LiveCharts.xml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\LiveCharts.Wpf.pdb
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\LiveCharts.Wpf.xml
-C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDeclineAccess.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDeleteConfirm.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupDeleteConfirm.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\View\PopupDeleteConfirm.g.cs
-C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDeclineAccess.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Discount\PopupDeleteConfirm.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupDeleteConfirm.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\View\PopupDeleteConfirm.baml
@@ -853,4 +851,10 @@ C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\XamlC.stamp
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.csproj.CopyComplete
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.exe
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.pdb
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\PopupDeleteConfirm.g.cs
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\View\PrintForm.g.cs
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\View\Printing.g.cs
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\PopupDeleteConfirm.baml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\View\PrintForm.baml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\View\Printing.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.csproj.AssemblyReference.cache
