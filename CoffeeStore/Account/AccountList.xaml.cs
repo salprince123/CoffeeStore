@@ -233,7 +233,7 @@ namespace CoffeeStore.Account
                     ResizeMode = ResizeMode.NoResize,
                     WindowStyle = WindowStyle.None,
                     Title = "Vô hiệu hóa tài khoản",
-                    Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn vô hiệu hóa tài khoản {id} \n của nhân viên {name} không?", id, 4),
+                    Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn vô hiệu hóa tài khoản \n{id} của nhân viên {name} không?", id, 4),
                     Width = 380,
                     Height = 210,
                     Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
@@ -242,6 +242,7 @@ namespace CoffeeStore.Account
             window.ShowDialog();
             LoadData();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
         }
 
         private void tbNumPage_KeyDown(object sender, KeyEventArgs e)
