@@ -126,6 +126,7 @@ namespace CoffeeStore
         internal void SwitchWindow(object sender)
         {
             var screen = ((UserControl)sender);
+            
             if (screen != null)
             {
                 StackPanelMain.Children.Clear();
@@ -146,6 +147,7 @@ namespace CoffeeStore
         public void SwitchBackHome()
         {
             gridLogin.Children.Clear();
+
         }
 
         internal void SwitchToDiscount()

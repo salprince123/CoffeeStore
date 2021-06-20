@@ -16,13 +16,13 @@ namespace CoffeeStore.DAL
             DataTable receipts = new DataTable();
             try
             {
-                string sql = $"select ReceiptID, Time, Receipt.EmployeeID, Employees.EmployeeName, Discount.DiscountID from Receipt join Employees on Receipt.EmployeeID = Employees.EmployeeID join Discount on Receipt.DiscountID = Discount.DiscountID";
+                string sql = $"select Receipt.ReceiptID, Time, Receipt.EmployeeID, Employees.EmployeeName, Discount.DiscountID, sum(Price * Amount * (1 - DiscountValue/100)) as Total from Receipt join Employees on Receipt.EmployeeID = Employees.EmployeeID join Discount on Receipt.DiscountID = Discount.DiscountID join ReceiptDetail on Receipt.ReceiptID = ReceiptDetail.ReceiptID group by Receipt.ReceiptID";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 da.Fill(receipts);
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
             return receipts;
         }    
@@ -30,11 +30,16 @@ namespace CoffeeStore.DAL
         public string CreateReceipt(DTO_Receipt newReceipt)
         {
             DataTable receipts = GetReceipt();
-            string lastID = receipts.Rows[receipts.Rows.Count - 1]["ReceiptID"].ToString();
-            newReceipt.ReceiptID = "R" +
-                (Convert.ToInt32(lastID.Replace("R", "")) + 1)
-                    .ToString()
-                    .PadLeft(9, '0');
+            if (receipts.Rows.Count != 0)
+            {
+                string lastID = receipts.Rows[receipts.Rows.Count - 1]["ReceiptID"].ToString();
+                newReceipt.ReceiptID = "R" +
+                    (Convert.ToInt32(lastID.Replace("R", "")) + 1)
+                        .ToString()
+                        .PadLeft(9, '0');
+            }
+            else
+                newReceipt.ReceiptID = "R000000001";
 
             //insert SQLite 
             string sql = $"INSERT INTO Receipt (ReceiptID, Time, EmployeeID, DiscountID) VALUES ('{newReceipt.ReceiptID}', DateTime('now'), '{newReceipt.EmployeeID}', '{newReceipt.DiscountID}')";
