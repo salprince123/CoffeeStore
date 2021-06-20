@@ -65,64 +65,41 @@ namespace CoffeeStore.Inventory
         public void findImport()
         {
             findList.Clear();
-            String from = tbDateStart.Text;
-            String to = tbDateEnd.Text;
             String id = tbIDFind.Text.Trim();
-            if(from =="" && to =="" && id=="")
+            DateTime fromTime = DateTime.ParseExact("01/01/1900", "dd/MM/yyyy", null);
+            DateTime toTime = DateTime.ParseExact("01/01/2100", "dd/MM/yyyy", null);
+            try
             {
-                this.dataGridImport.ItemsSource = mainList;
-                this.dataGridImport.Items.Refresh();
+                fromTime = tbDateStart.SelectedDate.Value;
+            }
+            catch (Exception) { }
+            try
+            {
+                toTime = tbDateEnd.SelectedDate.Value;
+            }
+            catch (Exception) { }
+            if (toTime < fromTime)
+            {
+                MessageBox.Show("Ngày bắt đầu không thể lớn hơn ngày kết thúc");
                 return;
             }
-            //string result = "";
+                
+            //MessageBox.Show($"{ fromTime} {toTime}");
             foreach (InventoryImportObject obj in mainList.ToList())
             {
-                if (obj.ID.Contains(id) && id!="")
+                
+                DateTime importTime = DateTime.ParseExact(obj.InventoryDate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                if(fromTime <= importTime && importTime <= toTime)
                 {
-                    //result += $"find object {obj.ID} {obj.EmployName}  {obj.InventoryDate} ";
-                    findList.Add(new InventoryImportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate });
-                    continue;
-                }
-                if(obj.EmployName.Contains(id) && id != "")
-                {
-                    //result += $"find object {obj.ID} {obj.EmployName}  {obj.InventoryDate} ";
-                    findList.Add(new InventoryImportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate });
-                    continue;
-                }    
-                if(from != "" || to != "") 
-                {
-                    DateTime dtFind = DateTime.ParseExact(obj.InventoryDate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                    if (from!="" && to != "")
+                    if( id != "")
                     {
-                        DateTime dtFrom = DateTime.ParseExact(from, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                        DateTime dtTo = DateTime.ParseExact(to, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                        if (dtFrom <= dtFind && dtTo >= dtFind)
-                        {
+                        if(obj.ID.Contains(id) || obj.EmployName.Contains(id))
                             findList.Add(new InventoryImportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate });
-                            continue;
-                        }
                     }
-                    else if (from != "" && to == "")
+                    else
                     {
-                        DateTime dtFrom = DateTime.ParseExact(from, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                        if (dtFrom <= dtFind)
-                        {
-                            findList.Add(new InventoryImportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate });
-                            continue;
-                        }
+                        findList.Add(new InventoryImportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate });
                     }
-                    else if (from == "" && to != "")
-                    {
-                        DateTime dtTo = DateTime.ParseExact(to, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                        if (dtTo >= dtFind)
-                        {
-                            findList.Add(new InventoryImportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate });
-                            continue;
-                        }
-                    }
-
-
-
                 }
             }
             dataGridImport.ItemsSource = findList;

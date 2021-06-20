@@ -116,7 +116,6 @@
                                 <materialDesign:DataGridTextColumn/>
                             </DataGrid.CurrentColumn>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="STT" Binding="{Binding Path='number'}" IsReadOnly="True"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" Binding="{Binding Path='name'}" IsReadOnly="True"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Đơn giá" Binding="{Binding Path='unitPrice',Mode=TwoWay}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Số lượng" Binding="{Binding Path='amount' ,Mode=TwoWay}"></DataGridTextColumn>

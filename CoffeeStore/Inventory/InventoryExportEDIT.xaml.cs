@@ -32,7 +32,6 @@ namespace CoffeeStore.Inventory
         MainWindow _context;
         public class InventoryObject
         {
-            public int number { get; set; }
             public String name { get; set; }
             public String id { get; set; }
             public String unitPrice { get; set; }
@@ -70,7 +69,7 @@ namespace CoffeeStore.Inventory
                 string descrip = row["Mô tả"].ToString();
                 string unit = row["Unit"].ToString();
                 string materID = row["MaterialID"].ToString();
-                list.Add(new InventoryObject() { number = list.Count + 1, amount = amount, name = name, description = descrip, unit = unit, id= materID });
+                list.Add(new InventoryObject() {  amount = amount, name = name, description = descrip, unit = unit, id= materID });
             }
             this.dataGridImport.ItemsSource = list;
             if (list.Count == 0) return;
@@ -110,14 +109,14 @@ namespace CoffeeStore.Inventory
             InventoryObject row = (InventoryObject)dataGridImport.SelectedItem;
             if (row != null)
             {
-                try
+                /*try
                 {
                     list.RemoveAt(row.number - 1);
                     for (int i = 0; i < list.Count; i++)
                         list[i].number = i + 1;
                     dataGridImport.Items.Refresh();
                 }
-                catch (Exception) { }
+                catch (Exception) { }*/
             }
         }
         public bool containInList(String id)
@@ -159,7 +158,7 @@ namespace CoffeeStore.Inventory
                 string unit = row["Unit"].ToString();
                 string id = row["MaterialID"].ToString();
                 if (!containInList(id))
-                    list.Add(new InventoryObject() { id = id, number = list.Count + 1, name = name, unit = unit });
+                    list.Add(new InventoryObject() { id = id,  name = name, unit = unit });
             }
             dataGridImport.ItemsSource = list;
             dataGridImport.Items.Refresh();
