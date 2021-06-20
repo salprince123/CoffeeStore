@@ -62,17 +62,16 @@
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
                     <DatePicker x:Name="tbDateStart" Height="40"
-                         VerticalContentAlignment="Center"
+                         VerticalContentAlignment="Center" FontSize="15"
                          materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
                 </Border>
                 <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1,1,1,0">
                     <DatePicker x:Name="tbDateEnd" Height="40" 
-                         BorderThickness="1" VerticalContentAlignment="Center"
-                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5"
-                         SelectedDate="{x:Static sys:DateTime.Now}"/>
+                         BorderThickness="1" VerticalContentAlignment="Center" FontSize="15"
+                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5"/>
                 </Border>
                 <TextBox x:Name="tbName" Grid.Column="4" 
-                         BorderThickness="1" VerticalContentAlignment="Center"
+                         BorderThickness="1" VerticalContentAlignment="Center" FontSize="15"
                          materialDesign:HintAssist.Hint="Tên ưu đãi" Padding="5"/>
                 <Button x:Name="btnFind" Grid.Column="5" Height="40"
                     Background="#6B6158" Foreground="#FFE297" 
@@ -128,7 +127,7 @@
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
                                                 <Grid Background="{TemplateBinding Background}">
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    <ContentPresenter Margin="13,0,13,0" VerticalAlignment="Center" />
                                                 </Grid>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -153,13 +152,13 @@
                                     </Style.Triggers>
                                 </Style>
 
-                                <Style x:Key="DataGrid_Content_CenterVerticalAlign"
-                                       TargetType="{x:Type DataGridCell}">
+                                <Style x:Key="DataGrid_Content_Center"
+                                           TargetType="{x:Type DataGridCell}">
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
                                                 <Grid Background="{TemplateBinding Background}">
-                                                    <ContentPresenter VerticalAlignment="Center" />
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                                                 </Grid>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -182,50 +181,20 @@
                             </DataGrid.RowHeaderTemplate>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Path='DiscountID'}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Mã ưu đãi"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
-                                </DataGridTextColumn>
                                 <DataGridTextColumn 
-                                    CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}"
+                                    Header="Tên ưu đãi"
                                     Binding="{Binding Path='DiscountName'}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" MinWidth="100"
-                                               HorizontalContentAlignment="Center" Content="Tên ưu đãi"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding Path='StartDate'}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Ngày bắt đầu"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+                                <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding Path='StartDate'}">
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding Path='EndDate'}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Ngày kết thúc"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+                                <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding Path='EndDate'}">
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding Path='DiscountValue'}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Mức ưu đãi (%)"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+                                <DataGridTextColumn Header="Mức ưu đãi (%)" Binding="{Binding Path='DiscountValue'}"
+                                                    CellStyle="{StaticResource DataGrid_Content_Center}">
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding Path='Status'}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Trạng thái"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+                                <DataGridTextColumn Header="Trạng thái" Binding="{Binding Path='Status'}">
                                 </DataGridTextColumn>
+                                
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>

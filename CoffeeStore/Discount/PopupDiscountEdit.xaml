@@ -7,7 +7,7 @@
              xmlns:UserControls="clr-namespace:CoffeeStore.View"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             Height="480" Width="540">
+             Height="Auto" Width="540">
     <StackPanel Background="White">
         <Grid Margin="0,0,0,0" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <UserControls:TitleBar/>
@@ -22,53 +22,58 @@
         <!--Discount name here-->
         <TextBlock Margin="60,10,60,0" Text="Tên ưu đãi"/>
         <TextBox x:Name="tbName" Margin="0,5,0,0" BorderThickness="1"
-                 Height="40" Width="420" Padding="5" />
+                 Height="40" Width="420" Padding="5" FontSize="15" VerticalContentAlignment="Center"/>
 
         <Grid Margin="60,10,60,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="16"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="20"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <!--Date start here-->
-            <StackPanel Margin="0,0,10,0" Grid.Column="0">
+            <StackPanel Grid.Column="0">
                 <TextBlock Margin="0,0,0,5" Text="Ngày bắt đầu"/>
                 <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
                     <DatePicker x:Name="tbStartDate" Height="40"
-                         VerticalContentAlignment="Center"
-                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5"
-                         SelectedDate="{x:Static sys:DateTime.Now}"/>
+                         VerticalContentAlignment="Center" FontSize="15"
+                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
                 </Border>
             </StackPanel>
-            <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <materialDesign:PackIcon Kind="ColorHelper" />
-            </TextBlock>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="1" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="Minus" HorizontalAlignment="Center"/>
+                </Label>
+            </Grid>
             <!--Date end here-->
-            <StackPanel Margin="10,0,0,0" Grid.Column="2">
+            <StackPanel Grid.Column="2">
                 <TextBlock Margin="0,0,0,5" Text="Ngày kết thúc"/>
                 <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1,1,1,0">
                     <DatePicker x:Name="tbEndDate" Height="40" 
-                         BorderThickness="1" VerticalContentAlignment="Center"
-                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5"
-                         SelectedDate="{x:Static sys:DateTime.Now}"/>
+                         BorderThickness="1" VerticalContentAlignment="Center" FontSize="15"
+                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5"/>
                 </Border>
             </StackPanel>
         </Grid>
 
         <TextBlock Margin="60,10,60,0" Text="Mức ưu đãi (%)"/>
         <TextBox x:Name="tbPrice"  Margin="0,5,0,0" BorderThickness="1" Padding="5"
-                 Height="40" Width="420" PreviewTextInput="tbPrice_PreviewTextInput_1" />
+                 Height="40" Width="420" PreviewTextInput="tbPrice_PreviewTextInput_1"
+                 FontSize="15" VerticalContentAlignment="Center"/>
 
         <TextBlock Margin="60,10,60,0" Text="Mô tả"/>
         <TextBox x:Name="tbDescription"  Margin="60,5,60,0" BorderThickness="1"
-                 Height="102" Width="420" Padding="5"/>
+                 Height="80" Width="420" Padding="5" FontSize="15"/>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Height="100"  Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="btSave" Height="40" Width="100"
-                    Content="LƯU" Margin="0,30,0,0" Background="#66A3FF" Click="btSave_Click"/>
+                    Content="LƯU" Background="#66A3FF" Click="btSave_Click"/>
             <Button x:Name="btExit" Height="40" Width="100"
-                    Content="HỦY" Margin="10,30,0,0" Background="#F27047" Click="btExit_Click"/>
+                    Content="HỦY" Margin="10,0,0,0" Background="#F27047" Click="btExit_Click"/>
         </StackPanel>
     </StackPanel>
 </UserControl>
