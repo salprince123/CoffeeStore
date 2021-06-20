@@ -100,7 +100,7 @@
             </Menu.ItemsPanel>
             <MenuItem Background="#FF7A00" Foreground="White" Header="Thu ngân" 
                       Template="{StaticResource VsOnline}" 
-                      Width="180" Height="40">
+                      Width="180" Height="40" Click="btnCashier_Click">
             </MenuItem>
             <MenuItem  Foreground="White" Header="Quản lý" 
                        Template="{StaticResource VsMenuTop}" 
@@ -436,6 +436,9 @@
                 </StackPanel>
                 </ScrollViewer>
             </Grid>
+        </Grid>
+        <Grid x:Name="PrintScreen" Grid.Row="1" Grid.ColumnSpan="2">
+            <local:Printing x:Name="printing"></local:Printing>
         </Grid>
     </Grid>
 </UserControl>

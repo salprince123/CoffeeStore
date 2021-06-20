@@ -95,6 +95,7 @@ namespace CoffeeStore.View
             total = 0;
             received = 0;
             InitializeComponent();
+            PrintScreen.Children.Clear();
             _context = mainWindow;
             LoadData();
             user = userID;
@@ -403,13 +404,17 @@ namespace CoffeeStore.View
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
-
+            PrintScreen.Children.Add(printing);
         }
 
         private void btnNewReceipt_Click(object sender, RoutedEventArgs e)
         {
             billItems.Clear();
             dgBill.Items.Refresh();
+        }
+        private void btnCashier_Click(object sender, RoutedEventArgs e)
+        {
+            PrintScreen.Children.Clear();
         }
     }
 }
