@@ -215,6 +215,11 @@ namespace CoffeeStore.View
             _context.SwitchToDiscount();
         }
 
+        private void ReceiptButton_Click(object sender, RoutedEventArgs e)
+        {
+            _context.SwitchToReceipt();
+        }
+
         private void LogOutBtn_Click(object sender, RoutedEventArgs e)
         {
             _context.LogOut();
@@ -407,6 +412,11 @@ namespace CoffeeStore.View
         }
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnNewReceipt_Click(object sender, RoutedEventArgs e)
         {
 
         }

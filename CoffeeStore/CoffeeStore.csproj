@@ -185,6 +185,9 @@
     <Compile Include="IncomeAndPayment\PaymentList.xaml.cs">
       <DependentUpon>PaymentList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IncomeAndPayment\PopupDeleteConfirm.xaml.cs">
+      <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IncomeAndPayment\PopupPaymentAdd.xaml.cs">
       <DependentUpon>PopupPaymentAdd.xaml</DependentUpon>
     </Compile>
@@ -289,6 +292,12 @@
     <Compile Include="View\PopupEditMenuStatus.xaml.cs">
       <DependentUpon>PopupEditMenuStatus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PrintForm.xaml.cs">
+      <DependentUpon>PrintForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Printing.xaml.cs">
+      <DependentUpon>Printing.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TitleBar.xaml.cs">
       <DependentUpon>TitleBar.xaml</DependentUpon>
     </Compile>
@@ -357,6 +366,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="IncomeAndPayment\PaymentList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IncomeAndPayment\PopupDeleteConfirm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -495,6 +508,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PopupEditMenuStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PrintForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Printing.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

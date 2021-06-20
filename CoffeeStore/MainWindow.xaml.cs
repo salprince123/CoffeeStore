@@ -158,6 +158,14 @@ namespace CoffeeStore
             StackPanelMain.Children.Add(screen);
         }
 
+        internal void SwitchToReceipt()
+        {
+            var screen = new IncomeAndPayment.ReceiptList();
+            gridLogin.Children.Clear();
+            StackPanelMain.Children.Clear();
+            StackPanelMain.Children.Add(screen);
+        }
+
         internal void SwitchToMenu()
         {
             var screen = new Menu.MenuList();
