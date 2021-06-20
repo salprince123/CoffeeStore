@@ -90,6 +90,7 @@
     <Reference Include="System.Data.SQLite.Linq, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.113.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -289,11 +290,11 @@
     <Compile Include="View\PopupEditMenuStatus.xaml.cs">
       <DependentUpon>PopupEditMenuStatus.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PrintForm.xaml.cs">
-      <DependentUpon>PrintForm.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Printing.xaml.cs">
       <DependentUpon>Printing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReceiptForm.xaml.cs">
+      <DependentUpon>ReceiptForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TitleBar.xaml.cs">
       <DependentUpon>TitleBar.xaml</DependentUpon>
@@ -504,11 +505,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PrintForm.xaml">
+    <Page Include="View\Printing.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Printing.xaml">
+    <Page Include="View\ReceiptForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
