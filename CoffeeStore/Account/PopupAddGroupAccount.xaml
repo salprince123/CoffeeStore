@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:UserControls="clr-namespace:CoffeeStore.View"
               mc:Ignorable="d" 
-             MinHeight="430" Width="540">
+             Height="Auto" Width="540">
     <StackPanel Background="White">
         <!--Title bar here-->
         <Grid Margin="0,0,0,0" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
@@ -104,7 +104,7 @@
             </DockPanel>
         </Grid>
         <!--Save, Cancel button-->
-        <StackPanel Height="120" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Height="100" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="btSave" Height="40" Width="100"
                     Content="LƯU"  Background="#66A3FF" Click="btSave_Click"/>
             <Button x:Name="btExit" Height="40" Width="100"
