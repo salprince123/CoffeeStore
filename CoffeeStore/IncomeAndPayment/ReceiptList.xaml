@@ -209,7 +209,7 @@
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Margin="10,0,0,0" Name="btnWatch" BorderBrush="#9FA2B4" Background="White">
+                                            <Button Margin="10,0,0,0" Name="btnWatch" Tag="{Binding Path='id'}" BorderBrush="#9FA2B4" Background="White" Click="btnWatch_Click">
                                                 <materialDesign:PackIcon Kind="FileDocument" Height="20" Width="20" Foreground="#9FA2B4" />
                                             </Button>
                                         </DataTemplate>

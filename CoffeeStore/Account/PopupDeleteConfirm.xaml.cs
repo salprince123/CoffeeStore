@@ -39,22 +39,23 @@ namespace CoffeeStore.Account
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
+            BUS_Employees busEmp = new BUS_Employees();
             switch (this.type)
             {
                 case 1: /// Delete Account
-                    BUS_Employees busEmp = new BUS_Employees();
-                    int result1 = busEmp.DeleteEmployee(deletename);
+                    bool result1 = busEmp.DeleteEmployee(deletename);
 
-                    if (result1 == 0)
-                    {
-                        MessageBox.Show($"Đã xảy ra lỗi trong quá trình xóa tài khoản.");
-                    }
-                    else
+                    if (result1)
                     {
                         MessageBox.Show($"Đã xóa tài khoản {deletename}.");
                         Window.GetWindow(this).Close();
                     }
+                    else
+                    {
+                        MessageBox.Show($"Đã xảy ra lỗi trong quá trình xóa tài khoản.");
+                    }
                     break;
+
                 case 2: /// Delete Account type
                     BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
                     BUS_EmployeeType busEmpType = new BUS_EmployeeType();
@@ -71,6 +72,32 @@ namespace CoffeeStore.Account
                     {
                         MessageBox.Show($"Đã xóa loại tài khoản {deletename}.");
                         Window.GetWindow(this).Close();
+                    }
+                    break;
+                case 3: /// Active Account
+                    bool result3 = busEmp.SetState(deletename, true);
+
+                    if (result3)
+                    {
+                        MessageBox.Show($"Đã kích hoạt tài khoản {deletename}.");
+                        Window.GetWindow(this).Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Đã xảy ra lỗi trong quá trình kích hoạt tài khoản.");
+                    }
+                    break;
+                case 4: /// Disable Account
+                    bool result4 = busEmp.SetState(deletename, false);
+
+                    if (result4)
+                    {
+                        MessageBox.Show($"Đã vô hiệu hóa tài khoản {deletename}.");
+                        Window.GetWindow(this).Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Đã xảy ra lỗi trong quá trình vô hiệu hóa tài khoản.");
                     }
                     break;
             }

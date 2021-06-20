@@ -20,14 +20,15 @@ namespace CoffeeStore.Account
             public string name { get; set; }
             public string type { get; set; }
             public string pass { get; set; }
-
+            public bool state { get; set; }
             public AccountInfo() { }
-            public AccountInfo(string newid, string newname, string newtype, string newpass)
+            public AccountInfo(string newid, string newname, string newtype, string newpass, bool newState)
             {
                 id = newid;
                 name = newname;
                 type = newtype;
                 pass = newpass;
+                state = newState;
             }
         }
 
@@ -56,7 +57,7 @@ namespace CoffeeStore.Account
         {
             List<AccountInfo> employees = new List<AccountInfo>();
             BUS_Employees bus_employees = new BUS_Employees();
-            DataTable temp = bus_employees.GetActiveEmployees();
+            DataTable temp = bus_employees.GetEmployees();
             
             foreach (DataRow row in temp.Rows)
             {
@@ -64,7 +65,10 @@ namespace CoffeeStore.Account
                 string name = row["EmployeeName"].ToString();
                 string type = row["EmployeeTypeName"].ToString();
                 string pass = row["Password"].ToString();
-                employees.Add(item: new AccountInfo(id, name, type, pass));
+                bool state = true;
+                if (row["State"].ToString() == "0")
+                    state = false;
+                employees.Add(item: new AccountInfo(id, name, type, pass, state));
             }
             this.dataGridAccount.ItemsSource = employees;
             this.dataGridAccount.Items.Refresh();
@@ -142,6 +146,46 @@ namespace CoffeeStore.Account
             LoadData();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
+        }
+
+        private void cbCheck_Click(object sender, RoutedEventArgs e)
+        {
+            string id = ((CheckBox)sender).Tag.ToString();
+            bool? state = ((CheckBox)sender).IsChecked;
+            BUS_Employees busEmp = new BUS_Employees();
+            string name = busEmp.GetEmpNameByID(id);
+
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            Window window;
+            if (state == true)
+                window = new Window
+                {
+                    ResizeMode = ResizeMode.NoResize,
+                    WindowStyle = WindowStyle.None,
+                    Title = "Kích hoạt tài khoản",
+                    Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn kích hoạt tài khoản {id} \n của nhân viên {name} không?", id, 3),
+                    Width = 380,
+                    Height = 210,
+                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
+                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+                };
+            else
+                window = new Window
+                {
+                    ResizeMode = ResizeMode.NoResize,
+                    WindowStyle = WindowStyle.None,
+                    Title = "Vô hiệu hóa tài khoản",
+                    Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn vô hiệu hóa tài khoản {id} \n của nhân viên {name} không?", id, 4),
+                    Width = 380,
+                    Height = 210,
+                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
+                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+                };
+            window.ShowDialog();
+            LoadData();
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
         }
     }
 }

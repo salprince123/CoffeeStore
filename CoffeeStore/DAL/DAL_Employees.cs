@@ -22,9 +22,9 @@ namespace CoffeeStore.DAL
                 da.Fill(listPass);
                 pass = listPass.Rows[0].ItemArray[0].ToString();
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
             return pass;
         }
@@ -40,9 +40,9 @@ namespace CoffeeStore.DAL
                 da.Fill(listPass);
                 type = listPass.Rows[0].ItemArray[0].ToString();
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
             return type;
         }
@@ -58,9 +58,9 @@ namespace CoffeeStore.DAL
                 da.Fill(listPass);
                 name = listPass.Rows[0].ItemArray[0].ToString();
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
             return name;
         }
@@ -83,18 +83,18 @@ namespace CoffeeStore.DAL
             return emp;
         }    
 
-        public DataTable GetActiveEmployees()
+        public DataTable GetEmployees()
         {
             DataTable employees = new DataTable();
             try
             {
-                string sql = $"select EmployeeID, EmployeeName, EmployeeType.EmployeeTypeName, Password from Employees join EmployeeType on Employees.EmployeeTypeID = EmployeeType.EmployeeTypeID where State = '1'";
+                string sql = $"select EmployeeID, EmployeeName, EmployeeType.EmployeeTypeName, Password, State from Employees join EmployeeType on Employees.EmployeeTypeID = EmployeeType.EmployeeTypeID";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 da.Fill(employees);
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
             return employees;
         }
@@ -111,6 +111,7 @@ namespace CoffeeStore.DAL
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return false;
             }
         }    
@@ -126,6 +127,7 @@ namespace CoffeeStore.DAL
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return false;
             }
         }
@@ -139,13 +141,34 @@ namespace CoffeeStore.DAL
                 insert.ExecuteNonQuery();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return false;
             }
         }
 
-        public int Delete(string empID)
+        public bool SetState(string empID, bool state)
+        {
+            string sql;
+            if (state)
+                sql = $"update Employees set State = '1' where EmployeeID = '{empID}'";
+            else
+                sql = $"update Employees set State = '0' where EmployeeID = '{empID}'";
+            SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
+            try
+            {
+                insert.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }    
+
+        public bool Delete(string empID)
         {
             bool isDelete = IsDoingAnything(empID);
             if (isDelete)
@@ -155,26 +178,17 @@ namespace CoffeeStore.DAL
                 try
                 {
                     delete.ExecuteNonQuery();
-                    return 1;
+                    return true;
                 }
-                catch
+                catch (Exception ex)
                 {
-                    return 0;
+                    Console.WriteLine(ex.Message);
+                    return false;
                 }
             }
             else
             {
-                string sql = $"update Employees set State = '0' where EmployeeID = '{empID}'";
-                SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
-                try
-                {
-                    insert.ExecuteNonQuery();
-                    return -1;
-                }
-                catch
-                {
-                    return 0;
-                }
+                return false;
             }
         }    
 
@@ -203,8 +217,9 @@ namespace CoffeeStore.DAL
 
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return false;
             }
         }    

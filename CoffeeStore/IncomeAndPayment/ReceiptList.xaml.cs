@@ -75,5 +75,27 @@ namespace CoffeeStore.IncomeAndPayment
             DateTime? datepicker = dpDateEnd.SelectedDate;
             MessageBox.Show(datepicker.ToString());
         }
+
+        private void btnWatch_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            Window window = new Window
+            {
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
+                Title = "Chi tiết hóa đơn",
+                Content = new ReceiptDetail(),
+                Width = 450,
+                Height = 800,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 450) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
+            };
+            window.ShowDialog();
+
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
+        }
     }
 }
