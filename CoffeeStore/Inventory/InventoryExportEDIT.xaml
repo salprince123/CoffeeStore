@@ -72,9 +72,9 @@
                 </StackPanel>
                 <StackPanel Grid.Row="1" Grid.Column="5">
                     <TextBlock>Ngày lập</TextBlock>
-                    <TextBox Name="tbDate" Height="40"
+                    <TextBox Name="tbDate" Height="40" Background="#DADADA"
                          Margin="0,5,0,0" Padding="5"
-                         BorderThickness="1">
+                         BorderThickness="1" IsReadOnly="True">
                     </TextBox>
                 </StackPanel>
             </Grid>
