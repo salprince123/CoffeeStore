@@ -100,7 +100,7 @@
             </Menu.ItemsPanel>
             <MenuItem Background="#FF7A00" Foreground="White" Header="Thu ngân" 
                       Template="{StaticResource VsOnline}" 
-                      Width="180" Height="40" Click="MenuItem_Click">
+                      Width="180" Height="40" Click="btnCashier_Click">
             </MenuItem>
             <MenuItem  Foreground="White" Header="Quản lý" 
                        Template="{StaticResource VsMenuTop}" 
