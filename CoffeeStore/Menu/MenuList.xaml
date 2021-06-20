@@ -180,8 +180,8 @@
 
                                 <DataGridTextColumn Header="Loại món" Binding="{Binding Path='BeverageTypeID'}">
                                 </DataGridTextColumn>
-                                
-                                <DataGridTextColumn Header="Giá tiền (VNĐ)" Binding="{Binding Path='Price'}">
+
+                                <DataGridTextColumn Header="Giá tiền" Binding="{Binding Path='Price', StringFormat=\{0:N0\} VNĐ}">
                                 </DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
