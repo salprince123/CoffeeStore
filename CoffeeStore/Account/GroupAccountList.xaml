@@ -210,24 +210,27 @@
                         </DataGrid>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2">
-                            <Button Width="40" Height="Auto" 
+                            <Button x:Name="btnPagePre" Width="40" Height="Auto" 
                                     Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center" Click="btnPagePre_Click">
                                 <materialDesign:PackIcon Kind="ChevronLeft" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
                             </Button>
                             <TextBox Name="tbNumPage" Width="35" Height="30"
                                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                                      Text="1" FontWeight="SemiBold" FontSize="14" 
-                                     Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,1"/>
+                                     Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,1"
+                                     KeyDown="tbNumPage_KeyDown" PreviewTextInput="tbNumPage_PreviewTextInput"
+                                     PreviewKeyDown="tbNumPage_PreviewKeyDown"/>
                             <Label VerticalContentAlignment="Center" 
                                    Content="/" FontWeight="SemiBold" FontSize="14"/>
                             <Label Name="lblMaxPage" Width="35" 
                                    Content="10" FontWeight="SemiBold" FontSize="14"
                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Button Width="40" Height="Auto" 
+                            <Button x:Name="btnPageNext" Width="40" Height="Auto" 
                                     Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
-                                    VerticalAlignment="Center">
-                                <materialDesign:PackIcon Kind="ChevronRight" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
+                                    VerticalAlignment="Center" Click="btnPageNext_Click">
+                                <materialDesign:PackIcon Kind="ChevronRight" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" 
+                                                        />
                             </Button>
                         </StackPanel>
                     </Grid>
