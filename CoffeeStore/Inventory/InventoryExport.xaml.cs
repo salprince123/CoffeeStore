@@ -121,7 +121,16 @@ namespace CoffeeStore.Inventory
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+
             InventoryExportObject row = (InventoryExportObject)dataGridExport.SelectedItem;
+            //get time of import 
+            DateTime importDate = DateTime.ParseExact(row.InventoryDate, "dd/MM/yyyy", null);
+
+            if((DateTime.Now - importDate) > TimeSpan.FromDays(2) )
+            {
+                MessageBox.Show($"Bạn chỉ có thể xóa phiếu xuất kho được tạo trong vòng 2 ngày!");
+                return;
+            }
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
             ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
             ((MainWindow)App.Current.MainWindow).Effect = objBlur;
@@ -143,6 +152,7 @@ namespace CoffeeStore.Inventory
         }
         public void Delete(String id)
         {
+            
             BUS_InventoryExportDetail detail = new BUS_InventoryExportDetail();
             BUS_InventoryExport export = new BUS_InventoryExport();
             detail.Delete(id);
