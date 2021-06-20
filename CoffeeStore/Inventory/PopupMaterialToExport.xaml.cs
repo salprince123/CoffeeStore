@@ -28,7 +28,6 @@ namespace CoffeeStore.Inventory
         public class MAterialObject
         {
             public string id { get; set; }
-            public int number { get; set; }
             public String name { get; set; }
             public String unit { get; set; }
             public String amount { get; set; }
@@ -79,15 +78,13 @@ namespace CoffeeStore.Inventory
                     mapNameAmount[name] -= int.Parse(amount);
             }
             //finally get the amount of mater in stock (if not import yet then:  amount =0 )
-            int number0 = 1;
             foreach (KeyValuePair<string, string> name in mapNameUnit)
             {
                 int amount = 0;
                 if (mapNameAmount.ContainsKey(name.Key))
                     amount = mapNameAmount[name.Key];
                 if (amount == 0) continue;
-                list.Add(new MAterialObject() { number = number0, name = name.Key, amount= amount.ToString(), unit= name.Value });
-                number0++;
+                list.Add(new MAterialObject() {  name = name.Key, amount= amount.ToString(), unit= name.Value });
             }
             this.dataGrid.ItemsSource = list;
         }

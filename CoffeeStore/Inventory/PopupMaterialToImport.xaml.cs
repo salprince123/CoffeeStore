@@ -28,7 +28,6 @@ namespace CoffeeStore.Inventory
         public class MAterialObject
         {
             public string name { get; set; }
-            public int number { get; set; }
             public String unit { get; set; }
         
         }
@@ -43,13 +42,13 @@ namespace CoffeeStore.Inventory
             var list = new ObservableCollection<MAterialObject>();
             BUS_Material mater = new BUS_Material();
             DataTable temp = mater.selectAll();
-            int number0 = 0;
             foreach (DataRow row in temp.Rows)
             {
                 string name = row["MaterialName"].ToString();
                 string unit = row["Unit"].ToString();
-                number0++;
-                list.Add(new MAterialObject() { number = number0, name = name, unit = unit });
+                string use = row["isUse"].ToString();
+                if (use == "1")
+                    list.Add(new MAterialObject() {  name = name, unit = unit });
             }
             this.dataGrid.ItemsSource = list;
         }
