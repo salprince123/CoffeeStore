@@ -24,5 +24,10 @@ namespace CoffeeStore.View
         {
             InitializeComponent();
         }
+
+        private void btnPrint_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
