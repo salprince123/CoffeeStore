@@ -124,6 +124,11 @@
                        Width="205" Height="Auto" 
                        Click="Discount_Click">
             </MenuItem>
+            <MenuItem  Foreground="White" Header="Hóa đơn" 
+                       Template="{StaticResource VsMenuTop}" 
+                       Width="205" Height="Auto" 
+                       Click="ReceiptButton_Click">
+            </MenuItem>
             <!--Username here-->
             <MenuItem Background="#EAEAEA" Foreground="White" Width="180" Height="Auto"
                       Template="{StaticResource VsMenuTop}" HorizontalAlignment="Right">
@@ -342,12 +347,16 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="btnCash" Background="#FF7A00" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" FontSize="20" Click="btnCash_Click">
                     <TextBlock Text="Thanh toán" TextWrapping="Wrap" TextAlignment="Center"/>
                 </Button>
                 <Button x:Name="btnPrint" Background="#6B6158" Grid.Column="1" HorizontalAlignment="Stretch" Height="Auto" FontSize="20" Click="btnPrint_Click">
                     <TextBlock Text="In hóa đơn" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button>
+                <Button x:Name="btnNewReceipt" Background="#6B6158" Grid.Column="2" HorizontalAlignment="Stretch" Height="Auto" FontSize="20" Click="btnNewReceipt_Click">
+                    <TextBlock Text="Hóa đơn mới" TextWrapping="Wrap" TextAlignment="Center"/>
                 </Button>
             </Grid>
         </Grid>
