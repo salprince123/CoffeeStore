@@ -663,7 +663,6 @@ E:\Study\Project\CoffeeStore\CoffeeStore\bin\Debug\LiveCharts.Wpf.pdb
 E:\Study\Project\CoffeeStore\CoffeeStore\bin\Debug\LiveCharts.Wpf.xml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.csproj.AssemblyReference.cache
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupChangePassword.g.cs
-E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDeclineAccess.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDisableAccount.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditAccount.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditGroupAccount.g.cs
@@ -674,7 +673,6 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Report\ReportProfit.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PopupDeleteConfirm.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\TitleBar.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupChangePassword.baml
-E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDeclineAccess.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupDisableAccount.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditAccount.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Account\PopupEditGroupAccount.baml
@@ -858,3 +856,9 @@ C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\IncomeAn
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\View\PrintForm.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\View\Printing.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.csproj.AssemblyReference.cache
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\PopupDeleteConfirm.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PrintForm.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Printing.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\PopupDeleteConfirm.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\PrintForm.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Printing.baml
