@@ -27,6 +27,22 @@ namespace CoffeeStore.DAL
             return empTypes;
         }
 
+        public int CountEmployeeTypes()
+        {
+            DataTable empTypes = new DataTable();
+            try
+            {
+                string sql = $"select count(EmployeeTypeID) from EmployeeType";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(empTypes);
+            }
+            catch
+            {
+
+            }
+            return Int32.Parse(empTypes.Rows[0].ItemArray[0].ToString());
+        }
+
         public string GetNameByID(string id)
         {
             string name = "";

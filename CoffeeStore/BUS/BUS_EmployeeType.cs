@@ -18,6 +18,11 @@ namespace CoffeeStore.BUS
             return dalEmpType.GetEmployeeTypes();
         }
 
+        public int CountEmployeeTypes()
+        {
+            return dalEmpType.CountEmployeeTypes();
+        }
+
         public string CreateEmployeeTypes(DTO_EmployeeType newEmpType)
         {
             return dalEmpType.CreateEmployeeType(newEmpType);

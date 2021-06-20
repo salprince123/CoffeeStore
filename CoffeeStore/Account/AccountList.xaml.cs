@@ -3,6 +3,7 @@ using CoffeeStore.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -45,9 +46,9 @@ namespace CoffeeStore.Account
         public AccountList(MainWindow mainWindow)
         {
             InitializeComponent();
-            limitRow = 10;
             dataGridAccount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             this._context = mainWindow;
+            limitRow = 10;
             currentPage = 1;
             tbNumPage.Text = "1";
             btnPagePre.IsEnabled = false;
@@ -291,6 +292,19 @@ namespace CoffeeStore.Account
             }
             if (currentPage == (int)lblMaxPage.Content)
                 btnPageNext.IsEnabled = false;
+        }
+
+        private void tbNumPage_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
+
+        private void tbNumPage_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !e.Text.Any(x => Char.IsDigit(x));
+            if (e.Text.Contains(" "))
+                e.Handled = false;
         }
     }
 }
