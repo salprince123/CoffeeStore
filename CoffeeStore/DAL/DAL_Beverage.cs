@@ -162,7 +162,13 @@ namespace CoffeeStore.DAL
         {
             try
             {
-                string sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID and BT.BeverageTypeName='" + type + "'";
+                string sql = "";
+                if (type.Length!=0 && name.Length==0)
+                    sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID and (BT.BeverageTypeName='" + type + "')";
+                else if (type.Length != 0 && name.Length != 0)
+                    sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID and (BT.BeverageTypeName='" + type + "' and BN.BeverageName like '%" + name + "%')";
+                else if (type.Length == 0 && name.Length != 0)
+                     sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID and ( BN.BeverageName like '%" + name + "%')";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 DataTable dsMon = new DataTable();
                 da.Fill(dsMon);

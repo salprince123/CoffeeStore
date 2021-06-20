@@ -53,6 +53,8 @@ namespace CoffeeStore.Discount
         {
             var list = new ObservableCollection<Discount>();
             DataTable temp = bus.getAllDiscount();
+            int rowNumber = Int32.Parse(tbNumPage.Text);
+            int count = 1;
             foreach (DataRow row in temp.Rows)
             {
                 string name = row["DiscountName"].ToString();
@@ -70,8 +72,12 @@ namespace CoffeeStore.Discount
                 {
                     status = "Đã hết hạn";
                 }
-
-                list.Add(new Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate, Status = status });
+                if (count<= rowNumber * 20)
+                {
+                    if (count >= (rowNumber - 1) * 20 + 1 && count <= rowNumber * 20)
+                        list.Add(new Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate, Status = status });
+                    else count++;
+                }                   
             }
             dgDiscount.ItemsSource = list;
             //foreach (ItemsControl item in dgDiscount.Items)
@@ -104,12 +110,15 @@ namespace CoffeeStore.Discount
                 {
                     status = "Đã hết hạn";
                 }
-                if ((DateTime.Compare(timeend, timeendfind) <= 0) &&(DateTime.Compare(timestart, timestartfind) >= 0))
+                if ((DateTime.Compare(timeend, timestartfind) < 0) || (DateTime.Compare(timestart, timeendfind) > 0))
+                {
+                    
+                }
+                else
                 {
                     list.Add(new Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate, Status = status });
                 }
-                MessageBox.Show((DateTime.Compare(timeend, timeendfind)).ToString());
-                MessageBox.Show((DateTime.Compare(timestart, timestartfind) >= 0).ToString());
+
             }
             dgDiscount.ItemsSource = list;
         }
@@ -212,5 +221,16 @@ namespace CoffeeStore.Discount
             loadData();
         }
 
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
+            loadData();
+        }
+
+        private void btnPrevious_Click(object sender, RoutedEventArgs e)
+        {
+            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
+            loadData();
+        }
     }
 }

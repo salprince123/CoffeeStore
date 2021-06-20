@@ -50,14 +50,20 @@ namespace CoffeeStore.Menu
             var list = new ObservableCollection<DTO_Beverage>();
             cbBeverageType.ItemsSource = bus.getBeverageType();
             DataTable temp = bus.getAllBeverage();
+            int rowNumber = Int32.Parse(tbNumPage.Text);
+            int count = 1;
             foreach (DataRow row in temp.Rows)
             {
                 string name = row["BeverageName"].ToString();
                 string id = row["BeverageID"].ToString();
                 string type = row["BeverageTypeName"].ToString();
                 int price = Int32.Parse(row["Price"].ToString());
-                list.Add(new DTO_Beverage() { BeverageID = id, BeverageName = name, BeverageTypeID = type, Price = price });
-
+                if (count >= (rowNumber - 1) * 20 + 1 && count <= rowNumber * 20)
+                {
+                    list.Add(new DTO_Beverage() { BeverageID = id, BeverageName = name, BeverageTypeID = type, Price = price });
+                    count++;
+                }
+                else count++;
             }
 
             dgMenu.ItemsSource = list;
@@ -137,7 +143,13 @@ namespace CoffeeStore.Menu
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
             var list = new ObservableCollection<DTO_Beverage>();
-            DataTable temp = bus.findBeverage(cbBeverageType.SelectedItem.ToString(), tbName.Text);
+            DataTable temp = null;
+            if (cbBeverageType.SelectedItem!=null)
+            {
+                temp = bus.findBeverage(cbBeverageType.SelectedItem.ToString(), tbName.Text);
+            }    
+            else
+                temp = bus.findBeverage("", tbName.Text);
             foreach (DataRow row in temp.Rows)
             {
                 string name = row["BeverageName"].ToString();
@@ -151,5 +163,16 @@ namespace CoffeeStore.Menu
             dgMenu.Items.Refresh();
         }
 
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
+            loadData();
+        }
+
+        private void btnPrevious_Click(object sender, RoutedEventArgs e)
+        {
+            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
+            loadData();
+        }
     }
 }

@@ -860,3 +860,4 @@ C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\XamlC.stamp
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.csproj.CopyComplete
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.exe
 C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.pdb
+C:\Users\pacif\Desktop\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.csprojAssemblyReference.cache
