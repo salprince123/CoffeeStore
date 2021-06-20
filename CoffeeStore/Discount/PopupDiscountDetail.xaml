@@ -6,27 +6,27 @@
              xmlns:local="clr-namespace:CoffeeStore.Discount" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:UserControls="clr-namespace:CoffeeStore.View"
              mc:Ignorable="d" 
-             Height="Auto" Width="400">
+             Height="Auto" Width="540">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"></ColumnDefinition>
+            <ColumnDefinition Width="60"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="20"></ColumnDefinition>
+            <ColumnDefinition Width="60"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         <!--Title bar here-->
-        <Grid Grid.Row="0" Grid.ColumnSpan="3" Margin="0,-8,0,0" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <Grid Grid.Row="0" Grid.ColumnSpan="3" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <UserControls:TitleBar/>
             <TextBlock Text="Chi tiết ưu đãi" 
                        FontFamily="Montserrat"
@@ -41,7 +41,8 @@
             <TextBlock>Tên ưu đãi</TextBlock>
             <TextBox Name="tbDiscountName" Background="#DADADA"
                      Padding="5" Margin="0,5,0,0" Height="40"
-                     BorderThickness="0" IsReadOnly="True">
+                     BorderThickness="0" IsReadOnly="True"
+                     FontSize="15" VerticalContentAlignment="Center">
             </TextBox>
         </StackPanel>
         <!--Date here-->
@@ -60,7 +61,8 @@
             <TextBlock Grid.Row="0">Ngày bắt đầu</TextBlock>
             <TextBox x:Name="tbStartDate" Grid.Row="2" Background="#DADADA"
                      Padding="5" Height="40"
-                     BorderThickness="0" IsReadOnly="True">
+                     BorderThickness="0" IsReadOnly="True"
+                     FontSize="15" VerticalContentAlignment="Center">
             </TextBox>
             <Label Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
                 <materialDesign:PackIcon Kind="Minus" HorizontalAlignment="Center"></materialDesign:PackIcon>
@@ -68,7 +70,8 @@
             <TextBlock Grid.Column="2">Ngày kết thúc</TextBlock>
             <TextBox Grid.Row="2" Grid.Column="2" x:Name="tbEndDate" Background="#DADADA"
                      Padding="5"  Height="40"
-                     BorderThickness="0" IsReadOnly="True">
+                     BorderThickness="0" IsReadOnly="True"
+                     FontSize="15" VerticalContentAlignment="Center">
             </TextBox>
         </Grid>
         <!--Discount rate here-->
@@ -76,7 +79,8 @@
             <TextBlock>Mức ưu đãi (%)</TextBlock>
             <TextBox Name="tbDiscountRate" Background="#DADADA"
                      Padding="5" Margin="0,5,0,0" Height="40"
-                     BorderThickness="0" IsReadOnly="True">
+                     BorderThickness="0" IsReadOnly="True"
+                     FontSize="15" VerticalContentAlignment="Center">
             </TextBox>
         </StackPanel>
         <!--Description here-->
@@ -84,7 +88,8 @@
             <TextBlock>Mô tả</TextBlock>
             <TextBox Name="tbDescription" Background="#DADADA"
                      Padding="5" Margin="0,5,0,0" Height="80"
-                     BorderThickness="0" IsReadOnly="True">
+                     BorderThickness="0" IsReadOnly="True"
+                     FontSize="15">
             </TextBox>
         </StackPanel>
     </Grid>
