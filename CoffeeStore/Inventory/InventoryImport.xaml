@@ -73,7 +73,7 @@
                          materialDesign:HintAssist.Hint="Đến ngày" Padding="5"
                          CalendarClosed="dpTo_CalendarClosed"/>
                 </Border>
-                
+
                 <TextBox x:Name="tbIDFind" Grid.Column="4" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Mã phiếu nhập hoặc người lập" Padding="5"/>
@@ -82,7 +82,7 @@
                     BorderBrush="#FFE297" BorderThickness="1" Click="btnFind_Click">
                     <materialDesign:PackIcon Kind="Search" Height="20" Width="20"/>
                 </Button>
-                
+
             </Grid>
 
             <!--Button here-->
@@ -117,16 +117,17 @@
                             <RowDefinition Height="40"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20"></ColumnDefinition>
+                            <ColumnDefinition Width="6.4"></ColumnDefinition>
+                            <ColumnDefinition Width="13.6"/>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                             <ColumnDefinition Width="20"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid x:Name="dataGridImport" Grid.Column="1" Grid.Row="1" 
+                        <DataGrid x:Name="dataGridImport" Grid.Column="2" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
                                   VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False"
-                                  HeadersVisibility="All">
+                                  HeadersVisibility="All" Margin="0,0,0.4,0.2">
                             <DataGrid.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}">
                                     <Setter Property="Template">
@@ -229,7 +230,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="1" Margin="0,83,0.4,0.2" Grid.RowSpan="2">
                             <Button Width="40" Height="Auto" 
                                     Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
                                     VerticalAlignment="Center">
@@ -254,6 +255,6 @@
                 </Border>
             </Grid>
         </Grid>
-        
+
     </Grid>
 </UserControl>

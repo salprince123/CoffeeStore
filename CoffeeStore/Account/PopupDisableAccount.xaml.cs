@@ -21,7 +21,7 @@ namespace CoffeeStore.Account
     /// </summary>
     public partial class PopupDisableAccount : UserControl
     {
-        string deleteEmpId;
+        //string deleteEmpId;
         public PopupDisableAccount()
         {
             InitializeComponent();

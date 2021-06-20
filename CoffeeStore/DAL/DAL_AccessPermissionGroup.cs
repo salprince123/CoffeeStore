@@ -21,7 +21,7 @@ namespace CoffeeStore.DAL
                 insert.ExecuteNonQuery();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return false;
             }
@@ -36,7 +36,7 @@ namespace CoffeeStore.DAL
                 insert.ExecuteNonQuery();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return false;
             }

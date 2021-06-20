@@ -32,7 +32,6 @@ namespace CoffeeStore.Inventory
         
         public class InventoryImportDetailObject : INotifyPropertyChanged
         {
-            public int number { get; set; }
             public String name { get; set; }
             public String id { get; set; }
             public string _unitPrice;
@@ -102,7 +101,7 @@ namespace CoffeeStore.Inventory
             tbEmployeeName.Text = id;
             this._context = mainWindow;
         }
-        
+       
         public bool containInList (String id)
         {
             foreach (InventoryImportDetailObject obj in list)
@@ -142,7 +141,7 @@ namespace CoffeeStore.Inventory
                 string unit = row["Unit"].ToString();
                 string id = row["MaterialID"].ToString();
                 if(!containInList(id))
-                    list.Add(new InventoryImportDetailObject() { id=id,number=list.Count+1, name=name, unit=unit });
+                    list.Add(new InventoryImportDetailObject() { id=id, name=name, unit=unit });
             }
             dataGridImport.ItemsSource = list;
             dataGridImport.Items.Refresh();
@@ -180,14 +179,14 @@ namespace CoffeeStore.Inventory
             InventoryImportDetailObject row = (InventoryImportDetailObject)dataGridImport.SelectedItem;
             if (row != null)
             {
-                try
+                /*try
                 {
                     list.RemoveAt(row.number - 1);
                     for (int i = 0; i < list.Count; i++)
                         list[i].number= i+1;
                     dataGridImport.Items.Refresh();
                 }
-                catch (Exception) { }
+                catch (Exception) { }*/
             }
         }
 
