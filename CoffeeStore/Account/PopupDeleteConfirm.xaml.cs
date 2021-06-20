@@ -22,7 +22,7 @@ namespace CoffeeStore.Account
     /// </summary>
     public partial class PopupDeleteConfirm : UserControl
     {
-        string deletename;
+        string deleteid;
         int type;
         public PopupDeleteConfirm()
         {
@@ -34,43 +34,76 @@ namespace CoffeeStore.Account
             InitializeComponent();
             this.tblockContent.Text = content;
             this.type = type;
-            deletename = name;
+            deleteid = name;
         }
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
+            BUS_Employees busEmp = new BUS_Employees();
             switch (this.type)
             {
                 case 1: /// Delete Account
-                    BUS_Employees busEmp = new BUS_Employees();
-                    int result1 = busEmp.DeleteEmployee(deletename);
-
-                    if (result1 == 0)
+                    if (busEmp.IsDoingAnything(deleteid))
                     {
-                        MessageBox.Show($"Đã xảy ra lỗi trong quá trình xóa tài khoản.");
+                        MessageBox.Show($"Không thể xóa tài khoản {deleteid} do tài khoản này đã lập hóa đơn/lập phiếu chi/nhập hàng/xuất hàng.");
+                        return;
+                    }
+
+                    bool result1 = busEmp.DeleteEmployee(deleteid);
+
+                    if (result1)
+                    {
+                        MessageBox.Show($"Đã xóa tài khoản {deleteid}.");
+                        Window.GetWindow(this).Close();
                     }
                     else
                     {
-                        MessageBox.Show($"Đã xóa tài khoản {deletename}.");
-                        Window.GetWindow(this).Close();
+                        MessageBox.Show($"Đã xảy ra lỗi trong quá trình xóa tài khoản.");
                     }
                     break;
+
                 case 2: /// Delete Account type
                     BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
                     BUS_EmployeeType busEmpType = new BUS_EmployeeType();
 
-                    if (!busAccPerGr.DeleteByEmpTypeID(busEmpType.GetIDByName(deletename)))
+                    if (!busAccPerGr.DeleteByEmpTypeID(busEmpType.GetIDByName(deleteid)))
                         MessageBox.Show($"Đã xảy ra lỗi trong quá trình xóa loại tài khoản.");
 
-                    int result2 = busEmpType.DeleteEmployeeType(busEmpType.GetIDByName(deletename));
+                    int result2 = busEmpType.DeleteEmployeeType(busEmpType.GetIDByName(deleteid));
                     if (result2 == 0)
                     {
                         MessageBox.Show($"Không thể xóa do vẫn còn tài khoản có loại tài khoản này.");
                     }
                     else
                     {
-                        MessageBox.Show($"Đã xóa loại tài khoản {deletename}.");
+                        MessageBox.Show($"Đã xóa loại tài khoản {deleteid}.");
                         Window.GetWindow(this).Close();
+                    }
+                    break;
+                case 3: /// Active Account
+                    bool result3 = busEmp.SetState(deleteid, true);
+
+                    if (result3)
+                    {
+                        MessageBox.Show($"Đã kích hoạt tài khoản {deleteid}.");
+                        Window.GetWindow(this).Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Đã xảy ra lỗi trong quá trình kích hoạt tài khoản.");
+                    }
+                    break;
+                case 4: /// Disable Account
+                    bool result4 = busEmp.SetState(deleteid, false);
+
+                    if (result4)
+                    {
+                        MessageBox.Show($"Đã vô hiệu hóa tài khoản {deleteid}.");
+                        Window.GetWindow(this).Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Đã xảy ra lỗi trong quá trình vô hiệu hóa tài khoản.");
                     }
                     break;
             }

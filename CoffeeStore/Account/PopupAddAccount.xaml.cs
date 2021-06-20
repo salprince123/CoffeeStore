@@ -105,6 +105,7 @@ namespace CoffeeStore.Account
             if (newEmpTypeID == "")
             {
                 //Employee Type not found
+                return;
             }    
 
             DTO_Employees newEmp = new DTO_Employees(tboxAccName.Text, tboxEmpName.Text, newEmpTypeID, tboxPassword.Text);

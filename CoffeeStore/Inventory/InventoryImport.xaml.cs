@@ -130,9 +130,11 @@ namespace CoffeeStore.Inventory
                     ResizeMode = ResizeMode.NoResize,
                     WindowStyle = WindowStyle.None,
                     Title = "Chi tiết phiếu nhập",
+                    Height = 630,
+                    Width = 500,
                     Content = new PopupInventoryImportDETAIL(row.ID, row.EmployName, row.InventoryDate),
-                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1800 / 2) / 2,
-                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 1000 / 2) / 2,
+                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 500) / 2,
+                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 630) / 2,
                     //Content = new PopupInventoryImportDETAIL("a","a","a")
                 };
                 window.ShowDialog();

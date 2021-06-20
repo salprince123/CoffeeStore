@@ -97,8 +97,9 @@ namespace CoffeeStore.Inventory
                     Title = "Chi tiết phiếu xuất",
                     Content = new PopupInventoryExportDETAIL(row.ID, row.EmployName, row.InventoryDate),
                     Height = 630,
-                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1800 / 2) / 2,
-                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 1300 / 2) / 2,
+                    Width = 500,
+                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 500) / 2,
+                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 630) / 2,
                     //Content = new PopupInventoryImportDETAIL("a","a","a")
                 };
                 window.ShowDialog();

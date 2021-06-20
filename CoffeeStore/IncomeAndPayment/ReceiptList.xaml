@@ -59,12 +59,12 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
-                    <DatePicker x:Name="tbDateStart" Height="40"
+                    <DatePicker x:Name="dpDateStart" Height="40"
                          VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
                 </Border>
                 <Border BorderBrush="Gray" Grid.Column="2" BorderThickness="1,1,1,0">
-                    <DatePicker x:Name="tbDateEnd" Height="40"
+                    <DatePicker x:Name="dpDateEnd" Height="40"
                          VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
                 </Border>
@@ -73,7 +73,8 @@
                          materialDesign:HintAssist.Hint="Mã hóa đơn" Padding="5"/>
                 <Button x:Name="btnFind" Grid.Column="6" Height="40"
                     Background="#6B6158" Foreground="#FFE297" 
-                    BorderBrush="#FFE297" BorderThickness="1">
+                    BorderBrush="#FFE297" BorderThickness="1"
+                        Click="btnFind_Click">
                     <materialDesign:PackIcon Kind="Search" Height="20" Width="20"/>
                 </Button>
             </Grid>
@@ -108,7 +109,7 @@
                             <ColumnDefinition Width="20"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid x:Name="dataGridReceipt" Grid.Column="1" Grid.Row="1" 
+                        <DataGrid x:Name="dgReceipt" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
                                   VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False"
@@ -173,14 +174,14 @@
                             </DataGrid.RowHeaderTemplate>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Path=''}">
+                                <DataGridTextColumn Binding="{Binding Path='id'}">
                                     <DataGridTextColumn.Header>
                                         <Label FontWeight="SemiBold" 
                                                HorizontalContentAlignment="Center" Content="Mã hóa đơn"
                                                Style="{StaticResource DataGrid_Label_Style}"/>
                                     </DataGridTextColumn.Header>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding Path=''}">
+                                <DataGridTextColumn Binding="{Binding Path='time'}">
                                     <DataGridTextColumn.Header>
                                         <Label FontWeight="SemiBold" MinWidth="100"
                                                HorizontalContentAlignment="Center" Content="Ngày lập"
@@ -188,7 +189,7 @@
                                     </DataGridTextColumn.Header>
                                 </DataGridTextColumn>
                                 <DataGridTextColumn 
-                                    Binding="{Binding Path=''}"
+                                    Binding="{Binding Path='createrName'}"
                                     CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}">
                                     <DataGridTextColumn.Header>
                                         <Label FontWeight="SemiBold" MinWidth="150"
@@ -197,7 +198,7 @@
                                     </DataGridTextColumn.Header>
                                 </DataGridTextColumn>
                                 <DataGridTextColumn 
-                                    Binding="{Binding Path=''}"
+                                    Binding="{Binding Path='total', StringFormat=\{0:N0\} VNĐ}"
                                     CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}">
                                     <DataGridTextColumn.Header>
                                         <Label FontWeight="SemiBold" MinWidth="120"
@@ -208,7 +209,7 @@
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Margin="10,0,0,0" Name="btnWatch" BorderBrush="#9FA2B4" Background="White">
+                                            <Button Margin="10,0,0,0" Name="btnWatch" Tag="{Binding Path='id'}" BorderBrush="#9FA2B4" Background="White" Click="btnWatch_Click">
                                                 <materialDesign:PackIcon Kind="FileDocument" Height="20" Width="20" Foreground="#9FA2B4" />
                                             </Button>
                                         </DataTemplate>

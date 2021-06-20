@@ -94,7 +94,7 @@
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
                                                 <Grid Background="{TemplateBinding Background}">
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    <ContentPresenter Margin="13,0,13,0" VerticalAlignment="Center" />
                                                 </Grid>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -107,7 +107,7 @@
                                     </Style.Triggers>
                                 </Style>
                             </DataGrid.CellStyle>
-                            
+
                             <DataGrid.Resources>
                                 <Style x:Key="DataGrid_Label_Style" 
                                        TargetType="Label">
@@ -119,13 +119,13 @@
                                     </Style.Triggers>
                                 </Style>
 
-                                <Style x:Key="DataGrid_Content_CenterVerticalAlign"
-                                       TargetType="{x:Type DataGridCell}">
+                                <Style x:Key="DataGrid_Content_Center"
+                                           TargetType="{x:Type DataGridCell}">
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
                                                 <Grid Background="{TemplateBinding Background}">
-                                                    <ContentPresenter VerticalAlignment="Center" />
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                                                 </Grid>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -138,7 +138,7 @@
                                     </Style.Triggers>
                                 </Style>
                             </DataGrid.Resources>
-                            
+
                             <DataGrid.RowHeaderTemplate>
                                 <DataTemplate>
                                     <Label HorizontalContentAlignment="Center" Width="50"
@@ -146,35 +146,24 @@
                                                              Path=Header}"/>
                                 </DataTemplate>
                             </DataGrid.RowHeaderTemplate>
-                            
+
                             <DataGrid.Columns>
-                                <DataGridTextColumn 
-                                    Binding="{Binding Path='id'}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Tài khoản"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+                                <DataGridTextColumn Header="Tài khoản" Binding="{Binding Path='id'}">
                                 </DataGridTextColumn>
-                                
-                                <DataGridTextColumn 
-                                    CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}"
-                                    Binding="{Binding Path='name'}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" MinWidth="150"
-                                               HorizontalContentAlignment="Center" Content="Tên nhân viên"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+
+                                <DataGridTextColumn Header="Tên nhân viên" Binding="{Binding Path='name'}">
                                 </DataGridTextColumn>
-                                
-                                <DataGridTextColumn 
-                                    Binding="{Binding Path='type'}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Nhóm tài khoản"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+
+                                <DataGridTextColumn Header="Nhóm tài khoản" Binding="{Binding Path='type'}">
                                 </DataGridTextColumn>
+
+                                <DataGridTemplateColumn Header="Hoạt động" CellStyle="{StaticResource DataGrid_Content_Center}">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox x:Name="cbCheck" Tag="{Binding Path='id'}" Click="cbCheck_Click" IsChecked="{Binding Path='state', Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
 
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
@@ -195,23 +184,26 @@
                         </DataGrid>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2">
-                            <Button Width="40" Height="Auto" 
+                            <Button x:Name="btnPagePre" Width="40" Height="Auto" 
                                     Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center"
+                                    Click="btnPagePre_Click">
                                 <materialDesign:PackIcon Kind="ChevronLeft" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
                             </Button>
                             <TextBox Name="tbNumPage" Width="35" Height="30"
                                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                                      Text="1" FontWeight="SemiBold" FontSize="14" 
-                                     Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,1"/>
+                                     Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,1"
+                                     KeyDown="tbNumPage_KeyDown"/>
                             <Label VerticalContentAlignment="Center" 
                                    Content="/" FontWeight="SemiBold" FontSize="14"/>
                             <Label Name="lblMaxPage" Width="35" 
                                    Content="10" FontWeight="SemiBold" FontSize="14"
                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Button Width="40" Height="Auto" 
+                            <Button x:Name="btnPageNext" Width="40" Height="Auto" 
                                     Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center"
+                                    Click="btnPageNext_Click">
                                 <materialDesign:PackIcon Kind="ChevronRight" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
                             </Button>
                         </StackPanel>

@@ -90,6 +90,7 @@
     <Reference Include="System.Data.SQLite.Linq, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.113.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -133,9 +134,6 @@
     <Compile Include="Account\PopupChangePassword.xaml.cs">
       <DependentUpon>PopupChangePassword.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Account\PopupDeclineAccess.xaml.cs">
-      <DependentUpon>PopupDeclineAccess.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Account\PopupDeleteConfirm.xaml.cs">
       <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
     </Compile>
@@ -153,10 +151,14 @@
     <Compile Include="BUS\BUS_Employees.cs" />
     <Compile Include="BUS\BUS_EmployeeType.cs" />
     <Compile Include="BUS\BUS_InventoryExport.cs" />
+    <Compile Include="BUS\BUS_Receipt.cs" />
+    <Compile Include="BUS\BUS_ReceiptDetail.cs" />
     <Compile Include="DAL\DAL_AccessPermission.cs" />
     <Compile Include="DAL\DAL_AccessPermissionGroup.cs" />
     <Compile Include="DAL\DAL_Employees.cs" />
     <Compile Include="DAL\DAL_EmployeeType.cs" />
+    <Compile Include="DAL\DAL_Receipt.cs" />
+    <Compile Include="DAL\DAL_ReceiptDetail.cs" />
     <Compile Include="Discount\DiscountList.xaml.cs">
       <DependentUpon>DiscountList.xaml</DependentUpon>
     </Compile>
@@ -176,8 +178,13 @@
     <Compile Include="DTO\DTO_AccessPermission.cs" />
     <Compile Include="DTO\DTO_Employees.cs" />
     <Compile Include="DTO\DTO_EmployeeType.cs" />
+    <Compile Include="DTO\DTO_Receipt.cs" />
+    <Compile Include="DTO\DTO_ReceiptDetail.cs" />
     <Compile Include="IncomeAndPayment\PaymentList.xaml.cs">
       <DependentUpon>PaymentList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IncomeAndPayment\PopupDeleteConfirm.xaml.cs">
+      <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
     </Compile>
     <Compile Include="IncomeAndPayment\PopupPaymentAdd.xaml.cs">
       <DependentUpon>PopupPaymentAdd.xaml</DependentUpon>
@@ -283,6 +290,12 @@
     <Compile Include="View\PopupEditMenuStatus.xaml.cs">
       <DependentUpon>PopupEditMenuStatus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Printing.xaml.cs">
+      <DependentUpon>Printing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReceiptForm.xaml.cs">
+      <DependentUpon>ReceiptForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TitleBar.xaml.cs">
       <DependentUpon>TitleBar.xaml</DependentUpon>
     </Compile>
@@ -305,10 +318,6 @@
     <Page Include="Account\PopupChangePassword.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Account\PopupDeclineAccess.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Account\PopupDeleteConfirm.xaml">
       <SubType>Designer</SubType>
@@ -351,6 +360,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="IncomeAndPayment\PaymentList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IncomeAndPayment\PopupDeleteConfirm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -489,6 +502,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PopupEditMenuStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Printing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ReceiptForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

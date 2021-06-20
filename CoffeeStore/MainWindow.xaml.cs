@@ -31,8 +31,8 @@ namespace CoffeeStore
         {
             
             InitializeComponent();
-
-            var item1 = new ItemMenu("Thu ngân", new Cashier(this), PackIconKind.Schedule);
+            currentEmpID = "";
+            var item1 = new ItemMenu("Thu ngân", new Cashier(this, currentEmpID), PackIconKind.Schedule);
 
             var item2 = new ItemMenu("Menu", "AP006", new Menu.MenuList(this), PackIconKind.CalendarTextOutline);
 
@@ -83,7 +83,7 @@ namespace CoffeeStore
                 currentEmpID = tblockUsername.Text;
                 currentEmpType = busEmp.GetEmpTypeByID(tblockUsername.Text);
                 gridLogin.Children.Clear();
-                var screen = new Cashier(this);
+                var screen = new Cashier(this, currentEmpID);
                 gridLogin.Children.Add(screen);
             }
         }
@@ -96,6 +96,7 @@ namespace CoffeeStore
                 tblockUsername.Text = loginScreen.txtBoxAccount.Text;
                 BUS_Employees busEmp = new BUS_Employees();
                 currentEmpID = tblockUsername.Text;
+                ((ItemMenu)((MenuItem)Menu.Children[0]).DataContext)._Cashier.SetCurrrentUser(currentEmpID);
                 currentEmpType = busEmp.GetEmpTypeByID(tblockUsername.Text);
                 gridLogin.Children.Clear();
             }
@@ -125,6 +126,7 @@ namespace CoffeeStore
         internal void SwitchWindow(object sender)
         {
             var screen = ((UserControl)sender);
+            
             if (screen != null)
             {
                 StackPanelMain.Children.Clear();
@@ -134,6 +136,7 @@ namespace CoffeeStore
         internal void SwitchWindow(object sender, int type)
         {
             var screen = ((Cashier)sender);
+            screen.LoadData();
             if (screen != null)
             {
                 gridLogin.Children.Clear();
@@ -144,11 +147,20 @@ namespace CoffeeStore
         public void SwitchBackHome()
         {
             gridLogin.Children.Clear();
+
         }
 
         internal void SwitchToDiscount()
         {
             var screen = new Discount.DiscountList();
+            gridLogin.Children.Clear();
+            StackPanelMain.Children.Clear();
+            StackPanelMain.Children.Add(screen);
+        }
+
+        internal void SwitchToReceipt()
+        {
+            var screen = new IncomeAndPayment.ReceiptList();
             gridLogin.Children.Clear();
             StackPanelMain.Children.Clear();
             StackPanelMain.Children.Add(screen);

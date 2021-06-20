@@ -36,7 +36,7 @@ namespace CoffeeStore.Inventory
                 case InventoryImport import:
                     {
                         //this.tbContent.HorizontalAlignment = HorizontalAlignment.Center;
-                        this.tbContent.Text = $"Dữ liệu về phiếu nhập kho {deleteID} sẽ bị xóa vĩnh viễn. \nBạn chắc chắn muốn xóa?";
+                        this.tbContent.Text = $"Dữ liệu về phiếu nhập kho {deleteID} sẽ \nbị xóa vĩnh viễn. Bạn chắc chắn muốn xóa?";
                         break;
                     }
 

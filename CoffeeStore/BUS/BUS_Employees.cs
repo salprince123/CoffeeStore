@@ -17,9 +17,14 @@ namespace CoffeeStore.BUS
             return dalEmp.GetPasswordByID(ID);
         }
 
-        public DataTable GetActiveEmployees()
+        public int CountEmployees()
         {
-            return dalEmp.GetActiveEmployees();
+            return dalEmp.CountEmployees();
+        }
+
+        public DataTable GetEmployees(int limit, int offset)
+        {
+            return dalEmp.GetEmployees(limit, offset);
         }
         
         public bool CreateEmployee(DTO_Employees newEmp)
@@ -35,11 +40,16 @@ namespace CoffeeStore.BUS
         public bool EditPassword(string id, string newPass)
         {
             return dalEmp.EditPassword(id, newPass);
-        }    
+        }
 
-        public int DeleteEmployee(string deleteEmpID)
+        public bool DeleteEmployee(string deleteEmpID)
         {
             return dalEmp.Delete(deleteEmpID);
+        }
+
+        public bool SetState(string deleteEmpID, bool state)
+        {
+            return dalEmp.SetState(deleteEmpID, state);
         }
 
         public string GetEmpTypeByID(string id)
@@ -55,6 +65,11 @@ namespace CoffeeStore.BUS
         public DTO_Employees GetEmpByID(string id)
         {
             return dalEmp.GetEmpByID(id);
+        }
+
+        public bool IsDoingAnything(string id)
+        {
+            return dalEmp.IsDoingAnything(id);
         }
     }
 }

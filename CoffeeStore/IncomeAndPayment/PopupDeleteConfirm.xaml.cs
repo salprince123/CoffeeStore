@@ -1,5 +1,4 @@
-﻿using CoffeeStore.BUS;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,26 +13,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CoffeeStore.Account
+namespace CoffeeStore.IncomeAndPayment
 {
     /// <summary>
-    /// Interaction logic for PopupDisableAccount.xaml
+    /// Interaction logic for PopupDeleteConfirm.xaml
     /// </summary>
-    public partial class PopupDisableAccount : UserControl
+    public partial class PopupDeleteConfirm : UserControl
     {
-        string deleteEmpId;
-        public PopupDisableAccount()
+        public PopupDeleteConfirm()
         {
             InitializeComponent();
         }
-
-        public PopupDisableAccount(string content, string empID)
-        {
-            InitializeComponent();
-        }
-
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
+
         }
 
         private void btExit_Click(object sender, RoutedEventArgs e)

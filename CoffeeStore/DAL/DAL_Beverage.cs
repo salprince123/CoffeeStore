@@ -124,6 +124,23 @@ namespace CoffeeStore.DAL
             }
             return BeverageType;
         }
+
+        public DataTable GetBeverageTypeInfo()
+        {
+            DataTable beverTypes = new DataTable();
+            try
+            {
+                string sql = $"Select * From BeverageType";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(beverTypes);
+            }
+            catch
+            {
+
+            }
+            return beverTypes;
+        }
+
         public string getBeverageTypeID(string beveragename)
         {
             string beveragetypeID = "";

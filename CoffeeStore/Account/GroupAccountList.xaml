@@ -95,7 +95,7 @@
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
                                                 <Grid Background="{TemplateBinding Background}">
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    <ContentPresenter Margin="13,0,13,0" VerticalAlignment="Center" />
                                                 </Grid>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -120,13 +120,13 @@
                                     </Style.Triggers>
                                 </Style>
 
-                                <Style x:Key="DataGrid_Content_CenterVerticalAlign"
-                                       TargetType="{x:Type DataGridCell}">
+                                <Style x:Key="DataGrid_Content_Center"
+                                           TargetType="{x:Type DataGridCell}">
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
                                                 <Grid Background="{TemplateBinding Background}">
-                                                    <ContentPresenter VerticalAlignment="Center" />
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                                                 </Grid>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -149,85 +149,48 @@
                             </DataGrid.RowHeaderTemplate>
                             
                             <DataGrid.Columns>
-                                <DataGridTextColumn 
-                                    Binding="{Binding Path='name'}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Tên nhóm tài khoản"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+                                <DataGridTextColumn Header="Tên nhóm tài khoản" Binding="{Binding Path='name'}">
                                 </DataGridTextColumn>
+
                                 <DataGridCheckBoxColumn 
+                                    Header="Thu ngân"
                                     IsThreeState="True" 
                                     Binding="{Binding Path=cashier}">
-                                    <DataGridCheckBoxColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Thu ngân"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridCheckBoxColumn.Header>
                                 </DataGridCheckBoxColumn>
                                 <DataGridCheckBoxColumn 
+                                    Header="Quản lý tài khoản"
                                     IsThreeState="True"
                                     Binding="{Binding Path=account}">
-                                    <DataGridCheckBoxColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Quản lý tài khoản"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridCheckBoxColumn.Header>
                                 </DataGridCheckBoxColumn>
-                                <DataGridCheckBoxColumn 
+                                <DataGridCheckBoxColumn
+                                    Header="Quản lý loại tài khoản"
                                     IsThreeState="True" 
                                     Binding="{Binding Path=accountType}">
-                                    <DataGridCheckBoxColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Quản lý loại tài khoản"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridCheckBoxColumn.Header>
                                 </DataGridCheckBoxColumn>
                                 <DataGridCheckBoxColumn 
+                                    Header="Quản lý kho"
                                     IsThreeState="True" 
                                     Binding="{Binding Path=inventory}">
-                                    <DataGridCheckBoxColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Quản lý kho"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridCheckBoxColumn.Header>
                                 </DataGridCheckBoxColumn>
                                 <DataGridCheckBoxColumn 
+                                    Header="Quản lý chi phí"
                                     IsThreeState="True" 
                                     Binding="{Binding Path=cost}">
-                                    <DataGridCheckBoxColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Quản lý chi phí"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridCheckBoxColumn.Header>
                                 </DataGridCheckBoxColumn>
                                 <DataGridCheckBoxColumn 
+                                    Header="Quản lý menu"
                                     IsThreeState="True" 
                                     Binding="{Binding Path=menu}">
-                                    <DataGridCheckBoxColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Quản lý menu"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridCheckBoxColumn.Header>
                                 </DataGridCheckBoxColumn>
                                 <DataGridCheckBoxColumn 
+                                    Header="Quản lý ưu đãi"
                                     IsThreeState="True" 
                                     Binding="{Binding Path=discount}">
-                                    <DataGridCheckBoxColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Quản lý ưu đãi"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridCheckBoxColumn.Header>
                                 </DataGridCheckBoxColumn>
                                 <DataGridCheckBoxColumn 
+                                    Header="Báo cáo"
                                     IsThreeState="True" 
                                     Binding="{Binding Path=report}">
-                                    <DataGridCheckBoxColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Báo cáo"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridCheckBoxColumn.Header>
                                 </DataGridCheckBoxColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>

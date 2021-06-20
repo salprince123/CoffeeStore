@@ -22,9 +22,9 @@ namespace CoffeeStore.DAL
                 da.Fill(listPass);
                 pass = listPass.Rows[0].ItemArray[0].ToString();
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
             return pass;
         }
@@ -40,9 +40,9 @@ namespace CoffeeStore.DAL
                 da.Fill(listPass);
                 type = listPass.Rows[0].ItemArray[0].ToString();
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
             return type;
         }
@@ -58,9 +58,9 @@ namespace CoffeeStore.DAL
                 da.Fill(listPass);
                 name = listPass.Rows[0].ItemArray[0].ToString();
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
             return name;
         }
@@ -83,18 +83,35 @@ namespace CoffeeStore.DAL
             return emp;
         }    
 
-        public DataTable GetActiveEmployees()
+        public int CountEmployees()
+        {
+            DataTable result = new DataTable();
+            try
+            {
+                string sql = $"select count(EmployeeID) from Employees";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(result);
+                return Int32.Parse(result.Rows[0].ItemArray[0].ToString());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
+        }    
+
+        public DataTable GetEmployees(int limit, int offset)
         {
             DataTable employees = new DataTable();
             try
             {
-                string sql = $"select EmployeeID, EmployeeName, EmployeeType.EmployeeTypeName, Password from Employees join EmployeeType on Employees.EmployeeTypeID = EmployeeType.EmployeeTypeID where State = '1'";
+                string sql = $"select EmployeeID, EmployeeName, EmployeeType.EmployeeTypeName, Password, State from Employees join EmployeeType on Employees.EmployeeTypeID = EmployeeType.EmployeeTypeID LIMIT {limit} OFFSET {offset}";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 da.Fill(employees);
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
             return employees;
         }
@@ -111,6 +128,7 @@ namespace CoffeeStore.DAL
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return false;
             }
         }    
@@ -126,6 +144,7 @@ namespace CoffeeStore.DAL
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return false;
             }
         }
@@ -139,15 +158,36 @@ namespace CoffeeStore.DAL
                 insert.ExecuteNonQuery();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return false;
             }
         }
 
-        public int Delete(string empID)
+        public bool SetState(string empID, bool state)
         {
-            bool isDelete = IsDoingAnything(empID);
+            string sql;
+            if (state)
+                sql = $"update Employees set State = '1' where EmployeeID = '{empID}'";
+            else
+                sql = $"update Employees set State = '0' where EmployeeID = '{empID}'";
+            SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
+            try
+            {
+                insert.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }    
+
+        public bool Delete(string empID)
+        {
+            bool isDelete = !IsDoingAnything(empID);
             if (isDelete)
             {
                 string sql = $"delete from Employees where EmployeeID = '{empID}'";
@@ -155,26 +195,17 @@ namespace CoffeeStore.DAL
                 try
                 {
                     delete.ExecuteNonQuery();
-                    return 1;
+                    return true;
                 }
-                catch
+                catch (Exception ex)
                 {
-                    return 0;
+                    Console.WriteLine(ex.Message);
+                    return false;
                 }
             }
             else
             {
-                string sql = $"update Employees set State = '0' where EmployeeID = '{empID}'";
-                SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
-                try
-                {
-                    insert.ExecuteNonQuery();
-                    return -1;
-                }
-                catch
-                {
-                    return 0;
-                }
+                return false;
             }
         }    
 
@@ -187,25 +218,32 @@ namespace CoffeeStore.DAL
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 da.Fill(countData);
                 if (countData.Rows[0].ItemArray[0].ToString() != "0")
-                    return false;
+                    return true;
 
                 sql = $"select count(EmployeeID) from InventoryExport where EmployeeID = '{empID}'";
                 da = new SQLiteDataAdapter(sql, getConnection());
                 da.Fill(countData);
                 if (countData.Rows[0].ItemArray[0].ToString() != "0")
-                    return false;
+                    return true;
 
                 sql = $"select count(EmployeeID) from Receipt where EmployeeID = '{empID}'";
                 da = new SQLiteDataAdapter(sql, getConnection());
                 da.Fill(countData);
                 if (countData.Rows[0].ItemArray[0].ToString() != "0")
-                    return false;
+                    return true;
 
-                return true;
-            }
-            catch
-            {
+                sql = $"select count(EmployeeID) from PaymentVoucher where EmployeeID = '{empID}'";
+                da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(countData);
+                if (countData.Rows[0].ItemArray[0].ToString() != "0")
+                    return true;
+
                 return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return true;
             }
         }    
     }

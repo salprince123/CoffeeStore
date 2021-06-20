@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CoffeeStore.Account
+namespace CoffeeStore.View
 {
     /// <summary>
-    /// Interaction logic for PopupDeclineAccess.xaml
+    /// Interaction logic for Printing.xaml
     /// </summary>
-    public partial class PopupDeclineAccess : UserControl
+    public partial class Printing : UserControl
     {
-        public PopupDeclineAccess()
+        public Printing()
         {
             InitializeComponent();
         }
