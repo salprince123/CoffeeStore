@@ -258,7 +258,7 @@ namespace CoffeeStore.View
                     dgBill.Items.Refresh();
                     total += billItems[i].unitCost;
                     tblockTotal.Text = MoneyToString(total);
-                    int discountAmount = (int)(total * discount / 100);
+                    int discountAmount = (int)(total * discount / 100.0);
                     tblockDiscountAmount.Text = MoneyToString(discountAmount);
                     tblockPayAmount.Text = MoneyToString(total - discountAmount);
                     tblockChange.Text = MoneyToString(received - total + discountAmount);
@@ -268,7 +268,7 @@ namespace CoffeeStore.View
 
             total += newCost;
             tblockTotal.Text = MoneyToString(total);
-            int disAmount = (int)(total * discount / 100);
+            int disAmount = (int)(total * discount / 100.0);
             tblockDiscountAmount.Text = MoneyToString(disAmount);
             tblockPayAmount.Text = MoneyToString(total - disAmount);
             tblockChange.Text = MoneyToString(received - total + disAmount);
@@ -312,7 +312,7 @@ namespace CoffeeStore.View
                     dgBill.Items.Refresh();
                     total += billItems[i].unitCost;
                     tblockTotal.Text = MoneyToString(total);
-                    int disAmount = (int)(total * discount / 100);
+                    int disAmount = (int)(total * discount / 100.0);
                     tblockDiscountAmount.Text = MoneyToString(disAmount);
                     tblockPayAmount.Text = MoneyToString(total - disAmount);
                     tblockChange.Text = MoneyToString(received - total + disAmount);
@@ -339,7 +339,7 @@ namespace CoffeeStore.View
                     }
                     dgBill.Items.Refresh();
                     tblockTotal.Text = MoneyToString(total);
-                    int disAmount = (int)(total * discount / 100);
+                    int disAmount = (int)(total * discount / 100.0);
                     tblockDiscountAmount.Text = MoneyToString(disAmount);
                     tblockPayAmount.Text = MoneyToString(total - disAmount);
                     tblockChange.Text = MoneyToString(received - total + disAmount);

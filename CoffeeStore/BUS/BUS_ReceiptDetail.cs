@@ -2,6 +2,7 @@
 using CoffeeStore.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,11 @@ namespace CoffeeStore.BUS
         public bool CreateReceiptDetail(DTO_ReceiptDetail newReceiptDetail)
         {
             return dalReceiptDetail.CreateReceiptDetail(newReceiptDetail);
-        }    
+        }
+
+        public DataTable GetDetailByID(string id)
+        {
+            return dalReceiptDetail.GetDetailByID(id);
+        }
     }
 }

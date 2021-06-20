@@ -1,6 +1,7 @@
 ﻿using CoffeeStore.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,22 @@ namespace CoffeeStore.DAL
                 Console.WriteLine(ex.Message);
                 return false;
             }
+        }
+
+        public DataTable GetDetailByID(string id)
+        {
+            DataTable receiptDetails = new DataTable();
+            try
+            {
+                string sql = $"SELECT Time, EmployeeName, BeverageName, Amount, DiscountID, sum(Amount * ReceiptDetail.Price) as Total from Receipt join ReceiptDetail on Receipt.ReceiptID = ReceiptDetail.ReceiptID join Employees on Receipt.EmployeeID = Employees.EmployeeID join BeverageName on ReceiptDetail.BeverageID = BeverageName.BeverageID where Receipt.ReceiptID = '{id}' group by BeverageName";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(receiptDetails);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return receiptDetails;
         }
     }
 }

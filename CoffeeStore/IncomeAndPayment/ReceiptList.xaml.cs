@@ -35,7 +35,6 @@ namespace CoffeeStore.IncomeAndPayment
                 createrName = newCreaterName;
                 total = newTotal;
             }
-
         }
 
         List<ReceiptItem> receiptItems;
@@ -78,6 +77,7 @@ namespace CoffeeStore.IncomeAndPayment
 
         private void btnWatch_Click(object sender, RoutedEventArgs e)
         {
+            string id = ((Button)sender).Tag.ToString();
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
             ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
             ((MainWindow)App.Current.MainWindow).Effect = objBlur;
@@ -86,7 +86,7 @@ namespace CoffeeStore.IncomeAndPayment
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
                 Title = "Chi tiết hóa đơn",
-                Content = new ReceiptDetail(),
+                Content = new ReceiptDetail(id),
                 Width = 450,
                 Height = 800,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 450) / 2,
