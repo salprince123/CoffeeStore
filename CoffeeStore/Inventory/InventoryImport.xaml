@@ -117,17 +117,16 @@
                             <RowDefinition Height="40"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="6.4"></ColumnDefinition>
-                            <ColumnDefinition Width="13.6"/>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                             <ColumnDefinition Width="20"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid x:Name="dataGridImport" Grid.Column="2" Grid.Row="1" 
+                        <DataGrid x:Name="dataGridImport" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
                                   VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False"
-                                  HeadersVisibility="All" Margin="0,0,0.4,0.2">
+                                  HeadersVisibility="All">
                             <DataGrid.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}">
                                     <Setter Property="Template">
@@ -230,7 +229,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="1" Margin="0,83,0.4,0.2" Grid.RowSpan="2">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2">
                             <Button Width="40" Height="Auto" 
                                     Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
                                     VerticalAlignment="Center">
