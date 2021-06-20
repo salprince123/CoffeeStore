@@ -16,7 +16,7 @@
             <local:ReceiptForm x:Name="receiptForm">
             </local:ReceiptForm>
         </ScrollViewer>
-        <Button HorizontalAlignment="Right" Margin="10" Click="Button_Click" VerticalAlignment="Top">
+        <Button HorizontalAlignment="Right" Margin="10" VerticalAlignment="Top">
             <materialDesign:PackIcon Kind="Printer"/>
         </Button>
     </Grid>
