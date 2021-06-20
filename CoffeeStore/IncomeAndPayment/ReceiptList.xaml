@@ -60,16 +60,16 @@
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
                     <DatePicker x:Name="dpDateStart" Height="40"
-                         VerticalContentAlignment="Center"
+                         VerticalContentAlignment="Center" FontSize="15"
                          materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
                 </Border>
                 <Border BorderBrush="Gray" Grid.Column="2" BorderThickness="1,1,1,0">
                     <DatePicker x:Name="dpDateEnd" Height="40"
-                         VerticalContentAlignment="Center"
+                         VerticalContentAlignment="Center" FontSize="15"
                          materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
                 </Border>
                 <TextBox x:Name="tbFind" Grid.Column="4" Height="40" 
-                         BorderThickness="1" VerticalContentAlignment="Center"
+                         BorderThickness="1" VerticalContentAlignment="Center" FontSize="15"
                          materialDesign:HintAssist.Hint="Mã hóa đơn" Padding="5"/>
                 <Button x:Name="btnFind" Grid.Column="6" Height="40"
                     Background="#6B6158" Foreground="#FFE297" 
@@ -120,7 +120,7 @@
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
                                                 <Grid Background="{TemplateBinding Background}">
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    <ContentPresenter Margin="13,0,13,0" VerticalAlignment="Center" />
                                                 </Grid>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -145,13 +145,13 @@
                                     </Style.Triggers>
                                 </Style>
 
-                                <Style x:Key="DataGrid_Content_CenterVerticalAlign"
-                                       TargetType="{x:Type DataGridCell}">
+                                <Style x:Key="DataGrid_Content_Center"
+                                           TargetType="{x:Type DataGridCell}">
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
                                                 <Grid Background="{TemplateBinding Background}">
-                                                    <ContentPresenter VerticalAlignment="Center" />
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                                                 </Grid>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -174,44 +174,27 @@
                             </DataGrid.RowHeaderTemplate>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Path='id'}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Mã hóa đơn"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+                                <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding Path='id'}">
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding Path='time'}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" MinWidth="100"
-                                               HorizontalContentAlignment="Center" Content="Ngày lập"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+                                <DataGridTextColumn Header="Ngày lập" Binding="{Binding Path='time'}">
                                 </DataGridTextColumn>
                                 <DataGridTextColumn 
-                                    Binding="{Binding Path='createrName'}"
-                                    CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" MinWidth="150"
-                                               HorizontalContentAlignment="Center" Content="Người lập"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+                                    Header="Người lập"
+                                    Binding="{Binding Path='createrName'}">
                                 </DataGridTextColumn>
-                                <DataGridTextColumn 
-                                    Binding="{Binding Path='total', StringFormat=\{0:N0\} VNĐ}"
-                                    CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" MinWidth="120"
-                                               HorizontalContentAlignment="Center" Content="Tổng tiền (VNĐ)"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+                                <DataGridTextColumn Header="Tổng tiền" Binding="{Binding Path='total', StringFormat=\{0:N0\} VNĐ}">
                                 </DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Margin="10,0,0,0" Name="btnWatch" Tag="{Binding Path='id'}" BorderBrush="#9FA2B4" Background="White" Click="btnWatch_Click">
-                                                <materialDesign:PackIcon Kind="FileDocument" Height="20" Width="20" Foreground="#9FA2B4" />
-                                            </Button>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Margin="10,0,0,0" Name="btnWatch" Tag="{Binding Path='id'}" BorderBrush="#9FA2B4" Background="White" Click="btnWatch_Click">
+                                                    <materialDesign:PackIcon Kind="FileDocument" Height="20" Width="20" Foreground="#9FA2B4" />
+                                                </Button>
+                                                <Button Margin="10,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252" Click="btnDelete_Click">
+                                                    <materialDesign:PackIcon Kind="Delete" Height="20" Width="20" />
+                                                </Button>
+                                            </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
