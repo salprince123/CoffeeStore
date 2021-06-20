@@ -343,7 +343,7 @@
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="btnCash" Background="#FF7A00" Grid.Column="0" HorizontalAlignment="Right" Height="Auto" FontSize="20" Margin="0,0,0,0.2" Width="160" Click="btnCash_Click">
+                <Button x:Name="btnCash" Background="#FF7A00" Grid.Column="0" HorizontalAlignment="Stretch" Height="Auto" FontSize="20" Click="btnCash_Click">
                     <TextBlock Text="Thanh toán" TextWrapping="Wrap" TextAlignment="Center"/>
                 </Button>
                 <Button x:Name="btnPrint" Background="#6B6158" Grid.Column="1" HorizontalAlignment="Stretch" Height="Auto" FontSize="20" Click="btnPrint_Click">
