@@ -40,8 +40,8 @@ namespace CoffeeStore.Report
                     Fill = Brushes.Orange
                 }
             };
-            Labels = new[] { "Chi phí", "Doanh thu", "Lợi nhuận" };
-            Formatter = value => value.ToString("N");
+            LabelGeneralCharts = new[] { "Chi phí", "Doanh thu", "Lợi nhuận" };
+            FormatterGeneralCharts = value => value.ToString("N");
         }
 
         private void LoadProfitChart()
@@ -55,15 +55,17 @@ namespace CoffeeStore.Report
                     Fill = Brushes.Orange
                 }
             };
-            Labels = new[] { "Món 1", "Món 2", "Món 3", "Món 1", "Món 2", "Món 3", "Món 1", "Món 2", "Món 3" };
-            Formatter = value => value.ToString("N");
-            profitChart.Height = 9 * 100; //Number of labels * 100
+            LabelProfitChart = new[] { "Món 1", "Món 2", "Món 3", "Món 1", "Món 2", "Món 3", "Món 1", "Món 2", "Món 3" };
+            FormatterProfitChart = value => value.ToString("N");
+            profitChart.Height = (LabelProfitChart.Length + 1) * 100; //Number of labels * 100
         }
 
         public SeriesCollection GeneralChart { get; set; }
         public SeriesCollection ProfitChart { get; set; }
-        public string[] Labels { get; set; }
-        public Func<double, string> Formatter { get; set; }
+        public string[] LabelGeneralCharts { get; set; }
+        public string[] LabelProfitChart { get; set; }
+        public Func<double, string> FormatterGeneralCharts { get; set; }
+        public Func<double, string> FormatterProfitChart { get; set; }
 
     }
 }

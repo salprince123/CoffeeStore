@@ -43,5 +43,21 @@ namespace CoffeeStore.DAL
             }
             return receiptDetails;
         }
+
+        public bool DeleteDetailByID(string id)
+        {
+            string sql = $"delete from ReceiptDetail where ReceiptID = '{id}'";
+            SQLiteCommand delete = new SQLiteCommand(sql, getConnection().OpenAndReturn());
+            try
+            {
+                delete.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }    
     }
 }

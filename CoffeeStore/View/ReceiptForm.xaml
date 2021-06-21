@@ -57,6 +57,8 @@
                             VerticalAlignment="Stretch" AutoGenerateColumns="False"
                             FrozenColumnCount="1" CanUserReorderColumns="False"
                             CanUserResizeColumns="False"
+                            VerticalScrollBarVisibility="Disabled"
+                            HorizontalScrollBarVisibility="Disabled"
                             IsReadOnly="True" FontSize="13"
                             VerticalContentAlignment="Stretch"
                             HorizontalContentAlignment="Stretch" Height="Auto" 

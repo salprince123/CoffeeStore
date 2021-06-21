@@ -11,12 +11,12 @@ namespace CoffeeStore.DAL
 {
     class DAL_Receipt : DBConnect
     {
-        public DataTable GetReceipt()
+        public DataTable GetReceipt(int limit, int offset)
         {
             DataTable receipts = new DataTable();
             try
             {
-                string sql = $"select Receipt.ReceiptID, Time, Receipt.EmployeeID, Employees.EmployeeName, Discount.DiscountID, DiscountValue, sum(Price * Amount) as Total from Receipt join Employees on Receipt.EmployeeID = Employees.EmployeeID left join Discount on Receipt.DiscountID = Discount.DiscountID join ReceiptDetail on Receipt.ReceiptID = ReceiptDetail.ReceiptID group by Receipt.ReceiptID";
+                string sql = $"select Receipt.ReceiptID, Time, Receipt.EmployeeID, Employees.EmployeeName, Discount.DiscountID, DiscountValue, sum(Price * Amount) as Total from Receipt join Employees on Receipt.EmployeeID = Employees.EmployeeID left join Discount on Receipt.DiscountID = Discount.DiscountID join ReceiptDetail on Receipt.ReceiptID = ReceiptDetail.ReceiptID group by Receipt.ReceiptID limit {limit} offset {offset}";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 da.Fill(receipts);
             }
@@ -25,11 +25,70 @@ namespace CoffeeStore.DAL
                 Console.WriteLine(ex.Message);
             }
             return receipts;
-        }    
+        }
+
+        public DataTable GetReceipt(DateTime startDate, DateTime endDate, string keyword, int limit, int offset)
+        {
+            if (keyword == "")
+                keyword = "R";
+            string start = startDate.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
+            string end = endDate.AddDays(1).ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
+            DataTable receipts = new DataTable();
+            try
+            {
+                string sql = $"select R.ReceiptID, Time, R.EmployeeID, E.EmployeeName, D.DiscountID, DiscountValue, sum(Price * Amount) as Total from Receipt as R join Employees as E on R.EmployeeID = E.EmployeeID left join Discount as D on R.DiscountID = D.DiscountID join ReceiptDetail as RD on R.ReceiptID = RD.ReceiptID where ((R.ReceiptID like '%{keyword}%') and (CAST(strftime('%s', Time) AS integer) >= CAST(strftime('%s', '{start}') AS integer)) and (CAST(strftime('%s', Time) AS integer) < CAST(strftime('%s', '{end}') AS integer))) group by R.ReceiptID limit {limit} offset {offset}";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(receipts);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return receipts;
+        }
+
+        public int CountReceipt()
+        {
+            DataTable receipts = new DataTable();
+            try
+            {
+                string sql = $"select count(ReceiptID) from Receipt";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(receipts);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return Int32.Parse(receipts.Rows[0].ItemArray[0].ToString());
+        }
+
+        public int CountReceipt(DateTime startDate, DateTime endDate, string keyword)
+        {
+            if (keyword == "")
+                keyword = "R";
+            string start = startDate.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
+            string end = endDate.AddDays(1).ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
+
+            DataTable receipts = new DataTable();
+            try
+            {
+                string sql = $"select count(ReceiptID) from Receipt where ((ReceiptID like '%{keyword}%') and (CAST(strftime('%s', Time) AS integer) >= CAST(strftime('%s', '{start}') AS integer)) and (CAST(strftime('%s', Time) AS integer) < CAST(strftime('%s', '{end}') AS integer)))";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(receipts);
+                return Int32.Parse(receipts.Rows[0].ItemArray[0].ToString());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
+            
+        }
 
         public string CreateReceipt(DTO_Receipt newReceipt)
         {
-            DataTable receipts = GetReceipt();
+            DataTable receipts = GetReceipt(-1, 0);
             if (receipts.Rows.Count != 0)
             {
                 string lastID = receipts.Rows[receipts.Rows.Count - 1]["ReceiptID"].ToString();
@@ -55,6 +114,22 @@ namespace CoffeeStore.DAL
             {
                 Console.WriteLine(ex.Message);
                 return "";
+            }
+        }
+
+        public bool DeleteReceiptByID(string id)
+        {
+            string sql = $"delete from Receipt where ReceiptID = '{id}'";
+            SQLiteCommand delete = new SQLiteCommand(sql, getConnection().OpenAndReturn());
+            try
+            {
+                delete.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
             }
         }
     }

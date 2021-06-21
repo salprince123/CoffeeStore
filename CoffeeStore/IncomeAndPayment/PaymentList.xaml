@@ -60,21 +60,21 @@
                     <ColumnDefinition Width="10"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
-                    <DatePicker x:Name="dpDateStart" Height="40"
-                         VerticalContentAlignment="Center"
+                    <DatePicker x:Name="tbDateStart" Height="40"
+                         VerticalContentAlignment="Center" FontSize="15"
                          materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
                 </Border>
                 <Border BorderBrush="Gray" Grid.Column="2" BorderThickness="1,1,1,0">
-                    <DatePicker x:Name="dpDateEnd" Height="40"
-                         VerticalContentAlignment="Center"
-                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
+                    <DatePicker x:Name="tbDateEnd" Height="40"
+                         VerticalContentAlignment="Center" FontSize="15"
+                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5"/>
                 </Border>
-                <TextBox x:Name="tbNameFind" Grid.Column="4" Height="40" 
-                         BorderThickness="1" VerticalContentAlignment="Center"
-                         materialDesign:HintAssist.Hint="Mã phiếu chi hoặc người lập" Padding="5"/>
+                <TextBox x:Name="tbFind" Grid.Column="4" Height="40" 
+                         BorderThickness="1" VerticalContentAlignment="Center" FontSize="15"
+                         materialDesign:HintAssist.Hint="Mã phiếu chi" Padding="5"/>
                 <Button x:Name="btnFind" Grid.Column="6" Height="40"
                     Background="#6B6158" Foreground="#FFE297" 
-                    BorderBrush="#FFE297" BorderThickness="1" Margin="0,1,0,0" VerticalAlignment="Top" Click="btnFind_Click" HorizontalAlignment="Left" Width="52">
+                    BorderBrush="#FFE297" BorderThickness="1">
                     <materialDesign:PackIcon Kind="Search" Height="20" Width="20"/>
                 </Button>
             </Grid>
@@ -115,7 +115,7 @@
                             <ColumnDefinition Width="20"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid x:Name="dgPayment" Grid.Column="1" Grid.Row="1" 
+                        <DataGrid x:Name="dataGridPayment" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
                                   VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False"
@@ -126,7 +126,7 @@
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
                                                 <Grid Background="{TemplateBinding Background}">
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    <ContentPresenter Margin="13,0,13,0" VerticalAlignment="Center" />
                                                 </Grid>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -151,13 +151,31 @@
                                     </Style.Triggers>
                                 </Style>
 
-                                <Style x:Key="DataGrid_Content_CenterVerticalAlign"
-                                       TargetType="{x:Type DataGridCell}">
+                                <Style x:Key="DataGrid_Content_Center"
+                                           TargetType="{x:Type DataGridCell}">
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
                                                 <Grid Background="{TemplateBinding Background}">
-                                                    <ContentPresenter VerticalAlignment="Center" />
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="{x:Null}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                                <Style x:Key="DataGrid_Content_CenterRightAlign" TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <ContentPresenter Margin="13,0,13,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                                                 </Grid>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -180,49 +198,26 @@
                             </DataGrid.RowHeaderTemplate>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Path='PaymentID'}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Mã phiếu chi"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+                                <DataGridTextColumn Header="Mã phiếu chi" Binding="{Binding Path=''}">
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding Path='Time'}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" MinWidth="100"
-                                               HorizontalContentAlignment="Center" Content="Ngày lập"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+                                <DataGridTextColumn Header="Ngày lập" Binding="{Binding Path=''}">
                                 </DataGridTextColumn>
-                                <DataGridTextColumn 
-                                    Binding="{Binding Path='EmployeeName'}"
-                                    CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" MinWidth="150"
-                                               HorizontalContentAlignment="Center" Content="Người lập"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+                                <DataGridTextColumn Header="Người lập" Binding="{Binding Path=''}">
                                 </DataGridTextColumn>
-                                <DataGridTextColumn 
-                                    Binding="{Binding Path='TotalAmount'}"
-                                    CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" MinWidth="120"
-                                               HorizontalContentAlignment="Center" Content="Số tiền (VNĐ)"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+                                <DataGridTextColumn Header="Số tiền" Binding="{Binding Path='', StringFormat=\{0:N0\} VNĐ}"
+                                                    CellStyle="{StaticResource DataGrid_Content_CenterRightAlign}">
                                 </DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <Button Margin="10,0,0,0" Name="btnWatch" BorderBrush="#9FA2B4" Background="White" Click="btnWatch_Click">
+                                                <Button Margin="10,0,0,0" Name="btnWatch" BorderBrush="#9FA2B4" Background="White">
                                                     <materialDesign:PackIcon Kind="FileDocument" Height="20" Width="20" Foreground="#9FA2B4" />
                                                 </Button>
-                                                <Button Margin="10,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5" Click="btnEdit_Click">
+                                                <Button Margin="10,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5">
                                                     <materialDesign:PackIcon Kind="GreasePencil" Foreground="White" Height="20" Width="20"  />
                                                 </Button>
-                                                <Button Margin="10,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252" Click="btnDelete_Click">
+                                                <Button Margin="10,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252">
                                                     <materialDesign:PackIcon Kind="Delete" Height="20" Width="20" />
                                                 </Button>
                                             </StackPanel>

@@ -147,7 +147,7 @@ namespace CoffeeStore
         public void SwitchBackHome()
         {
             gridLogin.Children.Clear();
-
+            StackPanelMain.Children.Clear();
         }
 
         internal void SwitchToDiscount()

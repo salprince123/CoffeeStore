@@ -111,10 +111,10 @@
                         <Grid Grid.Row="1">
                             <lvc:CartesianChart  Series="{Binding GeneralChart}">
                                 <lvc:CartesianChart.AxisX>
-                                    <lvc:Axis Title="VNĐ" LabelFormatter="{Binding Formatter}" FontSize="15" Foreground="#6B6158"></lvc:Axis>
+                                    <lvc:Axis Title="VNĐ" LabelFormatter="{Binding FormatterGeneralCharts}" FontSize="15" Foreground="#6B6158"></lvc:Axis>
                                 </lvc:CartesianChart.AxisX>
                                 <lvc:CartesianChart.AxisY>
-                                    <lvc:Axis Title="" Labels="{Binding Labels}" FontSize="15" Foreground="#6B6158"></lvc:Axis>
+                                    <lvc:Axis Title="" Labels="{Binding LabelGeneralCharts}" FontSize="15" Foreground="#6B6158"></lvc:Axis>
                                 </lvc:CartesianChart.AxisY>
                                 <lvc:CartesianChart.DataTooltip>
                                     <lvc:DefaultTooltip SelectionMode="SharedYValues"></lvc:DefaultTooltip>
@@ -134,10 +134,10 @@
                         <Grid Grid.Row="1">
                             <lvc:CartesianChart x:Name="profitChart"  Series="{Binding ProfitChart}">
                                 <lvc:CartesianChart.AxisX>
-                                    <lvc:Axis Title="VNĐ" LabelFormatter="{Binding Formatter}" FontSize="15" Foreground="#6B6158"></lvc:Axis>
+                                    <lvc:Axis Title="VNĐ" LabelFormatter="{Binding FormatterProfitChart}" FontSize="15" Foreground="#6B6158"></lvc:Axis>
                                 </lvc:CartesianChart.AxisX>
                                 <lvc:CartesianChart.AxisY>
-                                    <lvc:Axis Title="" Labels="{Binding Labels}" FontSize="15" Foreground="#6B6158"></lvc:Axis>
+                                    <lvc:Axis Title="" Labels="{Binding LabelProfitChart}" FontSize="15" Foreground="#6B6158"></lvc:Axis>
                                 </lvc:CartesianChart.AxisY>
                                 <lvc:CartesianChart.DataTooltip>
                                     <lvc:DefaultTooltip SelectionMode="SharedYValues"></lvc:DefaultTooltip>

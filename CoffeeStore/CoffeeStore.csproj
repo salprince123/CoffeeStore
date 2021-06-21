@@ -195,6 +195,9 @@
     <Compile Include="IncomeAndPayment\PopupPaymentDetail.xaml.cs">
       <DependentUpon>PopupPaymentDetail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IncomeAndPayment\PopupPaymentEdit.xaml.cs">
+      <DependentUpon>PopupPaymentEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IncomeAndPayment\ReceiptDetail.xaml.cs">
       <DependentUpon>ReceiptDetail.xaml</DependentUpon>
     </Compile>
@@ -380,6 +383,10 @@
     <Page Include="IncomeAndPayment\PopupPaymentDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IncomeAndPayment\PopupPaymentEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="IncomeAndPayment\ReceiptDetail.xaml">
       <SubType>Designer</SubType>

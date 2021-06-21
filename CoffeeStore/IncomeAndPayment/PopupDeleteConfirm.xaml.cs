@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoffeeStore.BUS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CoffeeStore.BUS;
-using CoffeeStore.DTO;
+
 namespace CoffeeStore.IncomeAndPayment
 {
     /// <summary>
@@ -21,29 +21,44 @@ namespace CoffeeStore.IncomeAndPayment
     /// </summary>
     public partial class PopupDeleteConfirm : UserControl
     {
-        BUS_Payment bus;
-        string ID;
+        string deleteid;
+        int type;
         public PopupDeleteConfirm()
         {
             InitializeComponent();
         }
-        public PopupDeleteConfirm(string id)
+        public PopupDeleteConfirm(string content, string name, int type)
         {
             InitializeComponent();
-            bus = new BUS_Payment();
-            ID = id;
-            tblContent.Text = "Dữ liệu về " + ID + " sẽ bị xóa vĩnh viễn.\n Bạn chắc chắn muốn xóa?";
+            this.tblockContent.Text = content;
+            this.type = type;
+            deleteid = name;
         }
-
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
-                if (bus.deletePayment(ID) > 0)
-                {
-                    MessageBox.Show("Thành công");
-                }
-                else
-                    MessageBox.Show("Thất bại");
-            Window.GetWindow(this).Close();
+            switch (this.type)
+            {
+                case 1: /// Delete Account
+                    BUS_ReceiptDetail busReceiptDetail = new BUS_ReceiptDetail();
+                    bool result1 = busReceiptDetail.DeleteDetailByID(deleteid);
+
+                    if (result1)
+                    {
+                        BUS_Receipt busReceipt = new BUS_Receipt();
+                        if (busReceipt.DeleteReceiptByID(deleteid))
+                        {
+                            MessageBox.Show($"Đã xóa hóa đơn {deleteid}.");
+                            Window.GetWindow(this).Close();
+                        }
+                        else
+                            MessageBox.Show($"Đã xảy ra lỗi trong quá trình xóa hóa đơn!");
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Đã xảy ra lỗi trong quá trình xóa chi tiết hóa đơn.");
+                    }
+                    break;
+            }
         }
 
         private void btExit_Click(object sender, RoutedEventArgs e)

@@ -35,7 +35,7 @@ namespace CoffeeStore.View
 
             tblockCreater.Text = receiptDetail.Rows[0]["EmployeeName"].ToString();
             tblockReceiptID.Text = id;
-            tblockTime.Text = TimeZone.CurrentTimeZone.ToLocalTime((DateTime)receiptDetail.Rows[0]["Time"]).ToString("dd/MM/yyyy");
+            tblockTime.Text = TimeZone.CurrentTimeZone.ToLocalTime((DateTime)receiptDetail.Rows[0]["Time"]).ToString();
 
             List<DetailItem> details = new List<DetailItem>();
             int total = 0;

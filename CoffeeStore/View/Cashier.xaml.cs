@@ -193,7 +193,14 @@ namespace CoffeeStore.View
 
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
-            _context.SwitchToMenu();
+            BUS_Employees busEmp = new BUS_Employees();
+            string typeEmp = busEmp.GetEmpTypeByID(user);
+            BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
+            bool isHavePermission = busAccPerGr.IsHavePermission(typeEmp, "AP006");
+            if (isHavePermission)
+                _context.SwitchToMenu();
+            else
+                MessageBox.Show("Bạn không có quyền sử dụng chức năng này!");
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
@@ -225,12 +232,26 @@ namespace CoffeeStore.View
 
         private void Discount_Click(object sender, RoutedEventArgs e)
         {
-            _context.SwitchToDiscount();
+            BUS_Employees busEmp = new BUS_Employees();
+            string typeEmp = busEmp.GetEmpTypeByID(user);
+            BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
+            bool isHavePermission = busAccPerGr.IsHavePermission(typeEmp, "AP007");
+            if (isHavePermission)
+                _context.SwitchToDiscount();
+            else
+                MessageBox.Show("Bạn không có quyền sử dụng chức năng này!");
         }
 
         private void ReceiptButton_Click(object sender, RoutedEventArgs e)
         {
-            _context.SwitchToReceipt();
+            BUS_Employees busEmp = new BUS_Employees();
+            string typeEmp = busEmp.GetEmpTypeByID(user);
+            BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
+            bool isHavePermission = busAccPerGr.IsHavePermission(typeEmp, "AP001");
+            if (isHavePermission)
+                _context.SwitchToReceipt();
+            else
+                MessageBox.Show("Bạn không có quyền sử dụng chức năng này!");
         }
 
         private void LogOutBtn_Click(object sender, RoutedEventArgs e)
@@ -244,6 +265,12 @@ namespace CoffeeStore.View
 
         private void btnMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            if (newReceiptID != "")
+            {
+                MessageBox.Show($"Hóa đơn này đã thanh toán, mã hóa đơn là {newReceiptID}!\nVui lòng chọn hóa đơn mới để tiếp tục thanh toán!");
+                return;
+            }    
+
             string id = ((Button)sender).Tag.ToString();
             string newName = "";
             int newCost = 0;
@@ -253,7 +280,7 @@ namespace CoffeeStore.View
                 {
                     if (menuItemsDisplay[i].isOutOfStock)
                     {
-                        MessageBox.Show("Món này đã hết hàng!");
+                        //MessageBox.Show("Món này đã hết hàng!");
                         return;
                     }
                     newName = menuItemsDisplay[i].name;
@@ -380,6 +407,12 @@ namespace CoffeeStore.View
             {
                 ///
                 return;
+            }
+
+            if (newReceiptID != "")
+            {
+                MessageBox.Show($"Hóa đơn này đã thanh toán, mã hóa đơn là {newReceiptID}!");
+                return;
             }    
             BUS_Discount busDiscount = new BUS_Discount();
             DTO_Discount curDiscount = busDiscount.GetCurrentDiscount();
@@ -435,8 +468,7 @@ namespace CoffeeStore.View
         }
         private void btnCashier_Click(object sender, RoutedEventArgs e)
         {
-            PrintScreen.Children.Clear();
-                
+            PrintScreen.Children.Clear();  
         }
     }
 }
