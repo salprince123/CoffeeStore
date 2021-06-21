@@ -240,7 +240,8 @@ namespace CoffeeStore.Discount
         {
             tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
             if (find)
-                findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
+                findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy")
+                    );
             else
                 loadData();
         }
