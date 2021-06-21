@@ -26,6 +26,7 @@ namespace CoffeeStore.IncomeAndPayment
     {
         MainWindow _context;
         BUS_Payment bus;
+        bool find = false;
         public PaymentList()
         {
             InitializeComponent();
@@ -160,7 +161,11 @@ namespace CoffeeStore.IncomeAndPayment
 
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
-            DateTime timestart = new DateTime(01/01/2021);
+            findPayment();
+        }
+        void findPayment()
+        {
+            DateTime timestart = new DateTime(01 / 01 / 2021);
             if (dpDateStart.SelectedDate != null)
             {
                 timestart = (DateTime)dpDateStart.SelectedDate;
@@ -192,8 +197,24 @@ namespace CoffeeStore.IncomeAndPayment
                 else count++;
             }
             dgPayment.ItemsSource = list;
+            find = true;
+        }
+        private void btnPrevious_Click(object sender, RoutedEventArgs e)
+        {
+            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
+            if (!find)
+                loaddata();
+            else
+                findPayment();
         }
 
-      
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
+            if (!find)
+                loaddata();
+            else
+                findPayment();
+        }
     }
 }

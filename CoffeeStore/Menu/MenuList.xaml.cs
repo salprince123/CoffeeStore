@@ -25,6 +25,7 @@ namespace CoffeeStore.Menu
     {
         BUS_Beverage bus;
         MainWindow _context;
+        bool find = false;
         public MenuList()
         {
             InitializeComponent();
@@ -142,6 +143,11 @@ namespace CoffeeStore.Menu
 
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
+            findBeverage();
+        }
+        void findBeverage()
+        {
+            find = true;
             var list = new ObservableCollection<DTO_Beverage>();
             DataTable temp = null;
             if (cbBeverageType.SelectedItem != null)
@@ -150,29 +156,40 @@ namespace CoffeeStore.Menu
             }
             else
                 temp = bus.findBeverage("", tbName.Text);
+            int count = 1;
+            int rowNumber = Int32.Parse(tbNumPage.Text);
             foreach (DataRow row in temp.Rows)
             {
                 string name = row["BeverageName"].ToString();
                 string id = row["BeverageID"].ToString();
                 string type = row["BeverageTypeName"].ToString();
                 int price = Int32.Parse(row["Price"].ToString());
-                list.Add(new DTO_Beverage() { BeverageID = id, BeverageName = name, BeverageTypeID = type, Price = price });
-                Console.WriteLine("Find: " + name);
+                if (count >= (rowNumber - 1) * 20 + 1 && count <= rowNumber * 20)
+                {
+                    list.Add(new DTO_Beverage() { BeverageID = id, BeverageName = name, BeverageTypeID = type, Price = price });
+                    count++;
+                }
+                else count++;                
             }
             dgMenu.ItemsSource = list;
             dgMenu.Items.Refresh();
         }
-
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
             tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
-            loadData();
+            if (find)
+                findBeverage();
+            else
+                loadData();
         }
 
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
             tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
-            loadData();
+            if (find)
+                findBeverage();
+            else
+                loadData();
         }
     }
 }

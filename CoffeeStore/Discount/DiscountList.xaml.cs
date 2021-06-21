@@ -26,6 +26,7 @@ namespace CoffeeStore.Discount
     {
         BUS_Discount bus = new BUS_Discount();
         MainWindow _context;
+        bool find = false;
         class Discount : DTO_Discount
         {
             public String Status { get; set; }
@@ -84,6 +85,7 @@ namespace CoffeeStore.Discount
         }
         void findDiscount(string startdatefind, string enddatefind)
         {
+            find = true;
             var list = new ObservableCollection<Discount>();
             DataTable temp = bus.getAllDiscount();
             foreach (DataRow row in temp.Rows)
@@ -228,13 +230,19 @@ namespace CoffeeStore.Discount
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
             tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
-            loadData();
+            if (find)
+                findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
+            else
+                loadData();
         }
 
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
             tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
-            loadData();
+            if (find)
+                findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
+            else
+                loadData();
         }
     }
 }
