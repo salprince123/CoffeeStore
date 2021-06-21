@@ -173,6 +173,26 @@
                     <DataGrid.Columns>
                         <!--Food Column-->
                         <DataGridTextColumn Header="Món" Width="1.5*" Binding="{ Binding Path='name'}"/>
+                        <!--Minus button-->
+                        <DataGridTemplateColumn Header="      ">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button  Width="20" Height="20" Tag="{Binding Path='id'}" Click="btnMinus_Click">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Grid>
+                                                    <Ellipse Fill="#F27047"/>
+                                                    <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                        <materialDesign:PackIcon Kind="Minus" Foreground="White"/>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!--Amount Column-->
+                        <DataGridTextColumn Header="Số lượng" Binding="{ Binding Path='amount'}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
                         <!--Plus button-->
                         <DataGridTemplateColumn Header="      ">
                             <DataGridTemplateColumn.CellTemplate >
@@ -182,33 +202,13 @@
                                         <Button.Template>
                                             <ControlTemplate TargetType="{x:Type Button}">
                                                 <Grid>
-                                                    <Ellipse Fill="#FF7A00"/>
+                                                    <Ellipse Fill="#66A3FF"/>
                                                     <ContentPresenter Content="{TemplateBinding Content}" 
                                                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                 </Grid>
                                             </ControlTemplate>
                                         </Button.Template>
                                         <materialDesign:PackIcon Kind="Plus" Foreground="White"/>
-                                    </Button>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <!--Amount Column-->
-                        <DataGridTextColumn Header="Số lượng" Binding="{ Binding Path='amount'}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
-                        <!--Minus button-->
-                        <DataGridTemplateColumn Header="      ">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button  Width="20" Height="20" Tag="{Binding Path='id'}" Click="btnMinus_Click">
-                                        <Button.Template>
-                                            <ControlTemplate TargetType="{x:Type Button}">
-                                                <Grid>
-                                                    <Ellipse Fill="#FF3D00"/>
-                                                    <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Grid>
-                                            </ControlTemplate>
-                                        </Button.Template>
-                                        <materialDesign:PackIcon Kind="Minus" Foreground="White"/>
                                     </Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -345,7 +345,7 @@
             <!--Pay Button and Print Button here-->
             <Grid Grid.Row="2" Background="#FF7A00">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2.5*"/>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
