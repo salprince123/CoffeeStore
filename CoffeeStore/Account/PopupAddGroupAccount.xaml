@@ -83,7 +83,7 @@
             <DockPanel Grid.RowSpan="2" >
                 <TextBox IsReadOnly="True" DockPanel.Dock="Top" Text="Quyền chưa chọn" />
                 <DataGrid x:Name="dgUnselected"
-                          MaxHeight="150"
+                          Height="300"
                           HeadersVisibility="None" IsReadOnly="True"
                           SelectedItem="{Binding Path=AccessPermissionName, Mode=TwoWay}"
                           SelectionUnit="FullRow"
@@ -95,7 +95,7 @@
             <DockPanel Grid.Column="4">
                 <TextBox IsReadOnly="True" DockPanel.Dock="Top" Text="Quyền đã chọn" />
                 <DataGrid x:Name="dgSelected" 
-                          MaxHeight="150"
+                          Height="300"
                           HeadersVisibility="None" IsReadOnly="True"
                           SelectedItem="{Binding Path=AccessPermissionName, Mode=TwoWay}"
                           SelectionUnit="FullRow"

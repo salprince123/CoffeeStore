@@ -864,3 +864,5 @@ C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\View\Rec
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\View\ReceiptForm.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Report\ReportSale.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Report\ReportSale.baml
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Report\ReportSale.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Report\ReportSale.baml
