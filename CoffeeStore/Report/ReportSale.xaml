@@ -100,7 +100,7 @@
                     <!--Chart body here-->
                     <!--General chart here-->
                     <Grid Grid.Row="2" Grid.Column="1">
-                        <lvc:CartesianChart x:Name="saleChart" Series="{Binding SeriesCollection}" Grid.Row="1">
+                        <lvc:CartesianChart x:Name="saleChart" Series="{Binding SaleChart}" Grid.Row="1">
                             <lvc:CartesianChart.AxisX>
                                 <lvc:Axis Title="VNĐ" LabelFormatter="{Binding Formatter}" FontSize="15" Foreground="#6B6158"></lvc:Axis>
                             </lvc:CartesianChart.AxisX>

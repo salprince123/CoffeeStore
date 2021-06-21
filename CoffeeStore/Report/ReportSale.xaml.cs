@@ -30,7 +30,7 @@ namespace CoffeeStore.Report
         }
         private void LoadChart()
         {
-            SeriesCollection = new SeriesCollection
+            SaleChart = new SeriesCollection
             {
                 new RowSeries
                 {
@@ -44,7 +44,7 @@ namespace CoffeeStore.Report
             saleChart.Height = 10 * 100; //Number of labels * 100
         }
 
-        public SeriesCollection SeriesCollection { get; set; }
+        public SeriesCollection SaleChart { get; set; }
         public string[] Labels { get; set; }
         public Func<double, string> Formatter { get; set; }
     }
