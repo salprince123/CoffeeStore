@@ -5,19 +5,22 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:CoffeeStore.View"
-             mc:Ignorable="d" Width="Auto" Height="Auto">
+             mc:Ignorable="d" Width="Auto" Height="Auto" MaxWidth="500">
     <UserControl.Resources>
         <Style x:Key="ColumnElementStyle" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Right" />
         </Style>
+        <Style x:Key="ColumnElementStyle2" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
     </UserControl.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="200"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Grid.Row="0" Margin="30 15">
+        <StackPanel Orientation="Vertical" Grid.Row="0" Margin="15,15,15,0">
             <TextBlock Text="Tên cửa hàng" VerticalAlignment="Center" FontSize="15" FontWeight="Bold" Foreground="Gray"/>
             <TextBlock Text="Hóa đơn" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="Gray"/>
         </StackPanel>
@@ -25,7 +28,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <!--Bill info-->
             <Grid Grid.Row="0" HorizontalAlignment="Stretch">
@@ -51,27 +54,29 @@
                             x:Name="dgBill"
                             ItemsSource="{Binding }"
                             CanUserAddRows="False"
-                            SelectionUnit="Cell"
-                            SelectionMode="Extended" 
                             VerticalAlignment="Stretch" AutoGenerateColumns="False"
                             FrozenColumnCount="1" CanUserReorderColumns="False"
                             CanUserResizeColumns="False"
-                            IsReadOnly="True"
+                            IsReadOnly="True" FontSize="13"
                             VerticalContentAlignment="Stretch"
-                            HorizontalContentAlignment="Stretch" Height="Auto" Margin="0,20,0,0"
-                            ScrollViewer.CanContentScroll="True" 
-                            ScrollViewer.VerticalScrollBarVisibility="Auto"
-                            ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                            HorizontalContentAlignment="Stretch" Height="Auto" 
+                            HorizontalGridLinesBrush="White" BorderThickness="0"
+                            VerticalGridLinesBrush="White">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGrid}">
+                            <Setter Property="Background" Value="White"/>
+                        </Style>
+                    </DataGrid.Resources>
                     <DataGrid.Columns>
                         <!--Food Column-->
-                        <DataGridTextColumn Header="Món" Width="*" Binding="{ Binding Path='bevName'}"/>
+                        <DataGridTextColumn Header="Món"  Binding="{ Binding Path='bevName'}"/>
                         <!--Amount Column-->
-                        <DataGridTextColumn Header="Số lượng" Width="0.5*" Binding="{ Binding Path='amount'}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Số lượng" Binding="{ Binding Path='amount'}" ElementStyle="{StaticResource ColumnElementStyle2}"></DataGridTextColumn>
                         <!--Value Column-->
-                        <DataGridTextColumn Header="Đơn giá" Width="*"  ElementStyle="{StaticResource ColumnElementStyle}"
+                        <DataGridTextColumn Header="Đơn giá" ElementStyle="{StaticResource ColumnElementStyle}"
                                             Binding="{ Binding Path='unitprice', StringFormat=\{0:N0\} VNĐ}" />
                         <!--Total Column-->
-                        <DataGridTextColumn Header="Thành tiền" Width="*"  ElementStyle="{StaticResource ColumnElementStyle}"
+                        <DataGridTextColumn Header="Thành tiền"  ElementStyle="{StaticResource ColumnElementStyle}"
                                             Binding="{ Binding Path='price', StringFormat=\{0:N0\} VNĐ}" />
                     </DataGrid.Columns>
                 </DataGrid>
