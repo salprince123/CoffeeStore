@@ -209,8 +209,6 @@
                                 <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding Path='unit'}" IsReadOnly="True"
                                                     CellStyle="{StaticResource DataGrid_Content_Center}">
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="Tổng tiền" Binding="{Binding Path='totalCost', StringFormat=\{0:N0\} VNĐ}" 
-                                                    IsReadOnly="True" CellStyle="{StaticResource DataGrid_Content_CenterRightAlign}"></DataGridTextColumn>
 
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
