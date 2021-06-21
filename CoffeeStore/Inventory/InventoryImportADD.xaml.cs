@@ -110,14 +110,14 @@ namespace CoffeeStore.Inventory
             e.Row.Header = e.Row.GetIndex() + 1;
             e.Row.Height = 40;
         }
-        public bool containInList (String id)
+        public int findInList (String id)
         {
-            foreach (InventoryImportDetailObject obj in list)
+            for(int i=0; i < list.Count; i++)
             {
-                if (obj.id == id)
-                    return true ;
+                if (list[i].id == id)
+                    return i;
             }
-            return false;
+            return -1;
         }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -147,7 +147,7 @@ namespace CoffeeStore.Inventory
                 string name = row["MaterialName"].ToString();
                 string unit = row["Unit"].ToString();
                 string id = row["MaterialID"].ToString();
-                if(!containInList(id) && name != "")
+                if(findInList(id)== -1  && name != "")
                     list.Add(new InventoryImportDetailObject() { id=id, name=name, unit=unit });
             }
             
@@ -187,14 +187,12 @@ namespace CoffeeStore.Inventory
             InventoryImportDetailObject row = (InventoryImportDetailObject)dataGridMaterialImport.SelectedItem;
             if (row != null)
             {
-                /*try
+                try
                 {
-                    list.RemoveAt(row.number - 1);
-                    for (int i = 0; i < list.Count; i++)
-                        list[i].number= i+1;
-                    dataGridImport.Items.Refresh();
+                    list.RemoveAt(findInList(row.id));
+                    dataGridMaterialImport.Items.Refresh();
                 }
-                catch (Exception) { }*/
+                catch (Exception) { }
             }
         }
 
