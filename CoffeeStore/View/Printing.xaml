@@ -10,7 +10,7 @@
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition  Width="150"/>
-            <ColumnDefinition  Width="0.5*"/>
+            <ColumnDefinition  Width="0.45*"/>
             <ColumnDefinition  Width="0.5*"/>
         </Grid.ColumnDefinitions>
         <ScrollViewer x:Name="receiptGrid" Grid.Column="1" >

@@ -273,6 +273,9 @@
     <Compile Include="Report\ReportProfit.xaml.cs">
       <DependentUpon>ReportProfit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Report\ReportSale.xaml.cs">
+      <DependentUpon>ReportSale.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VatLieu.xaml.cs">
       <DependentUpon>VatLieu.xaml</DependentUpon>
     </Compile>
@@ -484,6 +487,10 @@
     <Page Include="Report\ReportProfit.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Report\ReportSale.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VatLieu.xaml">
       <SubType>Designer</SubType>
