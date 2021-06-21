@@ -38,18 +38,24 @@ namespace CoffeeStore.Inventory
         public PopupInventoryExportDETAIL()
         {
             InitializeComponent();
+            dataGridMaterialExport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
         }
         public PopupInventoryExportDETAIL(String id, String name, String date)
         {
             this.selectionID = id;
             this.ExportName = name;
             InitializeComponent();
-
+            dataGridMaterialExport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             tbDate.Text = date;
             tbEmployeeName.Text = name;
             tbExportID.Text = id;
             if (selectionID != "")
                 LoadData();
+        }
+        void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+            e.Row.Height = 40;
         }
         public void LoadData()
         {
@@ -65,7 +71,7 @@ namespace CoffeeStore.Inventory
                 string unit = row["Unit"].ToString();
                 list.Add(new InventoryExportDetailObject() { number = list.Count+1, amount = amount, name = name, description = descrip,unit=unit });
             }
-            this.dataGridImport.ItemsSource = list;
+            this.dataGridMaterialExport.ItemsSource = list;
             if (list.Count == 0) return;
             tbDescription.Text = list[0].description;
         }

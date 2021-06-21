@@ -115,7 +115,7 @@
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
                                                 <Grid Background="{TemplateBinding Background}">
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    <ContentPresenter Margin="13,0,13,0" VerticalAlignment="Center" />
                                                 </Grid>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -140,13 +140,31 @@
                                     </Style.Triggers>
                                 </Style>
 
-                                <Style x:Key="DataGrid_Content_CenterVerticalAlign"
-                                       TargetType="{x:Type DataGridCell}">
+                                <Style x:Key="DataGrid_Content_Center"
+                                           TargetType="{x:Type DataGridCell}">
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
                                                 <Grid Background="{TemplateBinding Background}">
-                                                    <ContentPresenter VerticalAlignment="Center" />
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="{x:Null}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                                <Style x:Key="DataGrid_Content_CenterRightAlign" TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <ContentPresenter Margin="13,0,13,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                                                 </Grid>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -169,29 +187,17 @@
                             </DataGrid.RowHeaderTemplate>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Path='Name'}"
-                                                    CellStyle="{StaticResource DataGrid_Content_CenterVerticalAlign}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold"
-                                               HorizontalContentAlignment="Center" Content="Tên nguyên vật liệu, thiết bị"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+                                <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" Binding="{Binding Path='Name'}">
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Binding="{Binding Path='Unit'}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Đơn vị tính"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+                                <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding Path='Unit'}"
+                                                    CellStyle="{StaticResource DataGrid_Content_Center}">
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Binding="{Binding Path='Amount'}">
-                                    <DataGridTextColumn.Header>
-                                        <Label FontWeight="SemiBold" 
-                                               HorizontalContentAlignment="Center" Content="Số lượng"
-                                               Style="{StaticResource DataGrid_Label_Style}"/>
-                                    </DataGridTextColumn.Header>
+
+                                <DataGridTextColumn Header="Số lượng" Binding="{Binding Path='Amount'}"
+                                                    CellStyle="{StaticResource DataGrid_Content_Center}">
                                 </DataGridTextColumn>
+                                
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>

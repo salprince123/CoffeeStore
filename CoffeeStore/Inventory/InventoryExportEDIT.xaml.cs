@@ -43,6 +43,7 @@ namespace CoffeeStore.Inventory
         public InventoryExportEDIT()
         {
             InitializeComponent();
+            dataGridMaterialExport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             if (selectionID != "")
                 LoadData();
         }
@@ -51,11 +52,17 @@ namespace CoffeeStore.Inventory
             this.ImportName = name;
             this.selectionID = id;
             InitializeComponent();
+            dataGridMaterialExport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             LoadData();
             this._context = mainWindow;
             tbEmployeeName.Text = name;
             tbDate.Text = date;
             tbExportID.Text = id;
+        }
+        void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+            e.Row.Height = 40;
         }
         public void LoadData()
         {
@@ -71,7 +78,7 @@ namespace CoffeeStore.Inventory
                 string materID = row["MaterialID"].ToString();
                 list.Add(new InventoryObject() {  amount = amount, name = name, description = descrip, unit = unit, id= materID });
             }
-            this.dataGridImport.ItemsSource = list;
+            this.dataGridMaterialExport.ItemsSource = list;
             if (list.Count == 0) return;
             tbDescription.Text = list[0].description;
         }
@@ -106,7 +113,7 @@ namespace CoffeeStore.Inventory
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            InventoryObject row = (InventoryObject)dataGridImport.SelectedItem;
+            InventoryObject row = (InventoryObject)dataGridMaterialExport.SelectedItem;
             if (row != null)
             {
                 /*try
@@ -160,8 +167,8 @@ namespace CoffeeStore.Inventory
                 if (!containInList(id))
                     list.Add(new InventoryObject() { id = id,  name = name, unit = unit });
             }
-            dataGridImport.ItemsSource = list;
-            dataGridImport.Items.Refresh();
+            dataGridMaterialExport.ItemsSource = list;
+            dataGridMaterialExport.Items.Refresh();
         }
     }
 }

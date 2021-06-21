@@ -6,12 +6,12 @@
              xmlns:local="clr-namespace:CoffeeStore.Inventory"
              xmlns:UserControls="clr-namespace:CoffeeStore.View"
              mc:Ignorable="d" 
-             Height="250" Width="540">
+             Height="Auto" Width="460">
     <StackPanel Background="White">
         <!--Title bar here-->
-        <Grid Grid.Row="0" Grid.ColumnSpan="3" Margin="0,-15,0,0" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <Grid Grid.Row="0" Grid.ColumnSpan="3" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <UserControls:TitleBar/>
-            <TextBlock Text="Thêm nguyên vật liệu" 
+            <TextBlock Text="Thêm nguyên vật liệu, thiết bị" 
                        FontFamily="Montserrat"
                        FontSize="20" 
                        FontWeight="Bold"
@@ -19,19 +19,19 @@
                        HorizontalAlignment="Center"
                        Foreground="#FFE297"/>
         </Grid>
-        <TextBlock Margin="60,10,60,0" Text="Tên vật liệu"/>
+        <TextBlock Margin="20,20,20,0" Text="Tên vật liệu"/>
         <TextBox  Name="tbName" Margin="0,5,0,0" BorderThickness="1"
-                 Height="40" Width="420" Padding="5"/>
+                 Height="40" Width="420" Padding="5" FontSize="15" VerticalContentAlignment="Center"/>
 
-        <TextBlock Margin="60,10,60,0" Text="Đơn vị tính"/>
+        <TextBlock Margin="20,20,20,0" Text="Đơn vị tính"/>
         <TextBox  Name="tbUnit" Margin="0,5,0,0" BorderThickness="1"
-                 Height="40" Width="420" Padding="5"/>
+                 Height="40" Width="420" Padding="5" FontSize="15" VerticalContentAlignment="Center"/>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Height="100"  Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="btSave" Height="40" Width="100"
-                    Content="LƯU" Margin="0,30,0,0" Background="#66A3FF" Click="btSave_Click"/>
+                    Content="LƯU" Background="#66A3FF" Click="btSave_Click"/>
             <Button x:Name="btExit" Height="40" Width="100"
-                    Content="HỦY" Margin="10,30,0,0" Background="#F27047" Click="btExit_Click"/>
+                    Content="HỦY" Margin="10,0,0,0" Background="#F27047" Click="btExit_Click"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

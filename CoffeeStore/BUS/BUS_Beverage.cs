@@ -56,6 +56,11 @@ namespace CoffeeStore.BUS
         public bool ChangeIsOutOfStockValue(string id, bool IsOutOfStock)
         {
             return dalBeverage.ChangeIsOutOfStockValue(id, IsOutOfStock);
-        }    
+        }
+
+        public DataTable GetBeverageOrderBySellAmount(DateTime startDate, DateTime endDate)
+        {
+            return dalBeverage.GetBeverageOrderBySellAmount(startDate, endDate);
+        }
     }
 }

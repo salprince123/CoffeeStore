@@ -51,7 +51,7 @@ namespace CoffeeStore.Report
                 new RowSeries
                 {
                     Title = "2015",
-                    Values = new ChartValues<double> { 10, 50, 39,10, 50, 39,10, 50, 39 },
+                    Values = new ChartValues<double> { 10, 50, 39, 10, 50, 39, 10, 50, 39 },
                     Fill = Brushes.Orange
                 }
             };
