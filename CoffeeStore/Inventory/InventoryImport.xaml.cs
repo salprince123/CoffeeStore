@@ -69,6 +69,7 @@ namespace CoffeeStore.Inventory
             }
             this.dataGridImport.Items.Refresh();
             this.dataGridImport.ItemsSource = mainList;
+
         }
         public void findImport()
         {

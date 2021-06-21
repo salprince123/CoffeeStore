@@ -70,6 +70,7 @@ namespace CoffeeStore.Inventory
                 list.Add(new InventoryImportDetailObject() { amount = amount, name = name, unit = unit, totalCost = tongtien.ToString(), unitPrice = unitprice });
             }
             this.dataGridMaterialImport.ItemsSource = list;
+            this.tbTotalImportCost.Text = import.TotalCost(selectionID).ToString(); 
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
