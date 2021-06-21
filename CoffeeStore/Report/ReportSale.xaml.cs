@@ -41,7 +41,7 @@ namespace CoffeeStore.Report
             };
             Labels = new[] { "Món 1", "Món 2", "Món 3", "Món 4", "Món 5", "Món 6", "Món 7", "Món 8", "Món 9", "Món 10" };
             Formatter = value => value.ToString("N");
-            saleChart.Height = 10 * 100; //Number of labels * 100
+            saleChart.Height = (Labels.Length + 1) * 100; //Number of labels * 100
         }
 
         public SeriesCollection SaleChart { get; set; }
