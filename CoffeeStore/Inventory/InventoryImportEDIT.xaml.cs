@@ -42,6 +42,7 @@ namespace CoffeeStore.Inventory
         public InventoryImportEDIT()
         {
             InitializeComponent();
+            dataGridMaterialImport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             if (selectionID != "")
                 LoadData();
         }
@@ -50,12 +51,18 @@ namespace CoffeeStore.Inventory
             this.selectionID = id;
             this.ImportName = importname;
             InitializeComponent();
+            dataGridMaterialImport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             if (selectionID != "")
                 LoadData();
             this._context = mainWindow;
             tbEmployeeName.Text = importname;
             tbDate.Text = importdate;
             tbImportID.Text = id;
+        }
+        void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+            e.Row.Height = 40;
         }
         public void LoadData()
         {
@@ -72,7 +79,7 @@ namespace CoffeeStore.Inventory
                 int tongtien = int.Parse(amount) * int.Parse(unitprice);
                 list.Add(new InventoryImportDetailObject() { id= id, amount = amount, name = name, unit = unit, totalCost = tongtien.ToString(), unitPrice = unitprice });
             }
-            this.dataGridImport.ItemsSource = list;
+            this.dataGridMaterialImport.ItemsSource = list;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -116,13 +123,13 @@ namespace CoffeeStore.Inventory
                 string id = row["MaterialID"].ToString();
                 list.Add(new InventoryImportDetailObject() { id = id,  name = name, unit = unit });
             }
-            dataGridImport.ItemsSource = list;
-            dataGridImport.Items.Refresh();
+            dataGridMaterialImport.ItemsSource = list;
+            dataGridMaterialImport.Items.Refresh();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            InventoryImportDetailObject row = (InventoryImportDetailObject)dataGridImport.SelectedItem;
+            InventoryImportDetailObject row = (InventoryImportDetailObject)dataGridMaterialImport.SelectedItem;
             if (row != null)
             {
                 /*try
