@@ -244,6 +244,12 @@ namespace CoffeeStore.View
 
         private void btnMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            if (newReceiptID != "")
+            {
+                MessageBox.Show($"Hóa đơn này đã thanh toán, mã hóa đơn là {newReceiptID}!\nVui lòng chọn hóa đơn mới để tiếp tục thanh toán!");
+                return;
+            }    
+
             string id = ((Button)sender).Tag.ToString();
             string newName = "";
             int newCost = 0;
