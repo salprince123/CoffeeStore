@@ -111,7 +111,7 @@ namespace CoffeeStore.IncomeAndPayment
         {
             DateTime? datepicker = dpDateStart.SelectedDate;
             if (datepicker.ToString() == "")
-                start = DateTime.Today;
+                start = new DateTime(2021, 1, 1, 0, 0, 0);
             else
                 start = datepicker.Value;
 
@@ -268,6 +268,42 @@ namespace CoffeeStore.IncomeAndPayment
             }
             if (currentPage == (int)lblMaxPage.Content)
                 btnPageNext.IsEnabled = false;
+        }
+
+        private void tbFind_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                DateTime? datepicker = dpDateStart.SelectedDate;
+                if (datepicker.ToString() == "")
+                    start = new DateTime(2021, 1, 1, 0, 0, 0);
+                else
+                    start = datepicker.Value;
+
+                datepicker = dpDateEnd.SelectedDate;
+                if (datepicker.ToString() == "")
+                    end = DateTime.Today;
+                else
+                    end = datepicker.Value;
+
+                keyword = tbFind.Text;
+
+                BUS_Receipt busReceipt = new BUS_Receipt();
+                int empCount = busReceipt.CountReceipt(start, end, keyword);
+                if (empCount % limitRow == 0)
+                    lblMaxPage.Content = empCount / limitRow;
+                else
+                    lblMaxPage.Content = empCount / limitRow + 1;
+                if (currentPage == (int)lblMaxPage.Content)
+                    btnPageNext.IsEnabled = false;
+                else
+                    btnPageNext.IsEnabled = true;
+
+                currentPage = 1;
+                tbNumPage.Text = currentPage.ToString();
+
+                ReloadDGReceipt();
+            }
         }
     }
 }

@@ -70,7 +70,8 @@
                 </Border>
                 <TextBox x:Name="tbFind" Grid.Column="4" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center" FontSize="15"
-                         materialDesign:HintAssist.Hint="Mã hóa đơn" Padding="5"/>
+                         materialDesign:HintAssist.Hint="Mã hóa đơn" Padding="5"
+                         KeyDown="tbFind_KeyDown"/>
                 <Button x:Name="btnFind" Grid.Column="6" Height="40"
                     Background="#6B6158" Foreground="#FFE297" 
                     BorderBrush="#FFE297" BorderThickness="1"
