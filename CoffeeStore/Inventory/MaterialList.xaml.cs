@@ -99,7 +99,11 @@ namespace CoffeeStore.Inventory
                 lblMaxPage.Content = list.Count / 10;
             else lblMaxPage.Content = list.Count / 10 +1;
             List<InventoryObject> displayList = new List<InventoryObject>();
-            displayList = list.GetRange(0, 10);
+            if(list.Count < 10 )
+            {
+                displayList = list.GetRange(0, list.Count);
+            }
+            else displayList = list.GetRange(0, 10);
             this.dataGridMaterial.ItemsSource = displayList;
         }
 
