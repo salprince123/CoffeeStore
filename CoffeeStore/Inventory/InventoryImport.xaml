@@ -235,9 +235,9 @@
                         </DataGrid>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2">
-                            <Button Width="40" Height="Auto" 
+                            <Button Width="40" Height="Auto" Name="btBack"
                                     Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center" Click="btBack_Click">
                                 <materialDesign:PackIcon Kind="ChevronLeft" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
                             </Button>
                             <TextBox Name="tbNumPage" Width="35" Height="30"
@@ -249,9 +249,9 @@
                             <Label Name="lblMaxPage" Width="35" 
                                    Content="10" FontWeight="SemiBold" FontSize="14"
                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Button Width="40" Height="Auto" 
+                            <Button Width="40" Height="Auto" Name="btNext"
                                     Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center" Click="btNext_Click">
                                 <materialDesign:PackIcon Kind="ChevronRight" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
                             </Button>
                         </StackPanel>

@@ -26,7 +26,7 @@ namespace CoffeeStore.Inventory
     public partial class InventoryImportADD : UserControl
     {
         public String selectionID = "";
-        public List<String> MaterName { get; set; }
+        public List<String> MaterName = new List<String>();
         public List<InventoryImportDetailObject> list = new List<InventoryImportDetailObject>();
         MainWindow _context;
         
@@ -102,6 +102,7 @@ namespace CoffeeStore.Inventory
             tbDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
             tbEmployeeName.Text = id;
             this._context = mainWindow;
+            this.dataGridMaterialImport.ItemsSource= new List<InventoryImportDetailObject>();
         }
 
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
@@ -135,10 +136,9 @@ namespace CoffeeStore.Inventory
                 Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
             };
             window.ShowDialog();
-
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
-            
+
             BUS_Material mater = new BUS_Material();
             DataTable temp = mater.selectByName( this.MaterName);
             if (temp == null) return;
@@ -147,9 +147,10 @@ namespace CoffeeStore.Inventory
                 string name = row["MaterialName"].ToString();
                 string unit = row["Unit"].ToString();
                 string id = row["MaterialID"].ToString();
-                if(!containInList(id))
+                if(!containInList(id) && name != "")
                     list.Add(new InventoryImportDetailObject() { id=id, name=name, unit=unit });
             }
+            
             dataGridMaterialImport.ItemsSource = list;
             dataGridMaterialImport.Items.Refresh();
         }
