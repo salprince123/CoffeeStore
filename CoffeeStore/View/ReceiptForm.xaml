@@ -31,16 +31,16 @@
             <Grid Grid.Row="0" HorizontalAlignment="Stretch">
                 <StackPanel Margin="10 0">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Người lập" FontSize="15" Margin="5"/>
-                        <TextBlock Text="" FontSize="15" Margin="5" FontWeight="DemiBold"/>
+                        <TextBlock Text="Người lập:" FontSize="15" Margin="5"/>
+                        <TextBlock x:Name="tblockCreater" Text="" FontSize="15" Margin="5" FontWeight="DemiBold"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Ngày lập:" FontSize="15" Margin="5"/>
-                        <TextBlock Text="" FontSize="15" Margin="5" FontWeight="DemiBold"/>
+                        <TextBlock Text="Thời gian:" FontSize="15" Margin="5"/>
+                        <TextBlock x:Name="tblockTime" Text="" FontSize="15" Margin="5" FontWeight="DemiBold"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Mã hóa đơn:" FontSize="15" Margin="5"/>
-                        <TextBlock Text="" FontSize="15" Margin="5" FontWeight="DemiBold"/>
+                        <TextBlock x:Name="tblockReceiptID" Text="" FontSize="15" Margin="5" FontWeight="DemiBold"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -64,15 +64,15 @@
                             ScrollViewer.HorizontalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <!--Food Column-->
-                        <DataGridTextColumn Header="Món" Width="*" Binding="{ Binding Path='name'}"/>
+                        <DataGridTextColumn Header="Món" Width="*" Binding="{ Binding Path='bevName'}"/>
                         <!--Amount Column-->
                         <DataGridTextColumn Header="Số lượng" Width="0.5*" Binding="{ Binding Path='amount'}" ElementStyle="{StaticResource ColumnElementStyle}"></DataGridTextColumn>
                         <!--Value Column-->
                         <DataGridTextColumn Header="Đơn giá" Width="*"  ElementStyle="{StaticResource ColumnElementStyle}"
-                                            Binding="{ Binding Path='cost', StringFormat=\{0:N0\} VNĐ}" />
+                                            Binding="{ Binding Path='unitprice', StringFormat=\{0:N0\} VNĐ}" />
                         <!--Total Column-->
                         <DataGridTextColumn Header="Thành tiền" Width="*"  ElementStyle="{StaticResource ColumnElementStyle}"
-                                            Binding="{ Binding Path='cost', StringFormat=\{0:N0\} VNĐ}" />
+                                            Binding="{ Binding Path='price', StringFormat=\{0:N0\} VNĐ}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -86,8 +86,8 @@
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Thành tiền" Grid.Column="0" FontSize="15" Margin="5"/>
-                <TextBlock Text="100.000 VNĐ" Grid.Column="2" FontSize="20" Margin="5" HorizontalAlignment="Right" FontWeight="Bold"/>
+                <TextBlock Text="Tổng" Grid.Column="0" FontSize="15" Margin="5"/>
+                <TextBlock x:Name="tblockTotal" Text="100.000 VNĐ" Grid.Column="2" FontSize="20" Margin="5" HorizontalAlignment="Right" FontWeight="Bold"/>
             </Grid>
             <Grid Margin="10 0">
                 <Grid.ColumnDefinitions>
@@ -96,7 +96,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Khuyến mãi" FontSize="15" Margin="5" Grid.Column="0"/>
-                <TextBlock Text="10.000 VNĐ" Grid.Column="2" FontSize="20" Margin="5" HorizontalAlignment="Right" FontWeight="Bold"/>
+                <TextBlock x:Name="tblockDisAmount" Text="10.000 VNĐ" Grid.Column="2" FontSize="20" Margin="5" HorizontalAlignment="Right" FontWeight="Bold"/>
             </Grid>
             <Rectangle Fill="Black" Height="1" Margin="5" Opacity="0.5"/>
             <Grid Margin="10 0">
@@ -105,8 +105,8 @@
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Tổng" Grid.Column="0" FontSize="15" Margin="5"/>
-                <TextBlock Text="90.000 VNĐ" Grid.Column="2" FontSize="20" Margin="5" HorizontalAlignment="Right" FontWeight="Bold"/>
+                <TextBlock Text="Thành tiền:" Grid.Column="0" FontSize="15" Margin="5"/>
+                <TextBlock x:Name="tblockToTalPay" Text="90.000 VNĐ" Grid.Column="2" FontSize="20" Margin="5" HorizontalAlignment="Right" FontWeight="Bold"/>
             </Grid>
             <Grid Margin="0 20" HorizontalAlignment="Stretch">
                 <TextBlock Text="Cảm ơn quý khách!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Margin="5"/>

@@ -26,12 +26,14 @@ namespace CoffeeStore.IncomeAndPayment
         {
             public string bevName { get; set; }
             public int amount { get; set; }
+            public int unitprice { get; set; }
             public int price { get; set; }
 
-            public DetailItem(string newBevName, int newAmount, int newPrice)
+            public DetailItem(string newBevName, int newAmount, int newUnitPrice, int newPrice)
             {
                 bevName = newBevName;
                 amount = newAmount;
+                unitprice = newUnitPrice;
                 price = newPrice;
             }    
         }    
@@ -58,8 +60,9 @@ namespace CoffeeStore.IncomeAndPayment
                 string bevName = row["BeverageName"].ToString();
                 int amount = Int32.Parse(row["Amount"].ToString());
                 int price = Int32.Parse(row["Total"].ToString());
+                int unitprice = Int32.Parse(row["UnitPrice"].ToString());
                 total += price;
-                detailItems.Add(new DetailItem(bevName, amount, price));
+                detailItems.Add(new DetailItem(bevName, amount, unitprice, price));
             }
 
             dgReceiptDetail.ItemsSource = detailItems;

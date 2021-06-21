@@ -16,7 +16,7 @@ namespace CoffeeStore.DAL
             DataTable receipts = new DataTable();
             try
             {
-                string sql = $"select Receipt.ReceiptID, Time, Receipt.EmployeeID, Employees.EmployeeName, Discount.DiscountID, sum(Price * Amount * (1 - DiscountValue/100)) as Total from Receipt join Employees on Receipt.EmployeeID = Employees.EmployeeID join Discount on Receipt.DiscountID = Discount.DiscountID join ReceiptDetail on Receipt.ReceiptID = ReceiptDetail.ReceiptID group by Receipt.ReceiptID";
+                string sql = $"select Receipt.ReceiptID, Time, Receipt.EmployeeID, Employees.EmployeeName, Discount.DiscountID, DiscountValue, sum(Price * Amount) as Total from Receipt join Employees on Receipt.EmployeeID = Employees.EmployeeID left join Discount on Receipt.DiscountID = Discount.DiscountID join ReceiptDetail on Receipt.ReceiptID = ReceiptDetail.ReceiptID group by Receipt.ReceiptID";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 da.Fill(receipts);
             }
@@ -43,6 +43,8 @@ namespace CoffeeStore.DAL
 
             //insert SQLite 
             string sql = $"INSERT INTO Receipt (ReceiptID, Time, EmployeeID, DiscountID) VALUES ('{newReceipt.ReceiptID}', DateTime('now'), '{newReceipt.EmployeeID}', '{newReceipt.DiscountID}')";
+            if (newReceipt.DiscountID == "")
+                sql = $"INSERT INTO Receipt (ReceiptID, Time, EmployeeID) VALUES ('{newReceipt.ReceiptID}', DateTime('now'), '{newReceipt.EmployeeID}')";
             SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
             try
             {

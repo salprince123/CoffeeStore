@@ -62,7 +62,16 @@ namespace CoffeeStore.IncomeAndPayment
                 string id = row["ReceiptID"].ToString();
                 DateTime time = TimeZone.CurrentTimeZone.ToLocalTime((DateTime)row["Time"]);
                 string creater = row["EmployeeName"].ToString();
-                int total = (int)float.Parse(row["Total"].ToString());
+                float dis = 0;
+                try
+                {
+                    dis = float.Parse(row["DiscountValue"].ToString());
+                }
+                catch
+                {
+
+                }
+                int total = (int)(Int32.Parse(row["Total"].ToString()) * (1 - dis/100));
                 receiptItems.Add(new ReceiptItem(id, time, creater, total));
             }
             dgReceipt.ItemsSource = receiptItems;

@@ -25,7 +25,7 @@ namespace CoffeeStore.View
     public partial class Cashier : UserControl
     {
         MainWindow _context;
-
+        string newReceiptID;
         public class MenuBeverage
         {
             public string id { get; set; }
@@ -111,10 +111,22 @@ namespace CoffeeStore.View
         public void LoadData()
         {
             tblockUsername.Text = user;
-
+            newReceiptID = "";
             menuItems = new List<MenuBeverage>();
             menuItemsDisplay = new List<MenuBeverage>();
             billItems = new List<BillItem>();
+
+            total = 0;
+            received = 0;
+            discount = 0;
+
+            tblockChange.Text = "0 VNĐ";
+            tblockDiscount.Text = "0";
+            tblockDiscountAmount.Text = "0 VNĐ";
+            tblockPayAmount.Text = "0 VNĐ";
+            tblockTotal.Text = "0 VNĐ";
+            tboxAmountReceived.Text = "0";
+
             BUS_Beverage busBev = new BUS_Beverage();
             DataTable BevsData = busBev.getAllBeverage();
             foreach (DataRow row in BevsData.Rows)
@@ -377,14 +389,14 @@ namespace CoffeeStore.View
             DTO_Receipt newReceipt = new DTO_Receipt("", user, disID);
 
             BUS_Receipt busReceipt = new BUS_Receipt();
-            string newID = busReceipt.CreateReceipt(newReceipt);
-            if (newID != "")
+            newReceiptID = busReceipt.CreateReceipt(newReceipt);
+            if (newReceiptID != "")
             {
                 BUS_ReceiptDetail busReceiptDetail = new BUS_ReceiptDetail();
                 bool result = true;
                 foreach(BillItem item in billItems)
                 {
-                    DTO_ReceiptDetail newReceiptDetail = new DTO_ReceiptDetail(newID, item.id, item.amount, item.unitCost);
+                    DTO_ReceiptDetail newReceiptDetail = new DTO_ReceiptDetail(newReceiptID, item.id, item.amount, item.unitCost);
                     result = result & busReceiptDetail.CreateReceiptDetail(newReceiptDetail);
                 }
                 if (result)
@@ -404,17 +416,27 @@ namespace CoffeeStore.View
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
-            PrintScreen.Children.Add(printing);
+            if (newReceiptID != "")
+            {
+                printing.LoadData(newReceiptID);
+
+                PrintScreen.Children.Add(printing);
+            }
+            else
+                MessageBox.Show("Vui lòng ấn thanh toán trước khi in hóa đơn!");
         }
 
         private void btnNewReceipt_Click(object sender, RoutedEventArgs e)
         {
             billItems.Clear();
             dgBill.Items.Refresh();
+            newReceiptID = "";
+            LoadData();
         }
         private void btnCashier_Click(object sender, RoutedEventArgs e)
         {
             PrintScreen.Children.Clear();
+                
         }
     }
 }

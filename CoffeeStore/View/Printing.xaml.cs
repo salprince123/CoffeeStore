@@ -25,9 +25,18 @@ namespace CoffeeStore.View
             InitializeComponent();
         }
 
+        public void LoadData(string id)
+        {
+            ReceiptForm.LoadData(id);
+        }    
+
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
-
+            PrintDialog myPrintDialog = new PrintDialog();
+            if (myPrintDialog.ShowDialog() == true)
+            {
+                myPrintDialog.PrintVisual(ReceiptForm, "Hóa đơn");
+            }
         }
     }
 }
