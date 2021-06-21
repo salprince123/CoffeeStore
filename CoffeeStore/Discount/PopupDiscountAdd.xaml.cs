@@ -47,28 +47,28 @@ namespace CoffeeStore.Discount
                 if (DateTime.Compare((DateTime)dpEndDate.SelectedDate, DateTime.Now.Date) < 0)
                 {
                     MessageBox.Show("Ngày kết thúc phải lớn hơn hoặc bằng hiện tại.");
-                }   
+                }
                 else
                     if (DateTime.Compare((DateTime)dpEndDate.SelectedDate, DateTime.Now.Date) < 0)
+                {
+                    MessageBox.Show("Ngày bắt đầu phải lớn hơn hoặc bằng hiện tại.");
+                }
+                else
+                {
+                    DTO_Discount discount = new DTO_Discount();
+                    discount.DiscountID = busDiscount.ID();
+                    discount.DiscountName = tbName.Text;
+                    discount.DiscountValue = float.Parse(tbPrice.Text);
+                    discount.StartDate = dpStartDate.SelectedDate.Value.ToString("dd/MM/yyyy");
+                    discount.EndDate = dpEndDate.SelectedDate.Value.ToString("dd/MM/yyyy");
+                    if (busDiscount.createNewDiscount(discount) > 0)
                     {
-                        MessageBox.Show("Ngày bắt đầu phải lớn hơn hoặc bằng hiện tại.");
-                    }    
+                        MessageBox.Show("Thành công");
+                        Window.GetWindow(this).Close();
+                    }
                     else
-                    {
-                        DTO_Discount discount = new DTO_Discount();
-                        discount.DiscountID = busDiscount.ID();
-                        discount.DiscountName = tbName.Text;
-                        discount.DiscountValue = float.Parse(tbPrice.Text);
-                        discount.StartDate = dpStartDate.SelectedDate.Value.ToString("dd/MM/yyyy");
-                        discount.EndDate = dpEndDate.SelectedDate.Value.ToString("dd/MM/yyyy");
-                        if (busDiscount.createNewDiscount(discount) > 0)
-                        {
-                            MessageBox.Show("Thành công");
-                            Window.GetWindow(this).Close();
-                        }
-                        else
-                            MessageBox.Show("Thất bại" + busDiscount.ID());
-                    }                    
+                        MessageBox.Show("Thất bại" + busDiscount.ID());
+                }
                 Window.GetWindow(this).Close();
             }
             else

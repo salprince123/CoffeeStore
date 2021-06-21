@@ -36,7 +36,7 @@ namespace CoffeeStore.DAL
                     dto.DiscountValue = float.Parse(reader["DiscountValue"].ToString());
                 }
             }
-            catch (Exception )
+            catch (Exception e)
             {
 
             }
@@ -98,7 +98,7 @@ namespace CoffeeStore.DAL
                 sqlite.Connection.Open();
                 rs = sqlite.ExecuteNonQuery();
             }
-            catch (Exception )
+            catch (Exception ex)
             {
                 Console.WriteLine(sql);
             }
