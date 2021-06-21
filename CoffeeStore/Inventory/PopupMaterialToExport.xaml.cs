@@ -40,8 +40,14 @@ namespace CoffeeStore.Inventory
         public PopupMaterialToExport(UserControl parent)
         {
             InitializeComponent();
+            dataGridMaterialExport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             LoadData();
             this.parent = parent;
+        }
+        void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+            e.Row.Height = 40;
         }
         public void LoadData()
         {
@@ -86,7 +92,7 @@ namespace CoffeeStore.Inventory
                 if (amount == 0) continue;
                 list.Add(new MAterialObject() {  name = name.Key, amount= amount.ToString(), unit= name.Value });
             }
-            this.dataGrid.ItemsSource = list;
+            this.dataGridMaterialExport.ItemsSource = list;
         }
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -95,7 +101,7 @@ namespace CoffeeStore.Inventory
 
         private void cbCheck_Checked(object sender, RoutedEventArgs e)
         {
-            MAterialObject row = (MAterialObject)dataGrid.SelectedItem;
+            MAterialObject row = (MAterialObject)dataGridMaterialExport.SelectedItem;
             temp.Add(row.name);
         }
 
