@@ -35,7 +35,7 @@
                 <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="2">
+            <StackPanel Grid.Column="2" VerticalAlignment="Center">
                 <!--Move permission button-->
                 <Button   
                     x:Name="btnSelectedToRight"
@@ -82,7 +82,7 @@
             <DockPanel Grid.RowSpan="2" >
                 <TextBox IsReadOnly="True" DockPanel.Dock="Top" Text="Quyền chưa chọn" />
                 <DataGrid x:Name="dgUnselected" HeadersVisibility="None" IsReadOnly="True" 
-                          MaxHeight="150"
+                          Height="275"
                           SelectedItem="{Binding Path=AccessPermissionName, Mode=TwoWay}"
                           SelectionUnit="FullRow"
                           SelectedCellsChanged="dgUnselected_SelectedCellsChanged"
@@ -91,7 +91,7 @@
             <DockPanel  Grid.Column="4">
                 <TextBox IsReadOnly="True" DockPanel.Dock="Top" Text="Quyền đã chọn" />
                 <DataGrid x:Name="dgSelected" HeadersVisibility="None" IsReadOnly="True" 
-                          MaxHeight="150"
+                          Height="275"
                           SelectedItem="{Binding Path=AccessPermissionName, Mode=TwoWay}"
                           SelectionUnit="FullRow"
                           SelectedCellsChanged="dgSelected_SelectedCellsChanged"
