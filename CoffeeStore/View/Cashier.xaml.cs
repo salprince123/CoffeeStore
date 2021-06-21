@@ -280,7 +280,7 @@ namespace CoffeeStore.View
                 {
                     if (menuItemsDisplay[i].isOutOfStock)
                     {
-                        MessageBox.Show("Món này đã hết hàng!");
+                        //MessageBox.Show("Món này đã hết hàng!");
                         return;
                     }
                     newName = menuItemsDisplay[i].name;
@@ -468,8 +468,7 @@ namespace CoffeeStore.View
         }
         private void btnCashier_Click(object sender, RoutedEventArgs e)
         {
-            PrintScreen.Children.Clear();
-                
+            PrintScreen.Children.Clear();  
         }
     }
 }
