@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CoffeeStore.Inventory" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             MinWidth="650" MaxHeight="600">
+             MinWidth="650" MaxHeight="713">
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="90"></RowDefinition>
@@ -106,7 +106,8 @@
                         <DataGrid x:Name="dataGridMaterial" Grid.Column="1" Grid.Row="1" 
                                   IsReadOnly="True" BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False"
+                                  VerticalScrollBarVisibility="Disabled"                                  
+                                  AutoGenerateColumns="False"
                                   HeadersVisibility="All">
                             <DataGrid.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}">

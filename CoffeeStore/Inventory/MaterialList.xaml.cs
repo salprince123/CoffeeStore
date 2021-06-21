@@ -35,6 +35,7 @@ namespace CoffeeStore.Inventory
             e.Row.Header = e.Row.GetIndex() + 1;
             e.Row.Height = 40;
         }
+        public List<InventoryObject> list = new List<InventoryObject>();
         public String selectionName = "";
         public class InventoryObject
         {
@@ -47,9 +48,10 @@ namespace CoffeeStore.Inventory
         }
         public void LoadData()
         {
+            list.Clear();
             Dictionary<String, int> mapNameAmount = new Dictionary<string, int>();
             Dictionary<String, String> mapNameUnit = new Dictionary<string, string>();
-            var list = new ObservableCollection<InventoryObject>();
+            
             //mapping name with unit & import amount
             //With import amount
             BUS_InventoryImportDetail import = new BUS_InventoryImportDetail();
@@ -93,8 +95,12 @@ namespace CoffeeStore.Inventory
                 list.Add(new InventoryObject() { Name = name.Key, Amount = amount.ToString(), Unit = name.Value });
                 number0++;
             }
-            
-            this.dataGridMaterial.ItemsSource = list;
+            if(list.Count %10 ==0 )
+                lblMaxPage.Content = list.Count / 10;
+            else lblMaxPage.Content = list.Count / 10 +1;
+            List<InventoryObject> displayList = new List<InventoryObject>();
+            displayList = list.GetRange(0, 10);
+            this.dataGridMaterial.ItemsSource = displayList;
         }
 
         public void findMaterial(String keyword)
