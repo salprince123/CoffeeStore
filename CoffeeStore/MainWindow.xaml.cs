@@ -50,7 +50,7 @@ namespace CoffeeStore
             var item5 = new ItemMenu("Thu chi", menuRevenue, PackIconKind.ScaleBalance);
 
             var menuReport = new List<SubItem>();
-            menuReport.Add(new SubItem("Mặt hàng bán chạy", "AP008"));
+            menuReport.Add(new SubItem("Mặt hàng bán chạy", "AP008", new Report.ReportSale()));
             menuReport.Add(new SubItem("Lợi nhuận", "AP008", new Report.ReportProfit()));
             var item6 = new ItemMenu("Báo cáo thống kê", menuReport, PackIconKind.ChartLineVariant);
 
@@ -147,7 +147,7 @@ namespace CoffeeStore
         public void SwitchBackHome()
         {
             gridLogin.Children.Clear();
-
+            StackPanelMain.Children.Clear();
         }
 
         internal void SwitchToDiscount()

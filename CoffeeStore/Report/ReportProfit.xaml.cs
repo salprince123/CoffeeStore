@@ -25,58 +25,47 @@ namespace CoffeeStore.Report
         public ReportProfit()
         {
             InitializeComponent();
-            LoadChart();
-            //SeriesCollection = new SeriesCollection
-            //{
-            //    new RowSeries
-            //    {
-            //        Title = "2015",
-            //        Values = new ChartValues<double> { 10, 50, 39, 50 }
-            //    }
-            //};
-
-            ////adding series will update and animate the chart automatically
-            //SeriesCollection.Add(new RowSeries
-            //{
-            //    Title = "2016",
-            //    Values = new ChartValues<double> { 11, 56, 42 }
-            //});
-
-            ////also adding values updates and animates the chart automatically
-            //SeriesCollection[1].Values.Add(48d);
-
-            //Labels = new[] { "Maria", "Susan", "Charles", "Frida" };
-            //Formatter = value => value.ToString("N");
-
-            //DataContext = this;
+            LoadGeneralChart();
+            LoadProfitChart();
+            DataContext = this;
         }
-        private void LoadChart()
+        private void LoadGeneralChart()
         {
-            //SeriesCollection = new SeriesCollection
-            //{
-            //    new RowSeries
-            //    {
-            //        Title = "2015",
-            //        Values = new ChartValues<double> { 10, 50, 39, 50 }
-            //    }
-            //};
-
-            //SeriesCollection.Add(new RowSeries
-            //{
-            //    Title = "2016",
-            //    Values = new ChartValues<double> { 11, 56, 42 }
-            //});
-            //SeriesCollection[1].Values.Add(48d);
-
-            //Labels = new[] { "Maria", "Susan", "Charles", "Frida" };
-            //Formatter = value => value.ToString("N");
-
-            //DataContext = this;
+            GeneralChart = new SeriesCollection
+            {
+                new RowSeries
+                {
+                    Title = "2015",
+                    Values = new ChartValues<double> { 10, 50, 39 },
+                    Fill = Brushes.Orange
+                }
+            };
+            LabelGeneralCharts = new[] { "Chi phí", "Doanh thu", "Lợi nhuận" };
+            FormatterGeneralCharts = value => value.ToString("N");
         }
 
-        public SeriesCollection SeriesCollection { get; set; }
-        public string[] Labels { get; set; }
-        public Func<double, string> Formatter { get; set; }
+        private void LoadProfitChart()
+        {
+            ProfitChart = new SeriesCollection
+            {
+                new RowSeries
+                {
+                    Title = "2015",
+                    Values = new ChartValues<double> { 10, 50, 39,10, 50, 39,10, 50, 39 },
+                    Fill = Brushes.Orange
+                }
+            };
+            LabelProfitChart = new[] { "Món 1", "Món 2", "Món 3", "Món 1", "Món 2", "Món 3", "Món 1", "Món 2", "Món 3" };
+            FormatterProfitChart = value => value.ToString("N");
+            profitChart.Height = (LabelProfitChart.Length + 1) * 100; //Number of labels * 100
+        }
+
+        public SeriesCollection GeneralChart { get; set; }
+        public SeriesCollection ProfitChart { get; set; }
+        public string[] LabelGeneralCharts { get; set; }
+        public string[] LabelProfitChart { get; set; }
+        public Func<double, string> FormatterGeneralCharts { get; set; }
+        public Func<double, string> FormatterProfitChart { get; set; }
 
     }
 }

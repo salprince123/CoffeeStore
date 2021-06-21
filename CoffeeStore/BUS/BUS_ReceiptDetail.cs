@@ -21,5 +21,10 @@ namespace CoffeeStore.BUS
         {
             return dalReceiptDetail.GetDetailByID(id);
         }
+
+        public bool DeleteDetailByID(string id)
+        {
+            return dalReceiptDetail.DeleteDetailByID(id);
+        }    
     }
 }

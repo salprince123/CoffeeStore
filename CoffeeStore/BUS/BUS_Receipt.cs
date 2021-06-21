@@ -17,9 +17,29 @@ namespace CoffeeStore.BUS
             return dalReceipt.CreateReceipt(newReceipt);
         }
 
-        public DataTable GetReceipts()
+        public DataTable GetReceipts(int limit, int offset)
         {
-            return dalReceipt.GetReceipt();
+            return dalReceipt.GetReceipt(limit, offset);
+        }
+
+        public DataTable GetReceipts(DateTime startDate, DateTime endDate, string keyword, int limit, int offset)
+        {
+            return dalReceipt.GetReceipt(startDate, endDate, keyword, limit, offset);
+        }
+
+        public int CountReceipt()
+        {
+            return dalReceipt.CountReceipt();
+        }
+
+        public int CountReceipt(DateTime startDate, DateTime endDate, string keyword)
+        {
+            return dalReceipt.CountReceipt(startDate, endDate, keyword);
+        }
+
+        public bool DeleteReceiptByID(string id)
+        {
+            return dalReceipt.DeleteReceiptByID(id);
         }
     }
 }

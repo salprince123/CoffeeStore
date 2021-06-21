@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:CoffeeStore.IncomeAndPayment"
              xmlns:UserControls="clr-namespace:CoffeeStore.View"
              mc:Ignorable="d" 
-             Height="Auto" Width="400">
+             Height="Auto" Width="460">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"></ColumnDefinition>
@@ -23,7 +23,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         <!--Title bar here-->
         <Grid Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,0,0" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
