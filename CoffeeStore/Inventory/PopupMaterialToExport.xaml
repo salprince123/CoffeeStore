@@ -41,7 +41,7 @@
                      FontSize="15" VerticalContentAlignment="Center" Padding="5"/>
             <Button x:Name="btnFind" Grid.Column="1" Height="40" Margin="0,0,20,0"
                     Background="#6B6158" Foreground="#FFE297" 
-                    BorderBrush="#FFE297" BorderThickness="1">
+                    BorderBrush="#FFE297" BorderThickness="1" Click="btnFind_Click">
                 <materialDesign:PackIcon Kind="Search" Height="20" Width="20"/>
             </Button>
         </Grid>
