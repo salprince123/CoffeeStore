@@ -23,6 +23,7 @@ namespace CoffeeStore.Inventory
     /// </summary>
     public partial class MaterialList : UserControl
     {
+        
         public MaterialList()
         {
             InitializeComponent();
@@ -92,6 +93,7 @@ namespace CoffeeStore.Inventory
                 list.Add(new InventoryObject() { Name = name.Key, Amount = amount.ToString(), Unit = name.Value });
                 number0++;
             }
+            
             this.dataGridMaterial.ItemsSource = list;
         }
 
@@ -188,6 +190,11 @@ namespace CoffeeStore.Inventory
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             InventoryObject row = (InventoryObject)dataGridMaterial.SelectedItem;
+            if(int.Parse(row.Amount) > 0)
+            {
+                MessageBox.Show($"Bạn không thể xóa vật liệu vẫn còn trong kho!");
+                return;
+            }
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
             ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
             ((MainWindow)App.Current.MainWindow).Effect = objBlur;

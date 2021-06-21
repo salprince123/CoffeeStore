@@ -33,7 +33,15 @@ namespace CoffeeStore.Inventory
             public String InventoryDate { get; set; }
             public String EmployName { get; set; }
         }
-       
+        public class MaterialObject
+        {
+            public string id { get; set; }
+            public String Name { get; set; }
+            public String Unit { get; set; }
+            public String Amount { get; set; }
+            //this variable for button add/del/edit
+            public String IsUsing { get; set; }
+        }
         public InventoryImport(MainWindow mainWindow)
         {
             InitializeComponent();
@@ -142,11 +150,101 @@ namespace CoffeeStore.Inventory
                 ((MainWindow)App.Current.MainWindow).Effect = null;
             }
         }
-
+        public Dictionary<String, int> loadAmountofMaterial()
+        {
+            Dictionary<String, int> mapNameAmount = new Dictionary<string, int>();
+            Dictionary<String, String> mapNameUnit = new Dictionary<string, string>();
+            //With import amount
+            BUS_InventoryImportDetail import = new BUS_InventoryImportDetail();
+            DataTable temp = import.SelectAllImportDetailGroupByName();
+            foreach (DataRow row in temp.Rows)
+            {
+                string name = row["Tên"].ToString();
+                string amount = row["Số lượng"].ToString();
+                string use = row["isUse"].ToString();
+                if (use == "1")
+                    mapNameAmount[name] = int.Parse(amount);
+            }
+            //With unit
+            BUS_Material mater = new BUS_Material();
+            DataTable tempMater = mater.selectAll();
+            foreach (DataRow row in tempMater.Rows)
+            {
+                string name = row["MaterialName"].ToString();
+                string unit = row["Unit"].ToString();
+                string use = row["isUse"].ToString();
+                if (use == "1")
+                    mapNameUnit[name] = unit;
+            }
+            //calculate amount in stock = import - export (if have)
+            BUS_InventoryExportDetail export = new BUS_InventoryExportDetail();
+            DataTable temp1 = export.SelectAllExportDetailGroupByName();
+            foreach (DataRow row in temp1.Rows)
+            {
+                string name = row["Tên"].ToString();
+                string amount = row["Số lượng"].ToString();
+                if (mapNameAmount.ContainsKey(name))
+                    mapNameAmount[name] -= int.Parse(amount);
+            }
+            foreach (KeyValuePair<string, string> name in mapNameUnit)
+            {
+                if (!mapNameAmount.ContainsKey(name.Key))
+                    mapNameAmount[name.Key] = 0;
+            }
+            //MessageBox.Show(mapNameAmount.Count.ToString());
+            return mapNameAmount;
+        }
+        public Dictionary<String, int> loadAllMaterialName(String importID)
+        {
+            Dictionary<String, int> result = new Dictionary<string, int>();
+            BUS_InventoryImport import = new BUS_InventoryImport();
+            DataTable temp = import.SelectAllMaterialNameFromDetail(importID);
+            foreach (DataRow row in temp.Rows)
+            {
+                String  name= row["MaterialName"].ToString() ;
+                String amount = row["Amount"].ToString();
+                result[name] = int.Parse(amount) ;
+            }
+            return result;
+        }
+        public bool checkDeleteCondition(String importID)
+        {
+            Dictionary<String, int> mapNameAmountInStock = loadAmountofMaterial();
+            Dictionary<String, int> mapNameAmountImport = loadAllMaterialName(importID);
+            foreach (KeyValuePair<string, int> name in mapNameAmountImport)
+            {
+                try
+                {
+                    int amountInStock = mapNameAmountInStock[name.Key];
+                    int amountImport = name.Value;
+                    if (amountImport > amountInStock)
+                        return false;
+                }
+                catch(Exception)
+                {
+                    return false;
+                }
+                
+            }
+            return true;
+        }
+        /* 
+         About how  to check if the amount in the importDetail > the amount in stock 
+        Step 1: Load Name & Amount have in stock into a Map (Stock Map)
+        Step 2: Load all name& Amount of the import Want-to-remove into a Map (Import Map)
+        Step 3: foreach element in Stock Map , we will comparision if Import > Stock 
+                if(Import > Stock) it means the material have been used -> so we cant delete this import
+         */
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            //PLEASE USE THIS TO CREATE POPUP
+        
             InventoryImportObject row = (InventoryImportObject)dataGridImport.SelectedItem;
+            DateTime importDate = DateTime.ParseExact(row.InventoryDate, "dd/MM/yyyy", null);            
+            if (!checkDeleteCondition(row.ID) || ((DateTime.Now - importDate) > TimeSpan.FromDays(2)))
+            {
+                MessageBox.Show($"Bạn không thể xóa phiếu này");
+                return;
+            }
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
             ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
             ((MainWindow)App.Current.MainWindow).Effect = objBlur;
