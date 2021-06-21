@@ -64,12 +64,14 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        
         <!--Username here-->
         <Menu Background="White" IsMainMenu="True" Grid.Row="0" Grid.ColumnSpan="2" FlowDirection="RightToLeft">
             <MenuItem Background="#EAEAEA" Foreground="#011F3B" Height="40"
@@ -89,25 +91,30 @@
                           Header="Đăng xuất" Click="LogOutBtn_Click"/>
             </MenuItem>
         </Menu>
+        <Grid Grid.RowSpan="2" Grid.Column="0" Background="#6B6158">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <materialDesign:PackIcon Kind="Coffee" Background="#6B6158" Foreground="#FFE297" Margin="0,0,10,0" Width="30" Height="30"/>
+                <TextBlock FontWeight="Bold" Foreground="#FFE297" FontSize="20" Margin="5,5">Coffee Store</TextBlock>
+            </StackPanel>
+            
+        </Grid>
         <!--Navigation menu here-->
-        <Grid HorizontalAlignment="Stretch" Grid.RowSpan="2"  Background="#6B6158">
+        <Grid HorizontalAlignment="Stretch" Grid.Row="2"  Background="#6B6158">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="137*"/>
                 <ColumnDefinition Width="113*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50*"/>
                 <RowDefinition Height="326*"/>
             </Grid.RowDefinitions>
-            <!--Logo here-->
             <Grid Grid.Row="0" Grid.ColumnSpan="2"/>
             <ScrollViewer HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Grid.Row="1" Grid.ColumnSpan="2">
                 <StackPanel x:Name="Menu" Margin="10,0,0,0"/>
             </ScrollViewer>
         </Grid>
-        <StackPanel x:Name="StackPanelMain" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <StackPanel x:Name="StackPanelMain" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         </StackPanel>
-        <Grid x:Name="gridLogin" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2">
+        <Grid x:Name="gridLogin" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="2">
             <view:Login x:Name="loginScreen">
             </view:Login>
         </Grid>
