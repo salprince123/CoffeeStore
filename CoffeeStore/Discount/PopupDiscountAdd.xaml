@@ -7,7 +7,7 @@
              xmlns:UserControls="clr-namespace:CoffeeStore.View"
              mc:Ignorable="d" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             Height="Auto" Width="540">
+             Height="Auto" Width="460">
     <StackPanel Background="White" >
         <!--Title bar here-->
         <Grid x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
@@ -22,11 +22,11 @@
         </Grid>
         
         <!--Discount name here-->
-        <TextBlock Margin="60,10,60,0" Text="Tên ưu đãi"/>
+        <TextBlock Margin="20,20,20,0" Text="Tên ưu đãi"/>
         <TextBox x:Name="tbName" Margin="0,5,0,0" BorderThickness="1"
                  Height="40" Width="420" Padding="5" FontSize="15" VerticalContentAlignment="Center"/>
 
-        <Grid Margin="60,10,60,0">
+        <Grid Margin="20,20,20,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="20"></ColumnDefinition>
@@ -63,13 +63,13 @@
             </StackPanel>
         </Grid>
 
-        <TextBlock Margin="60,10,60,0" Text="Mức ưu đãi (%)"/>
+        <TextBlock Margin="20,20,20,0" Text="Mức ưu đãi (%)"/>
         <TextBox x:Name="tbPrice"  Margin="0,5,0,0" BorderThickness="1" Padding="5"
                  Height="40" Width="420" PreviewTextInput="tbPrice_PreviewTextInput"
                  VerticalContentAlignment="Center" FontSize="15"/>
 
-        <TextBlock Margin="60,10,60,0" Text="Mô tả"/>
-        <TextBox x:Name="tpDescription" Padding="5" Margin="60,5,60,0" BorderThickness="1" FontSize="15"
+        <TextBlock Margin="20,20,20,0" Text="Mô tả"/>
+        <TextBox x:Name="tpDescription" Padding="5" Margin="20,5,20,0" BorderThickness="1" FontSize="15"
                  Height="80" Width="420" />
 
         <StackPanel Height="100" Orientation="Horizontal" HorizontalAlignment="Center">
