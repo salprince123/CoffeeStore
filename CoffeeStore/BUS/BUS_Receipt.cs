@@ -41,5 +41,15 @@ namespace CoffeeStore.BUS
         {
             return dalReceipt.DeleteReceiptByID(id);
         }
+
+        public DataTable GetTotalIncomeByMonth(int month, int year)
+        {
+            return dalReceipt.GetTotalIncomeByMonth(month, year);
+        }
+
+        public DataTable GetTotalIncomeByYear(int year)
+        {
+            return dalReceipt.GetTotalIncomeByYear(year);
+        }
     }
 }
