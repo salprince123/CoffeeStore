@@ -228,5 +228,26 @@ namespace CoffeeStore.DAL
                 return false;
             }
         }
+
+        public DataTable GetBeverageOrderBySellAmount(DateTime startDate, DateTime endDate)
+        {
+            string start = startDate.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
+            string end = endDate.AddDays(1).ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
+            DataTable BeverData = new DataTable();
+            try
+            {
+                string sql = $"select BeverageName.BeverageID, BeverageName, sum(Amount) as SellAmount from BeverageName join ReceiptDetail on ReceiptDetail.BeverageID = BeverageName.BeverageID join Receipt on ReceiptDetail.ReceiptID = Receipt.ReceiptID where (CAST(strftime('%s', Time) AS integer) >= CAST(strftime('%s', '{start}') AS integer)) and (CAST(strftime('%s', Time) AS integer) < CAST(strftime('%s', '{end}') AS integer)) group by BeverageName.BeverageID order by sum(Amount) asc";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                
+                da.Fill(BeverData);
+                return BeverData;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                
+            };
+            return BeverData;
+        }
     }
 }

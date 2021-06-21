@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CoffeeStore.BUS;
 using LiveCharts;
 using LiveCharts.Wpf;
 
@@ -22,30 +24,67 @@ namespace CoffeeStore.Report
     /// </summary>
     public partial class ReportSale : UserControl
     {
+        DateTime start;
+        DateTime end;
         public ReportSale()
         {
             InitializeComponent(); 
             DataContext = this;
+
+            start = new DateTime(2021, 1, 1, 0, 0, 0);
+            end = DateTime.Today;
             LoadChart();
         }
         private void LoadChart()
         {
+            BUS_Beverage busBev = new BUS_Beverage();
+            DataTable bevData = busBev.GetBeverageOrderBySellAmount(start, end);
+            int countValue = bevData.Rows.Count;
+
+            Labels = new List<string>();
+            ChartValues<int> values = new ChartValues<int>();
+
+            for (int i = 0; i < countValue; i++)
+            {
+                values.Add(Int32.Parse(bevData.Rows[i]["SellAmount"].ToString()));
+                Labels.Add(bevData.Rows[i]["BeverageName"].ToString());
+            }    
+
             SaleChart = new SeriesCollection
             {
                 new RowSeries
                 {
-                    Title = "2015",
-                    Values = new ChartValues<double> { 30, 40, 50, 90, 100, 30, 40, 50, 90, 100  },
+                    Title = "",
+                    Values = values,
                     Fill = Brushes.Orange
                 }
             };
-            Labels = new[] { "Món 1", "Món 2", "Món 3", "Món 4", "Món 5", "Món 6", "Món 7", "Món 8", "Món 9", "Món 10" };
             Formatter = value => value.ToString("N");
-            saleChart.Height = (Labels.Length + 1) * 100; //Number of labels * 100
+            saleChart.Height = (Labels.Count + 20) * countValue; //Number of labels * 100
+            saleChart.Series = SaleChart;
+            saleChart.Update();
+            DataContext = this;
         }
 
         public SeriesCollection SaleChart { get; set; }
-        public string[] Labels { get; set; }
-        public Func<double, string> Formatter { get; set; }
+        public List<string> Labels { get; set; }
+        public Func<int, string> Formatter { get; set; }
+
+        private void btnShow_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime? datepicker = tbDateStart.SelectedDate;
+            if (datepicker.ToString() == "")
+                start = new DateTime(2021, 1, 1, 0, 0, 0);
+            else
+                start = datepicker.Value;
+
+            datepicker = tbDateEnd.SelectedDate;
+            if (datepicker.ToString() == "")
+                end = DateTime.Today;
+            else
+                end = datepicker.Value;
+
+            LoadChart();
+        }
     }
 }
