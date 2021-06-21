@@ -380,6 +380,12 @@ namespace CoffeeStore.View
             {
                 ///
                 return;
+            }
+
+            if (newReceiptID != "")
+            {
+                MessageBox.Show($"Hóa đơn này đã thanh toán, mã hóa đơn là {newReceiptID}!");
+                return;
             }    
             BUS_Discount busDiscount = new BUS_Discount();
             DTO_Discount curDiscount = busDiscount.GetCurrentDiscount();

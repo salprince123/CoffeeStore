@@ -191,7 +191,7 @@
                                                 <Button Margin="10,0,0,0" Name="btnWatch" Tag="{Binding Path='id'}" BorderBrush="#9FA2B4" Background="White" Click="btnWatch_Click">
                                                     <materialDesign:PackIcon Kind="FileDocument" Height="20" Width="20" Foreground="#9FA2B4" />
                                                 </Button>
-                                                <Button Margin="10,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252" Click="btnDelete_Click">
+                                                <Button Margin="10,0,0,0" Name="btnDelete" Tag="{Binding Path='id'}" BorderBrush="#E55252" Background="#E55252" Click="btnDelete_Click">
                                                     <materialDesign:PackIcon Kind="Delete" Height="20" Width="20" />
                                                 </Button>
                                             </StackPanel>
@@ -202,23 +202,25 @@
                         </DataGrid>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2">
-                            <Button Width="40" Height="Auto" 
+                            <Button x:Name="btnPagePre" Width="40" Height="Auto" 
                                     Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center" Click="btnPagePre_Click">
                                 <materialDesign:PackIcon Kind="ChevronLeft" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
                             </Button>
                             <TextBox Name="tbNumPage" Width="35" Height="30"
                                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                                      Text="1" FontWeight="SemiBold" FontSize="14" 
-                                     Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,1"/>
+                                     Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,1"
+                                     PreviewKeyDown="tbNumPage_PreviewKeyDown" PreviewTextInput="tbNumPage_PreviewTextInput"
+                                     KeyDown="tbNumPage_KeyDown"/>
                             <Label VerticalContentAlignment="Center" 
                                    Content="/" FontWeight="SemiBold" FontSize="14"/>
                             <Label Name="lblMaxPage" Width="35" 
                                    Content="10" FontWeight="SemiBold" FontSize="14"
                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Button Width="40" Height="Auto" 
+                            <Button x:Name="btnPageNext" Width="40" Height="Auto" 
                                     Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center" Click="btnPageNext_Click">
                                 <materialDesign:PackIcon Kind="ChevronRight" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
                             </Button>
                         </StackPanel>

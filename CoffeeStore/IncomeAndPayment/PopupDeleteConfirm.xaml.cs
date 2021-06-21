@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoffeeStore.BUS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,13 +21,44 @@ namespace CoffeeStore.IncomeAndPayment
     /// </summary>
     public partial class PopupDeleteConfirm : UserControl
     {
+        string deleteid;
+        int type;
         public PopupDeleteConfirm()
         {
             InitializeComponent();
         }
+        public PopupDeleteConfirm(string content, string name, int type)
+        {
+            InitializeComponent();
+            this.tblockContent.Text = content;
+            this.type = type;
+            deleteid = name;
+        }
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
+            switch (this.type)
+            {
+                case 1: /// Delete Account
+                    BUS_ReceiptDetail busReceiptDetail = new BUS_ReceiptDetail();
+                    bool result1 = busReceiptDetail.DeleteDetailByID(deleteid);
 
+                    if (result1)
+                    {
+                        BUS_Receipt busReceipt = new BUS_Receipt();
+                        if (busReceipt.DeleteReceiptByID(deleteid))
+                        {
+                            MessageBox.Show($"Đã xóa hóa đơn {deleteid}.");
+                            Window.GetWindow(this).Close();
+                        }
+                        else
+                            MessageBox.Show($"Đã xảy ra lỗi trong quá trình xóa hóa đơn!");
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Đã xảy ra lỗi trong quá trình xóa chi tiết hóa đơn.");
+                    }
+                    break;
+            }
         }
 
         private void btExit_Click(object sender, RoutedEventArgs e)
