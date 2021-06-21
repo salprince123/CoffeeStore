@@ -48,7 +48,7 @@ namespace CoffeeStore.Account
             InitializeComponent();
             dataGridAccount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             this._context = mainWindow;
-            limitRow = 10;
+            limitRow = 20;
             currentPage = 1;
             tbNumPage.Text = "1";
             btnPagePre.IsEnabled = false;

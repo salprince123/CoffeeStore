@@ -193,7 +193,14 @@ namespace CoffeeStore.View
 
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
-            _context.SwitchToMenu();
+            BUS_Employees busEmp = new BUS_Employees();
+            string typeEmp = busEmp.GetEmpTypeByID(user);
+            BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
+            bool isHavePermission = busAccPerGr.IsHavePermission(typeEmp, "AP006");
+            if (isHavePermission)
+                _context.SwitchToMenu();
+            else
+                MessageBox.Show("Bạn không có quyền sử dụng chức năng này!");
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
@@ -225,12 +232,26 @@ namespace CoffeeStore.View
 
         private void Discount_Click(object sender, RoutedEventArgs e)
         {
-            _context.SwitchToDiscount();
+            BUS_Employees busEmp = new BUS_Employees();
+            string typeEmp = busEmp.GetEmpTypeByID(user);
+            BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
+            bool isHavePermission = busAccPerGr.IsHavePermission(typeEmp, "AP007");
+            if (isHavePermission)
+                _context.SwitchToDiscount();
+            else
+                MessageBox.Show("Bạn không có quyền sử dụng chức năng này!");
         }
 
         private void ReceiptButton_Click(object sender, RoutedEventArgs e)
         {
-            _context.SwitchToReceipt();
+            BUS_Employees busEmp = new BUS_Employees();
+            string typeEmp = busEmp.GetEmpTypeByID(user);
+            BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
+            bool isHavePermission = busAccPerGr.IsHavePermission(typeEmp, "AP001");
+            if (isHavePermission)
+                _context.SwitchToReceipt();
+            else
+                MessageBox.Show("Bạn không có quyền sử dụng chức năng này!");
         }
 
         private void LogOutBtn_Click(object sender, RoutedEventArgs e)

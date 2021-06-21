@@ -47,7 +47,7 @@ namespace CoffeeStore.IncomeAndPayment
         public ReceiptList()
         {
             InitializeComponent();
-            limitRow = 5;
+            limitRow = 20;
             currentPage = 1;
             tbNumPage.Text = "1";
             btnPagePre.IsEnabled = false;
