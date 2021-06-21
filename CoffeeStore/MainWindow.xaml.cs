@@ -46,7 +46,7 @@ namespace CoffeeStore
 
             var menuRevenue = new List<SubItem>();
             menuRevenue.Add(new SubItem("Danh sách hóa đơn", "AP001", new IncomeAndPayment.ReceiptList()));
-            menuRevenue.Add(new SubItem("Danh sách chi", "AP005" , new IncomeAndPayment.PaymentList()));
+            menuRevenue.Add(new SubItem("Danh sách chi", "AP005" , new IncomeAndPayment.PaymentList(this)));
             var item5 = new ItemMenu("Thu chi", menuRevenue, PackIconKind.ScaleBalance);
 
             var menuReport = new List<SubItem>();

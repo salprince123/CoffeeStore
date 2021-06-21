@@ -21,24 +21,24 @@
         </Grid>
         <!--User name here-->
         <TextBlock Margin="20,20,20,0" Text="Người lập"/>
-        <TextBox Margin="20,5,20,0" Background="#DADADA" IsReadOnly="True" BorderThickness="0"
+        <TextBox x:Name="tbEmployeeName" Margin="20,5,20,0" Background="#DADADA" IsReadOnly="True" BorderThickness="0"
                  Height="40" Padding="5" VerticalContentAlignment="Center" FontSize="15"/>
 
         <Grid Margin="20,20,20,0">
             <StackPanel Grid.Column="1">
                 <TextBlock Text="Số tiền (VNĐ)"/>
-                <TextBox BorderThickness="1"
+                <TextBox x:Name="tbMoney" BorderThickness="1"
                  Height="40" Padding="5" VerticalContentAlignment="Center" FontSize="15"/>
             </StackPanel>
         </Grid>
 
         <TextBlock Margin="20,20,20,0" Text="Lý do"/>
-        <TextBox  Margin="20,5,20,0" BorderThickness="1"
+        <TextBox x:Name="tbDescription"  Margin="20,5,20,0" BorderThickness="1"
                  Height="80" Padding="5" VerticalContentAlignment="Center" FontSize="15"/>
 
         <StackPanel Height="100"  Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="btSave" Height="40" Width="100"
-                    Content="LƯU" Background="#66A3FF"/>
+                    Content="LƯU" Background="#66A3FF" Click="btSave_Click"/>
             <Button x:Name="btExit" Height="40" Width="100"
                     Content="HỦY" Margin="10,0,0,0" Background="#F27047" Click="btExit_Click"/>
         </StackPanel>

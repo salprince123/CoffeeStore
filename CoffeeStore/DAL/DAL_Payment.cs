@@ -67,7 +67,7 @@ namespace CoffeeStore.DAL
         {
             int rs = 0;
             Console.WriteLine(Payment.PaymentID);
-            string sql = $"Update PaymentVoucher set PaymentID='" + Payment.PaymentID + "', EmployeeID='" + Payment.EmployeeID + "', TotalAmount=" + Payment.TotalAmount + ",Time=" + Payment.Time + ",Description='" + Payment.Description + "' Where PaymentID='" + Payment.PaymentID + "'";
+            string sql = $"Update PaymentVoucher set PaymentID='" + Payment.PaymentID + "', EmployeeID='" + Payment.EmployeeID + "', TotalAmount=" + Payment.TotalAmount + ",Time='" + Payment.Time + "',Description='" + Payment.Description + "' Where PaymentID='" + Payment.PaymentID + "'";
             try
             {
                 SQLiteCommand command = new SQLiteCommand(sql, getConnection());

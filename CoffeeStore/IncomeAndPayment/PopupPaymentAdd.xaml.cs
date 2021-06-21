@@ -43,14 +43,14 @@ namespace CoffeeStore.IncomeAndPayment
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
-            if (dp1.SelectedDate != null && tbMoney.Text != "")
+            if (tbMoney.Text != "")
             {
                 DTO_Payment dto = new DTO_Payment();
                 dto.PaymentID = bus.createID();
                 dto.EmployeeID = "E001";
-                dto.Time = dp1.SelectedDate.Value.ToString("dd/MM/yyyy");
+                dto.Time = DateTime.Now.Date.ToString("dd/MM/yyyy");
                 dto.TotalAmount = float.Parse(tbMoney.Text);
-                dto.Description = bus.createID();
+                dto.Description = tbDescription.Text;
                 if (bus.createNewPayment(dto) > 0)
                     MessageBox.Show("Thành công.");
                 else

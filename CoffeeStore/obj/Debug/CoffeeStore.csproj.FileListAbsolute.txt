@@ -1020,3 +1020,5 @@ C:\Users\pacif\Desktop\Office\CoffeeStore\obj\Debug\CoffeeStore.csproj.CopyCompl
 C:\Users\pacif\Desktop\Office\CoffeeStore\obj\Debug\CoffeeStore.exe
 C:\Users\pacif\Desktop\Office\CoffeeStore\obj\Debug\CoffeeStore.pdb
 C:\Users\pacif\Desktop\Office\CoffeeStore\obj\Debug\CoffeeStore.csprojAssemblyReference.cache
+C:\Users\pacif\Desktop\Office\CoffeeStore\obj\Debug\IncomeAndPayment\PopupPaymentEdit.g.cs
+C:\Users\pacif\Desktop\Office\CoffeeStore\obj\Debug\IncomeAndPayment\PopupPaymentEdit.baml

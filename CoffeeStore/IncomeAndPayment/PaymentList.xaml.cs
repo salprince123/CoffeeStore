@@ -113,6 +113,7 @@ namespace CoffeeStore.IncomeAndPayment
         }
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+            DTO_Payment dto = (DTO_Payment)dgPayment.SelectedItem;
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
             ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
             ((MainWindow)App.Current.MainWindow).Effect = objBlur;
@@ -120,8 +121,8 @@ namespace CoffeeStore.IncomeAndPayment
             {
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
-                Title = "Lập phiếu chi",
-                Content = new PopupPaymentAdd(),
+                Title = "Sửa phiếu chi",
+                Content = new PopupPaymentEdit(dto),
                 Width = 450,
                 Height = 400,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 450) / 2,
@@ -144,7 +145,7 @@ namespace CoffeeStore.IncomeAndPayment
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
                 Title = "Xóa phiếu chi",
-                Content = new PopupDeleteConfirm(dto.PaymentID),
+                Content = new PopupDeleteConfirm("Dữ liệu về " + dto.PaymentID + " sẽ bị xóa vĩnh viễn.\n Bạn chắc chắn muốn xóa?", dto.PaymentID,2),
                 Width = 450,
                 Height = 400,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 450) / 2,

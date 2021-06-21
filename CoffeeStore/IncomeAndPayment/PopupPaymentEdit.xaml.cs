@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using CoffeeStore.BUS;
+using CoffeeStore.DTO;
 namespace CoffeeStore.IncomeAndPayment
 {
     /// <summary>
@@ -20,14 +22,59 @@ namespace CoffeeStore.IncomeAndPayment
     /// </summary>
     public partial class PopupPaymentEdit : UserControl
     {
+        BUS_Payment bus = new BUS_Payment();
+        string ID;
         public PopupPaymentEdit()
         {
             InitializeComponent();
         }
+        public PopupPaymentEdit(DTO_Payment payment)
+        {
+            InitializeComponent();
+            ID = payment.PaymentID;
+            DataTable tb = bus.findPaymentbyID(payment.PaymentID);
+            foreach (DataRow row in tb.Rows)
+            {
+                tbMoney.Text = row["TotalAmount"].ToString();
+                tbTime.Text = row["Time"].ToString();
+                tbEmployeeName.Text = row["EmployeeName"].ToString();
+                tbDescription.Text = row["Description"].ToString();
+
+            }
+        }
+
+        private void btSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbMoney.Text!="")
+            {
+                DTO_Payment Payment = new DTO_Payment();
+                Payment.PaymentID = ID;
+                Payment.EmployeeID = bus.getEmployeeID(tbEmployeeName.Text);
+                Payment.TotalAmount = float.Parse(tbMoney.Text);
+                Payment.Time = tbTime.Text;
+                Payment.Description = tbDescription.Text;
+                if (bus.editPayment(Payment) > 0)
+                {
+                    MessageBox.Show("Thành công");
+                }
+                else
+                    MessageBox.Show("Thất bại");
+                Window.GetWindow(this).Close();
+            }
+            else
+                MessageBox.Show("Số tiền đã chi là bắt buộc");
+
+
+        }
+    
+        private void tbPrice_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !NumberCheck.IsNumber(e.Text);
+        }
 
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
-
+            Window.GetWindow(this).Close();
         }
     }
 }
