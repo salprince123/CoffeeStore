@@ -57,14 +57,21 @@ namespace CoffeeStore.Inventory
         public InventoryExportADD()
         {
             InitializeComponent();
+            dataGridMaterialExport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
         }
         public InventoryExportADD(String id, MainWindow mainWindow)
         {
             this.selectionID = id;
             InitializeComponent();
+            dataGridMaterialExport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             tbDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
             tbEmployeeName.Text = id;
             this._context = mainWindow;
+        }
+        void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+            e.Row.Height = 40;
         }
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
@@ -117,12 +124,12 @@ namespace CoffeeStore.Inventory
                 if (!containInList(id))
                     list.Add(new InventoryExportDetailObject() { id = id, name = name, unit = unit });
             }
-            dataGridImport.ItemsSource = list;
-            dataGridImport.Items.Refresh();
+            dataGridMaterialExport.ItemsSource = list;
+            dataGridMaterialExport.Items.Refresh();
         }
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            InventoryExportDetailObject row = (InventoryExportDetailObject)dataGridImport.SelectedItem;
+            InventoryExportDetailObject row = (InventoryExportDetailObject)dataGridMaterialExport.SelectedItem;
             if (row != null)
             {
                 /*try

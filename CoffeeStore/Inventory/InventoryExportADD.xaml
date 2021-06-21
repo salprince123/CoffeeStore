@@ -58,14 +58,15 @@
                     <TextBox Name="tbEmployeeName" Height="40"
                          Background="#DADADA" BorderThickness="0"
                          Padding="5" Margin="0,5,0,0"
-                         IsReadOnly="True">
+                         IsReadOnly="True" FontSize="15" VerticalContentAlignment="Center">
                     </TextBox>
                 </StackPanel>
                 <StackPanel Grid.Column="2">
                     <TextBlock>Ngày lập</TextBlock>
                     <TextBox Name="tbDate" Height="40"
+                         Background="#DADADA" BorderThickness="0"
                          Margin="0,5,0,0" Padding="5"
-                         BorderThickness="1">
+                         IsReadOnly="True" FontSize="15" VerticalContentAlignment="Center">
                     </TextBox>
                 </StackPanel>
             </Grid>
@@ -78,7 +79,7 @@
                 <Button Name="btnAdd" 
                         BorderBrush="#6B6158" BorderThickness="1"
                         Background="#FFE297" Foreground="#6B6158" Click="btnAdd_Click">
-                    + THÊM
+                    + THÊM NGUYÊN VẬT LIỆU, THIẾT BỊ
                 </Button>
             </Grid>
 
@@ -107,22 +108,94 @@
                             <ColumnDefinition Width="10"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <DataGrid Grid.Column="1" Grid.Row="1" Height="200"
-                              x:Name="dataGridImport" 
+                              x:Name="dataGridMaterialExport" 
                               BorderThickness="1"
                               BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
                               VerticalScrollBarVisibility="Visible"
-                              AutoGenerateColumns="False">
-                            <DataGrid.CurrentColumn>
-                                <materialDesign:DataGridTextColumn/>
-                            </DataGrid.CurrentColumn>
+                              AutoGenerateColumns="False" HeadersVisibility="All">
+                            <DataGrid.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <ContentPresenter Margin="13,0,13,0" VerticalAlignment="Center" />
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="{x:Null}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.CellStyle>
+
+                            <DataGrid.Resources>
+                                <Style x:Key="DataGrid_Label_Style" 
+                                       TargetType="Label">
+                                    <Setter Property="Foreground" Value="#717171" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="Black" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                                <Style x:Key="DataGrid_Content_Center"
+                                           TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="{x:Null}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+
+                                <Style x:Key="DataGrid_Content_CenterRightAlign" TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <ContentPresenter Margin="13,0,13,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="{x:Null}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.Resources>
+
+                            <DataGrid.RowHeaderTemplate>
+                                <DataTemplate>
+                                    <Label HorizontalContentAlignment="Center" Width="50"
+                                           Content="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow},
+                                                             Path=Header}"/>
+                                </DataTemplate>
+                            </DataGrid.RowHeaderTemplate>
+                            
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="STT" IsReadOnly="True"
-                                                    Binding="{Binding Path='number'}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" 
                                                     Binding="{Binding Path='name'}" IsReadOnly="True"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Số lượng"
                                                     Binding="{Binding Path='amount' ,Mode=TwoWay, ValidatesOnExceptions=True}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Đơn vị tính" IsReadOnly="True"
+                                <DataGridTextColumn Header="Đơn vị tính" IsReadOnly="True" CellStyle="{StaticResource DataGrid_Content_Center}"
                                                     Binding="{Binding Path='unit'}" ></DataGridTextColumn>
                                 <DataGridTextColumn Header=""></DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
@@ -150,8 +223,8 @@
                                          Width="{TemplateBinding FontSize}" 
                                         Height="{TemplateBinding FontSize}" />        
                                         <TextBlock Text="!" FontSize="{TemplateBinding FontSize}" 
-                                             FontWeight="Bold" Foreground="White" 
-                                            HorizontalAlignment="Center"  />
+                                                   FontWeight="Bold" Foreground="White" 
+                                                   HorizontalAlignment="Center" />
                                     </Grid>
                                 </ControlTemplate>
                             </DataGrid.RowValidationErrorTemplate>
@@ -176,7 +249,7 @@
                         <TextBlock>Lý do</TextBlock>
                         <TextBox Name="tbDescription" Height="80"
                          Margin="0,5,0,0" Padding="5"
-                         BorderThickness="1">
+                         BorderThickness="1" FontSize="15">
                         </TextBox>
                     </StackPanel>
                     <!--Button here-->

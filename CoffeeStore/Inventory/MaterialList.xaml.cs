@@ -35,6 +35,8 @@ namespace CoffeeStore.Inventory
             e.Row.Header = e.Row.GetIndex() + 1;
             e.Row.Height = 40;
         }
+        public List<InventoryObject> list = new List<InventoryObject>();
+        public List<InventoryObject> findList = new List<InventoryObject>();
         public String selectionName = "";
         public class InventoryObject
         {
@@ -47,9 +49,10 @@ namespace CoffeeStore.Inventory
         }
         public void LoadData()
         {
+            list.Clear();
             Dictionary<String, int> mapNameAmount = new Dictionary<string, int>();
             Dictionary<String, String> mapNameUnit = new Dictionary<string, string>();
-            var list = new ObservableCollection<InventoryObject>();
+            
             //mapping name with unit & import amount
             //With import amount
             BUS_InventoryImportDetail import = new BUS_InventoryImportDetail();
@@ -93,13 +96,61 @@ namespace CoffeeStore.Inventory
                 list.Add(new InventoryObject() { Name = name.Key, Amount = amount.ToString(), Unit = name.Value });
                 number0++;
             }
-            
-            this.dataGridMaterial.ItemsSource = list;
+            if (list.Count % 10 == 0)
+                lblMaxPage.Content = list.Count / 10;
+            else lblMaxPage.Content = list.Count / 10 + 1;
+            //this.dataGridMaterial.ItemsSource = list;
+            splitDataGrid(1);
         }
+        public void splitDataGrid(int numpage)
+        {
+            try 
+            {                
+                List<InventoryObject> displayList = new List<InventoryObject>();
+                if (list.Count < 10 * numpage)
+                {
+                    displayList = list.GetRange((numpage - 1) * 10, list.Count - (numpage - 1) * 10);
+                }
+                else displayList = list.GetRange((numpage - 1) * 10, 10);
+                //displayList = list.GetRange(10, list.Count-10);
+                this.dataGridMaterial.ItemsSource = displayList;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something wrong!");
+            }
+            
+        }
+        public void splitDataGridFind(int numpage)
+        {
+            try
+            {
+                List<InventoryObject> displayList = new List<InventoryObject>();
+                if (findList.Count < 10 * numpage)
+                {
+                    displayList = findList.GetRange((numpage - 1) * 10, findList.Count - (numpage - 1) * 10);
+                }
+                else displayList = findList.GetRange((numpage - 1) * 10, 10);
+                //displayList = list.GetRange(10, list.Count-10);
+                this.dataGridMaterial.ItemsSource = displayList;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something wrong!");
+            }
 
+        }
         public void findMaterial(String keyword)
         {
-
+            findList.Clear();
+            tbNumPage.Text = "1";
+            foreach (InventoryObject obj in list.ToList())
+            {
+                if (obj.Name.Contains(keyword) )
+                    findList.Add(obj);
+            }
+            dataGridMaterial.ItemsSource = findList;
+            dataGridMaterial.Items.Refresh();
         }
         private void tbKeyword_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -215,6 +266,30 @@ namespace CoffeeStore.Inventory
 
            
 
+        }
+
+        private void btBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (int.Parse(tbNumPage.Text)>1)
+            {
+                tbNumPage.Text = (int.Parse(tbNumPage.Text) - 1).ToString();
+                if(tbFind.Text == "")
+                    splitDataGrid(int.Parse(tbNumPage.Text));
+                else splitDataGridFind(int.Parse(tbNumPage.Text));
+
+            }
+                
+        }
+
+        private void btNext_Click(object sender, RoutedEventArgs e)
+        {
+            if((int.Parse(lblMaxPage.Content.ToString()) - int.Parse(tbNumPage.Text)) >=1)
+            {
+                tbNumPage.Text = (int.Parse(tbNumPage.Text) + 1).ToString();
+                if (tbFind.Text == "")
+                    splitDataGrid(int.Parse(tbNumPage.Text));
+                else splitDataGridFind(int.Parse(tbNumPage.Text));
+            }
         }
     }
 }

@@ -91,17 +91,24 @@ namespace CoffeeStore.Inventory
         public InventoryImportADD()
         {
             InitializeComponent();
+            dataGridMaterialImport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
         }
         
         public InventoryImportADD(String id, MainWindow mainWindow)
         {
             this.selectionID = id;
             InitializeComponent();
+            dataGridMaterialImport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             tbDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
             tbEmployeeName.Text = id;
             this._context = mainWindow;
         }
-       
+
+        void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+            e.Row.Height = 40;
+        }
         public bool containInList (String id)
         {
             foreach (InventoryImportDetailObject obj in list)
@@ -143,14 +150,14 @@ namespace CoffeeStore.Inventory
                 if(!containInList(id))
                     list.Add(new InventoryImportDetailObject() { id=id, name=name, unit=unit });
             }
-            dataGridImport.ItemsSource = list;
-            dataGridImport.Items.Refresh();
+            dataGridMaterialImport.ItemsSource = list;
+            dataGridMaterialImport.Items.Refresh();
         }
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
-            
-            dataGridImport.Items.Refresh();
+
+            dataGridMaterialImport.Items.Refresh();
             // save in database
             //insert InventoryImport
             BUS_InventoryImport import = new BUS_InventoryImport();
@@ -176,7 +183,7 @@ namespace CoffeeStore.Inventory
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            InventoryImportDetailObject row = (InventoryImportDetailObject)dataGridImport.SelectedItem;
+            InventoryImportDetailObject row = (InventoryImportDetailObject)dataGridMaterialImport.SelectedItem;
             if (row != null)
             {
                 /*try
