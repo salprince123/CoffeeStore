@@ -25,7 +25,6 @@ namespace CoffeeStore.Inventory
         
         public class InventoryImportDetailObject
         {
-            public int number { get; set; }
             public String name { get; set; }
             public String unitPrice { get; set; }
             public String amount { get; set; }
@@ -35,6 +34,7 @@ namespace CoffeeStore.Inventory
         public PopupInventoryImportDETAIL()
         {
             InitializeComponent();
+            dataGridMaterialImport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             LoadData();
         }
         public PopupInventoryImportDETAIL(String id, String importname, String importdate)
@@ -42,19 +42,23 @@ namespace CoffeeStore.Inventory
             this.selectionID = id;
             this.ImportName = importname;
             InitializeComponent();
-
+            dataGridMaterialImport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             tbDate.Text = importdate;
             tbEmployeeName.Text = importname;
             tbImportID.Text = id;
             if (selectionID != "")
                 LoadData();
         }
+        void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+            e.Row.Height = 40;
+        }
         public void LoadData()
         {
             var list = new ObservableCollection<InventoryImportDetailObject>();
             BUS_InventoryImport import = new BUS_InventoryImport();
             DataTable temp = import.selectDetail(selectionID);
-            int number0 = 1;
             Console.WriteLine(temp.Rows.Count);
             foreach (DataRow row in temp.Rows)
             {
@@ -63,9 +67,9 @@ namespace CoffeeStore.Inventory
                 string unitprice = row["Đơn giá"].ToString();
                 string unit = row["Đơn vị tính"].ToString();
                 int tongtien = int.Parse(amount) * int.Parse(unitprice);
-                list.Add(new InventoryImportDetailObject() { number =number0,amount = amount, name = name, unit = unit, totalCost = tongtien.ToString(), unitPrice = unitprice });
+                list.Add(new InventoryImportDetailObject() { amount = amount, name = name, unit = unit, totalCost = tongtien.ToString(), unitPrice = unitprice });
             }
-            this.dataGridImport.ItemsSource = list;
+            this.dataGridMaterialImport.ItemsSource = list;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
