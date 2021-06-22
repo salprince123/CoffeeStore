@@ -37,7 +37,8 @@
                 <RowDefinition Height="0.3*"></RowDefinition>
                 <RowDefinition Height="0.5*"></RowDefinition>
                 <RowDefinition Height="0.8*"></RowDefinition>
-                <RowDefinition Height="0.8*"></RowDefinition>
+                <RowDefinition Height="0.3*"></RowDefinition>
+                <RowDefinition Height="0.5*"></RowDefinition>
                 <RowDefinition Height="0.8*"></RowDefinition>
                 <RowDefinition Height="0.8*"></RowDefinition>
             </Grid.RowDefinitions>
@@ -58,6 +59,11 @@
                      BorderThickness="1"
                      Padding="5">
             </TextBox>
+
+            <TextBlock Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="5" 
+                       VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                       Name="tbIDValidation" FontSize="13" Foreground="Red" Text=""/>
+
             <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="7"
                    FontFamily="Open Sans" FontWeight="Bold" FontSize="16" Foreground="#FF4A4A4A" Padding="0">
                 Mật khẩu
@@ -69,14 +75,19 @@
                          BorderThickness="1"
                          Padding="5">
             </PasswordBox>
+
+            <TextBlock Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="5" 
+                       VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                       Name="tbPassValidation" FontSize="13" Foreground="Red" Text=""/>
+
             <Button Name="btnSale" Background="#FFFF7700"
-                    Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2"
+                    Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2"
                     Foreground="White" FontFamily="Open Sans" FontSize="22" FontWeight="SemiBold" 
                     Width="Auto" Height="Auto">
                 Bán hàng
             </Button>
             <Button Name="btnManager" Background="#FFFF7700"
-                    Grid.Row="10" Grid.Column="4" Grid.ColumnSpan="2"
+                    Grid.Row="11" Grid.Column="4" Grid.ColumnSpan="2"
                     Foreground="White" FontFamily="Open Sans" FontSize="22" FontWeight="SemiBold" 
                     Width="Auto" Height="Auto">
                 Quản lý
