@@ -111,7 +111,7 @@
                               x:Name="dataGridMaterialImport" 
                               BorderThickness="1"
                               BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                              VerticalScrollBarVisibility="Visible"
+                              VerticalScrollBarVisibility="Visible" IsReadOnly="True"
                               AutoGenerateColumns="False" HeadersVisibility="All">
                             <DataGrid.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}">
@@ -191,10 +191,10 @@
                             </DataGrid.RowHeaderTemplate>
                             
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" Binding="{Binding Path='name'}" IsReadOnly="True"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" Binding="{Binding Path='name'}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Đơn giá" Binding="{Binding Path='unitPrice',Mode=TwoWay}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Số lượng" Binding="{Binding Path='amount' ,Mode=TwoWay}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding Path='unit'}" IsReadOnly="True"
+                                <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding Path='unit'}"
                                                     CellStyle="{StaticResource DataGrid_Content_Center}">
                                 </DataGridTextColumn>
                                 <DataGridTemplateColumn Header="">
