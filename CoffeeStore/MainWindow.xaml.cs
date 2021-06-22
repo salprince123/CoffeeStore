@@ -148,6 +148,7 @@ namespace CoffeeStore
         {
             gridLogin.Children.Clear();
             StackPanelMain.Children.Clear();
+            StackPanelMain.Children.Add(banner);
         }
 
         internal void SwitchToDiscount()

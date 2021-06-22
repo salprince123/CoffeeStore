@@ -33,9 +33,10 @@ namespace CoffeeStore.Report
 
             start = new DateTime(2021, 1, 1, 0, 0, 0);
             end = DateTime.Today;
-            LoadChart();
+            LoadSaleChart();
+            LoadProfitChart();
         }
-        private void LoadChart()
+        private void LoadSaleChart()
         {
             BUS_Beverage busBev = new BUS_Beverage();
             DataTable bevData = busBev.GetBeverageOrderBySellAmount(start, end);
@@ -60,15 +61,33 @@ namespace CoffeeStore.Report
                 }
             };
             Formatter = value => value.ToString("N");
-            saleChart.Height = (Labels.Count + 20) * countValue; //Number of labels * 100
+            saleChart.Height = (Labels.Count + 20) * countValue;
             saleChart.Series = SaleChart;
             saleChart.Update();
             DataContext = this;
         }
+        private void LoadProfitChart()
+        {
+            ProfitChart = new SeriesCollection
+            {
+                 new RowSeries
+                 {
+                    Title = "2015",
+                    Values = new ChartValues<double> { 10, 50, 39, 10, 50, 39, 10, 50, 39 },
+                    Fill = Brushes.Orange
+                 }
+            };
+            LabelsProfitChart = new[] { "Món 1", "Món 2", "Món 3", "Món 1", "Món 2", "Món 3", "Món 1", "Món 2", "Món 3" };
+            FormatterProfitChart = value => value.ToString("N");
+            profitChart.Height = (LabelsProfitChart.Length + 1) * 100; //Number of labels * 100
+        }
 
         public SeriesCollection SaleChart { get; set; }
+        public SeriesCollection ProfitChart { get; set; }
         public List<string> Labels { get; set; }
+        public string[] LabelsProfitChart { get; set; }
         public Func<int, string> Formatter { get; set; }
+        public Func<double, string> FormatterProfitChart { get; set; }
 
         private void btnShow_Click(object sender, RoutedEventArgs e)
         {
@@ -84,7 +103,7 @@ namespace CoffeeStore.Report
             else
                 end = datepicker.Value;
 
-            LoadChart();
+            LoadSaleChart();
         }
     }
 }
