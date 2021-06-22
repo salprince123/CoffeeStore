@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -30,15 +31,36 @@ namespace CoffeeStore.Inventory
         public List<String> sqlCommand = new List<string>();
 
         MainWindow _context;
-        public class InventoryObject
+        public class InventoryObject : INotifyPropertyChanged
         {
             public String name { get; set; }
             public String id { get; set; }
             public String unitPrice { get; set; }
-            public String amount { get; set; }
+            public String _amount;
+            public string amount
+            {
+                get
+                {
+                    return this._amount;
+                }
+
+                set
+                {
+                    if (value != _amount)
+                    {
+                        _amount = value;
+                        OnPropertyChanged();
+                    }
+                }
+            }
             public String unit { get; set; }
             public String totalCost { get; set; }
             public String description { get; set; }
+            public event PropertyChangedEventHandler PropertyChanged;
+            protected void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            {
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
         public InventoryExportEDIT()
         {
