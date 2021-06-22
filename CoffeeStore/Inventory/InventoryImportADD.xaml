@@ -192,8 +192,23 @@
                             
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" Binding="{Binding Path='name'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Đơn giá" Binding="{Binding Path='unitPrice',Mode=TwoWay}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Số lượng" Binding="{Binding Path='amount' ,Mode=TwoWay}"></DataGridTextColumn>
+                                
+                                <DataGridTemplateColumn Header="Đơn giá">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Name="tbPrice" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                
+                                <DataGridTemplateColumn Header="Số lượng">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Name="tbAmount" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                
                                 <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding Path='unit'}"
                                                     CellStyle="{StaticResource DataGrid_Content_Center}">
                                 </DataGridTextColumn>

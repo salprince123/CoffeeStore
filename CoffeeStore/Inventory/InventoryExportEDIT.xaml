@@ -201,8 +201,15 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị"
                                                     Binding="{Binding Path='name'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Số lượng"
-                                                    Binding="{Binding Path='amount'}"></DataGridTextColumn>
+
+                                <DataGridTemplateColumn Header="Số lượng">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Name="tbAmount" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
                                 <DataGridTextColumn Header="Đơn vị tính" CellStyle="{StaticResource DataGrid_Content_Center}"
                                                     Binding="{Binding Path='unit'}"></DataGridTextColumn>
                                 <DataGridTextColumn Header=""></DataGridTextColumn>
