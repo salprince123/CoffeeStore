@@ -56,12 +56,12 @@
                             CanUserAddRows="False"
                             VerticalAlignment="Stretch" AutoGenerateColumns="False"
                             FrozenColumnCount="1" CanUserReorderColumns="False"
+                            HeadersVisibility="Column"
                             CanUserResizeColumns="False"
                             VerticalScrollBarVisibility="Disabled"
                             HorizontalScrollBarVisibility="Disabled"
                             IsReadOnly="True" FontSize="13"
-                            VerticalContentAlignment="Stretch"
-                            HorizontalContentAlignment="Stretch" Height="Auto" 
+                            Height="Auto" 
                             HorizontalGridLinesBrush="White" BorderThickness="0"
                             VerticalGridLinesBrush="White">
                     <DataGrid.Resources>

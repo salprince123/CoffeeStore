@@ -79,7 +79,7 @@ namespace CoffeeStore.Report
             };
             LabelsProfitChart = new[] { "Món 1", "Món 2", "Món 3", "Món 1", "Món 2", "Món 3", "Món 1", "Món 2", "Món 3" };
             FormatterProfitChart = value => value.ToString("N");
-            profitChart.Height = (LabelsProfitChart.Length + 1) * 100; //Number of labels * 100
+            profitChart.Height = (LabelsProfitChart.Length + 1) * 50; //Number of labels * 100
         }
 
         public SeriesCollection SaleChart { get; set; }
@@ -104,6 +104,15 @@ namespace CoffeeStore.Report
                 end = datepicker.Value;
 
             LoadSaleChart();
+        }
+
+        private void btnPrintSale_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btnPrintProfit_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
