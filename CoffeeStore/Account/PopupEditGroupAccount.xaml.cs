@@ -192,9 +192,11 @@ namespace CoffeeStore.Account
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
+            tbGroupAccountValidation.Text = "";
             if (tbName.Text == "")
             {
                 // Name of Employee Type is empty
+                tbGroupAccountValidation.Text = "Tên nhóm tài khoản không dược để trống.";
                 return;
             }
 
@@ -281,6 +283,14 @@ namespace CoffeeStore.Account
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Close();
+        }
+
+        private void tbName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[a-zA-Z]"))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -93,7 +93,7 @@ namespace CoffeeStore.Account
             if (tboxEmpName.Text == "")
             {
                 //Employee Name is empty
-                tbNameValidation.Text = "Tên nhân viên không được để trống";
+                tbNameValidation.Text = "Tên nhân viên không được để trống.";
                 return;
             }
 
