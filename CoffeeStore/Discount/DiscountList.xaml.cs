@@ -65,15 +65,18 @@ namespace CoffeeStore.Discount
                 string enddate = row["enddate"].ToString();
                 string status = "";
                 DateTime time = DateTime.ParseExact(enddate, "dd/MM/yyyy", null);
-                if (DateTime.Compare(time, DateTime.Now.Date) >= 0)
+                if (DateTime.Compare(time, DateTime.Now.Date) >= 0 && DateTime.Compare(DateTime.ParseExact(startdate, "dd/MM/yyyy", null), DateTime.Now.Date) <= 0)
                 {
                     status = "Đang diễn ra";
                 }
-                else
+                else if (DateTime.Compare(time, DateTime.Now.Date) < 0)
                 {
                     status = "Đã hết hạn";
                 }
-
+                else if (DateTime.Compare(DateTime.ParseExact(startdate, "dd/MM/yyyy", null), DateTime.Now.Date) > 0)
+                {
+                    status = "Sắp diễn ra";
+                }
                 if (count >= (rowNumber - 1) * 20 + 1 && count <= rowNumber * 20)
                 {
                     list.Add(new Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate, Status = status });
@@ -102,13 +105,18 @@ namespace CoffeeStore.Discount
                 DateTime timestartfind = DateTime.ParseExact(startdatefind, "dd/MM/yyyy", null);
                 int rowNumber = Int32.Parse(tbNumPage.Text);
                 int count = 1;
-                if (DateTime.Compare(timeend, DateTime.Now.Date) >= 0)
+                DateTime time = DateTime.ParseExact(enddate, "dd/MM/yyyy", null);
+                if (DateTime.Compare(time, DateTime.Now.Date) >= 0 && DateTime.Compare(DateTime.ParseExact(startdate, "dd/MM/yyyy", null), DateTime.Now.Date) <= 0)
                 {
                     status = "Đang diễn ra";
                 }
-                else
+                else if (DateTime.Compare(time, DateTime.Now.Date) < 0)
                 {
                     status = "Đã hết hạn";
+                }
+                else if (DateTime.Compare(DateTime.ParseExact(startdate, "dd/MM/yyyy", null), DateTime.Now.Date) > 0)
+                {
+                    status = "Sắp diễn ra";
                 }
                 if ((DateTime.Compare(timeend, timestartfind) < 0) || (DateTime.Compare(timestart, timeendfind) > 0))
                 {
