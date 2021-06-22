@@ -92,14 +92,9 @@ namespace CoffeeStore.IncomeAndPayment
                 DateTime time = TimeZone.CurrentTimeZone.ToLocalTime((DateTime)row["Time"]);
                 string creater = row["EmployeeName"].ToString();
                 float dis = 0;
-                try
-                {
+                if (row["DiscountID"].ToString() != "")
                     dis = float.Parse(row["DiscountValue"].ToString());
-                }
-                catch
-                {
 
-                }
                 int total = (int)(Int32.Parse(row["Total"].ToString()) * (1 - dis / 100));
                 receiptItems.Add(new ReceiptItem(id, time, creater, total));
             }
