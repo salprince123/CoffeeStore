@@ -83,6 +83,13 @@ namespace CoffeeStore.Account
                 return;
             }
 
+            if (tboxPassword.Password.Length < 4 || tboxPassword.Password.Length > 20)
+            {
+                //Password < 4 characters or > 20 characters
+                tbPassValidation.Text = "Mật khẩu phải từ 4-20 ký tự.";
+                return;
+            }
+
             if (tboxEmpName.Text == "")
             {
                 //Employee Name is empty
@@ -104,13 +111,6 @@ namespace CoffeeStore.Account
             {
                 //Employee Type not found
                 tbGroupAccountValidation.Text = "Nhóm tài khoản không được để trống.";
-                return;
-            }
-
-            if (tboxPassword.Password.Length < 4 || tboxPassword.Password.Length > 20)
-            {
-                //Password < 4 characters or > 20 characters
-                tbPassValidation.Text = "Mật khẩu phải từ 4-20 ký tự.";
                 return;
             }
 
