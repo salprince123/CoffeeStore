@@ -147,10 +147,10 @@ namespace CoffeeStore.Discount
                 WindowStyle = WindowStyle.None,
                 Title = "Thêm ưu đãi",
                 Content = new PopupDiscountAdd(_context),
-                Width = 540,
-                Height = 500,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 1000 / 2) / 2,
+                Width = 460,
+                Height = 505,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 500) / 2,
             };
             window.ShowDialog();
 
@@ -201,9 +201,8 @@ namespace CoffeeStore.Discount
                 WindowStyle = WindowStyle.None,
                 Title = "Chi tiết ưu đãi",
                 Content = new PopupDiscountDetail(row.DiscountID),
-                Width = 400,
-                Height = 480,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 400) / 2,
+                Width = 460,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
                 Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 480) / 2,
             };
             window.ShowDialog();
@@ -224,10 +223,10 @@ namespace CoffeeStore.Discount
                 WindowStyle = WindowStyle.None,
                 Title = "Sửa ưu đãi",
                 Content = new PopupDiscountEdit(row.DiscountID, row.DiscountName, row.StartDate, row.EndDate, row.DiscountValue.ToString(), _context),
-                Width = 540,
-                Height = 480,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 480) / 2,
+                Width = 460,
+                Height = 505,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 500) / 2,
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
