@@ -161,6 +161,12 @@ namespace CoffeeStore.IncomeAndPayment
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             string id = ((Button)sender).Tag.ToString();
+            BUS_Receipt busReceipt = new BUS_Receipt();
+            if ((DateTime.Now - busReceipt.GetCreateDayByID(id)).TotalDays > 2)
+            {
+                MessageBox.Show("Không thể xóa do hóa đơn đã được tạo cách đây hơn 2 ngày!");
+                return;
+            }    
 
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
             ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
@@ -178,7 +184,7 @@ namespace CoffeeStore.IncomeAndPayment
             };
             window.ShowDialog();
 
-            BUS_Receipt busReceipt = new BUS_Receipt();
+            
             int empCount = busReceipt.CountReceipt(start, end, keyword);
             if (empCount % limitRow == 0)
                 lblMaxPage.Content = empCount / limitRow;

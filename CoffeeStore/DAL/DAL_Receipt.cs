@@ -27,6 +27,24 @@ namespace CoffeeStore.DAL
             return receipts;
         }
 
+        public DateTime GetCreateDayByID(string id)
+        {
+            DataTable receipts = new DataTable();
+            try
+            {
+                string sql = $"select Time from Receipt where ReceiptID = '{id}'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(receipts);
+                return TimeZone.CurrentTimeZone.ToLocalTime((DateTime)receipts.Rows[0]["Time"]);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new DateTime(2021, 1, 1);
+            }
+            
+        }    
+
         public DataTable GetReceipt(DateTime startDate, DateTime endDate, string keyword, int limit, int offset)
         {
             if (keyword == "")
