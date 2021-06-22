@@ -107,7 +107,7 @@
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                             <ColumnDefinition Width="10"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <DataGrid Grid.Column="1" Grid.Row="1" 
+                        <DataGrid Grid.Column="1" Grid.Row="1" CanUserAddRows="false"
                               x:Name="dataGridMaterialImport" 
                               BorderThickness="1"
                               BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"

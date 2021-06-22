@@ -135,7 +135,7 @@
                     <DataGridTemplateColumn Header="">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox x:Name="cbCheck" Checked="cbCheck_Checked" ></CheckBox>
+                                <CheckBox x:Name="cbCheck" Checked="cbCheck_Checked" Unchecked="cbCheck_Unchecked" ></CheckBox>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
