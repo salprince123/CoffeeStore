@@ -26,10 +26,11 @@ namespace CoffeeStore.Discount
     {
         BUS_Discount bus = new BUS_Discount();
         MainWindow _context;
-        class Discount: DTO_Discount
-            {
-                public String Status { get; set; }
-            }
+        bool find = false;
+        class Discount : DTO_Discount
+        {
+            public String Status { get; set; }
+        }
 
         public DiscountList()
         {
@@ -53,6 +54,8 @@ namespace CoffeeStore.Discount
         {
             var list = new ObservableCollection<Discount>();
             DataTable temp = bus.getAllDiscount();
+            int rowNumber = Int32.Parse(tbNumPage.Text);
+            int count = 1;
             foreach (DataRow row in temp.Rows)
             {
                 string name = row["DiscountName"].ToString();
@@ -62,26 +65,30 @@ namespace CoffeeStore.Discount
                 string enddate = row["enddate"].ToString();
                 string status = "";
                 DateTime time = DateTime.ParseExact(enddate, "dd/MM/yyyy", null);
-                if (DateTime.Compare(time, DateTime.Now.Date) >= 0)
+                if (DateTime.Compare(time, DateTime.Now.Date) >= 0 && DateTime.Compare(DateTime.ParseExact(startdate, "dd/MM/yyyy", null), DateTime.Now.Date) <= 0)
                 {
                     status = "Đang diễn ra";
                 }
-                else
+                else if (DateTime.Compare(time, DateTime.Now.Date) < 0)
                 {
                     status = "Đã hết hạn";
                 }
-
-                list.Add(new Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate, Status = status });
+                else if (DateTime.Compare(DateTime.ParseExact(startdate, "dd/MM/yyyy", null), DateTime.Now.Date) > 0)
+                {
+                    status = "Sắp diễn ra";
+                }
+                if (count >= (rowNumber - 1) * 20 + 1 && count <= rowNumber * 20)
+                {
+                    list.Add(new Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate, Status = status });
+                    count++;
+                }
+                else count++;
             }
             dgDiscount.ItemsSource = list;
-            //foreach (ItemsControl item in dgDiscount.Items)
-            //{
-            //   //MessageBox.Show(item.);
-            //}    
-            //dgDiscount.Items.Refresh();
         }
         void findDiscount(string startdatefind, string enddatefind)
         {
+            find = true;
             var list = new ObservableCollection<Discount>();
             DataTable temp = bus.getAllDiscount();
             foreach (DataRow row in temp.Rows)
@@ -96,20 +103,36 @@ namespace CoffeeStore.Discount
                 DateTime timestart = DateTime.ParseExact(startdate, "dd/MM/yyyy", null);
                 DateTime timeendfind = DateTime.ParseExact(enddatefind, "dd/MM/yyyy", null);
                 DateTime timestartfind = DateTime.ParseExact(startdatefind, "dd/MM/yyyy", null);
-                if (DateTime.Compare(timeend, DateTime.Now.Date) >= 0)
+                int rowNumber = Int32.Parse(tbNumPage.Text);
+                int count = 1;
+                DateTime time = DateTime.ParseExact(enddate, "dd/MM/yyyy", null);
+                if (DateTime.Compare(time, DateTime.Now.Date) >= 0 && DateTime.Compare(DateTime.ParseExact(startdate, "dd/MM/yyyy", null), DateTime.Now.Date) <= 0)
                 {
                     status = "Đang diễn ra";
                 }
-                else
+                else if (DateTime.Compare(time, DateTime.Now.Date) < 0)
                 {
                     status = "Đã hết hạn";
                 }
-                if ((DateTime.Compare(timeend, timeendfind) <= 0) &&(DateTime.Compare(timestart, timestartfind) >= 0))
+                else if (DateTime.Compare(DateTime.ParseExact(startdate, "dd/MM/yyyy", null), DateTime.Now.Date) > 0)
                 {
-                    list.Add(new Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate, Status = status });
+                    status = "Sắp diễn ra";
                 }
-                MessageBox.Show((DateTime.Compare(timeend, timeendfind)).ToString());
-                MessageBox.Show((DateTime.Compare(timestart, timestartfind) >= 0).ToString());
+                if ((DateTime.Compare(timeend, timestartfind) < 0) || (DateTime.Compare(timestart, timeendfind) > 0))
+                {
+
+                }
+                else
+                {
+
+                    if (count >= (rowNumber - 1) * 20 + 1 && count <= rowNumber * 20)
+                    {
+                        list.Add(new Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate, Status = status });
+                        count++;
+                    }
+                    else count++;
+                }
+
             }
             dgDiscount.ItemsSource = list;
         }
@@ -126,8 +149,8 @@ namespace CoffeeStore.Discount
                 Content = new PopupDiscountAdd(_context),
                 Width = 540,
                 Height = 500,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 500) / 2,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 1000 / 2) / 2,
             };
             window.ShowDialog();
 
@@ -152,12 +175,12 @@ namespace CoffeeStore.Discount
             {
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
-                Title = "Xóa ưu đãi",
+                Title = "Chi tiết ưu đãi",
                 Content = new PopupDeleteConfirm(row, _context),
-                Width = 380,
-                Height = 210,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+                Width = 540,
+                Height = 350,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
@@ -212,5 +235,23 @@ namespace CoffeeStore.Discount
             loadData();
         }
 
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
+            if (find)
+                findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
+            else
+                loadData();
+        }
+
+        private void btnPrevious_Click(object sender, RoutedEventArgs e)
+        {
+            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
+            if (find)
+                findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy")
+                    );
+            else
+                loadData();
+        }
     }
 }
