@@ -53,27 +53,32 @@ namespace CoffeeStore.Account
 
             tboxAccount.Text = editEmp.EmployeeID;
             tboxEmpName.Text = editEmp.EmployeeName;
-            tboxPassword.Text = editEmp.Password;
+            tboxPassword.Password = editEmp.Password;
             cbEmpType.Text = editEmp.EmployeeTypeID;
         }    
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
+            tbPassValidation.Text = tbNameValidation.Text = tbGroupAccountValidation.Text = "";
+
+            if (tboxPassword.Password == "")
+            {
+                //Password is empty
+                tbPassValidation.Text = "Mật khẩu không được để trống.";
+                return;
+            }
+
+            if (tboxPassword.Password.Length < 4 || tboxPassword.Password.Length > 20)
+            {
+                //Password < 4 characters or > 20 characters
+                tbPassValidation.Text = "Mật khẩu phải từ 4-20 ký tự.";
+                return;
+            }
+
             if (tboxEmpName.Text == "")
             {
                 //Employee Name is empty
-                return;
-            }
-
-            if (tboxPassword.Text == "")
-            {
-                //Password is empty
-                return;
-            }
-
-            if (tboxPassword.Text.Length < 4 || tboxPassword.Text.Length > 20)
-            {
-                //Password < 4 characters or > 20 characters
+                tbNameValidation.Text = "Tên nhân viên không được để trống";
                 return;
             }
 
@@ -87,7 +92,7 @@ namespace CoffeeStore.Account
                 }
             }
 
-            DTO_Employees newEmp = new DTO_Employees(tboxAccount.Text, tboxEmpName.Text, newEmpTypeID, tboxPassword.Text);
+            DTO_Employees newEmp = new DTO_Employees(tboxAccount.Text, tboxEmpName.Text, newEmpTypeID, tboxPassword.Password);
 
             BUS_Employees busAcc = new BUS_Employees();
             if (busAcc.EditEmployee(newEmp))
@@ -101,6 +106,14 @@ namespace CoffeeStore.Account
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Close();
+        }
+
+        private void tboxEmpName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[a-zA-Z]"))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -75,10 +75,10 @@ namespace CoffeeStore.Menu
                 WindowStyle = WindowStyle.None,
                 Title = "Thêm món",
                 Content = new PopupAddMenu(_context),
-                Width = 540,
-                Height = 350,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
+                Width = 460,
+                Height = 380,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 380) / 2,
             };
             window.ShowDialog();
 
@@ -101,10 +101,10 @@ namespace CoffeeStore.Menu
                 WindowStyle = WindowStyle.None,
                 Title = "Sửa món",
                 Content = new PopupEditMenu(row.BeverageName, row.BeverageTypeID, row.Price.ToString(), row.BeverageID, this._context),
-                Width = 540,
-                Height = 350,
+                Width = 460,
+                Height = 380,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 350) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 380) / 2,
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
