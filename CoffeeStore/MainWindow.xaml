@@ -64,14 +64,13 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
         <!--Username here-->
         <Menu Background="White" IsMainMenu="True" Grid.Row="0" Grid.ColumnSpan="2" FlowDirection="RightToLeft">
             <MenuItem Background="#EAEAEA" Foreground="#011F3B" Height="40"
@@ -92,9 +91,9 @@
             </MenuItem>
         </Menu>
         <Grid Grid.RowSpan="2" Grid.Column="0" Background="#6B6158">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <materialDesign:PackIcon Kind="Coffee" Background="#6B6158" Foreground="#FFE297" Margin="0,0,10,0" Width="30" Height="30"/>
-                <TextBlock FontWeight="Bold" Foreground="#FFE297" FontSize="20" Margin="5,5">Coffee Store</TextBlock>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <materialDesign:PackIcon Kind="Coffee" Background="#6B6158" Foreground="#FFE297" HorizontalAlignment="Center" Width="40" Height="40"/>
+                <TextBlock FontWeight="SemiBold" Foreground="#FFE297" FontSize="20" >Ngao Coffee</TextBlock>
             </StackPanel>
             
         </Grid>
@@ -113,6 +112,7 @@
             </ScrollViewer>
         </Grid>
         <StackPanel x:Name="StackPanelMain" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <view:Banner x:Name="banner"></view:Banner>
         </StackPanel>
         <Grid x:Name="gridLogin" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="2">
             <view:Login x:Name="loginScreen">

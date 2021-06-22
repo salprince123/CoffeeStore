@@ -279,8 +279,12 @@
     <Compile Include="Report\ReportSale.xaml.cs">
       <DependentUpon>ReportSale.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\DatePickerCalendar.cs" />
     <Compile Include="ViewModel\ItemMenu.cs" />
     <Compile Include="ViewModel\SubItem.cs" />
+    <Compile Include="View\Banner.xaml.cs">
+      <DependentUpon>Banner.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Cashier.xaml.cs">
       <DependentUpon>Cashier.xaml</DependentUpon>
     </Compile>
@@ -496,6 +500,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Banner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Cashier.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -560,6 +568,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\outofstock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\banner.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
