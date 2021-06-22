@@ -44,8 +44,8 @@
             <Label Name="lblShopName" 
                    Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="2" 
                    VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
-                   Foreground="#FFF57300" FontFamily="Open Sans" FontSize="32" FontWeight="Bold">
-                Coffee Store
+                   Foreground="#FFF57300" FontFamily="Open Sans" FontSize="36" FontWeight="Bold">
+                Ngao Coffee
             </Label>
             <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="4" 
                    FontFamily="Open Sans" FontWeight="Bold" FontSize="16" Foreground="#FF4A4A4A" Padding="0">
