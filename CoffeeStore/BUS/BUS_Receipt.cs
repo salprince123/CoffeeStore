@@ -51,5 +51,10 @@ namespace CoffeeStore.BUS
         {
             return dalReceipt.GetTotalIncomeByYear(year);
         }
+
+        public DateTime GetCreateDayByID(string id)
+        {
+            return dalReceipt.GetCreateDayByID(id);
+        }    
     }
 }

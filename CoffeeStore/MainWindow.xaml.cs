@@ -210,7 +210,11 @@ namespace CoffeeStore
         public string GetCurrentEmpType()
         {
             return currentEmpType;
-        }    
+        }
+        public string GetCurrentEmpID()
+        {
+            return currentEmpID;
+        }
         public string GetCurrentEmpName()
         {
             BUS_Employees bus = new BUS_Employees();

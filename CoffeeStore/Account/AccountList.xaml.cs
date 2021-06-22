@@ -135,6 +135,13 @@ namespace CoffeeStore.Account
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             string id = ((Button)sender).Tag.ToString();
+
+            if (_context.GetCurrentEmpID() == id)
+            {
+                MessageBox.Show("Không được xóa tài khoản của bản thân!");
+                return;
+            }    
+
             BUS_Employees busEmp = new BUS_Employees();
             string name = busEmp.GetEmpNameByID(id);
 
@@ -209,6 +216,15 @@ namespace CoffeeStore.Account
         {
             string id = ((CheckBox)sender).Tag.ToString();
             bool? state = ((CheckBox)sender).IsChecked;
+            if (state == false)
+            {
+                if (_context.GetCurrentEmpID() == id)
+                {
+                    MessageBox.Show("Không được vô hiệu hóa tài khoản của bản thân!");
+                    ((CheckBox)sender).IsChecked = true;
+                    return;
+                }
+            }    
             BUS_Employees busEmp = new BUS_Employees();
             string name = busEmp.GetEmpNameByID(id);
 

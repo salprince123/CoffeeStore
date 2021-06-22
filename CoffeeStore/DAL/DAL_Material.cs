@@ -127,9 +127,9 @@ namespace CoffeeStore.DAL
                 return false;
             }
         }
-        public bool Update (String name, String unit)
+        public bool Update (String oldName,String newName, String unit)
         {
-            string sql = $"update Material set MaterialName='{name}', Unit = '{unit}'  where MaterialName='{name}'";
+            string sql = $"update Material set MaterialName='{newName}', Unit = '{unit}'  where MaterialName='{oldName}'";
             SQLiteCommand update = new SQLiteCommand(sql, getConnection().OpenAndReturn());
             try
             {

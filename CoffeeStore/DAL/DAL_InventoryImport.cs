@@ -29,7 +29,29 @@ namespace CoffeeStore.DAL
             
         }
 
-        
+        public int TotalCost(String id)
+        {
+            int total = 0;
+            try
+            {
+                string sql = $"select amount,price  from InventoryImportDetail detail " +
+                                 $"Join Material mater on detail.MaterialID= mater.MaterialID  where importID='{id}'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                DataTable list = new DataTable();
+                da.Fill(list);
+                foreach (DataRow row in list.Rows)
+                {
+                    string amount = row["amount"].ToString();
+                    string unitPrice = row["price"].ToString();
+                    total += int.Parse(amount)*int.Parse(unitPrice);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception AT" + e.ToString());
+            };
+            return total;
+        }
         public string Create(String name, String date)
         {
             //create auto increase ID

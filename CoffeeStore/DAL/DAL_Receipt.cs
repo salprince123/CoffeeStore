@@ -27,6 +27,24 @@ namespace CoffeeStore.DAL
             return receipts;
         }
 
+        public DateTime GetCreateDayByID(string id)
+        {
+            DataTable receipts = new DataTable();
+            try
+            {
+                string sql = $"select Time from Receipt where ReceiptID = '{id}'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(receipts);
+                return TimeZone.CurrentTimeZone.ToLocalTime((DateTime)receipts.Rows[0]["Time"]);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new DateTime(2021, 1, 1);
+            }
+            
+        }    
+
         public DataTable GetReceipt(DateTime startDate, DateTime endDate, string keyword, int limit, int offset)
         {
             if (keyword == "")
@@ -108,7 +126,7 @@ namespace CoffeeStore.DAL
             DataTable data = new DataTable();
             try
             {
-                string sql = $"select strftime('%m', Time) as Month, sum(Amount * Price) as TotalBeforeDis, sum(Amount * Price * (1 - DiscountValue/100))  as TotalAfterDis from ReceiptDetail join Receipt on ReceiptDetail.ReceiptID = Receipt.ReceiptID left join Discount on Receipt.DiscountID = Discount.DiscountID where strftime('%Y',Time) = '{year.ToString()}' group by Discount.DiscountID, strftime('%m', Time)";
+                string sql = $"select strftime('%m', Time) as Month, sum(Amount * Price) as TotalBeforeDis, sum(Amount * Price * (1 - IFNULL(DiscountValue, 0)/100)) as TotalAfterDis from ReceiptDetail join Receipt on ReceiptDetail.ReceiptID = Receipt.ReceiptID left join Discount on Receipt.DiscountID = Discount.DiscountID where strftime('%Y',Time) = '{year}' group by strftime('%m', Time)";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 da.Fill(data);
             }
@@ -119,14 +137,14 @@ namespace CoffeeStore.DAL
             return data;
         }
 
-        public int GetTotalIncomeByDay(int month)
+        public int GetTotalIncomeByDay(int month, int year)
         {
             int total = 0;
             string strMonth = month.ToString().PadLeft(2, '0');
             DataTable data = new DataTable();
             try
             {
-                string sql = $"select sum(Amount * Price) as TotalBeforeDis, sum(Amount * Price * (1 - DiscountValue/100)) as TotalAfterDis from ReceiptDetail join Receipt on ReceiptDetail.ReceiptID = Receipt.ReceiptID left join Discount on Receipt.DiscountID = Discount.DiscountID where strftime('%m', Time) = '{strMonth}' group by Discount.DiscountID";
+                string sql = $"select strftime('%d', Time) as Day, sum(Amount * Price * (1 - ifnull(DiscountValue, 0)/100)) as TotalAfterDis from ReceiptDetail join Receipt on ReceiptDetail.ReceiptID = Receipt.ReceiptID left join Discount on Receipt.DiscountID = Discount.DiscountID where strftime('%m', Time) = '{strMonth}' and strftime('%Y', Time) = '{year}' group by strftime('%d', Time)";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 da.Fill(data);
             }

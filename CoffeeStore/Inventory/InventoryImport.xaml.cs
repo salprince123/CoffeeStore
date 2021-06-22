@@ -22,6 +22,7 @@ namespace CoffeeStore.Inventory
     {
         public String selectionID = "";
         public String selectionName = "";
+        bool findFlag = false;
         MainWindow _context;
         public String username { get; set; }
         public InventoryImportObject row;
@@ -67,8 +68,53 @@ namespace CoffeeStore.Inventory
                 string date = row["importDate"].ToString();
                 mainList.Add(new InventoryImportObject() { ID = id, EmployName = employid, InventoryDate = date });
             }
-            this.dataGridImport.Items.Refresh();
-            this.dataGridImport.ItemsSource = mainList;
+            if (mainList.Count % 10 == 0)
+                lblMaxPage.Content = mainList.Count / 10;
+            else lblMaxPage.Content = mainList.Count / 10 + 1;
+            if (int.Parse(lblMaxPage.Content.ToString()) == 0)
+                this.tbNumPage.Text = "0";
+            splitDataGrid(1);
+
+        }
+        public void splitDataGrid(int numpage)
+        {
+            try
+            {
+                List<InventoryImportObject> displayList = new List<InventoryImportObject>();
+                int numberPerSheet = 10;
+                if (mainList.Count < numberPerSheet * numpage)
+                {
+                    displayList = mainList.GetRange((numpage - 1) * numberPerSheet, mainList.Count - (numpage - 1) * numberPerSheet);
+                }
+                else displayList = mainList.GetRange((numpage - 1) * numberPerSheet, numberPerSheet);
+                //displayList = list.GetRange(10, list.Count-10);
+                this.dataGridImport.Items.Refresh();
+                this.dataGridImport.ItemsSource = displayList;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something wrong!");
+            }
+        }
+        public void splitDataGridFind(int numpage)
+        {
+            try
+            {
+                List<InventoryImportObject> displayList = new List<InventoryImportObject>();
+                int numberPerSheet = 10;
+                if (findList.Count < numberPerSheet * numpage)
+                {
+                    displayList = findList.GetRange((numpage - 1) * numberPerSheet, findList.Count - (numpage - 1) * numberPerSheet);
+                }
+                else displayList = findList.GetRange((numpage - 1) * numberPerSheet, numberPerSheet);
+                //displayList = list.GetRange(10, list.Count-10);
+                this.dataGridImport.Items.Refresh();
+                this.dataGridImport.ItemsSource = displayList;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something wrong!");
+            }
         }
         public void findImport()
         {
@@ -110,8 +156,13 @@ namespace CoffeeStore.Inventory
                     }
                 }
             }
-            dataGridImport.ItemsSource = findList;
-            dataGridImport.Items.Refresh();
+            if (mainList.Count % 10 == 0)
+                lblMaxPage.Content = findList.Count / 10;
+            else lblMaxPage.Content = findList.Count / 10 + 1;
+            if (int.Parse(lblMaxPage.Content.ToString()) == 0)
+                this.tbNumPage.Text = "0";
+            splitDataGridFind(int.Parse(tbNumPage.Text));
+            this.findFlag = true;
         }
 
         private void AddImport_Click(object sender, RoutedEventArgs e)
@@ -299,6 +350,27 @@ namespace CoffeeStore.Inventory
             
             //tbDateEnd.Text = tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy");
             //Keyboard.Focus(tbDateEnd);
+        }
+        private void btBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (int.Parse(tbNumPage.Text) > 1)
+            {
+                tbNumPage.Text = (int.Parse(tbNumPage.Text) - 1).ToString();
+                if (!findFlag)
+                    splitDataGrid(int.Parse(tbNumPage.Text));
+                else splitDataGridFind(int.Parse(tbNumPage.Text));
+            }
+        }
+
+        private void btNext_Click(object sender, RoutedEventArgs e)
+        {
+            if ((int.Parse(lblMaxPage.Content.ToString()) - int.Parse(tbNumPage.Text)) >= 1)
+            {
+                tbNumPage.Text = (int.Parse(tbNumPage.Text) + 1).ToString();
+                if (!findFlag )
+                    splitDataGrid(int.Parse(tbNumPage.Text));
+                else splitDataGridFind(int.Parse(tbNumPage.Text));
+            }
         }
     }
 

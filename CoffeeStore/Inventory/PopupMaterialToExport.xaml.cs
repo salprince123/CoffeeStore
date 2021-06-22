@@ -25,6 +25,8 @@ namespace CoffeeStore.Inventory
     {
         public UserControl parent { get; set; }
         List<String> temp = new List<string>();
+        List<MAterialObject> mainList = new List<MAterialObject>();
+        List<MAterialObject> findList = new List<MAterialObject>();
         public class MAterialObject
         {
             public string id { get; set; }
@@ -53,7 +55,6 @@ namespace CoffeeStore.Inventory
         {
             Dictionary<String, int> mapNameAmount = new Dictionary<string, int>();
             Dictionary<String, String> mapNameUnit = new Dictionary<string, string>();
-            var list = new ObservableCollection<MAterialObject>();
             //mapping name with unit & import amount
             //With import amount
             BUS_InventoryImportDetail import = new BUS_InventoryImportDetail();
@@ -90,9 +91,9 @@ namespace CoffeeStore.Inventory
                 if (mapNameAmount.ContainsKey(name.Key))
                     amount = mapNameAmount[name.Key];
                 if (amount == 0) continue;
-                list.Add(new MAterialObject() {  name = name.Key, amount= amount.ToString(), unit= name.Value });
+                mainList.Add(new MAterialObject() {  name = name.Key, amount= amount.ToString(), unit= name.Value });
             }
-            this.dataGridMaterialExport.ItemsSource = list;
+            this.dataGridMaterialExport.ItemsSource = mainList;
         }
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -115,6 +116,18 @@ namespace CoffeeStore.Inventory
                 ((InventoryExportEDIT)parent).MaterName = temp;
             else ((InventoryImportEDIT)parent).MaterName = temp;
             Window.GetWindow(this).Close();
+        }
+
+        private void btnFind_Click(object sender, RoutedEventArgs e)
+        {
+            findList.Clear();
+            foreach (MAterialObject obj in mainList.ToList())
+            {
+                if (obj.name.Contains(tbFind.Text))
+                    findList.Add(obj);
+            }
+            this.dataGridMaterialExport.Items.Refresh();
+            this.dataGridMaterialExport.ItemsSource = findList;
         }
     }
 }

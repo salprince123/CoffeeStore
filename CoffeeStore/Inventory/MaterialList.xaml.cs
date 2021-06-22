@@ -99,7 +99,8 @@ namespace CoffeeStore.Inventory
             if (list.Count % 10 == 0)
                 lblMaxPage.Content = list.Count / 10;
             else lblMaxPage.Content = list.Count / 10 + 1;
-            //this.dataGridMaterial.ItemsSource = list;
+            if (int.Parse(lblMaxPage.Content.ToString()) == 0)
+                this.tbNumPage.Text = "0";
             splitDataGrid(1);
         }
         public void splitDataGrid(int numpage)
@@ -149,20 +150,14 @@ namespace CoffeeStore.Inventory
                 if (obj.Name.Contains(keyword) )
                     findList.Add(obj);
             }
+            if (findList.Count % 10 == 0)
+                lblMaxPage.Content = findList.Count / 10;
+            else lblMaxPage.Content = findList.Count / 10 + 1;
+            if (int.Parse(lblMaxPage.Content.ToString()) == 0)
+                this.tbNumPage.Text = "0";
             dataGridMaterial.ItemsSource = findList;
             dataGridMaterial.Items.Refresh();
         }
-        private void tbKeyword_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            //tbKeyword.Clear();
-        }
-
-
-        private void tbKeyword_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            //tbKeyword.Clear();
-        }
-
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             findMaterial(tbFind.Text);

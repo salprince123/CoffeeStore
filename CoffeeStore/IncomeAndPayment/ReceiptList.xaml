@@ -195,7 +195,7 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding Path='id'}">
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="Ngày lập" Binding="{Binding Path='time'}">
+                                <DataGridTextColumn Header="Ngày lập" Binding="{Binding Path='time', StringFormat='dd/MM/yyyy HH:mm:ss tt'}">
                                 </DataGridTextColumn>
                                 <DataGridTextColumn 
                                     Header="Người lập"

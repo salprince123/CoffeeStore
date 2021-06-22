@@ -282,9 +282,6 @@
     <Compile Include="Report\ReportSale.xaml.cs">
       <DependentUpon>ReportSale.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VatLieu.xaml.cs">
-      <DependentUpon>VatLieu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\ItemMenu.cs" />
     <Compile Include="ViewModel\SubItem.cs" />
     <Compile Include="View\Cashier.xaml.cs">
@@ -499,10 +496,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Report\ReportSale.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="VatLieu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
