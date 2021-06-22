@@ -147,7 +147,7 @@ namespace CoffeeStore.Inventory
             tbNumPage.Text = "1";
             foreach (InventoryObject obj in list.ToList())
             {
-                if (obj.Name.Contains(keyword) )
+                if (obj.Name.ToLower().Contains(keyword.ToLower()))
                     findList.Add(obj);
             }
             if (findList.Count % 10 == 0)

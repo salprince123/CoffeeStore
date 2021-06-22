@@ -236,7 +236,7 @@
                         </DataGrid>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2">
-                            <Button Width="40" Height="Auto" 
+                            <Button Width="40" Height="Auto" Name="btBack" Click="btBack_Click"
                                     Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
                                     VerticalAlignment="Center">
                                 <materialDesign:PackIcon Kind="ChevronLeft" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
@@ -250,7 +250,7 @@
                             <Label Name="lblMaxPage" Width="35" 
                                    Content="10" FontWeight="SemiBold" FontSize="14"
                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Button Width="40" Height="Auto" 
+                            <Button Width="40" Height="Auto" Name="btNext" Click="btNext_Click"
                                     Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
                                     VerticalAlignment="Center">
                                 <materialDesign:PackIcon Kind="ChevronRight" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
