@@ -67,28 +67,26 @@ namespace CoffeeStore.Account
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
+            tbIDValidation.Text = tbPassValidation.Text = tbNameValidation.Text = tbGroupAccountValidation.Text = "";
             //Check if any field is empty
             if (tboxAccName.Text == "")
             {
                 //Employee ID is empty
+                tbIDValidation.Text = "Tài khoản không được để trống.";
+                return;
+            }
+
+            if (tboxPassword.Password == "")
+            {
+                //Password is empty
+                tbPassValidation.Text = "Mật khẩu không được để trống.";
                 return;
             }
 
             if (tboxEmpName.Text == "")
             {
                 //Employee Name is empty
-                return;
-            }
-
-            if (tboxPassword.Text == "")
-            {
-                //Password is empty
-                return;
-            }
-
-            if (tboxPassword.Text.Length < 4 || tboxPassword.Text.Length > 20)
-            {
-                //Password < 4 characters or > 20 characters
+                tbNameValidation.Text = "Tên nhân viên không được để trống";
                 return;
             }
 
@@ -100,15 +98,23 @@ namespace CoffeeStore.Account
                     newEmpTypeID = empType.id;
                     break;
                 }
-            }    
+            }
 
             if (newEmpTypeID == "")
             {
                 //Employee Type not found
+                tbGroupAccountValidation.Text = "Nhóm tài khoản không được để trống.";
                 return;
-            }    
+            }
 
-            DTO_Employees newEmp = new DTO_Employees(tboxAccName.Text, tboxEmpName.Text, newEmpTypeID, tboxPassword.Text);
+            if (tboxPassword.Password.Length < 4 || tboxPassword.Password.Length > 20)
+            {
+                //Password < 4 characters or > 20 characters
+                tbPassValidation.Text = "Mật khẩu phải từ 4-20 ký tự.";
+                return;
+            }
+
+            DTO_Employees newEmp = new DTO_Employees(tboxAccName.Text, tboxEmpName.Text, newEmpTypeID, tboxPassword.Password);
 
             BUS_Employees busAcc = new BUS_Employees();
             if (busAcc.CreateEmployee(newEmp))
@@ -117,6 +123,14 @@ namespace CoffeeStore.Account
                 Window.GetWindow(this).Close();
             }     
             else MessageBox.Show($"Tên tài khoản bị trùng với một trong những tài khoản đã được tạo"); 
+        }
+
+        private void tboxEmpName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[a-zA-Z]"))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
