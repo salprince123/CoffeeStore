@@ -27,6 +27,8 @@ namespace CoffeeStore.Menu
         MainWindow _context;
         bool find = false;
         int maxNumpage;
+        int numRow;
+        int currentNumpage;
         public MenuList()
         {
             InitializeComponent();
@@ -39,6 +41,7 @@ namespace CoffeeStore.Menu
             InitializeComponent();
             dgMenu.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             bus = new BUS_Beverage();
+            currentNumpage = 1;
             this._context = mainWindow;
             loadData();
         }
@@ -67,14 +70,22 @@ namespace CoffeeStore.Menu
                 }
                 else count++;
             }
-            if (temp.Rows.Count % 20 == 0)
-            {
-                maxNumpage = temp.Rows.Count / 20;
-            }
-            else
-                maxNumpage = temp.Rows.Count / 20 + 1;
+            numRow = temp.Rows.Count;
             dgMenu.ItemsSource = list;
             dgMenu.Items.Refresh();
+            setNumPage();
+        }
+        void setNumPage()
+        {
+
+            if (numRow % 20 == 0)
+            {
+                maxNumpage = numRow / 20;
+            }
+            else
+                maxNumpage = numRow / 20 + 1;
+
+            lblMaxPage.Content = maxNumpage.ToString();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -144,7 +155,10 @@ namespace CoffeeStore.Menu
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
-            ((MainWindow)App.Current.MainWindow).Effect = null;
+            ((MainWindow)App.Current.MainWindow).Effect = null; 
+            setNumPage();
+            if (maxNumpage < int.Parse(tbNumPage.Text))
+                tbNumPage.Text = (int.Parse(tbNumPage.Text) - 1).ToString();
             loadData();
         }
 
@@ -181,24 +195,9 @@ namespace CoffeeStore.Menu
             dgMenu.ItemsSource = list;
             dgMenu.Items.Refresh();
         }
-        private void btnNext_Click(object sender, RoutedEventArgs e)
-        {
-            if (Int32.Parse(tbNumPage.Text) == maxNumpage)
-            {
-
-            }
-            else
-            {
-                tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
-                if (find)
-                    findBeverage();
-                else
-                    loadData();
-            }
-        }
-
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
+            currentNumpage = Int32.Parse(tbNumPage.Text);
             if (Int32.Parse(tbNumPage.Text) == 1)
             {
 
@@ -206,19 +205,48 @@ namespace CoffeeStore.Menu
             else
             {
                 tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
-                if (find)
-                    findBeverage();
-                else
+                currentNumpage--;
+                if (!find)
                     loadData();
+                else
+                    findBeverage();
             }
+        }
 
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            currentNumpage = Int32.Parse(tbNumPage.Text);
+            if (Int32.Parse(tbNumPage.Text) == maxNumpage)
+            {
+
+            }
+            else
+            {
+                tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
+                currentNumpage++;
+                if (!find)
+                    loadData();
+                else
+                    findBeverage();
+            }
             
+
         }
 
         private void tbNumPage_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Space)
                 e.Handled = true;
+            if (e.Key == Key.Enter)
+            {
+                if (tbNumPage.Text.Length != 0 && int.Parse(tbNumPage.Text) <= maxNumpage && int.Parse(tbNumPage.Text) > 0)
+                    loadData();
+                else
+                {
+                    tbNumPage.Text = currentNumpage.ToString();
+                    loadData();
+                }
+            }
         }
 
         private void tbNumPage_PreviewTextInput(object sender, TextCompositionEventArgs e)

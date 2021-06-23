@@ -28,11 +28,14 @@ namespace CoffeeStore.IncomeAndPayment
         BUS_Payment bus;
         bool find = false;
         int maxNumpage;
+        int numRow;
+        int currentNumpage;
         public PaymentList()
         {
             InitializeComponent();
             dgPayment.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             bus = new BUS_Payment();
+            currentNumpage = 1;
             loaddata();
         }
         public PaymentList(MainWindow window)
@@ -41,6 +44,7 @@ namespace CoffeeStore.IncomeAndPayment
             dgPayment.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             bus = new BUS_Payment();
             _context = window;
+            currentNumpage = 1;
             loaddata();
         }
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
@@ -67,13 +71,21 @@ namespace CoffeeStore.IncomeAndPayment
                 }
                 else count++;
             }
-            if (temp.Rows.Count%20==0)
-                {
-                    maxNumpage = temp.Rows.Count / 20;
-                }
-            else
-                maxNumpage = temp.Rows.Count / 20+1;
+            numRow = temp.Rows.Count;
             dgPayment.ItemsSource = list;
+            setNumPage();
+        }
+        void setNumPage()
+        {
+
+            if (numRow % 20 == 0)
+            {
+                maxNumpage = numRow / 20;
+            }
+            else
+                maxNumpage = numRow / 20 + 1;
+
+            lblMaxPage.Content = maxNumpage.ToString();
         }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -95,6 +107,10 @@ namespace CoffeeStore.IncomeAndPayment
 
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
+            numRow++;
+            setNumPage();
+            if (maxNumpage < int.Parse(tbNumPage.Text))
+                tbNumPage.Text = (int.Parse(tbNumPage.Text)-1).ToString();
             loaddata();
         }
 
@@ -164,6 +180,10 @@ namespace CoffeeStore.IncomeAndPayment
 
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
+            numRow--;
+            setNumPage();
+            if (maxNumpage < int.Parse(tbNumPage.Text))
+                tbNumPage.Text = (int.Parse(tbNumPage.Text) - 1).ToString();
             loaddata();
         }
 
@@ -209,6 +229,7 @@ namespace CoffeeStore.IncomeAndPayment
         }
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
+            currentNumpage = Int32.Parse(tbNumPage.Text);
             if (Int32.Parse(tbNumPage.Text) == 1)
             {
 
@@ -216,6 +237,7 @@ namespace CoffeeStore.IncomeAndPayment
             else
             {
                 tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
+                currentNumpage--;
                 if (!find)
                     loaddata();
                 else
@@ -225,6 +247,7 @@ namespace CoffeeStore.IncomeAndPayment
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
+            currentNumpage = Int32.Parse(tbNumPage.Text);
             if (Int32.Parse(tbNumPage.Text)==maxNumpage)
             {
 
@@ -232,18 +255,30 @@ namespace CoffeeStore.IncomeAndPayment
             else
             {
                 tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
+                currentNumpage++;
                 if (!find)
                     loaddata();
                 else
                     findPayment();
             }
             
+
         }
 
         private void tbNumPage_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Space)
                 e.Handled = true;
+            if (e.Key == Key.Enter)
+            {
+                if (tbNumPage.Text.Length != 0 && int.Parse(tbNumPage.Text)<=maxNumpage && int.Parse(tbNumPage.Text) >0)
+                    loaddata();
+                else
+                {
+                    tbNumPage.Text = currentNumpage.ToString();
+                    loaddata();
+                }    
+            }    
         }
 
         private void tbNumPage_PreviewTextInput(object sender, TextCompositionEventArgs e)

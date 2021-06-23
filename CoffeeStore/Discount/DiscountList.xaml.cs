@@ -28,6 +28,8 @@ namespace CoffeeStore.Discount
         MainWindow _context;
         bool find = false;
         int maxNumpage;
+        int numRow;
+        int currentNumpage;
         class Discount : DTO_Discount
         {
             public String Status { get; set; }
@@ -43,6 +45,7 @@ namespace CoffeeStore.Discount
         {
             InitializeComponent();
             dgDiscount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
+            currentNumpage = 1;
             this._context = window;
             loadData();
         }
@@ -85,13 +88,21 @@ namespace CoffeeStore.Discount
                 }
                 else count++;
             }
-            if (temp.Rows.Count % 20 == 0)
+            numRow = temp.Rows.Count;
+            dgDiscount.ItemsSource = list;
+            setNumPage();
+        }
+        void setNumPage()
+        {
+
+            if (numRow % 20 == 0)
             {
-                maxNumpage = temp.Rows.Count / 20;
+                maxNumpage = numRow / 20;
             }
             else
-                maxNumpage = temp.Rows.Count / 20 + 1;
-            dgDiscount.ItemsSource = list;
+                maxNumpage = numRow / 20 + 1;
+
+            lblMaxPage.Content = maxNumpage.ToString();
         }
         void findDiscount(string startdatefind, string enddatefind)
         {
@@ -192,6 +203,9 @@ namespace CoffeeStore.Discount
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
+            setNumPage();
+            if (maxNumpage < int.Parse(tbNumPage.Text))
+                tbNumPage.Text = (int.Parse(tbNumPage.Text)-1).ToString();
             loadData();
         }
 
@@ -219,46 +233,36 @@ namespace CoffeeStore.Discount
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            DTO_Discount row = (DTO_Discount)dgDiscount.SelectedItem;
-            var rowView = dgDiscount.SelectedItem;
-            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
-            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
-            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
-            Window window = new Window
+            DTO_Discount row = (Discount)dgDiscount.SelectedItem;
+            if(DateTime.Compare(DateTime.ParseExact(row.EndDate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture),DateTime.Now.Date)<0)
+                MessageBox.Show("Không thể sửa ưu đãi đã diễn ra");
+            else 
             {
-                ResizeMode = ResizeMode.NoResize,
-                WindowStyle = WindowStyle.None,
-                Title = "Sửa ưu đãi",
-                Content = new PopupDiscountEdit(row.DiscountID, row.DiscountName, row.StartDate, row.EndDate, row.DiscountValue.ToString(), _context),
-                Width = 460,
-                Height = 505,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 500) / 2,
-            };
-            window.ShowDialog();
-            ((MainWindow)App.Current.MainWindow).Opacity = 1;
-            ((MainWindow)App.Current.MainWindow).Effect = null;
-            loadData();
-        }
-
-        private void btnNext_Click(object sender, RoutedEventArgs e)
-        {
-            if (Int32.Parse(tbNumPage.Text) == maxNumpage)
-            {
-
+                System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+                ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+                ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+                Window window = new Window
+                {
+                    ResizeMode = ResizeMode.NoResize,
+                    WindowStyle = WindowStyle.None,
+                    Title = "Sửa ưu đãi",
+                    Content = new PopupDiscountEdit(row.DiscountID, row.DiscountName, row.StartDate, row.EndDate, row.DiscountValue.ToString(), _context),
+                    Width = 460,
+                    Height = 505,
+                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
+                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 500) / 2,
+                };
+                window.ShowDialog();
+                ((MainWindow)App.Current.MainWindow).Opacity = 1;
+                ((MainWindow)App.Current.MainWindow).Effect = null;
+                loadData();
             }
-            else
-            {
-                tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
-                if (find)
-                    findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
-                else
-                    loadData();
-            }            
+            
         }
 
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
+            currentNumpage = Int32.Parse(tbNumPage.Text);
             if (Int32.Parse(tbNumPage.Text) == 1)
             {
 
@@ -266,17 +270,49 @@ namespace CoffeeStore.Discount
             else
             {
                 tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
-                if (find)
-                    findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
-                else
+                currentNumpage--;
+                if (!find)
                     loadData();
+                else
+                    findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
             }
+            
+        }
+
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            currentNumpage = Int32.Parse(tbNumPage.Text);
+            if (Int32.Parse(tbNumPage.Text) == maxNumpage)
+            {
+
+            }
+            else
+            {
+                tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
+                currentNumpage++;
+                if (!find)
+                    loadData();
+                else
+                    findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
+            }
+            
+
         }
 
         private void tbNumPage_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Space)
                 e.Handled = true;
+            if (e.Key == Key.Enter)
+            {
+                if (tbNumPage.Text.Length != 0 && int.Parse(tbNumPage.Text) <= maxNumpage && int.Parse(tbNumPage.Text) > 0)
+                    loadData();
+                else
+                {
+                    tbNumPage.Text = currentNumpage.ToString();
+                    loadData();
+                }
+            }
         }
 
         private void tbNumPage_PreviewTextInput(object sender, TextCompositionEventArgs e)

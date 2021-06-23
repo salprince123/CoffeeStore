@@ -36,11 +36,14 @@ namespace CoffeeStore.Discount
             ID = id;
             tbName.Text = name;
             tbStartDate.SelectedDate = DateTime.ParseExact(startdate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            tbStartDate.IsEnabled = false;
             tbEndDate.SelectedDate = DateTime.ParseExact(enddate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             tbPrice.Text = value;
             tbDescription.Text = "";
             this.mainWindow = window;
+            if (DateTime.Compare((DateTime)tbStartDate.SelectedDate, DateTime.Now.Date) <= 0)
+            {
+                tbStartDate.IsEnabled = false;
+            }
         }
 
         private void btSave_Click(object sender, RoutedEventArgs e)
@@ -57,13 +60,23 @@ namespace CoffeeStore.Discount
                 tbDateValidation.Text = "Ngày bắt đầu không được để trống.";
                 return;
             }
-            /*
+            
             if (DateTime.Compare((DateTime)tbStartDate.SelectedDate, DateTime.Now.Date) <= 0)
             {
                 tbDateValidation.Text = "Ngày bắt đầu phải sau ngày hiện tại.";
                 return;
             }
-            */
+            if (DateTime.Compare((DateTime)tbEndDate.SelectedDate, DateTime.Now.Date) < 0)
+            {
+                tbDateValidation.Text = "Ngày kết thúc phải bằng hoặc sau ngày hiện tại.";
+                return;
+            }
+            if (DateTime.Compare((DateTime)tbEndDate.SelectedDate, DateTime.Now.Date) < 0)
+            {
+                tbDateValidation.Text = "Ngày kết thúc phải bằng hoặc sau ngày hiện tại.";
+                return;
+            }
+
             if (tbEndDate.SelectedDate == null)
             {
                 tbDateValidation.Text = "Ngày kết thúc không được để trống.";
