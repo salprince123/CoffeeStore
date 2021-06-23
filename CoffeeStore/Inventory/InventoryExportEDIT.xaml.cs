@@ -170,8 +170,7 @@ namespace CoffeeStore.Inventory
                 Content = new PopupMaterialToExport(this),
                 Width = 540,
                 Height = 500,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 500) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 

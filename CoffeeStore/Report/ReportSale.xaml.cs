@@ -119,6 +119,12 @@ namespace CoffeeStore.Report
             else
                 end = datepicker.Value; 
 
+            if (DateTime.Compare(start, end) > 0)
+            {
+                MessageBox.Show("Ngày bắt đầu phải trước ngày kết thúc.");
+                return;
+            }    
+
             LoadSaleChart();
             LoadProfitChart();
 

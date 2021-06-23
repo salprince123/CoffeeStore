@@ -182,8 +182,7 @@ namespace CoffeeStore.View
                 Content = new PopupEditMenuStatus(),
                 Width = 450,
                 Height = 500,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width/2 + 450 / 2) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height/2 - 500 / 2) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             LoadData();

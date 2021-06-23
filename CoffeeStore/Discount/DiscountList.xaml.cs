@@ -156,8 +156,7 @@ namespace CoffeeStore.Discount
                 Content = new PopupDiscountAdd(_context),
                 Width = 460,
                 Height = 505,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 500) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -168,6 +167,12 @@ namespace CoffeeStore.Discount
 
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
+            if (tbDateStart.SelectedDate.ToString() != "" && tbDateEnd.SelectedDate.ToString() != "" 
+                && DateTime.Compare((DateTime)tbDateStart.SelectedDate, (DateTime)tbDateEnd.SelectedDate) > 0)
+            {
+                MessageBox.Show("Ngày bắt đầu phải trước ngày kết thúc.");
+                return;
+            }    
             this.findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
         }
 
@@ -186,8 +191,7 @@ namespace CoffeeStore.Discount
                 Content = new PopupDeleteConfirm(row, _context),
                 Width = 380,
                 Height = 210,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
@@ -209,8 +213,7 @@ namespace CoffeeStore.Discount
                 Title = "Chi tiết ưu đãi",
                 Content = new PopupDiscountDetail(row.DiscountID),
                 Width = 460,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 480) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
@@ -232,8 +235,7 @@ namespace CoffeeStore.Discount
                 Content = new PopupDiscountEdit(row.DiscountID, row.DiscountName, row.StartDate, row.EndDate, row.DiscountValue.ToString(), _context),
                 Width = 460,
                 Height = 505,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 500) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;

@@ -143,7 +143,7 @@ namespace CoffeeStore.Inventory
             catch (Exception) { }
             if (toTime < fromTime)
             {
-                MessageBox.Show("Ngày bắt đầu không thể lớn hơn ngày kết thúc");
+                MessageBox.Show("Ngày bắt đầu phải trước ngày kết thúc");
                 return;
             }
                 
@@ -201,8 +201,7 @@ namespace CoffeeStore.Inventory
                     Height = 630,
                     Width = 500,
                     Content = new PopupInventoryImportDETAIL(row.ID, row.EmployName, row.InventoryDate),
-                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 500) / 2,
-                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 630) / 2,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
                     //Content = new PopupInventoryImportDETAIL("a","a","a")
                 };
                 window.ShowDialog();
@@ -300,9 +299,15 @@ namespace CoffeeStore.Inventory
         
             InventoryImportObject row = (InventoryImportObject)dataGridImport.SelectedItem;
             DateTime importDate = DateTime.ParseExact(row.InventoryDate, "dd/MM/yyyy", null);            
-            if (!checkDeleteCondition(row.ID) || ((DateTime.Now - importDate) > TimeSpan.FromDays(2)))
+            if ((DateTime.Now - importDate) > TimeSpan.FromDays(2))
             {
-                MessageBox.Show($"Bạn không thể xóa phiếu này");
+                MessageBox.Show("Không thể xóa do phiếu đã được tạo cách đây hơn 2 ngày.");
+                return;
+            }    
+
+            if (!checkDeleteCondition(row.ID))
+            {
+                MessageBox.Show("Không thể xóa phiếu do nguyên vật liệu, thiết bị trong phiếu đã được xuất khỏi kho.");
                 return;
             }
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
@@ -316,8 +321,7 @@ namespace CoffeeStore.Inventory
                 Content = new PopupDeleteConfirm(this, row.ID), //delete message
                 Width = 380,
                 Height= 210,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                Top= (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height- 210) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
