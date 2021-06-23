@@ -167,6 +167,12 @@ namespace CoffeeStore.Discount
 
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
+            if (tbDateStart.SelectedDate.ToString() != "" && tbDateEnd.SelectedDate.ToString() != "" 
+                && DateTime.Compare((DateTime)tbDateStart.SelectedDate, (DateTime)tbDateEnd.SelectedDate) > 0)
+            {
+                MessageBox.Show("Ngày bắt đầu phải trước ngày kết thúc.");
+                return;
+            }    
             this.findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
         }
 
