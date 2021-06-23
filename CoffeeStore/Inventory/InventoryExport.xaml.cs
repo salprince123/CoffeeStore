@@ -173,7 +173,7 @@ namespace CoffeeStore.Inventory
 
             if((DateTime.Now - importDate) > TimeSpan.FromDays(2) )
             {
-                MessageBox.Show($"Bạn chỉ có thể xóa phiếu xuất kho được tạo trong vòng 2 ngày!");
+                MessageBox.Show($"Không thể xóa do phiếu đã được tạo cách đây hơn 2 ngày.");
                 return;
             }
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
@@ -221,7 +221,7 @@ namespace CoffeeStore.Inventory
             catch (Exception) { }
             if (toTime < fromTime)
             {
-                MessageBox.Show("Ngày bắt đầu không thể lớn hơn ngày kết thúc");
+                MessageBox.Show("Ngày bắt đầu phải trước ngày kết thúc.");
                 return;
             }
 

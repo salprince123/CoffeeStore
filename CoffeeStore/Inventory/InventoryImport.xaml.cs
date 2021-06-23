@@ -299,9 +299,15 @@ namespace CoffeeStore.Inventory
         
             InventoryImportObject row = (InventoryImportObject)dataGridImport.SelectedItem;
             DateTime importDate = DateTime.ParseExact(row.InventoryDate, "dd/MM/yyyy", null);            
-            if (!checkDeleteCondition(row.ID) || ((DateTime.Now - importDate) > TimeSpan.FromDays(2)))
+            if ((DateTime.Now - importDate) > TimeSpan.FromDays(2))
             {
-                MessageBox.Show($"Bạn không thể xóa phiếu này");
+                MessageBox.Show("Không thể xóa do phiếu đã được tạo cách đây hơn 2 ngày.");
+                return;
+            }    
+
+            if (!checkDeleteCondition(row.ID))
+            {
+                MessageBox.Show("Không thể xóa phiếu do nguyên vật liệu, thiết bị trong phiếu đã được xuất khỏi kho.");
                 return;
             }
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
