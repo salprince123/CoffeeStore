@@ -200,8 +200,7 @@ namespace CoffeeStore.Inventory
                     Height = 630,
                     Width = 500,
                     Content = new PopupInventoryImportDETAIL(row.ID, row.EmployName, row.InventoryDate),
-                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 500) / 2,
-                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 630) / 2,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
                     //Content = new PopupInventoryImportDETAIL("a","a","a")
                 };
                 window.ShowDialog();
@@ -315,8 +314,7 @@ namespace CoffeeStore.Inventory
                 Content = new PopupDeleteConfirm(this, row.ID), //delete message
                 Width = 380,
                 Height= 210,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                Top= (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height- 210) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;

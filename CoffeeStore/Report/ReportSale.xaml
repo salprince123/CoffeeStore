@@ -158,7 +158,7 @@
                             <RowDefinition MinHeight="400"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0" Background="#6B6158">
-                            <Label  Foreground="#FFE297" FontSize="20" FontWeight="Bold" Content="Thống kê doanh thu" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Label  Foreground="#FFE297" FontSize="20" FontWeight="Bold" Content="Thống kê doanh thu của từng mặt hàng" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                         <Button Grid.Row="0" Name="btnPrintProfit" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" BorderBrush="#FFE297" Background="#6B6158" Click="btnPrintProfit_Click">
                             <StackPanel Orientation="Horizontal">
@@ -185,7 +185,7 @@
                                 </lvc:CartesianChart.DataTooltip>
                             </lvc:CartesianChart>
                             <TextBlock x:Name="profitChartTitle" FontStyle="Italic" FontWeight="SemiBold" Grid.Row="1" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 10">
-                                Biểu đồ thống kê doanh thu</TextBlock>
+                                Biểu đồ thống kê doanh thu của từng mặt hàng</TextBlock>
                         </Grid>
                         </StackPanel>
                     </Grid>

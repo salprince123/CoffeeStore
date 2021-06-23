@@ -67,16 +67,16 @@ namespace CoffeeStore.Account
                     BUS_EmployeeType busEmpType = new BUS_EmployeeType();
 
                     if (!busAccPerGr.DeleteByEmpTypeID(busEmpType.GetIDByName(deleteid)))
-                        MessageBox.Show($"Đã xảy ra lỗi trong quá trình xóa loại tài khoản.");
+                        MessageBox.Show($"Đã xảy ra lỗi trong quá trình xóa nhóm tài khoản.");
 
                     int result2 = busEmpType.DeleteEmployeeType(busEmpType.GetIDByName(deleteid));
                     if (result2 == 0)
                     {
-                        MessageBox.Show($"Không thể xóa do vẫn còn tài khoản có loại tài khoản này.");
+                        MessageBox.Show($"Không thể xóa do vẫn còn tài khoản có nhóm tài khoản này.");
                     }
                     else
                     {
-                        MessageBox.Show($"Đã xóa loại tài khoản {deleteid}.");
+                        MessageBox.Show($"Đã xóa nhóm tài khoản {deleteid}.");
                         Window.GetWindow(this).Close();
                     }
                     break;

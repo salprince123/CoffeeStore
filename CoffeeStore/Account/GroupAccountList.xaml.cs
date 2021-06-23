@@ -168,8 +168,7 @@ namespace CoffeeStore.Account
                 Title = "Thêm nhóm tài khoản",
                 Content = new PopupAddGroupAccount(),
                 Width = 460,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 560) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -202,11 +201,10 @@ namespace CoffeeStore.Account
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
                 Title = "Xóa tài khoản",
-                Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa \nloại tài khoản {name} không?", name, 2),
+                Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa \nnhóm tài khoản {name} không?", name, 2),
                 Width = 380,
                 Height = 210,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -254,11 +252,10 @@ namespace CoffeeStore.Account
             {
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
-                Title = "Sửa loại tài khoản",
+                Title = "Sửa nhóm tài khoản",
                 Content = new PopupEditGroupAccount(editGrAcc),
                 Width = 460,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 560) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             LoadData();

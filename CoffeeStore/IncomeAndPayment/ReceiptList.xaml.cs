@@ -149,8 +149,7 @@ namespace CoffeeStore.IncomeAndPayment
                 Content = new ReceiptDetail(id),
                 Width = 500,
                 Height = 620,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 500) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 620) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -179,8 +178,7 @@ namespace CoffeeStore.IncomeAndPayment
                 Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa hóa đơn {id} không?", id, 1),
                 Width = 380,
                 Height = 220,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 220) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 

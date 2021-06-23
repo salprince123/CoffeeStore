@@ -156,8 +156,7 @@ namespace CoffeeStore.Discount
                 Content = new PopupDiscountAdd(_context),
                 Width = 460,
                 Height = 505,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 500) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -186,8 +185,7 @@ namespace CoffeeStore.Discount
                 Content = new PopupDeleteConfirm(row, _context),
                 Width = 380,
                 Height = 210,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
@@ -209,8 +207,7 @@ namespace CoffeeStore.Discount
                 Title = "Chi tiết ưu đãi",
                 Content = new PopupDiscountDetail(row.DiscountID),
                 Width = 460,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 480) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
@@ -232,8 +229,7 @@ namespace CoffeeStore.Discount
                 Content = new PopupDiscountEdit(row.DiscountID, row.DiscountName, row.StartDate, row.EndDate, row.DiscountValue.ToString(), _context),
                 Width = 460,
                 Height = 505,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 500) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;

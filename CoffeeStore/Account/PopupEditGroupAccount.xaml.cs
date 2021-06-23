@@ -249,7 +249,7 @@ namespace CoffeeStore.Account
                             result = busAccPerGr.DeleteAccessPermissionGroup(new DTO_AccessPermissionGroup(row[0].ToString(), editID));
                             if (!result)
                             {
-                                MessageBox.Show($"Đã xảy ra lỗi do quyền bị xóa đi trong quá trình sửa loại tài khoản {editGrAccInfo.name}.");
+                                MessageBox.Show($"Đã xảy ra lỗi do quyền bị xóa đi trong quá trình sửa nhóm tài khoản {editGrAccInfo.name}.");
                             }
                             break;
                         }
@@ -269,7 +269,7 @@ namespace CoffeeStore.Account
                             result = busAccPerGr.CreateAccessPermissionGroup(new DTO_AccessPermissionGroup(row[0].ToString(), editID));
                             if (!result)
                             {
-                                MessageBox.Show($"Đã xảy ra lỗi do quyền được thêm vào trong quá trình sửa loại tài khoản {editGrAccInfo.name}.");
+                                MessageBox.Show($"Đã xảy ra lỗi do quyền được thêm vào trong quá trình sửa nhóm tài khoản {editGrAccInfo.name}.");
                             }
                             break;
                         }
@@ -277,7 +277,7 @@ namespace CoffeeStore.Account
                 }
             }
 
-            MessageBox.Show($"Đã sửa thành công loại tài khoản {editGrAccInfo.name}.");
+            MessageBox.Show($"Đã sửa thành công nhóm tài khoản {editGrAccInfo.name}.");
             Window.GetWindow(this).Close();
         }
 

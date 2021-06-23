@@ -66,7 +66,7 @@ namespace CoffeeStore.Menu
                 Window.GetWindow(this).Close();
             }
             else
-                MessageBox.Show("Đã có lỗi trong quá trình tạo món");
+                MessageBox.Show($"Đã có lỗi trong quá trình tạo {tbName.Text}");
         }
 
         private void tbPrice_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
