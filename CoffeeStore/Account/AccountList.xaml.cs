@@ -95,6 +95,7 @@ namespace CoffeeStore.Account
             }
             this.dataGridAccount.ItemsSource = employees;
             this.dataGridAccount.Items.Refresh();
+            
         }    
 
         private void Button_Click(object sender, RoutedEventArgs e)
