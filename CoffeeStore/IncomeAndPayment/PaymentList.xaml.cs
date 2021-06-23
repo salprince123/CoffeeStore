@@ -88,8 +88,7 @@ namespace CoffeeStore.IncomeAndPayment
                 Content = new PopupPaymentAdd(_context),
                 Width = 460,
                 Height = 420,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -110,10 +109,8 @@ namespace CoffeeStore.IncomeAndPayment
                 WindowStyle = WindowStyle.None,
                 Title = "Chi tiết phiếu chi",
                 Content = new PopupPaymentDetail(dto),
-                Width = 450,
-                Height = 400,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 450) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
+                Width = 460,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -132,10 +129,9 @@ namespace CoffeeStore.IncomeAndPayment
                 WindowStyle = WindowStyle.None,
                 Title = "Sửa phiếu chi",
                 Content = new PopupPaymentEdit(dto),
-                Width = 450,
-                Height = 400,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 450) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
+                Width = 460,
+                Height = 420,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -157,8 +153,7 @@ namespace CoffeeStore.IncomeAndPayment
                 Content = new PopupDeleteConfirm("Dữ liệu về " + dto.PaymentID + " sẽ bị xóa vĩnh viễn.\n Bạn chắc chắn muốn xóa?", dto.PaymentID,2),
                 Width = 380,
                 Height = 210,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
