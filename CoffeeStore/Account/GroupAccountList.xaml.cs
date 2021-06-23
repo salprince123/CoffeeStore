@@ -64,12 +64,9 @@ namespace CoffeeStore.Account
         public GroupAccountList()
         {
             InitializeComponent();
-            
+            Loaded += LoadData;
             dataGridGroupAccount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             limitRow = 20;
-            currentPage = 1;
-            tbNumPage.Text = "1";
-            btnPagePre.IsEnabled = false;
             LoadData();
         }
 
@@ -77,6 +74,14 @@ namespace CoffeeStore.Account
         {
             e.Row.Header = e.Row.GetIndex() + 1 + limitRow * (currentPage - 1);
             e.Row.Height = 40;
+        }
+
+        public void LoadData(Object sender, RoutedEventArgs e)
+        {
+            LoadData();
+            currentPage = 1;
+            tbNumPage.Text = "1";
+            btnPagePre.IsEnabled = false;
         }
 
         public void LoadData()

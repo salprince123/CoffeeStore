@@ -48,9 +48,7 @@ namespace CoffeeStore.IncomeAndPayment
         {
             InitializeComponent();
             limitRow = 20;
-            currentPage = 1;
-            tbNumPage.Text = "1";
-            btnPagePre.IsEnabled = false;
+            
             dgReceipt.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             Loaded += LoadData;
             //LoadData();
@@ -63,9 +61,17 @@ namespace CoffeeStore.IncomeAndPayment
 
         void LoadData(Object sender, RoutedEventArgs e)
         {
+            currentPage = 1;
+            tbNumPage.Text = "1";
+            btnPagePre.IsEnabled = false;
+
             start = new DateTime(2021, 1, 1, 0, 0, 0);
             end = DateTime.Today;
             keyword = "";
+
+            tbFind.Text = "";
+            dpDateStart.SelectedDate = null;
+            dpDateEnd.SelectedDate = null;
 
             BUS_Receipt busReceipt = new BUS_Receipt();
             int empCount = busReceipt.CountReceipt(start, end, keyword);

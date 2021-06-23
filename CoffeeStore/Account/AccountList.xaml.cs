@@ -50,9 +50,6 @@ namespace CoffeeStore.Account
             dataGridAccount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             this._context = mainWindow;
             limitRow = 20;
-            currentPage = 1;
-            tbNumPage.Text = "1";
-            btnPagePre.IsEnabled = false;
         }
 
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
@@ -64,6 +61,9 @@ namespace CoffeeStore.Account
         public void LoadData(Object sender, RoutedEventArgs e)
         {
             LoadData();
+            currentPage = 1;
+            tbNumPage.Text = "1";
+            btnPagePre.IsEnabled = false;
         }    
 
         public void LoadData()
