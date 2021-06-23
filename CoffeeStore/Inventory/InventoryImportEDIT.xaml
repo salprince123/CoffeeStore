@@ -124,7 +124,9 @@
                                   BorderThickness="1" IsReadOnly="True"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
                                   VerticalScrollBarVisibility="Visible"
-                                  AutoGenerateColumns="False" HeadersVisibility="All">
+                                  AutoGenerateColumns="False" 
+                                  HeadersVisibility="All"
+                                  >
                             <DataGrid.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}">
                                     <Setter Property="Template">

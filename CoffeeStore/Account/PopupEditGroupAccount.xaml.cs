@@ -192,18 +192,21 @@ namespace CoffeeStore.Account
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
+            tbGroupAccountValidation.Text = "";
             if (tbName.Text == "")
             {
                 // Name of Employee Type is empty
+                tbGroupAccountValidation.Text = "Tên nhóm tài khoản không dược để trống.";
                 return;
             }
 
             BUS_EmployeeType busEmpType = new BUS_EmployeeType();
             string editID = busEmpType.GetIDByName(editGrAccInfo.name);
-            bool result = busEmpType.EditEmployeeType(new DTO_EmployeeType(editID, editGrAccInfo.name));
+            bool result = busEmpType.EditEmployeeType(new DTO_EmployeeType(editID, tbName.Text));
             if (!result)
             {
-                MessageBox.Show($"Đã xảy ra lỗi do tên loại tài khoản trong quá trình sửa loại tài khoản {editGrAccInfo.name}.");
+                tbGroupAccountValidation.Text = "Tên nhóm tài khoản bị trùng với một nhóm tài khoản khác.";
+                return;
             }    
             BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
             #region Get List Permission
@@ -281,6 +284,14 @@ namespace CoffeeStore.Account
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Close();
+        }
+
+        private void tbName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, @"\p{L}"))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

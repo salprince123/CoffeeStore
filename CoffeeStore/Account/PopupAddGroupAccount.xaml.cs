@@ -62,17 +62,19 @@ namespace CoffeeStore.Account
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
+            tbGroupAccountValidation.Text = "";
             if (tbName.Text == "")
             {
                 // Name of Employee Type is empty
-
+                tbGroupAccountValidation.Text = "Tên nhóm tài khoản không dược để trống.";
+                return;
             }
             DTO_EmployeeType newEmpType = new DTO_EmployeeType("id", tbName.Text);
             BUS_EmployeeType busEmpType = new BUS_EmployeeType();
             string newID = busEmpType.CreateEmployeeTypes(newEmpType);
             if (newID == "")
             {
-                MessageBox.Show($"Không thể tạo mới do loại tài khoản này đã được tạo trước đây.");
+                tbGroupAccountValidation.Text = "Tên nhóm tài khoản này đã được tạo trước đây.";
             }
             else
             {
@@ -164,6 +166,14 @@ namespace CoffeeStore.Account
             if (dgSelected.SelectedItems.Count > 0)
             {
                 seletedItemRight = (AccessPermissionName)dgSelected.SelectedItems[0];
+            }
+        }
+
+        private void tbName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, @"\p{L}"))
+            {
+                e.Handled = true;
             }
         }
     }

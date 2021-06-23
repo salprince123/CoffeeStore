@@ -72,9 +72,9 @@
                     <!--Combobox here-->
                     <ComboBox Grid.Column="1" Name="cbYearMonth" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="15"
                          materialDesign:HintAssist.Hint="Thống kê theo..." Padding="5" 
-                              BorderThickness="1" VerticalContentAlignment="Center">
-                        <ComboBoxItem>Theo tháng</ComboBoxItem>
-                        <ComboBoxItem IsSelected="True">Theo năm</ComboBoxItem>
+                              BorderThickness="1" VerticalContentAlignment="Center" SelectionChanged="cbYearMonth_SelectionChanged">
+                        <ComboBoxItem Tag="month">Theo tháng</ComboBoxItem>
+                        <ComboBoxItem Tag="year">Theo năm</ComboBoxItem>
                     </ComboBox>
                     <!--Datepicker here-->
                     <Border Grid.Column="3" BorderBrush="Gray" BorderThickness="1,1,1,0">
@@ -112,7 +112,7 @@
                                 <TextBlock Foreground="#FFE297">In biểu đồ</TextBlock>
                             </StackPanel>
                         </Button>
-                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" >
+                    <ScrollViewer x:Name="generalChartScroll" Grid.Row="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" >
                             <!--If print, print from here-->
                             <Grid x:Name="generalChartBody" >
                                 <Grid.RowDefinitions>

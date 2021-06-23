@@ -62,5 +62,10 @@ namespace CoffeeStore.BUS
         {
             return dalBeverage.GetBeverageOrderBySellAmount(startDate, endDate);
         }
+
+        public DataTable GetBeverageOrderBySellIncome(DateTime startDate, DateTime endDate)
+        {
+            return dalBeverage.GetBeverageOrderBySellIncome(startDate, endDate);
+        }
     }
 }

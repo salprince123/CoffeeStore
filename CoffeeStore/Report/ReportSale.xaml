@@ -47,59 +47,70 @@
                     <RowDefinition Height="30"></RowDefinition>
                     <RowDefinition Height="2*"></RowDefinition>
                 </Grid.RowDefinitions>
-
                 <!--Datepicker here-->
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
                         <ColumnDefinition Width="2*"></ColumnDefinition>
                         <ColumnDefinition Width="10"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="10"></ColumnDefinition>
                         <ColumnDefinition Width="2*"></ColumnDefinition>
-                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <!--From-->
-                    <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1,1,1,0">
+                    <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1,1,1,0">
                         <DatePicker x:Name="tbDateStart" Height="40"
-                         VerticalContentAlignment="Center"
-                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
+                         VerticalContentAlignment="Center" FontSize="15"
+                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5">
+                            <DatePicker.Resources>
+                                <Style TargetType="{x:Type DatePickerTextBox}" 
+                        x:Key="MaterialDesignDatePickerTextBox" 
+                        BasedOn="{StaticResource MaterialDesignDatePickerTextBox}">
+                                    <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DatePicker},Path=SelectedDate,StringFormat=dd/MM/yyyy}" />
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
                     </Border>
                     <!--To-->
-                    <TextBlock Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="Minus" />
                     </TextBlock>
-                    <Border Grid.Column="5" BorderBrush="Gray" BorderThickness="1,1,1,0">
-                        <DatePicker x:Name="tbDateEnd" Height="40" 
+                    <Border Grid.Column="4" BorderBrush="Gray" BorderThickness="1,1,1,0">
+                        <DatePicker x:Name="tbDateEnd" Height="40" FontSize="15"
                          BorderThickness="1" VerticalContentAlignment="Center"
-                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5"/>
+                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5">
+                            <DatePicker.Resources>
+                                <Style TargetType="{x:Type DatePickerTextBox}" 
+                        x:Key="MaterialDesignDatePickerTextBox" 
+                        BasedOn="{StaticResource MaterialDesignDatePickerTextBox}">
+                                    <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DatePicker},Path=SelectedDate,StringFormat=dd/MM/yyyy}" />
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
                     </Border>
+                    <!--Button show here-->
+                    <Button Grid.Column="6" x:Name="btnShow" Width="120" Height="Auto"
+                            BorderBrush="#6B6158" BorderThickness="1"
+                            Background="#FFE297" Foreground="#6B6158"
+                                Click="btnShow_Click">
+                        Hiển thị
+                    </Button>
                 </Grid>
-
                 <Grid Grid.Row="3" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="0"></ColumnDefinition>
                         <ColumnDefinition Width="4*"></ColumnDefinition>
-                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="0"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="40"></RowDefinition>
-                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="0"></RowDefinition>
+                        <RowDefinition Height="0"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
                     </Grid.RowDefinitions>
-
-                    <!--Load button here-->
-                    <Grid Grid.Row="0" Grid.ColumnSpan="3">
-                        <Button x:Name="btnShow" Width="120" Height="Auto"
-                            BorderBrush="#6B6158" BorderThickness="1"
-                            Background="#FFE297" Foreground="#6B6158"
-                                Click="btnShow_Click">
-                            Hiển thị
-                        </Button>
-                    </Grid>
                     <!--Chart body here-->
                     <!--Sale chart here-->
                     <Grid Grid.Row="2" Grid.Column="1">
@@ -108,31 +119,61 @@
                             <RowDefinition MinHeight="400"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0" Background="#6B6158">
-                            <Label  Foreground="#FFE297" FontSize="20" FontWeight="Bold" Content="Thống kê mặt hàng bán chạy" HorizontalAlignment="Center"/>
+                            <Label  Foreground="#FFE297" FontSize="20" FontWeight="Bold" Content="Thống kê mặt hàng bán chạy" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Grid>
-                        <lvc:CartesianChart x:Name="saleChart" Series="{Binding SaleChart}" Grid.Row="1">
-                            <lvc:CartesianChart.AxisX>
-                                <lvc:Axis Title="Số lượng" LabelFormatter="{Binding Formatter}" FontSize="15" Foreground="#6B6158"></lvc:Axis>
-                            </lvc:CartesianChart.AxisX>
-                            <lvc:CartesianChart.AxisY>
-                                <lvc:Axis Title="" Labels="{Binding Labels}" FontSize="15" Foreground="#6B6158"></lvc:Axis>
-                            </lvc:CartesianChart.AxisY>
-                            <lvc:CartesianChart.DataTooltip>
-                                <lvc:DefaultTooltip SelectionMode="SharedYValues"></lvc:DefaultTooltip>
-                            </lvc:CartesianChart.DataTooltip>
-                        </lvc:CartesianChart>
+                        <Button Grid.Row="0" Name="btnPrintSale" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" BorderBrush="#FFE297" Background="#6B6158" Click="btnPrintSale_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Printer" Foreground="#FFE297" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                <TextBlock Foreground="#FFE297">In biểu đồ</TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <StackPanel Grid.Row="1" >
+                            <!--If print, print from here-->
+                        <Grid  x:Name="saleChartBody" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition MinHeight="400"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <lvc:CartesianChart x:Name="saleChart" Series="{Binding SaleChart}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Title="Số lượng" LabelFormatter="{Binding Formatter}" FontSize="15" Foreground="#6B6158"></lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="" Labels="{Binding Labels}" FontSize="15" Foreground="#6B6158"></lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                                <lvc:CartesianChart.DataTooltip>
+                                    <lvc:DefaultTooltip SelectionMode="OnlySender"></lvc:DefaultTooltip>
+                                </lvc:CartesianChart.DataTooltip>
+                            </lvc:CartesianChart>
+                            <TextBlock x:Name="saleChartTitle" FontStyle="Italic" FontWeight="SemiBold" Grid.Row="1" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 10">
+                                Biểu đồ thống kê mặt hàng bán chạy</TextBlock>
+                        </Grid>
+                        </StackPanel>
                     </Grid>
+                        
                     <!--Profit chart here-->
-                    <Grid x:Name="profitChartBody" Grid.Row="4" Grid.Column="1" >
+                    <Grid Grid.Row="4" Grid.Column="1" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition MinHeight="400"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0" Background="#6B6158">
-                            <Label  Foreground="#FFE297" FontSize="20" FontWeight="Bold" Content="Thống kê doanh thu" HorizontalAlignment="Center"/>
+                            <Label  Foreground="#FFE297" FontSize="20" FontWeight="Bold" Content="Thống kê doanh thu" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
-                        <Grid Grid.Row="1">
-                            <lvc:CartesianChart x:Name="profitChart"  Series="{Binding ProfitChart}">
+                        <Button Grid.Row="0" Name="btnPrintProfit" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" BorderBrush="#FFE297" Background="#6B6158" Click="btnPrintProfit_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Printer" Foreground="#FFE297" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                <TextBlock Foreground="#FFE297">In biểu đồ</TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <!--If print, print from here-->
+                        <StackPanel Grid.Row="1">
+                        <Grid  x:Name="profitChartBody" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition MinHeight="400"></RowDefinition>
+                                <RowDefinition Height="50"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <lvc:CartesianChart x:Name="profitChart"  Series="{Binding ProfitChart}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Title="VNĐ" LabelFormatter="{Binding FormatterProfitChart}" FontSize="15" Foreground="#6B6158"></lvc:Axis>
                                 </lvc:CartesianChart.AxisX>
@@ -140,10 +181,13 @@
                                     <lvc:Axis Title="" Labels="{Binding LabelsProfitChart}" FontSize="15" Foreground="#6B6158"></lvc:Axis>
                                 </lvc:CartesianChart.AxisY>
                                 <lvc:CartesianChart.DataTooltip>
-                                    <lvc:DefaultTooltip SelectionMode="SharedYValues"></lvc:DefaultTooltip>
+                                    <lvc:DefaultTooltip SelectionMode="OnlySender"></lvc:DefaultTooltip>
                                 </lvc:CartesianChart.DataTooltip>
                             </lvc:CartesianChart>
+                            <TextBlock x:Name="profitChartTitle" FontStyle="Italic" FontWeight="SemiBold" Grid.Row="1" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 10">
+                                Biểu đồ thống kê doanh thu</TextBlock>
                         </Grid>
+                        </StackPanel>
                     </Grid>
                 </Grid>
             </Grid>
