@@ -33,11 +33,25 @@ namespace CoffeeStore.Inventory
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
+            tbNameValidation.Text = tbUnitValidation.Text = "";
+            if (tbName.Text == "")
+            {
+                tbNameValidation.Text = "Tên nguyên vật liệu, thiết bị không được để trống.";
+                return;
+            }
+            if (tbUnit.Text == "")
+            {
+                tbUnitValidation.Text = "Đơn vị tính không được để trống.";
+                return;
+            }
             BUS_Material material = new BUS_Material();
-            if (material.Create(tbName.Text, tbUnit.Text)) ;
-                //MessageBox.Show($"Đã thêm vật liệu {tbName.Text}, đơn vị tính {tbUnit.Text}");
-            else MessageBox.Show($"Vat lieu da ton tai");
+            if (material.Create(tbName.Text, tbUnit.Text))
+            { 
+                MessageBox.Show($"Đã thêm thông tin của {tbName.Text} vào kho.");
                 Window.GetWindow(this).Close();
+            }
+            else
+                MessageBox.Show($"Nguyên vật liệu, thiết bị đã tồn tại.");
         }
     }
 }
