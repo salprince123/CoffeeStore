@@ -26,6 +26,7 @@ namespace CoffeeStore.Menu
         BUS_Beverage bus;
         MainWindow _context;
         bool find = false;
+        int maxNumpage;
         public MenuList()
         {
             InitializeComponent();
@@ -66,7 +67,12 @@ namespace CoffeeStore.Menu
                 }
                 else count++;
             }
-
+            if (temp.Rows.Count % 20 == 0)
+            {
+                maxNumpage = temp.Rows.Count / 20;
+            }
+            else
+                maxNumpage = temp.Rows.Count / 20 + 1;
             dgMenu.ItemsSource = list;
             dgMenu.Items.Refresh();
         }
@@ -176,20 +182,36 @@ namespace CoffeeStore.Menu
         }
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
-            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
-            if (find)
-                findBeverage();
+            if (Int32.Parse(tbNumPage.Text) == maxNumpage)
+            {
+
+            }
             else
-                loadData();
+            {
+                tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
+                if (find)
+                    findBeverage();
+                else
+                    loadData();
+            }
         }
 
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
-            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
-            if (find)
-                findBeverage();
+            if (Int32.Parse(tbNumPage.Text) == 1)
+            {
+
+            }
             else
-                loadData();
+            {
+                tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
+                if (find)
+                    findBeverage();
+                else
+                    loadData();
+            }
+
+            
         }
     }
 }
