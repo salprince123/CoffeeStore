@@ -117,7 +117,7 @@ namespace CoffeeStore.Report
             if (datepicker.ToString() == "")
                 end = DateTime.Today;
             else
-                end = datepicker.Value;
+                end = datepicker.Value; 
 
             LoadSaleChart();
             LoadProfitChart();
@@ -139,6 +139,28 @@ namespace CoffeeStore.Report
             {
                 myPrintDialog.PrintVisual(profitChartBody, "Báo cáo doanh thu của từng món");
             }
+        }
+
+        private void tbDateStart_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void tbDateStart_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
+
+        private void tbDateEnd_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void tbDateEnd_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
         }
     }
 }

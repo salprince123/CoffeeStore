@@ -62,7 +62,8 @@
                     <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1,1,1,0">
                         <DatePicker x:Name="tbDateStart" Height="40"
                          VerticalContentAlignment="Center" FontSize="15"
-                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5">
+                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5"
+                                    PreviewTextInput="tbDateStart_PreviewTextInput" PreviewKeyDown="tbDateStart_PreviewKeyDown">
                             <DatePicker.Resources>
                                 <Style TargetType="{x:Type DatePickerTextBox}" 
                         x:Key="MaterialDesignDatePickerTextBox" 
@@ -79,7 +80,8 @@
                     <Border Grid.Column="4" BorderBrush="Gray" BorderThickness="1,1,1,0">
                         <DatePicker x:Name="tbDateEnd" Height="40" FontSize="15"
                          BorderThickness="1" VerticalContentAlignment="Center"
-                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5">
+                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5"
+                                    PreviewTextInput="tbDateEnd_PreviewTextInput" PreviewKeyDown="tbDateEnd_PreviewKeyDown">
                             <DatePicker.Resources>
                                 <Style TargetType="{x:Type DatePickerTextBox}" 
                         x:Key="MaterialDesignDatePickerTextBox" 
