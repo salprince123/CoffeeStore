@@ -36,29 +36,37 @@ namespace CoffeeStore.Menu
         }
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
-            if (checkCondition())
+            tbNameValidation.Text = tbTypeValidation.Text = tbPriceValidation.Text = "";
+            if (tbName.Text == "")
             {
-                DTO_Beverage beverage = new DTO_Beverage();
-                beverage.BeverageID = bus.createID();
-                beverage.BeverageName = tbName.Text;
-                beverage.BeverageTypeID = bus.getBeverageTypeID(cbBeverageType.Text);
-                beverage.Price = Int32.Parse(tbPrice.Text);
-                if (bus.createNewBevverage(beverage) > 0)
-                {
-                    MessageBox.Show("Thành công");
-                    Window.GetWindow(this).Close();
-                }
-                else
-                    MessageBox.Show("Thất bại");
+                tbNameValidation.Text = "Tên món không được để trống.";
+                return;
+            }
+
+            if (cbBeverageType.Text == "")
+            {
+                tbTypeValidation.Text = "Loại món không được để trống.";
+                return;
+            }
+
+            if (tbPrice.Text == "")
+            {
+                tbPriceValidation.Text = "Giá không được để trống.";
+                return;
+            }
+
+            DTO_Beverage beverage = new DTO_Beverage();
+            beverage.BeverageID = bus.createID();
+            beverage.BeverageName = tbName.Text;
+            beverage.BeverageTypeID = bus.getBeverageTypeID(cbBeverageType.Text);
+            beverage.Price = Int32.Parse(tbPrice.Text);
+            if (bus.createNewBevverage(beverage) > 0)
+            {
+                MessageBox.Show($"Đã thêm {tbName.Text} vào menu");
                 Window.GetWindow(this).Close();
             }
             else
-                MessageBox.Show("Không được để trống tên, giá và loại đồ uống");
-        }
-
-        private bool checkCondition()
-        {
-            return (tbName.Text != "" && tbPrice.Text != "" && cbBeverageType.Text != "");
+                MessageBox.Show("Đã có lỗi trong quá trình tạo món");
         }
 
         private void tbPrice_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
