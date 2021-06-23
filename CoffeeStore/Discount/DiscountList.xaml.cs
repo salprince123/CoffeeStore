@@ -27,6 +27,7 @@ namespace CoffeeStore.Discount
         BUS_Discount bus = new BUS_Discount();
         MainWindow _context;
         bool find = false;
+        int maxNumpage;
         class Discount : DTO_Discount
         {
             public String Status { get; set; }
@@ -84,6 +85,12 @@ namespace CoffeeStore.Discount
                 }
                 else count++;
             }
+            if (temp.Rows.Count % 20 == 0)
+            {
+                maxNumpage = temp.Rows.Count / 20;
+            }
+            else
+                maxNumpage = temp.Rows.Count / 20 + 1;
             dgDiscount.ItemsSource = list;
         }
         void findDiscount(string startdatefind, string enddatefind)
@@ -236,21 +243,34 @@ namespace CoffeeStore.Discount
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
-            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
-            if (find)
-                findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
+            if (Int32.Parse(tbNumPage.Text) == maxNumpage)
+            {
+
+            }
             else
-                loadData();
+            {
+                tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
+                if (find)
+                    findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
+                else
+                    loadData();
+            }            
         }
 
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
-            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
-            if (find)
-                findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy")
-                    );
+            if (Int32.Parse(tbNumPage.Text) == 1)
+            {
+
+            }
             else
-                loadData();
+            {
+                tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
+                if (find)
+                    findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
+                else
+                    loadData();
+            }
         }
     }
 }

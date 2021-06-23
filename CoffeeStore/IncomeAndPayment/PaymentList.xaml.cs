@@ -27,6 +27,7 @@ namespace CoffeeStore.IncomeAndPayment
         MainWindow _context;
         BUS_Payment bus;
         bool find = false;
+        int maxNumpage;
         public PaymentList()
         {
             InitializeComponent();
@@ -66,6 +67,12 @@ namespace CoffeeStore.IncomeAndPayment
                 }
                 else count++;
             }
+            if (temp.Rows.Count%20==0)
+                {
+                    maxNumpage = temp.Rows.Count / 20;
+                }
+            else
+                maxNumpage = temp.Rows.Count / 20+1;
             dgPayment.ItemsSource = list;
         }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -78,28 +85,7 @@ namespace CoffeeStore.IncomeAndPayment
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
                 Title = "Lập phiếu chi",
-                Content = new PopupPaymentAdd(),
-                Width = 460,
-                Height = 420,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
-            };
-            window.ShowDialog();
-
-            ((MainWindow)App.Current.MainWindow).Opacity = 1;
-            ((MainWindow)App.Current.MainWindow).Effect = null;
-        }
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
-        {
-            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
-            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
-            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
-            Window window = new Window
-            {
-                ResizeMode = ResizeMode.NoResize,
-                WindowStyle = WindowStyle.None,
-                Title = "Sửa phiếu chi",
-                Content = new PopupPaymentEdit(),
+                Content = new PopupPaymentAdd(_context),
                 Width = 460,
                 Height = 420,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
@@ -111,6 +97,7 @@ namespace CoffeeStore.IncomeAndPayment
             ((MainWindow)App.Current.MainWindow).Effect = null;
             loaddata();
         }
+
         private void btnWatch_Click(object sender, RoutedEventArgs e)
         {
             DTO_Payment dto = (DTO_Payment)dgPayment.SelectedItem;
@@ -133,29 +120,29 @@ namespace CoffeeStore.IncomeAndPayment
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
         }
-        //private void btnEdit_Click(object sender, RoutedEventArgs e)
-        //{
-        //    DTO_Payment dto = (DTO_Payment)dgPayment.SelectedItem;
-        //    System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
-        //    ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
-        //    ((MainWindow)App.Current.MainWindow).Effect = objBlur;
-        //    Window window = new Window
-        //    {
-        //        ResizeMode = ResizeMode.NoResize,
-        //        WindowStyle = WindowStyle.None,
-        //        Title = "Sửa phiếu chi",
-        //        Content = new PopupPaymentEdit(dto),
-        //        Width = 450,
-        //        Height = 400,
-        //        Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 450) / 2,
-        //        Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
-        //    };
-        //    window.ShowDialog();
-        //
-        //    ((MainWindow)App.Current.MainWindow).Opacity = 1;
-        //    ((MainWindow)App.Current.MainWindow).Effect = null;
-        //    loaddata();
-        //}
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            DTO_Payment dto = (DTO_Payment)dgPayment.SelectedItem;
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            Window window = new Window
+            {
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
+                Title = "Sửa phiếu chi",
+                Content = new PopupPaymentEdit(dto),
+                Width = 450,
+                Height = 400,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 450) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
+            };
+            window.ShowDialog();
+
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
+            loaddata();
+        }
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             DTO_Payment dto = (DTO_Payment)dgPayment.SelectedItem;
@@ -222,20 +209,35 @@ namespace CoffeeStore.IncomeAndPayment
         }
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
-            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
-            if (!find)
-                loaddata();
+            if (Int32.Parse(tbNumPage.Text) == 1)
+            {
+
+            }
             else
-                findPayment();
+            {
+                tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
+                if (!find)
+                    loaddata();
+                else
+                    findPayment();
+            }
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
-            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
-            if (!find)
-                loaddata();
+            if (Int32.Parse(tbNumPage.Text)==maxNumpage)
+            {
+
+            }
             else
-                findPayment();
+            {
+                tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
+                if (!find)
+                    loaddata();
+                else
+                    findPayment();
+            }
+            
         }
     }
 }

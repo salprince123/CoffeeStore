@@ -35,6 +35,7 @@ namespace CoffeeStore.IncomeAndPayment
             InitializeComponent();
             bus = new BUS_Payment();
             mainWindow = main;
+            tbEmployeeName.Text = main.GetCurrentEmpName();
         }
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
@@ -47,8 +48,8 @@ namespace CoffeeStore.IncomeAndPayment
             {
                 DTO_Payment dto = new DTO_Payment();
                 dto.PaymentID = bus.createID();
-                dto.EmployeeID = "E001";
-                dto.Time = DateTime.Now.Date.ToString("dd/MM/yyyy");
+                dto.EmployeeID = mainWindow.GetCurrentEmpID();
+                dto.Time = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt");
                 dto.TotalAmount = float.Parse(tbMoney.Text);
                 dto.Description = tbDescription.Text;
                 if (bus.createNewPayment(dto) > 0)
