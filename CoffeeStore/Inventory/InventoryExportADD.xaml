@@ -198,7 +198,7 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBox Name="tbAmount" Text="{Binding Path='amount', Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                                     VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                                     VerticalContentAlignment="Center" GotFocus="tbAmount_GotFocus" HorizontalContentAlignment="Center"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>

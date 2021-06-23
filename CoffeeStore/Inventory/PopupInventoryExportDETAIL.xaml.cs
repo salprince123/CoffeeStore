@@ -62,18 +62,16 @@ namespace CoffeeStore.Inventory
             var list = new ObservableCollection<InventoryExportDetailObject>();
             BUS_InventoryExport export = new BUS_InventoryExport();
             DataTable temp = export.SelectDetail(selectionID);
+            tbDescription.Text = export.SelectDescription(selectionID);
             Console.WriteLine(temp.Rows.Count);
             foreach (DataRow row in temp.Rows)
             {
                 string name = row["Tên"].ToString();
                 string amount = row["Số lượng"].ToString();
-                string descrip = row["Mô tả"].ToString();
                 string unit = row["Unit"].ToString();
-                list.Add(new InventoryExportDetailObject() { number = list.Count+1, amount = amount, name = name, description = descrip,unit=unit });
+                list.Add(new InventoryExportDetailObject() { number = list.Count+1, amount = amount, name = name,unit=unit });
             }
             this.dataGridMaterialExport.ItemsSource = list;
-            if (list.Count == 0) return;
-            tbDescription.Text = list[0].description;
         }
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {

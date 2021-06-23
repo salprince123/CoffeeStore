@@ -41,67 +41,11 @@ namespace CoffeeStore.DAL
             };
 
         }
-        /*public void Create(String employID)
-        {
-            //create auto increase ID
-            //Get max MaterialID
-            String id = "";
-            string tempSQL = "SELECT importID FROM InventoryImport order by importID desc LIMIT 1 ";
-            SQLiteDataAdapter da = new SQLiteDataAdapter(tempSQL, getConnection());
-            DataTable maxId = new DataTable();
-            da.Fill(maxId);
-            foreach (DataRow row in maxId.Rows)
-            {
-                id = row["MaterialID"].ToString();
-            }
-            //auto increase ID
-            string newID = "Imp" +
-                (Convert.ToInt32(id.Replace("Mater", "")) + 1)
-                    .ToString()
-                    .PadLeft(7, '0');
-            //insert SQLite 
-            string sql = $"insert into InventoryImport('ImportID','EmployeeID','ImportDate') VALUES ('{newID}','{employID}','{DateTime.Now.ToString()}');";
-            SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
-            try
-            {
-                insert.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-        public bool Delete(String id)
-        {
-            string sql = $"delete from inventoryImport where ImportID='{id}'";
-            SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
-            try
-            {
-                return insert.ExecuteNonQuery() > 0;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-        public bool Update(String id, String employID, String date)
-        {
-            string sql = $"update inventoryImport set employeeID='{employID}', ImportDate = '{date}'  where importID='{id}'";
-            SQLiteCommand update = new SQLiteCommand(sql, getConnection().OpenAndReturn());
-            try
-            {
-                return update.ExecuteNonQuery() > 0;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }*/
         public DataTable SelectDetail(String id)
         {
             try
             {
-                string sql = $"select detail.MaterialID,unit,materialname as 'Tên',amount as 'Số lượng',description as 'Mô tả' from InventoryExportDetail detail Join Material mater on detail.MaterialID= mater.MaterialID where exportID='{id}'";
+                string sql = $"select detail.MaterialID,unit,materialname as 'Tên',amount as 'Số lượng' from InventoryExportDetail detail Join Material mater on detail.MaterialID= mater.MaterialID where exportID='{id}'";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 DataTable listImport = new DataTable();
                 da.Fill(listImport);
@@ -113,7 +57,7 @@ namespace CoffeeStore.DAL
                 return new DataTable();
             };
         }
-        public string Create(String name, String date)
+        public string Create(String name, String date, String description)
         {
             //create auto increase ID
             //Get max MaterialID
@@ -142,7 +86,7 @@ namespace CoffeeStore.DAL
                 employId = row["EmployeeID"].ToString();
             }
             //insert SQLite 
-            string sql = $"insert into InventoryExport('ExportID','EmployeeID','ExportDate') VALUES ('{newID}','{employId}','{date}');";
+            string sql = $"insert into InventoryExport('ExportID','EmployeeID','ExportDate','Description') VALUES ('{newID}','{employId}','{date}', '{description}');";
             SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
             try
             {
@@ -152,6 +96,38 @@ namespace CoffeeStore.DAL
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
+            }            
+        }
+        public string SelectDescription(String id)
+        {
+            try
+            {
+                string sql = $"select Description from InventoryExport where exportID='{id}'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                DataTable listImport = new DataTable();
+                da.Fill(listImport);
+                foreach (DataRow row in listImport.Rows)
+                {
+                    return row["Description"].ToString();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception AT" + e.ToString());
+                
+            };
+            return null;
+        }
+        public void updateDescription(String exportID, String value)
+        {
+            String sql = $"update InventoryExport set description='{value}' where exportid='{exportID}'";
+            SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
+            try
+            {
+                insert.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
             }
         }
     }

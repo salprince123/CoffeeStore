@@ -48,6 +48,10 @@ namespace CoffeeStore.Inventory
             InitializeComponent();
             dataGridExport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             this._context = mainWindow;
+            Loaded += LoadData;
+        }
+        public void LoadData(Object sender, RoutedEventArgs e)
+        {
             LoadData();
         }
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
@@ -145,7 +149,6 @@ namespace CoffeeStore.Inventory
                     Height = 630,
                     Width = 500,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen
-                    //Content = new PopupInventoryImportDETAIL("a","a","a")
                 };
                 window.ShowDialog();
                 ((MainWindow)App.Current.MainWindow).Opacity = 1;
