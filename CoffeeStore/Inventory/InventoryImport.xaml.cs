@@ -143,7 +143,7 @@ namespace CoffeeStore.Inventory
             catch (Exception) { }
             if (toTime < fromTime)
             {
-                MessageBox.Show("Ngày bắt đầu không thể lớn hơn ngày kết thúc");
+                MessageBox.Show("Ngày bắt đầu phải trước ngày kết thúc");
                 return;
             }
                 
