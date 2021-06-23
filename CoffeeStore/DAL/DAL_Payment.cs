@@ -169,5 +169,36 @@ namespace CoffeeStore.DAL
             return null;
         }
 
+        public DataTable GetTotalAmountByYear(int year)
+        {
+            DataTable data = new DataTable();
+            string sql = $"select substr(Time, 4, 2) as Month, cast(sum(TotalAmount) as int) as Total from PaymentVoucher where Time like '%/%/{year} %' group by Month";
+            try
+            {
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(data);
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+            }
+            return data;
+        }
+
+        public DataTable GetTotalAmountByMonth(int month, int year)
+        {
+            DataTable data = new DataTable();
+            string sql = $"select substr(Time, 1, 2) as Day, cast(sum(TotalAmount) as int) as Total from PaymentVoucher where Time like '%/{month.ToString().PadLeft(2, '0')}/{year} %' group by Day";
+            try
+            {
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(data);
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+            }
+            return data;
+        }
     }
 }

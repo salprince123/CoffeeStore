@@ -48,5 +48,13 @@ namespace CoffeeStore.BUS
         {
             return dalPayment.getEmployeeID(Employeename);
         }
+        public DataTable GetTotalAmountByMonth(int month, int year)
+        {
+            return dalPayment.GetTotalAmountByMonth(month, year);
+        }
+        public DataTable GetTotalAmountByYear(int year)
+        {
+            return dalPayment.GetTotalAmountByYear(year);
+        }
     }
 }
