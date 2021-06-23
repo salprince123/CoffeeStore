@@ -22,7 +22,7 @@ namespace CoffeeStore.Menu
     public partial class PopupDeleteConfirm : UserControl
     {
         BUS_Beverage bus = new BUS_Beverage();
-        private string ID;
+        private string ID, name;
         MainWindow _context;
         public PopupDeleteConfirm()
         {
@@ -33,6 +33,7 @@ namespace CoffeeStore.Menu
             InitializeComponent();
             tblContent.Text = "Dữ liệu về " + beverage.BeverageName + " sẽ bị xóa vĩnh viễn.\n Bạn chắc chắn muốn xóa?";
             ID = beverage.BeverageID;
+            name = beverage.BeverageName;
             this._context = context;
         }
         public PopupDeleteConfirm(string id)
@@ -44,10 +45,10 @@ namespace CoffeeStore.Menu
         {
             if (bus.deleteBevverage(ID) > 0)
             {
-                MessageBox.Show("Thành công");
+                MessageBox.Show($"Đã xóa {name}");
             }
             else
-                MessageBox.Show("Thất bại");
+                MessageBox.Show($"Đã xảy ra lỗi trong quá trình xóa {name}");
             Window.GetWindow(this).Close();
         }
 
