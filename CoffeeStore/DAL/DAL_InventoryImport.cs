@@ -55,7 +55,7 @@ namespace CoffeeStore.DAL
         {
             //create auto increase ID
             //Get max MaterialID
-            String id = "";
+            String id = "Imp0000000";
             string tempSQL = "SELECT importID FROM InventoryImport order by importID desc LIMIT 1 ";
             SQLiteDataAdapter da = new SQLiteDataAdapter(tempSQL, getConnection());
             DataTable maxId = new DataTable();
