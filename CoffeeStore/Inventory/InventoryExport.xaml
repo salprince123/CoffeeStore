@@ -244,7 +244,8 @@
                             <TextBox Name="tbNumPage" Width="35" Height="30"
                                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                                      Text="1" FontWeight="SemiBold" FontSize="14" 
-                                     Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,1"/>
+                                     Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,1"
+                                     PreviewTextInput="tbNumPage_PreviewTextInput" PreviewKeyDown="tbNumPage_PreviewKeyDown"/>
                             <Label VerticalContentAlignment="Center" 
                                    Content="/" FontWeight="SemiBold" FontSize="14"/>
                             <Label Name="lblMaxPage" Width="35" 

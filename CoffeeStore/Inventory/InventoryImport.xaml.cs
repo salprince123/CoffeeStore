@@ -380,6 +380,19 @@ namespace CoffeeStore.Inventory
                 else splitDataGridFind(int.Parse(tbNumPage.Text));
             }
         }
+
+        private void tbNumPage_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
+
+        private void tbNumPage_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !e.Text.Any(x => Char.IsDigit(x));
+            if (e.Text.Contains(" "))
+                e.Handled = false;
+        }
     }
 
 

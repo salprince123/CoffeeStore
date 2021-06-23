@@ -41,6 +41,7 @@ namespace CoffeeStore.Report
 
         void LoadData(Object sender, RoutedEventArgs e)
         {
+            cbYearMonth.SelectedIndex = 1;
             LoadGeneralChartYear();
             generalChart.Update();
             DataContext = this;
@@ -74,6 +75,14 @@ namespace CoffeeStore.Report
             {
                 Outcome[Int32.Parse(row["Month"].ToString()) - 1] = Int32.Parse(row["TotalAmount"].ToString());
                 Profit[Int32.Parse(row["Month"].ToString()) - 1] -= Int32.Parse(row["TotalAmount"].ToString());
+            }
+
+            BUS_Payment busPay = new BUS_Payment();
+            DataTable PayData = busPay.GetTotalAmountByYear(dpMonthYear.SelectedDate.GetValueOrDefault().Year);
+            foreach (DataRow row in PayData.Rows)
+            {
+                Outcome[Int32.Parse(row["Month"].ToString()) - 1] += Int32.Parse(row["Total"].ToString());
+                Profit[Int32.Parse(row["Month"].ToString()) - 1] -= Int32.Parse(row["Total"].ToString());
             }
 
             GeneralChart.Add(new ColumnSeries
@@ -141,6 +150,14 @@ namespace CoffeeStore.Report
             {
                 Outcome[Int32.Parse(row["Day"].ToString()) - 1] = Int32.Parse(row["TotalAmount"].ToString());
                 Profit[Int32.Parse(row["Day"].ToString()) - 1] -= Int32.Parse(row["TotalAmount"].ToString());
+            }
+
+            BUS_Payment busPay = new BUS_Payment();
+            DataTable PayData = busPay.GetTotalAmountByMonth(dpMonthYear.SelectedDate.GetValueOrDefault().Month, dpMonthYear.SelectedDate.GetValueOrDefault().Year);
+            foreach (DataRow row in PayData.Rows)
+            {
+                Outcome[Int32.Parse(row["Day"].ToString()) - 1] += Int32.Parse(row["Total"].ToString());
+                Profit[Int32.Parse(row["Day"].ToString()) - 1] -= Int32.Parse(row["Total"].ToString());
             }
 
             GeneralChart.Add(new ColumnSeries

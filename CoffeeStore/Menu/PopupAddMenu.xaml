@@ -23,23 +23,26 @@
         <TextBlock Margin="20,20,20,0" Text="Tên món"/>
         <TextBox x:Name="tbName" Margin="0,5,0,0" BorderThickness="1"
                  Height="40" Width="420" Padding="5" FontSize="15" VerticalContentAlignment="Center"/>
-
-        <TextBlock Margin="20,20,20,0" Text="Loại món"/>
+        <TextBlock Margin="20,0,20,0" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                   Name="tbNameValidation" FontSize="13" Foreground="Red" Text=""/>
+        <TextBlock Margin="20,0,20,0" Text="Loại món"/>
         <ComboBox x:Name="cbBeverageType"  Margin="0,5,0,0" 
                  materialDesign:HintAssist.Hint="Chọn loại món" Padding="5" BorderThickness="1"
                  Height="40" Width="420" FontSize="15" VerticalContentAlignment="Center"/>
-
-        <TextBlock Margin="20,20,20,0" Text="Giá"/>
+        <TextBlock Margin="20,0,20,0" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                   Name="tbTypeValidation" FontSize="13" Foreground="Red" Text=""/>
+        <TextBlock Margin="20,0,20,0" Text="Giá"/>
         <TextBox x:Name="tbPrice"  Margin="0,5,0,0" BorderThickness="1" FontSize="15" VerticalContentAlignment="Center"
                  Height="40" Width="420" PreviewTextInput="tbPrice_PreviewTextInput_1" />
-
+        <TextBlock Margin="20,0,20,0" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                   Name="tbPriceValidation" FontSize="13" Foreground="Red" Text=""/>
 
         <!--Save, Cancel button-->
-        <StackPanel Height="100" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="btSave" Height="40" Width="100"
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btSave" Margin="0,10,0,30" Height="40" Width="100"
                     Content="LƯU" Background="#66A3FF" Click="btSave_Click"/>
             <Button x:Name="btExit" Height="40" Width="100"
-                    Content="HỦY" Margin="10,0,0,0" Background="#F27047" Click="btExit_Click"/>
+                    Content="HỦY" Margin="10,10,0,30" Background="#F27047" Click="btExit_Click"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

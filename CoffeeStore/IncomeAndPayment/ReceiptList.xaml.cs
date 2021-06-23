@@ -178,9 +178,9 @@ namespace CoffeeStore.IncomeAndPayment
                 Title = "Xóa hóa đơn",
                 Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa hóa đơn {id} không?", id, 1),
                 Width = 380,
-                Height = 210,
+                Height = 220,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 220) / 2,
             };
             window.ShowDialog();
 

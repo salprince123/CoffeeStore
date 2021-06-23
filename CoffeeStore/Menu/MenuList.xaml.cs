@@ -26,6 +26,7 @@ namespace CoffeeStore.Menu
         BUS_Beverage bus;
         MainWindow _context;
         bool find = false;
+        int maxNumpage;
         public MenuList()
         {
             InitializeComponent();
@@ -66,7 +67,12 @@ namespace CoffeeStore.Menu
                 }
                 else count++;
             }
-
+            if (temp.Rows.Count % 20 == 0)
+            {
+                maxNumpage = temp.Rows.Count / 20;
+            }
+            else
+                maxNumpage = temp.Rows.Count / 20 + 1;
             dgMenu.ItemsSource = list;
             dgMenu.Items.Refresh();
         }
@@ -131,6 +137,7 @@ namespace CoffeeStore.Menu
                 WindowStyle = WindowStyle.None,
                 Title = "Xóa món",
                 Content = new PopupDeleteConfirm(row, this._context),
+                Width = 380,
                 Height = 210,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
                 Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
@@ -176,20 +183,49 @@ namespace CoffeeStore.Menu
         }
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
-            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
-            if (find)
-                findBeverage();
+            if (Int32.Parse(tbNumPage.Text) == maxNumpage)
+            {
+
+            }
             else
-                loadData();
+            {
+                tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
+                if (find)
+                    findBeverage();
+                else
+                    loadData();
+            }
         }
 
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
-            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
-            if (find)
-                findBeverage();
+            if (Int32.Parse(tbNumPage.Text) == 1)
+            {
+
+            }
             else
-                loadData();
+            {
+                tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
+                if (find)
+                    findBeverage();
+                else
+                    loadData();
+            }
+
+            
+        }
+
+        private void tbNumPage_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
+
+        private void tbNumPage_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !e.Text.Any(x => Char.IsDigit(x));
+            if (e.Text.Contains(" "))
+                e.Handled = false;
         }
     }
 }

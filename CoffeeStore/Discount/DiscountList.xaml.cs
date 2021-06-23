@@ -27,6 +27,7 @@ namespace CoffeeStore.Discount
         BUS_Discount bus = new BUS_Discount();
         MainWindow _context;
         bool find = false;
+        int maxNumpage;
         class Discount : DTO_Discount
         {
             public String Status { get; set; }
@@ -84,6 +85,12 @@ namespace CoffeeStore.Discount
                 }
                 else count++;
             }
+            if (temp.Rows.Count % 20 == 0)
+            {
+                maxNumpage = temp.Rows.Count / 20;
+            }
+            else
+                maxNumpage = temp.Rows.Count / 20 + 1;
             dgDiscount.ItemsSource = list;
         }
         void findDiscount(string startdatefind, string enddatefind)
@@ -175,12 +182,12 @@ namespace CoffeeStore.Discount
             {
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
-                Title = "Chi tiết ưu đãi",
+                Title = "Xóa ưu đãi",
                 Content = new PopupDeleteConfirm(row, _context),
-                Width = 540,
-                Height = 350,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
+                Width = 380,
+                Height = 210,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
@@ -236,21 +243,47 @@ namespace CoffeeStore.Discount
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
-            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
-            if (find)
-                findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
+            if (Int32.Parse(tbNumPage.Text) == maxNumpage)
+            {
+
+            }
             else
-                loadData();
+            {
+                tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
+                if (find)
+                    findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
+                else
+                    loadData();
+            }            
         }
 
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
-            tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
-            if (find)
-                findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy")
-                    );
+            if (Int32.Parse(tbNumPage.Text) == 1)
+            {
+
+            }
             else
-                loadData();
+            {
+                tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
+                if (find)
+                    findDiscount(tbDateStart.SelectedDate.Value.ToString("dd/MM/yyyy"), tbDateEnd.SelectedDate.Value.ToString("dd/MM/yyyy"));
+                else
+                    loadData();
+            }
+        }
+
+        private void tbNumPage_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
+
+        private void tbNumPage_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !e.Text.Any(x => Char.IsDigit(x));
+            if (e.Text.Contains(" "))
+                e.Handled = false;
         }
     }
 }

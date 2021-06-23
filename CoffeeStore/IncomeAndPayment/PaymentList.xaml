@@ -62,28 +62,12 @@
                 <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
                     <DatePicker x:Name="dpDateStart" Height="40"
                          VerticalContentAlignment="Center" FontSize="15"
-                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5">
-                        <DatePicker.Resources>
-                            <Style TargetType="{x:Type DatePickerTextBox}" 
-                        x:Key="MaterialDesignDatePickerTextBox" 
-                        BasedOn="{StaticResource MaterialDesignDatePickerTextBox}">
-                                <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DatePicker},Path=SelectedDate,StringFormat=dd/MM/yyyy}" />
-                            </Style>
-                        </DatePicker.Resources>
-                    </DatePicker>
+                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
                 </Border>
                 <Border BorderBrush="Gray" Grid.Column="2" BorderThickness="1,1,1,0">
                     <DatePicker x:Name="dpDateEnd" Height="40"
                          VerticalContentAlignment="Center" FontSize="15"
-                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5">
-                        <DatePicker.Resources>
-                            <Style TargetType="{x:Type DatePickerTextBox}" 
-                        x:Key="MaterialDesignDatePickerTextBox" 
-                        BasedOn="{StaticResource MaterialDesignDatePickerTextBox}">
-                                <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DatePicker},Path=SelectedDate,StringFormat=dd/MM/yyyy}" />
-                            </Style>
-                        </DatePicker.Resources>
-                    </DatePicker>
+                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5"/>
                 </Border>
                 <TextBox x:Name="tbNameFind" Grid.Column="4" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center" FontSize="15"
@@ -94,7 +78,7 @@
                     <materialDesign:PackIcon Kind="Search" Height="20" Width="20"/>
                 </Button>
             </Grid>
-            
+
             <!--Button here-->
             <Button Grid.Row="1" Grid.Column="1" Height="Auto"
                     BorderBrush="#6B6158" BorderThickness="1"
@@ -218,7 +202,7 @@
                                 </DataGridTextColumn>
                                 <DataGridTextColumn Header="Ngày lập" Binding="{Binding Path='Time'}">
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Header="Người lập" Binding="{Binding Path='EmployeeName'}">
+                                <DataGridTextColumn Header="Người lập" Binding="{Binding Path='EmployeeID'}">
                                 </DataGridTextColumn>
                                 <DataGridTextColumn Header="Số tiền" Binding="{Binding Path='TotalAmount', StringFormat=\{0:N0\} VNĐ}"
                                                     CellStyle="{StaticResource DataGrid_Content_CenterRightAlign}">
@@ -231,7 +215,7 @@
                                                     <materialDesign:PackIcon Kind="FileDocument" Height="20" Width="20" Foreground="#9FA2B4" />
                                                 </Button>
                                                 <Button Margin="10,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5" Click="btnEdit_Click">
-                                                    <materialDesign:PackIcon Kind="GreasePencil" Foreground="White" Height="20" Width="20" />
+                                                    <materialDesign:PackIcon Kind="GreasePencil" Foreground="White" Height="20" Width="20"  />
                                                 </Button>
                                                 <Button Margin="10,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252" Click="btnDelete_Click">
                                                     <materialDesign:PackIcon Kind="Delete" Height="20" Width="20" />
@@ -252,7 +236,8 @@
                             <TextBox Name="tbNumPage" Width="35" Height="30"
                                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                                      Text="1" FontWeight="SemiBold" FontSize="14" 
-                                     Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,1"/>
+                                     Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,1"
+                                     PreviewKeyDown="tbNumPage_PreviewKeyDown" PreviewTextInput="tbNumPage_PreviewTextInput"/>
                             <Label VerticalContentAlignment="Center" 
                                    Content="/" FontWeight="SemiBold" FontSize="14"/>
                             <Label Name="lblMaxPage" Width="35" 
