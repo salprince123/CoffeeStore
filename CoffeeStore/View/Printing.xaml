@@ -14,7 +14,7 @@
             <ColumnDefinition  Width="0.5*"/>
         </Grid.ColumnDefinitions>
         <ScrollViewer x:Name="receiptGrid" Grid.Column="1" >
-            <local:ReceiptForm x:Name="ReceiptForm">
+            <local:ReceiptForm x:Name="ReceiptForm" VerticalAlignment="Top">
             </local:ReceiptForm>
         </ScrollViewer>
         <StackPanel>

@@ -240,7 +240,7 @@ namespace CoffeeStore.IncomeAndPayment
             if (e.Key == Key.Return)
             {
                 int newPage = Int32.Parse(tbNumPage.Text);
-                if (newPage > (int)lblMaxPage.Content)
+                if (newPage > (int)lblMaxPage.Content || newPage == 0)
                 {
                     MessageBox.Show("Không có trang này!");
                     return;

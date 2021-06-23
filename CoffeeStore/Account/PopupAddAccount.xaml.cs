@@ -93,7 +93,7 @@ namespace CoffeeStore.Account
             if (tboxEmpName.Text == "")
             {
                 //Employee Name is empty
-                tbNameValidation.Text = "Tên nhân viên không được để trống";
+                tbNameValidation.Text = "Tên nhân viên không được để trống.";
                 return;
             }
 
@@ -127,7 +127,7 @@ namespace CoffeeStore.Account
 
         private void tboxEmpName_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[a-zA-Z]"))
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, @"\p{L}"))
             {
                 e.Handled = true;
             }

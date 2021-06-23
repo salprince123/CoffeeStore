@@ -28,12 +28,12 @@ namespace BeautySolutions.View.ViewModel
             APID = id;
         }
 
-        public ItemMenu(string header, Cashier cashier, PackIconKind icon)
+        public ItemMenu(string header, string id, Cashier cashier, PackIconKind icon)
         {
             Header = header;
             _Cashier = cashier;
             Icon = icon;
-            APID = "";
+            APID = id;
         }
 
         public string Header { get; private set; }

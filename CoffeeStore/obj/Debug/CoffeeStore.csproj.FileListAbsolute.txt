@@ -868,3 +868,5 @@ C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\IncomeAn
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.csproj.AssemblyReference.cache
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Banner.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Banner.baml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\View\Banner.g.cs
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\View\Banner.baml
