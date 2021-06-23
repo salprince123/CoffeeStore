@@ -164,6 +164,12 @@ namespace CoffeeStore.IncomeAndPayment
 
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
+            if (dpDateStart.SelectedDate.ToString() != "" && dpDateEnd.SelectedDate.ToString() != ""
+                && DateTime.Compare((DateTime)dpDateStart.SelectedDate, (DateTime)dpDateEnd.SelectedDate) > 0)
+            {
+                MessageBox.Show("Ngày bắt đầu phải trước ngày kết thúc.");
+                return;
+            }
             findPayment();
         }
         void findPayment()

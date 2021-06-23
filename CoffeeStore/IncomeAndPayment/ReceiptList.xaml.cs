@@ -116,6 +116,11 @@ namespace CoffeeStore.IncomeAndPayment
             else
                 end = datepicker.Value;
 
+            if (DateTime.Compare(start, end) > 0)
+            {
+                MessageBox.Show("Ngày bắt đầu phải trước ngày kết thúc.");
+                return;
+            }
             keyword = tbFind.Text;
 
             BUS_Receipt busReceipt = new BUS_Receipt();
