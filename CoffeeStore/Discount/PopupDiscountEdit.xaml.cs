@@ -45,37 +45,56 @@ namespace CoffeeStore.Discount
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
-            if (checkCondition())
+            tbNameValidation.Text = tbDateValidation.Text = tbRateValidation.Text = "";
+            if (tbName.Text == "")
             {
-                if (DateTime.Compare((DateTime)tbEndDate.SelectedDate, DateTime.Now.Date) < 0)
-                {
-                    MessageBox.Show("Ngày kết thúc không được nhỏ hơn ngày hiện tại");
-                }
-                else
-                {
-                    DTO_Discount discount = new DTO_Discount();
-                    discount.DiscountID = ID;
-                    discount.DiscountName = tbName.Text;
-                    discount.DiscountValue = float.Parse(tbPrice.Text);
-                    discount.StartDate = tbStartDate.SelectedDate.Value.ToString("dd/MM/yyyy");
-                    discount.EndDate = tbEndDate.SelectedDate.Value.ToString("dd/MM/yyyy");
-                    if (busDiscount.editDiscount(discount) > 0)
-                    {
-                        MessageBox.Show("Thành công");
-                    }
-                    else
-                        MessageBox.Show("Thất bại");
-                }
+                tbNameValidation.Text = "Tên ưu đãi không được để trống.";
+                return;
+            }
+
+            if (tbStartDate.SelectedDate == null)
+            {
+                tbDateValidation.Text = "Ngày bắt đầu không được để trống.";
+                return;
+            }
+            /*
+            if (DateTime.Compare((DateTime)tbStartDate.SelectedDate, DateTime.Now.Date) <= 0)
+            {
+                tbDateValidation.Text = "Ngày bắt đầu phải sau ngày hiện tại.";
+                return;
+            }
+            */
+            if (tbEndDate.SelectedDate == null)
+            {
+                tbDateValidation.Text = "Ngày kết thúc không được để trống.";
+                return;
+            }
+
+            if (DateTime.Compare((DateTime)tbStartDate.SelectedDate, (DateTime)tbEndDate.SelectedDate) > 0)
+            {
+                tbDateValidation.Text = "Ngày bắt đầu phải trước ngày kết thúc.";
+                return;
+            }
+
+            if (tbPrice.Text == "")
+            {
+                tbRateValidation.Text = "Mức ưu đãi không được để trống.";
+                return;
+            }
+
+            DTO_Discount discount = new DTO_Discount();
+            discount.DiscountID = ID;
+            discount.DiscountName = tbName.Text;
+            discount.DiscountValue = float.Parse(tbPrice.Text);
+            discount.StartDate = tbStartDate.SelectedDate.Value.ToString("dd/MM/yyyy");
+            discount.EndDate = tbEndDate.SelectedDate.Value.ToString("dd/MM/yyyy");
+            if (busDiscount.editDiscount(discount) > 0)
+            {
+                MessageBox.Show($"Đã sửa ưu đãi {tbName.Text}");
                 Window.GetWindow(this).Close();
             }
             else
-                MessageBox.Show("Tên discount, giá trị discount, ngày bắt đầu và ngày kết thúc là bắt buộc");
-
-
-        }
-        private bool checkCondition()
-        {
-            return (tbName.Text != "" && tbPrice.Text != "" && tbStartDate.Text != "" && tbEndDate.Text != "" && DateTime.Parse(tbStartDate.Text) <= DateTime.Parse(tbEndDate.Text));
+                MessageBox.Show($"Đã có lỗi trong quá trình sửa {tbName.Text}");
         }
 
         private void tbPrice_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
