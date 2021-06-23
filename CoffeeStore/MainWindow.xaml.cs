@@ -108,6 +108,8 @@ namespace CoffeeStore
                 ((ItemMenu)((MenuItem)Menu.Children[0]).DataContext)._Cashier.SetCurrrentUser(currentEmpID);
                 currentEmpType = busEmp.GetEmpTypeByID(tblockUsername.Text);
                 gridLogin.Children.Clear();
+                StackPanelMain.Children.Clear();
+                StackPanelMain.Children.Add(banner);
             }
         }
 
@@ -186,6 +188,9 @@ namespace CoffeeStore
 
         internal void LogOut()
         {
+            loginScreen.txtBoxAccount.Clear();
+            loginScreen.txtBoxPassword.Clear();
+            StackPanelMain.Children.Clear();
             gridLogin.Children.Clear();
             gridLogin.Children.Add(loginScreen);
         }
