@@ -112,7 +112,7 @@
                                 <TextBlock Foreground="#FFE297">In biểu đồ</TextBlock>
                             </StackPanel>
                         </Button>
-                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" >
+                    <ScrollViewer x:Name="generalChartScroll" Grid.Row="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" >
                             <!--If print, print from here-->
                             <Grid x:Name="generalChartBody" >
                                 <Grid.RowDefinitions>

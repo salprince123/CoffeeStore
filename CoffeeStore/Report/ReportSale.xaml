@@ -111,13 +111,14 @@
                                 <TextBlock Foreground="#FFE297">In biểu đồ</TextBlock>
                             </StackPanel>
                         </Button>
-                        <!--If print, print from here-->
-                        <Grid Grid.Row="1" x:Name="saleChartBody" >
+                        <StackPanel Grid.Row="1" >
+                            <!--If print, print from here-->
+                        <Grid  x:Name="saleChartBody" >
                             <Grid.RowDefinitions>
                                 <RowDefinition MinHeight="400"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <lvc:CartesianChart x:Name="saleChart" Series="{Binding SaleChart}" >
+                            <lvc:CartesianChart x:Name="saleChart" Series="{Binding SaleChart}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Title="Số lượng" LabelFormatter="{Binding Formatter}" FontSize="15" Foreground="#6B6158"></lvc:Axis>
                                 </lvc:CartesianChart.AxisX>
@@ -131,7 +132,9 @@
                             <TextBlock x:Name="saleChartTitle" FontStyle="Italic" FontWeight="SemiBold" Grid.Row="1" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 10">
                                 Biểu đồ thống kê mặt hàng bán chạy</TextBlock>
                         </Grid>
+                        </StackPanel>
                     </Grid>
+                        
                     <!--Profit chart here-->
                     <Grid Grid.Row="4" Grid.Column="1" >
                         <Grid.RowDefinitions>
@@ -148,12 +151,13 @@
                             </StackPanel>
                         </Button>
                         <!--If print, print from here-->
-                        <Grid Grid.Row="1" x:Name="profitChartBody" >
+                        <StackPanel Grid.Row="1">
+                        <Grid  x:Name="profitChartBody" >
                             <Grid.RowDefinitions>
                                 <RowDefinition MinHeight="400"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="50"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <lvc:CartesianChart x:Name="profitChart"  Series="{Binding ProfitChart}">
+                            <lvc:CartesianChart x:Name="profitChart"  Series="{Binding ProfitChart}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Title="VNĐ" LabelFormatter="{Binding FormatterProfitChart}" FontSize="15" Foreground="#6B6158"></lvc:Axis>
                                 </lvc:CartesianChart.AxisX>
@@ -167,6 +171,7 @@
                             <TextBlock x:Name="profitChartTitle" FontStyle="Italic" FontWeight="SemiBold" Grid.Row="1" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 10">
                                 Biểu đồ thống kê doanh thu</TextBlock>
                         </Grid>
+                        </StackPanel>
                     </Grid>
                 </Grid>
             </Grid>

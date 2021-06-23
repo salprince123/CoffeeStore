@@ -93,7 +93,9 @@ namespace CoffeeStore.Report
             generalChart.AxisX.Add(new Axis
             {
                 Title = "",
-                LabelFormatter = value => "Tháng " + (value + 1).ToString()
+                LabelFormatter = value => "Tháng " + (value + 1).ToString(),
+                FontSize = 15,
+                Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#6B6158")
             });
             generalChart.Series = GeneralChart;
             generalChart.Width = LabelGeneralCharts.Count * 80;
@@ -144,13 +146,14 @@ namespace CoffeeStore.Report
                 Values = Profit,
                 MaxColumnWidth = 16
             });
-            
             //FormatterGeneralCharts = value => value.ToString("N");
             generalChart.AxisX.Clear();
             generalChart.AxisX.Add(new Axis
             {
                 Title = "",
-                LabelFormatter = value => "Ngày " + (value + 1).ToString()
+                LabelFormatter = value => "Ngày " + (value + 1).ToString(),
+                FontSize = 15,
+                Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#6B6158")
             });
             generalChart.Series = GeneralChart;
             generalChart.Width = LabelGeneralCharts.Count * 80;
@@ -176,6 +179,7 @@ namespace CoffeeStore.Report
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
+            generalChartScroll.ScrollToLeftEnd();
             PrintDialog myPrintDialog = new PrintDialog();
             if (myPrintDialog.ShowDialog() == true)
             {

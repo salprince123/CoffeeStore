@@ -70,17 +70,5 @@ namespace CoffeeStore
         {
             ListViewMenu.SelectedIndex = -1;
         }
-
-        private void ListViewMenu_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            SubItem item = (SubItem)((ListView)sender).SelectedItem;
-            string perID = item.APID;
-            BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
-            bool isHavePermission = busAccPerGr.IsHavePermission(_context.GetCurrentEmpType(), perID);
-            if (isHavePermission)
-                _context.SwitchScreen(item.Screen);
-            else
-                MessageBox.Show("Bạn không có quyền sử dụng chức năng này!");
-        }
     }
 }
