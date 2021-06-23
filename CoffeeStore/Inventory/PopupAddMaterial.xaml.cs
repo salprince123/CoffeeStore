@@ -34,8 +34,8 @@ namespace CoffeeStore.Inventory
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
             BUS_Material material = new BUS_Material();
-            if(material.Create(tbName.Text, tbUnit.Text))
-                MessageBox.Show($"Đã thêm vật liệu {tbName.Text}, đơn vị tính {tbUnit.Text}");
+            if (material.Create(tbName.Text, tbUnit.Text)) ;
+                //MessageBox.Show($"Đã thêm vật liệu {tbName.Text}, đơn vị tính {tbUnit.Text}");
             else MessageBox.Show($"Vat lieu da ton tai");
                 Window.GetWindow(this).Close();
         }

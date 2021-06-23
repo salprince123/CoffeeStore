@@ -84,7 +84,7 @@ namespace CoffeeStore.Inventory
             public event PropertyChangedEventHandler PropertyChanged;
             protected void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
             {
-                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                this.PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(propertyName));
             }
             
         }
@@ -184,16 +184,16 @@ namespace CoffeeStore.Inventory
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            InventoryImportDetailObject row = (InventoryImportDetailObject)dataGridMaterialImport.SelectedItem;
-            if (row != null)
-            {
-                try
-                {
-                    list.RemoveAt(findInList(row.id));
-                    dataGridMaterialImport.Items.Refresh();
-                }
-                catch (Exception) { }
-            }
+             InventoryImportDetailObject row = (InventoryImportDetailObject)dataGridMaterialImport.SelectedItem;
+             if (row != null)
+             {
+                 try
+                 {
+                     list.RemoveAt(findInList(row.id));
+                     dataGridMaterialImport.Items.Refresh();
+                 }
+                 catch (Exception) { }
+             }
         }
 
         private void btExit_Click(object sender, RoutedEventArgs e)

@@ -1,6 +1,7 @@
 ﻿using CoffeeStore.BUS;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -44,15 +45,37 @@ namespace CoffeeStore.Inventory
                 }
             }
         }
-        public class InventoryExportDetailObject
+        public class InventoryExportDetailObject : INotifyPropertyChanged
         {
             public String name { get; set; }
             public String id { get; set; }
             public String unitPrice { get; set; }
-            public String amount { get; set; }
+            public String _amount;
+            public string amount
+            {
+                get
+                {
+                    return this._amount;
+                }
+
+                set
+                {
+                    if (value != _amount)
+                    {
+                        _amount = value;
+                        OnPropertyChanged();
+                    }
+                }
+            }
             public String unit { get; set; }
             public String reason { get; set; }
-            
+
+            public event PropertyChangedEventHandler PropertyChanged;
+            protected void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            {
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+
         }
         public InventoryExportADD()
         {

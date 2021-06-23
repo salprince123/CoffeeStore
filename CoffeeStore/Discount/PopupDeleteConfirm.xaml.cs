@@ -35,7 +35,7 @@ namespace CoffeeStore.Discount
             InitializeComponent();
             ID = discount.DiscountID;
             time = DateTime.ParseExact(discount.StartDate, "dd/MM/yyyy", null);
-            tblContent.Text = "Dữ liệu về "+discount.DiscountName+" sẽ bị xóa vĩnh viễn.\n Bạn chắc chắn muốn xóa?";
+            tblContent.Text = "Dữ liệu về " + discount.DiscountName + " sẽ bị xóa vĩnh viễn.\n Bạn chắc chắn muốn xóa?";
             this._context = context;
         }
 
@@ -54,7 +54,7 @@ namespace CoffeeStore.Discount
                 else
                     MessageBox.Show("Thất bại");
             }
-            
+
             Window.GetWindow(this).Close();
         }
 

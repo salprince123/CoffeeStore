@@ -151,12 +151,14 @@
     <Compile Include="BUS\BUS_Employees.cs" />
     <Compile Include="BUS\BUS_EmployeeType.cs" />
     <Compile Include="BUS\BUS_InventoryExport.cs" />
+    <Compile Include="BUS\BUS_Payment.cs" />
     <Compile Include="BUS\BUS_Receipt.cs" />
     <Compile Include="BUS\BUS_ReceiptDetail.cs" />
     <Compile Include="DAL\DAL_AccessPermission.cs" />
     <Compile Include="DAL\DAL_AccessPermissionGroup.cs" />
     <Compile Include="DAL\DAL_Employees.cs" />
     <Compile Include="DAL\DAL_EmployeeType.cs" />
+    <Compile Include="DAL\DAL_Payment.cs" />
     <Compile Include="DAL\DAL_Receipt.cs" />
     <Compile Include="DAL\DAL_ReceiptDetail.cs" />
     <Compile Include="Discount\DiscountList.xaml.cs">
@@ -178,6 +180,7 @@
     <Compile Include="DTO\DTO_AccessPermission.cs" />
     <Compile Include="DTO\DTO_Employees.cs" />
     <Compile Include="DTO\DTO_EmployeeType.cs" />
+    <Compile Include="DTO\DTO_Payment.cs" />
     <Compile Include="DTO\DTO_Receipt.cs" />
     <Compile Include="DTO\DTO_ReceiptDetail.cs" />
     <Compile Include="IncomeAndPayment\PaymentList.xaml.cs">

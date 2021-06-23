@@ -111,7 +111,7 @@
                               x:Name="dataGridMaterialExport" 
                               BorderThickness="1"
                               BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                              VerticalScrollBarVisibility="Visible" IsReadOnly="True"
+                              VerticalScrollBarVisibility="Visible"
                               AutoGenerateColumns="False" HeadersVisibility="All">
                             <DataGrid.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}">
@@ -192,12 +192,13 @@
                             
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" 
-                                                    Binding="{Binding Path='name'}"></DataGridTextColumn>
+                                                    Binding="{Binding Path='name'}" IsReadOnly="True"></DataGridTextColumn>
 
                                 <DataGridTemplateColumn Header="Số lượng">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBox Name="tbAmount" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                            <TextBox Name="tbAmount" Text="{Binding Path='amount', Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                     VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>

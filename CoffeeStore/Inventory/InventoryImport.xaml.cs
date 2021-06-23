@@ -81,7 +81,7 @@ namespace CoffeeStore.Inventory
             if (int.Parse(lblMaxPage.Content.ToString()) == 0)
                 this.tbNumPage.Text = "0";
             splitDataGrid(1);
-
+            MessageBox.Show("Load data");
         }
         public void splitDataGrid(int numpage)
         {
@@ -95,8 +95,9 @@ namespace CoffeeStore.Inventory
                 }
                 else displayList = mainList.GetRange((numpage - 1) * numberPerSheet, numberPerSheet);
                 //displayList = list.GetRange(10, list.Count-10);
-                this.dataGridImport.Items.Refresh();
+                
                 this.dataGridImport.ItemsSource = displayList;
+                this.dataGridImport.Items.Refresh();
             }
             catch (Exception)
             {
@@ -115,8 +116,9 @@ namespace CoffeeStore.Inventory
                 }
                 else displayList = findList.GetRange((numpage - 1) * numberPerSheet, numberPerSheet);
                 //displayList = list.GetRange(10, list.Count-10);
-                this.dataGridImport.Items.Refresh();
+                
                 this.dataGridImport.ItemsSource = displayList;
+                this.dataGridImport.Items.Refresh();
             }
             catch (Exception)
             {

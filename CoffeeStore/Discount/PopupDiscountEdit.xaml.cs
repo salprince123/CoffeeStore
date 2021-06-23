@@ -51,7 +51,7 @@ namespace CoffeeStore.Discount
                 {
                     MessageBox.Show("Ngày kết thúc không được nhỏ hơn ngày hiện tại");
                 }
-                else 
+                else
                 {
                     DTO_Discount discount = new DTO_Discount();
                     discount.DiscountID = ID;
@@ -65,7 +65,7 @@ namespace CoffeeStore.Discount
                     }
                     else
                         MessageBox.Show("Thất bại");
-                }                
+                }
                 Window.GetWindow(this).Close();
             }
             else
@@ -75,7 +75,7 @@ namespace CoffeeStore.Discount
         }
         private bool checkCondition()
         {
-            return (tbName.Text != "" && tbPrice.Text != "" && tbStartDate.Text != "" && tbEndDate.Text != "" && DateTime.Parse(tbStartDate.Text) <=DateTime.Parse(tbEndDate.Text));
+            return (tbName.Text != "" && tbPrice.Text != "" && tbStartDate.Text != "" && tbEndDate.Text != "" && DateTime.Parse(tbStartDate.Text) <= DateTime.Parse(tbEndDate.Text));
         }
 
         private void tbPrice_PreviewTextInput_1(object sender, TextCompositionEventArgs e)

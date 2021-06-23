@@ -30,7 +30,7 @@ namespace CoffeeStore.DAL
         public int createNewBeverage(DTO_Beverage beverage)
         {
             int rs = 0;
-            string sql = $"Insert into BeverageName values ('" + beverage.BeverageID + "','" + beverage.BeverageTypeID + "','" + beverage.BeverageName + "'," + beverage.Price + ", 0, 'Cup')";
+            string sql = $"Insert into BeverageName values ('" + beverage.BeverageID + "','" + beverage.BeverageTypeID + "','" + beverage.BeverageName + "'," + beverage.Price + ", false, 'Cup')";
             try
             {
                 SQLiteCommand command = new SQLiteCommand(sql, getConnection());
@@ -124,23 +124,6 @@ namespace CoffeeStore.DAL
             }
             return BeverageType;
         }
-
-        public DataTable GetBeverageTypeInfo()
-        {
-            DataTable beverTypes = new DataTable();
-            try
-            {
-                string sql = $"Select * From BeverageType";
-                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
-                da.Fill(beverTypes);
-            }
-            catch
-            {
-
-            }
-            return beverTypes;
-        }
-
         public string getBeverageTypeID(string beveragename)
         {
             string beveragetypeID = "";
@@ -179,7 +162,13 @@ namespace CoffeeStore.DAL
         {
             try
             {
-                string sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID and BT.BeverageTypeName='" + type + "'";
+                string sql = "";
+                if (type.Length!=0 && name.Length==0)
+                    sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID and (BT.BeverageTypeName='" + type + "')";
+                else if (type.Length != 0 && name.Length != 0)
+                    sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID and (BT.BeverageTypeName='" + type + "' and BN.BeverageName like '%" + name + "%')";
+                else if (type.Length == 0 && name.Length != 0)
+                     sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID and ( BN.BeverageName like '%" + name + "%')";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 DataTable dsMon = new DataTable();
                 da.Fill(dsMon);
@@ -208,7 +197,6 @@ namespace CoffeeStore.DAL
             };
             return result;
         }
-
         public bool ChangeIsOutOfStockValue(string id, bool isOutOfStock)
         {
             string isOutOfStockStr = "0";
@@ -227,6 +215,22 @@ namespace CoffeeStore.DAL
                 Console.Error.WriteLine(ex.Message);
                 return false;
             }
+            
+        }
+        public DataTable GetBeverageTypeInfo()
+        {
+            DataTable beverTypes = new DataTable();
+            try
+            {
+                string sql = $"Select * From BeverageType";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(beverTypes);
+            }
+            catch
+            {
+
+            }
+            return beverTypes;
         }
 
         public DataTable GetBeverageOrderBySellAmount(DateTime startDate, DateTime endDate)

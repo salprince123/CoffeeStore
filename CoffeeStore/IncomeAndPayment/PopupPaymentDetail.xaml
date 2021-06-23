@@ -66,7 +66,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0">Ngày lập</TextBlock>
-            <TextBox Name="tbDate" Grid.Row="2" Background="#DADADA"
+            <TextBox x:Name="tbTime" Grid.Row="2" Background="#DADADA"
                      Padding="5" Height="40"
                      BorderThickness="0" IsReadOnly="True">
             </TextBox>

@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CoffeeStore.BUS;
+using CoffeeStore.DTO;
 
 namespace CoffeeStore.IncomeAndPayment
 {
@@ -21,6 +23,7 @@ namespace CoffeeStore.IncomeAndPayment
     /// </summary>
     public partial class PopupDeleteConfirm : UserControl
     {
+        BUS_Payment bus = new BUS_Payment();
         string deleteid;
         int type;
         public PopupDeleteConfirm()
@@ -30,10 +33,11 @@ namespace CoffeeStore.IncomeAndPayment
         public PopupDeleteConfirm(string content, string name, int type)
         {
             InitializeComponent();
-            this.tblockContent.Text = content;
+            this.tblContent.Text = content;
             this.type = type;
             deleteid = name;
         }
+
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
             switch (this.type)
@@ -57,6 +61,17 @@ namespace CoffeeStore.IncomeAndPayment
                     {
                         MessageBox.Show($"Đã xảy ra lỗi trong quá trình xóa chi tiết hóa đơn.");
                     }
+                    break;
+                case 2:
+                    BUS_Payment bus = new BUS_Payment();
+                    
+                    if (bus.deletePayment(deleteid)>0)
+                    {
+                            MessageBox.Show($"Đã xóa phiếu chi {deleteid}.");
+                    }
+                        else
+                            MessageBox.Show($"Đã xảy ra lỗi trong quá trình xóa phiếu chi!");
+                    Window.GetWindow(this).Close();
                     break;
             }
         }

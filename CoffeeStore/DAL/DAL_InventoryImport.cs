@@ -25,8 +25,7 @@ namespace CoffeeStore.DAL
             {
                 Console.WriteLine( "INVENTORYIMPORT SELECT: Exception AT" + e.ToString());
                 return new DataTable();
-            };
-            
+            };            
         }
 
         public int TotalCost(String id)
