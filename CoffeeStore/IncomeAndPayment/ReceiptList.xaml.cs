@@ -48,9 +48,7 @@ namespace CoffeeStore.IncomeAndPayment
         {
             InitializeComponent();
             limitRow = 20;
-            currentPage = 1;
-            tbNumPage.Text = "1";
-            btnPagePre.IsEnabled = false;
+            
             dgReceipt.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             Loaded += LoadData;
             //LoadData();
@@ -63,9 +61,17 @@ namespace CoffeeStore.IncomeAndPayment
 
         void LoadData(Object sender, RoutedEventArgs e)
         {
+            currentPage = 1;
+            tbNumPage.Text = "1";
+            btnPagePre.IsEnabled = false;
+
             start = new DateTime(2021, 1, 1, 0, 0, 0);
             end = DateTime.Today;
             keyword = "";
+
+            tbFind.Text = "";
+            dpDateStart.SelectedDate = null;
+            dpDateEnd.SelectedDate = null;
 
             BUS_Receipt busReceipt = new BUS_Receipt();
             int empCount = busReceipt.CountReceipt(start, end, keyword);
@@ -116,6 +122,11 @@ namespace CoffeeStore.IncomeAndPayment
             else
                 end = datepicker.Value;
 
+            if (DateTime.Compare(start, end) > 0)
+            {
+                MessageBox.Show("Ngày bắt đầu phải trước ngày kết thúc.");
+                return;
+            }
             keyword = tbFind.Text;
 
             BUS_Receipt busReceipt = new BUS_Receipt();
@@ -149,8 +160,7 @@ namespace CoffeeStore.IncomeAndPayment
                 Content = new ReceiptDetail(id),
                 Width = 500,
                 Height = 620,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 500) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 620) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -179,8 +189,7 @@ namespace CoffeeStore.IncomeAndPayment
                 Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa hóa đơn {id} không?", id, 1),
                 Width = 380,
                 Height = 220,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 220) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -305,6 +314,28 @@ namespace CoffeeStore.IncomeAndPayment
 
                 ReloadDGReceipt();
             }
+        }
+
+        private void dpDateStart_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void dpDateStart_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
+
+        private void dpDateEnd_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void dpDateEnd_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
         }
     }
 }

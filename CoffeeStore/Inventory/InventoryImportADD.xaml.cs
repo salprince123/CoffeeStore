@@ -132,8 +132,7 @@ namespace CoffeeStore.Inventory
                 Content = new PopupMaterialToImport(this),
                 Width = 540,
                 Height = 500,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 500) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
@@ -161,17 +160,32 @@ namespace CoffeeStore.Inventory
             dataGridMaterialImport.Items.Refresh();
             // save in database
             //insert InventoryImport
-            BUS_InventoryImport import = new BUS_InventoryImport();
-            String newImportID = import.Create(tbEmployeeName.Text, tbDate.Text);
+
             //MessageBox.Show(newImportID);
             //insert InventoryImportdetails
+            BUS_InventoryImport import = new BUS_InventoryImport();
+            String newImportID = import.Create(tbEmployeeName.Text, tbDate.Text);
             if (newImportID == null) return;
             List<String> sqlString = new List<string>();
             foreach (InventoryImportDetailObject obj in list)
             {
+                int temp1=-1,temp2=-1;
+                if (!int.TryParse(obj.unitPrice,out temp1) || temp1 <= 0 || obj.unitPrice == "" || obj.unitPrice == null)                    
+                {
+                    MessageBox.Show($"Đơn giá không hợp lệ, vui lòng nhập lại!");
+                    import.Delete(newImportID);
+                    return;
+                }
+                else if ( !int.TryParse(obj.amount, out temp2) || temp2 <= 0)
+                {
+                    MessageBox.Show($"Số lượng không hợp lệ {temp2}, vui lòng nhập lại!");
+                    import.Delete(newImportID);
+                    return;
+                }
                 string temp = $"insert into InventoryImportDetail values ('{newImportID}','{obj.id}','{obj.amount}','{obj.unitPrice}')";
                 sqlString.Add(temp);
             }
+            
             BUS_InventoryImportDetail detail = new BUS_InventoryImportDetail();
             detail.ImportList(sqlString);
             var screen = new InventoryImport(_context);
@@ -206,5 +220,18 @@ namespace CoffeeStore.Inventory
             }
         }
 
+        private void tbPrice_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= tbPrice_GotFocus;
+        }
+
+        private void tbAmount_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= tbAmount_GotFocus;
+        }
     }
 }

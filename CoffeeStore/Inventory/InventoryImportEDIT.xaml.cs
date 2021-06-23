@@ -29,7 +29,11 @@ namespace CoffeeStore.Inventory
         public List<InventoryImportDetailObject> list = new List<InventoryImportDetailObject>();
         public List<String> sqlCommand = new List<string>();
 
-        MainWindow _context;        
+        MainWindow _context;
+
+        //Map to decide can change or not of material
+        Dictionary<String, String> mapNameUnit = new Dictionary<string, string>();
+        Dictionary<String, String> mapNameIsUse = new Dictionary<string, string>();
         public class InventoryImportDetailObject
         {
             public String name { get; set; }
@@ -80,6 +84,7 @@ namespace CoffeeStore.Inventory
                 list.Add(new InventoryImportDetailObject() { id= id, amount = amount, name = name, unit = unit, totalCost = tongtien.ToString(), unitPrice = unitprice });
             }
             this.dataGridMaterialImport.ItemsSource = list;
+            loadAllMap();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -91,7 +96,15 @@ namespace CoffeeStore.Inventory
                 this._context.StackPanelMain.Children.Add(screen);
             }
         }
-
+        public int findInList(String id)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].id == id)
+                    return i;
+            }
+            return -1;
+        }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
@@ -105,8 +118,7 @@ namespace CoffeeStore.Inventory
                 Content = new PopupMaterialToImport(this),
                 Width = 540,
                 Height = 500,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 500) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -121,7 +133,8 @@ namespace CoffeeStore.Inventory
                 string name = row["MaterialName"].ToString();
                 string unit = row["Unit"].ToString();
                 string id = row["MaterialID"].ToString();
-                list.Add(new InventoryImportDetailObject() { id = id,  name = name, unit = unit });
+                if (findInList(id) == -1 && name != "")
+                    list.Add(new InventoryImportDetailObject() { id = id,  name = name, unit = unit });
             }
             dataGridMaterialImport.ItemsSource = list;
             dataGridMaterialImport.Items.Refresh();
@@ -132,15 +145,12 @@ namespace CoffeeStore.Inventory
             InventoryImportDetailObject row = (InventoryImportDetailObject)dataGridMaterialImport.SelectedItem;
             if (row != null)
             {
-                /*try
+                try
                 {
-                    list.RemoveAt(row.number - 1);
-                    for (int i = 0; i < list.Count; i++)
-                        list[i].number = i + 1;
-                    dataGridImport.Items.Refresh();
-                    
+                    list.RemoveAt(findInList(row.id));
+                    dataGridMaterialImport.Items.Refresh();
                 }
-                catch (Exception) { }*/
+                catch (Exception) { }
             }
         }
 
@@ -149,6 +159,17 @@ namespace CoffeeStore.Inventory
             //MessageBox.Show(sqlCommand[0]);
             foreach (InventoryImportDetailObject obj in list)
             {
+                int temp1 = -1, temp2 = -1;
+                if (!int.TryParse(obj.unitPrice, out temp1) || temp1 <= 0 || obj.unitPrice == "" || obj.unitPrice == null)
+                {
+                    MessageBox.Show($"Đơn giá {obj.name} không hợp lệ, vui lòng nhập lại!");
+                    return;
+                }
+                else if (!int.TryParse(obj.amount, out temp2) || temp2 <= 0)
+                {
+                    MessageBox.Show($"Số lượng {obj.name} không hợp lệ {temp2}, vui lòng nhập lại!");
+                    return;
+                }
                 string temp = $"insert into InventoryImportDetail values ('{selectionID}','{obj.id}','{obj.amount}','{obj.unitPrice}')";
                 sqlCommand.Add(temp);
             }
@@ -161,6 +182,66 @@ namespace CoffeeStore.Inventory
                 this._context.StackPanelMain.Children.Clear();
                 this._context.StackPanelMain.Children.Add(screen);
             }
+        }
+        private void tbPrice_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= tbPrice_GotFocus;
+        }
+
+        private void tbAmount_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= tbAmount_GotFocus;
+        }
+
+        public void loadAllMap()
+        {
+            BUS_Material mater = new BUS_Material();
+            DataTable temp = mater.selectAll();
+            foreach (DataRow row in temp.Rows)
+            {
+                string name = row["materialName"].ToString();
+                string unit = row["unit"].ToString();
+                string isUse = row["isUse"].ToString();
+                mapNameUnit[name] = unit;
+                mapNameIsUse[name] = isUse;
+            }
+        }
+
+        private void tbAmount_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            InventoryImportDetailObject row = (InventoryImportDetailObject)dataGridMaterialImport.SelectedItem;
+            //MessageBox.Show(row.unit);
+            if (mapNameIsUse[row.name] != "1" || mapNameUnit[row.name] != row.unit)
+            {
+                MessageBox.Show("Thông tin về vật liệu này đã được chỉnh sửa, bạn không thể thay đổi ");
+                TextBox tb1 = (TextBox)sender;
+                tb1.IsEnabled = false;
+                tb1.IsReadOnly = true;
+                tb1.MouseLeftButtonUp -= tbAmount_MouseDown;
+                return;
+            }
+            TextBox tb = (TextBox)sender;
+            tb.GotFocus += tbAmount_GotFocus;
+        }
+
+        private void tbPrice_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            InventoryImportDetailObject row = (InventoryImportDetailObject)dataGridMaterialImport.SelectedItem;
+            //MessageBox.Show(row.unit);
+            if (mapNameIsUse[row.name] != "1" || mapNameUnit[row.name] != row.unit)
+            {
+                MessageBox.Show("Thông tin về vật liệu này đã được chỉnh sửa, bạn không thể thay đổi ");
+                TextBox tb1 = (TextBox)sender; tb1.IsEnabled = false;
+                tb1.IsReadOnly = true;
+                tb1.MouseLeftButtonUp -= tbPrice_MouseLeftButtonUp;
+                return;
+            }
+            TextBox tb = (TextBox)sender;
+            tb.GotFocus += tbPrice_GotFocus;
         }
     }
 }

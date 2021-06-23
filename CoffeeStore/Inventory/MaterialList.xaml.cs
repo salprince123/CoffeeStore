@@ -49,6 +49,7 @@ namespace CoffeeStore.Inventory
         }
         public void LoadData()
         {
+            btBack.IsEnabled = false;
             list.Clear();
             Dictionary<String, int> mapNameAmount = new Dictionary<string, int>();
             Dictionary<String, String> mapNameUnit = new Dictionary<string, string>();
@@ -177,8 +178,7 @@ namespace CoffeeStore.Inventory
                 Content = new PopupAddMaterial(),
                 Width = 460,
                 Height = 300,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 300) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             LoadData();
@@ -202,8 +202,7 @@ namespace CoffeeStore.Inventory
                     Content = new PopupEditMaterial(row.Name, row.Unit),
                     Width = 460,
                     Height = 300,
-                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 300) / 2,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
                 };
                 window.ShowDialog();
                 LoadData();
@@ -227,9 +226,10 @@ namespace CoffeeStore.Inventory
         {
             BUS_Material material = new BUS_Material();
             bool result = material.Delete(name);
-            //if (result)
-            //    MessageBox.Show($"Đã xóa thành công vật liệu {row.Name}");
-            //else MessageBox.Show($"Xóa không thành công");
+            if (result)
+                MessageBox.Show($"Đã xóa thông tin của {name}");
+            else 
+                MessageBox.Show($"Đã có lỗi trong quá trình xóa {name}");
             LoadData();
             return result;
         }
@@ -238,7 +238,7 @@ namespace CoffeeStore.Inventory
             InventoryObject row = (InventoryObject)dataGridMaterial.SelectedItem;
             if(int.Parse(row.Amount) > 0)
             {
-                MessageBox.Show($"Bạn không thể xóa vật liệu vẫn còn trong kho!");
+                MessageBox.Show($"Không thể xóa vật liệu vẫn còn trong kho!");
                 return;
             }
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
@@ -252,8 +252,7 @@ namespace CoffeeStore.Inventory
                 Content = new PopupDeleteConfirm(this, row.Name), //delete message
                 Width = 380,
                 Height = 210,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
@@ -271,7 +270,13 @@ namespace CoffeeStore.Inventory
                 if(tbFind.Text == "")
                     splitDataGrid(int.Parse(tbNumPage.Text));
                 else splitDataGridFind(int.Parse(tbNumPage.Text));
-
+                if (int.Parse(tbNumPage.Text) == 1)
+                    btBack.IsEnabled = false;
+                else
+                {
+                    btNext.IsEnabled = true;
+                    btBack.IsEnabled = true;
+                }
             }
                 
         }
@@ -284,6 +289,13 @@ namespace CoffeeStore.Inventory
                 if (tbFind.Text == "")
                     splitDataGrid(int.Parse(tbNumPage.Text));
                 else splitDataGridFind(int.Parse(tbNumPage.Text));
+                if (int.Parse(tbNumPage.Text) == (int)lblMaxPage.Content)
+                    btNext.IsEnabled = false;
+                else
+                {
+                    btNext.IsEnabled = true;
+                    btBack.IsEnabled = true;
+                }
             }
         }
 
@@ -298,6 +310,42 @@ namespace CoffeeStore.Inventory
             e.Handled = !e.Text.Any(x => Char.IsDigit(x));
             if (e.Text.Contains(" "))
                 e.Handled = false;
+        }
+
+        private void tbNumPage_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= tbNumPage_GotFocus;
+        }
+
+        private void tbNumPage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && int.TryParse(tbNumPage.Text,out int i))
+            {
+                if (int.Parse(tbNumPage.Text) > 0 && int.Parse(tbNumPage.Text) <= int.Parse(lblMaxPage.Content.ToString()))
+                {
+                    if (tbFind.Text == "")
+                        splitDataGrid(int.Parse(tbNumPage.Text));
+                    else splitDataGridFind(int.Parse(tbNumPage.Text));
+                    if(int.Parse(tbNumPage.Text) == (int)lblMaxPage.Content)
+                    {
+                        btNext.IsEnabled = false;
+                        btBack.IsEnabled = true;
+                    }
+                    else if(int.Parse(tbNumPage.Text) == 1)
+                    {
+                        btNext.IsEnabled = true;
+                        btBack.IsEnabled = false;
+                    }
+                    else
+                    {
+                        btNext.IsEnabled = true;
+                        btBack.IsEnabled = true;
+                    }
+                }
+                else MessageBox.Show("Trang không hợp lệ!");
+            }
         }
     }
 }

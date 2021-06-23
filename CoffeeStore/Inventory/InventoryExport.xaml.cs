@@ -48,6 +48,10 @@ namespace CoffeeStore.Inventory
             InitializeComponent();
             dataGridExport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             this._context = mainWindow;
+            Loaded += LoadData;
+        }
+        public void LoadData(Object sender, RoutedEventArgs e)
+        {
             LoadData();
         }
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
@@ -144,9 +148,7 @@ namespace CoffeeStore.Inventory
                     Content = new PopupInventoryExportDETAIL(row.ID, row.EmployName, row.InventoryDate),
                     Height = 630,
                     Width = 500,
-                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 500) / 2,
-                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 630) / 2,
-                    //Content = new PopupInventoryImportDETAIL("a","a","a")
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
                 };
                 window.ShowDialog();
                 ((MainWindow)App.Current.MainWindow).Opacity = 1;
@@ -174,7 +176,7 @@ namespace CoffeeStore.Inventory
 
             if((DateTime.Now - importDate) > TimeSpan.FromDays(2) )
             {
-                MessageBox.Show($"Bạn chỉ có thể xóa phiếu xuất kho được tạo trong vòng 2 ngày!");
+                MessageBox.Show($"Không thể xóa do phiếu đã được tạo cách đây hơn 2 ngày.");
                 return;
             }
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
@@ -188,8 +190,7 @@ namespace CoffeeStore.Inventory
                 Content = new PopupDeleteConfirm(this, row.ID), //delete message
                 Width = 380,
                 Height = 210,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
@@ -223,7 +224,7 @@ namespace CoffeeStore.Inventory
             catch (Exception) { }
             if (toTime < fromTime)
             {
-                MessageBox.Show("Ngày bắt đầu không thể lớn hơn ngày kết thúc");
+                MessageBox.Show("Ngày bắt đầu phải trước ngày kết thúc.");
                 return;
             }
 
@@ -286,6 +287,28 @@ namespace CoffeeStore.Inventory
             e.Handled = !e.Text.Any(x => Char.IsDigit(x));
             if (e.Text.Contains(" "))
                 e.Handled = false;
+        }
+
+        private void tbDateStart_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void tbDateStart_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
+
+        private void tbDateEnd_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void tbDateEnd_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
         }
     }
 }

@@ -51,9 +51,9 @@ namespace CoffeeStore.DAL
             };
             return null;
         }
-        public void UpdateUsing(string name)
+        public void UpdateUsing(string name, string unit)
         {
-            string sql = $"UPDATE Material SET isuse = '1' WHERE materialName= '{name}'";
+            string sql = $"UPDATE Material SET isuse = '1', unit='{unit}' WHERE materialName= '{name}'";
             SQLiteCommand insert = new SQLiteCommand(sql, getConnection().OpenAndReturn());
             try
             {
@@ -79,13 +79,13 @@ namespace CoffeeStore.DAL
                     if(isUse== "1")
                         return false;
                 }
-                UpdateUsing(name);
+                UpdateUsing(name,unit);
                 return true;
 
             }               
             //create auto increase ID
             //Get max MaterialID
-            String id = "";
+            String id = "Mater00000";
             string tempSQL = "SELECT materialId FROM Material order by materialId desc LIMIT 1 ";
             SQLiteDataAdapter da = new SQLiteDataAdapter(tempSQL, getConnection());
             DataTable maxId = new DataTable();

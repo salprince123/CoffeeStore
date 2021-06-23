@@ -50,9 +50,6 @@ namespace CoffeeStore.Account
             dataGridAccount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             this._context = mainWindow;
             limitRow = 20;
-            currentPage = 1;
-            tbNumPage.Text = "1";
-            btnPagePre.IsEnabled = false;
         }
 
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
@@ -64,6 +61,9 @@ namespace CoffeeStore.Account
         public void LoadData(Object sender, RoutedEventArgs e)
         {
             LoadData();
+            currentPage = 1;
+            tbNumPage.Text = "1";
+            btnPagePre.IsEnabled = false;
         }    
 
         public void LoadData()
@@ -116,8 +116,7 @@ namespace CoffeeStore.Account
                 Content = new PopupAddAccount(),
                 Width = 460,
                 Height = 460,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 460) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -159,11 +158,10 @@ namespace CoffeeStore.Account
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
                 Title = "Xóa tài khoản",
-                Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa tài khoản {id} \n của nhân viên {name} không?", id, 1),
+                Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa tài khoản {id}\ncủa nhân viên {name} không?", id, 1),
                 Width = 380,
                 Height = 210,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -209,8 +207,7 @@ namespace CoffeeStore.Account
                 Content = new PopupEditAccount(editEmp),
                 Width = 460,
                 Height = 460,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 460) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             LoadData();
@@ -247,8 +244,7 @@ namespace CoffeeStore.Account
                     Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn kích hoạt tài khoản {id} \n của nhân viên {name} không?", id, 3),
                     Width = 380,
                     Height = 210,
-                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
                 };
             else
                 window = new Window
@@ -259,8 +255,7 @@ namespace CoffeeStore.Account
                     Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn vô hiệu hóa tài khoản \n{id} của nhân viên {name} không?", id, 4),
                     Width = 380,
                     Height = 210,
-                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
                 };
             window.ShowDialog();
             LoadData();

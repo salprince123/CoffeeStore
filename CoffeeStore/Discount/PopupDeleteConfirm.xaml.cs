@@ -22,7 +22,7 @@ namespace CoffeeStore.Discount
     public partial class PopupDeleteConfirm : UserControl
     {
         MainWindow _context;
-        String ID;
+        String ID, name;
         DateTime time;
         BUS.BUS_Discount bus = new BUS.BUS_Discount();
         public PopupDeleteConfirm()
@@ -34,8 +34,9 @@ namespace CoffeeStore.Discount
         {
             InitializeComponent();
             ID = discount.DiscountID;
+            name = discount.DiscountName;
             time = DateTime.ParseExact(discount.StartDate, "dd/MM/yyyy", null);
-            tblContent.Text = "Dữ liệu về " + discount.DiscountName + " sẽ bị xóa vĩnh viễn.\n Bạn chắc chắn muốn xóa?";
+            tblContent.Text = "Dữ liệu về " + discount.DiscountName + " sẽ bị xóa vĩnh viễn.\nBạn chắc chắn muốn xóa?";
             this._context = context;
         }
 
@@ -49,12 +50,11 @@ namespace CoffeeStore.Discount
             {
                 if (bus.deleteDiscount(ID) > 0)
                 {
-                    MessageBox.Show("Thành công");
+                    MessageBox.Show($"Đã xóa ưu đãi {name}");
                 }
                 else
-                    MessageBox.Show("Thất bại");
+                    MessageBox.Show($"Đã có lỗi trong quá trình xóa ưu đãi {name}");
             }
-
             Window.GetWindow(this).Close();
         }
 

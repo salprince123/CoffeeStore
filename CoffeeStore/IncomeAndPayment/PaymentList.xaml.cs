@@ -100,8 +100,7 @@ namespace CoffeeStore.IncomeAndPayment
                 Content = new PopupPaymentAdd(_context),
                 Width = 460,
                 Height = 420,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -126,10 +125,8 @@ namespace CoffeeStore.IncomeAndPayment
                 WindowStyle = WindowStyle.None,
                 Title = "Chi tiết phiếu chi",
                 Content = new PopupPaymentDetail(dto),
-                Width = 450,
-                Height = 400,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 450) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
+                Width = 460,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -148,10 +145,9 @@ namespace CoffeeStore.IncomeAndPayment
                 WindowStyle = WindowStyle.None,
                 Title = "Sửa phiếu chi",
                 Content = new PopupPaymentEdit(dto),
-                Width = 450,
-                Height = 400,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 450) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
+                Width = 460,
+                Height = 420,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -173,8 +169,7 @@ namespace CoffeeStore.IncomeAndPayment
                 Content = new PopupDeleteConfirm("Dữ liệu về " + dto.PaymentID + " sẽ bị xóa vĩnh viễn.\n Bạn chắc chắn muốn xóa?", dto.PaymentID,2),
                 Width = 380,
                 Height = 210,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -189,6 +184,12 @@ namespace CoffeeStore.IncomeAndPayment
 
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
+            if (dpDateStart.SelectedDate.ToString() != "" && dpDateEnd.SelectedDate.ToString() != ""
+                && DateTime.Compare((DateTime)dpDateStart.SelectedDate, (DateTime)dpDateEnd.SelectedDate) > 0)
+            {
+                MessageBox.Show("Ngày bắt đầu phải trước ngày kết thúc.");
+                return;
+            }
             findPayment();
         }
         void findPayment()
@@ -286,6 +287,28 @@ namespace CoffeeStore.IncomeAndPayment
             e.Handled = !e.Text.Any(x => Char.IsDigit(x));
             if (e.Text.Contains(" "))
                 e.Handled = false;
+        }
+
+        private void dpDateStart_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void dpDateStart_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
+
+        private void dpDateEnd_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void dpDateEnd_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
         }
     }
 }

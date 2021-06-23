@@ -65,13 +65,15 @@
                     <DatePicker x:Name="tbDateStart" Height="40"
                          VerticalContentAlignment="Center" FontSize="15"
                          materialDesign:HintAssist.Hint="Từ ngày" Padding="5" 
-                         CalendarClosed="dpFrom_CalendarClosed"/>
+                         CalendarClosed="dpFrom_CalendarClosed"
+                                PreviewTextInput="tbDateStart_PreviewTextInput" PreviewKeyDown="tbDateStart_PreviewKeyDown"/>
                 </Border>
                 <Border BorderBrush="Gray" BorderThickness="1,1,1,0" Grid.Column="2">
                     <DatePicker x:Name="tbDateEnd" Height="40"
                          VerticalContentAlignment="Center" FontSize="15"
                          materialDesign:HintAssist.Hint="Đến ngày" Padding="5"
-                         CalendarClosed="dpTo_CalendarClosed"/>
+                         CalendarClosed="dpTo_CalendarClosed"
+                                PreviewTextInput="tbDateEnd_PreviewTextInput" PreviewKeyDown="tbDateEnd_PreviewKeyDown"/>
                 </Border>
 
                 <TextBox x:Name="tbIDFind" Grid.Column="4" Height="40" 
