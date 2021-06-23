@@ -65,23 +65,27 @@ namespace CoffeeStore.Report
             foreach (DataRow row in RecData.Rows)
             {
                 Income[Int32.Parse(row["Month"].ToString())] = Int32.Parse(row["TotalAfterDis"].ToString());
+                Profit[Int32.Parse(row["Month"].ToString())] += Int32.Parse(row["TotalAfterDis"].ToString());
             }    
 
 
             GeneralChart.Add(new ColumnSeries
             {
                 Title = "Doanh thu ",
-                Values = Income
+                Values = Income,
+                MaxColumnWidth = 16
             });
             GeneralChart.Add(new ColumnSeries
             {
                 Title = "Chi phí",
-                Values = Outcome
+                Values = Outcome,
+                MaxColumnWidth = 16
             });
             GeneralChart.Add(new ColumnSeries
             {
                 Title = "Lợi nhuận",
-                Values = Profit
+                Values = Profit,
+                MaxColumnWidth = 16
             });
 
             //FormatterGeneralCharts = value => value.ToString("N");
@@ -92,7 +96,7 @@ namespace CoffeeStore.Report
                 LabelFormatter = value => "Tháng " + (value + 1).ToString()
             });
             generalChart.Series = GeneralChart;
-            generalChart.Width = LabelGeneralCharts.Count * 160;
+            generalChart.Width = LabelGeneralCharts.Count * 80;
             generalChartTitle.Text = $"Biểu đồ thống kê tổng quát năm {dpMonthYear.SelectedDate.GetValueOrDefault().Year}";
         }
 
@@ -119,22 +123,26 @@ namespace CoffeeStore.Report
             foreach (DataRow row in RecData.Rows)
             {
                 Income[Int32.Parse(row["Day"].ToString())] = Int32.Parse(row["TotalAfterDis"].ToString());
+                Profit[Int32.Parse(row["Day"].ToString())] += Int32.Parse(row["TotalAfterDis"].ToString());
             }
 
             GeneralChart.Add(new ColumnSeries
             {
                 Title = "Doanh thu ",
-                Values = Income
+                Values = Income,
+                MaxColumnWidth = 16
             });
             GeneralChart.Add(new ColumnSeries
             {
                 Title = "Chi phí",
-                Values = Outcome
+                Values = Outcome,
+                MaxColumnWidth = 16
             });
             GeneralChart.Add(new ColumnSeries
             {
                 Title = "Lợi nhuận",
-                Values = Profit
+                Values = Profit,
+                MaxColumnWidth = 16
             });
             
             //FormatterGeneralCharts = value => value.ToString("N");
@@ -145,7 +153,7 @@ namespace CoffeeStore.Report
                 LabelFormatter = value => "Ngày " + (value + 1).ToString()
             });
             generalChart.Series = GeneralChart;
-            generalChart.Width = LabelGeneralCharts.Count * 160;
+            generalChart.Width = LabelGeneralCharts.Count * 80;
             generalChartTitle.Text = $"Biểu đồ thống kê tổng quát {dpMonthYear.SelectedDate.GetValueOrDefault().Month}/{dpMonthYear.SelectedDate.GetValueOrDefault().Year}";
         }
 
@@ -168,7 +176,11 @@ namespace CoffeeStore.Report
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
-
+            PrintDialog myPrintDialog = new PrintDialog();
+            if (myPrintDialog.ShowDialog() == true)
+            {
+                myPrintDialog.PrintVisual(generalChartBody, "Báo cáo tổng quan");
+            }
         }
 
         private void cbYearMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
