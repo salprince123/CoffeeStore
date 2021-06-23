@@ -113,7 +113,7 @@ namespace CoffeeStore.DAL
                 return new DataTable();
             };
         }
-        public string Create(String name, String date)
+        public string Create(String name, String date, String description)
         {
             //create auto increase ID
             //Get max MaterialID

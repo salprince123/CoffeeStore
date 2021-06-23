@@ -27,6 +27,8 @@ namespace CoffeeStore.Inventory
         public List<String> MaterName { get; set; }
         public List<InventoryExportDetailObject> list = new List<InventoryExportDetailObject>();
         MainWindow _context;
+        //map Name & Amount to check the number of export 
+        Dictionary<String, int> mapNameAmountInStock = new Dictionary<string, int>();
         public class CourseValidationRule : ValidationRule
         {
             public override ValidationResult Validate(object value,
@@ -90,6 +92,7 @@ namespace CoffeeStore.Inventory
             tbDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
             tbEmployeeName.Text = id;
             this._context = mainWindow;
+            mapNameAmountInStock = loadAmountofMaterial();
         }
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
@@ -156,7 +159,7 @@ namespace CoffeeStore.Inventory
             if (row != null)
             {
                 try
-                {
+                {                    
                     list.RemoveAt(findInList(row.id));
                     dataGridMaterialExport.Items.Refresh();
                 }
@@ -169,13 +172,22 @@ namespace CoffeeStore.Inventory
             // save in database
             //insert InventoryExport
             BUS_InventoryExport export = new BUS_InventoryExport();
-            String newExportID = export.Create(tbEmployeeName.Text, tbDate.Text);
+            String newExportID = export.Create(tbEmployeeName.Text, tbDate.Text, tbDescription.Text);
             //MessageBox.Show(newImportID);
             //insert InventoryImportdetails
             if (newExportID == null) return;
             List<String> sqlString = new List<string>();
             foreach (InventoryExportDetailObject obj in list)
             {
+                int amountInExport;
+                if (int.TryParse(obj.amount, out amountInExport))
+                {
+                    if (mapNameAmountInStock[obj.name] < amountInExport)
+                    {
+                        MessageBox.Show($"Số lượng vật liệu '{obj.name}' chỉ còn {mapNameAmountInStock[obj.name]} !");
+                        return;
+                    }
+                }
                 string temp = $"insert into InventoryExportDetail values ('{newExportID}','{obj.id}','{obj.amount}','{tbDescription.Text}')";
                 sqlString.Add(temp);
             }
@@ -193,5 +205,56 @@ namespace CoffeeStore.Inventory
         {
 
         }
+
+        /*
+         below are function helping on check condition to save an material item in Import ADD 
+        first : We need to load name & amount of meterial already IN STOCK -> I use a Dictinary (Map)  to save them
+        second: when Press button Save -> check condition -> decise to appcept or decline save 
+         */
+        public Dictionary<String, int> loadAmountofMaterial()
+        {
+            Dictionary<String, int> mapNameAmount = new Dictionary<string, int>();
+            Dictionary<String, String> mapNameUnit = new Dictionary<string, string>();
+            //With import amount
+            BUS_InventoryImportDetail import = new BUS_InventoryImportDetail();
+            DataTable temp = import.SelectAllImportDetailGroupByName();
+            foreach (DataRow row in temp.Rows)
+            {
+                string name = row["Tên"].ToString();
+                string amount = row["Số lượng"].ToString();
+                string use = row["isUse"].ToString();
+                if (use == "1")
+                    mapNameAmount[name] = int.Parse(amount);
+            }
+            //With unit
+            BUS_Material mater = new BUS_Material();
+            DataTable tempMater = mater.selectAll();
+            foreach (DataRow row in tempMater.Rows)
+            {
+                string name = row["MaterialName"].ToString();
+                string unit = row["Unit"].ToString();
+                string use = row["isUse"].ToString();
+                if (use == "1")
+                    mapNameUnit[name] = unit;
+            }
+            //calculate amount in stock = import - export (if have)
+            BUS_InventoryExportDetail export = new BUS_InventoryExportDetail();
+            DataTable temp1 = export.SelectAllExportDetailGroupByName();
+            foreach (DataRow row in temp1.Rows)
+            {
+                string name = row["Tên"].ToString();
+                string amount = row["Số lượng"].ToString();
+                if (mapNameAmount.ContainsKey(name))
+                    mapNameAmount[name] -= int.Parse(amount);
+            }
+            foreach (KeyValuePair<string, string> name in mapNameUnit)
+            {
+                if (!mapNameAmount.ContainsKey(name.Key))
+                    mapNameAmount[name.Key] = 0;
+            }
+            return mapNameAmount;
+        }       
+        
+        
     }
 }

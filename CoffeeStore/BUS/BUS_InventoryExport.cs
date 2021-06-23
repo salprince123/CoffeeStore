@@ -15,9 +15,9 @@ namespace CoffeeStore.BUS
         {
             return export.SelectAllExport();
         }
-        public string Create(String name, String date)
+        public string Create(String name, String date,String reason)
         {
-            return export.Create(name, date);
+            return export.Create(name, date,reason);
         }
         public bool Delete(String id)
         {

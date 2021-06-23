@@ -161,10 +161,11 @@ namespace CoffeeStore.Inventory
             dataGridMaterialImport.Items.Refresh();
             // save in database
             //insert InventoryImport
-            BUS_InventoryImport import = new BUS_InventoryImport();
-            String newImportID = import.Create(tbEmployeeName.Text, tbDate.Text);
+
             //MessageBox.Show(newImportID);
             //insert InventoryImportdetails
+            BUS_InventoryImport import = new BUS_InventoryImport();
+            String newImportID = import.Create(tbEmployeeName.Text, tbDate.Text);
             if (newImportID == null) return;
             List<String> sqlString = new List<string>();
             foreach (InventoryImportDetailObject obj in list)
@@ -173,16 +174,19 @@ namespace CoffeeStore.Inventory
                 if (!int.TryParse(obj.unitPrice,out temp1) || temp1 <= 0 || obj.unitPrice == "" || obj.unitPrice == null)                    
                 {
                     MessageBox.Show($"Đơn giá không hợp lệ, vui lòng nhập lại!");
+                    import.Delete(newImportID);
                     return;
                 }
-                else if (int.TryParse(obj.amount, out temp2) || temp2<= 0 || obj.amount == "" || obj.amount == null)
+                else if ( !int.TryParse(obj.amount, out temp2) || temp2 <= 0)
                 {
-                    MessageBox.Show($"Số lượng không hợp lệ, vui lòng nhập lại!");                   
+                    MessageBox.Show($"Số lượng không hợp lệ {temp2}, vui lòng nhập lại!");
+                    import.Delete(newImportID);
                     return;
                 }
                 string temp = $"insert into InventoryImportDetail values ('{newImportID}','{obj.id}','{obj.amount}','{obj.unitPrice}')";
                 sqlString.Add(temp);
             }
+            
             BUS_InventoryImportDetail detail = new BUS_InventoryImportDetail();
             detail.ImportList(sqlString);
             var screen = new InventoryImport(_context);
