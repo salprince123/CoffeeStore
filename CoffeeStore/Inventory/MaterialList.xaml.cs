@@ -177,8 +177,7 @@ namespace CoffeeStore.Inventory
                 Content = new PopupAddMaterial(),
                 Width = 460,
                 Height = 300,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 300) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             LoadData();
@@ -202,8 +201,7 @@ namespace CoffeeStore.Inventory
                     Content = new PopupEditMaterial(row.Name, row.Unit),
                     Width = 460,
                     Height = 300,
-                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 300) / 2,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen
                 };
                 window.ShowDialog();
                 LoadData();
@@ -252,8 +250,7 @@ namespace CoffeeStore.Inventory
                 Content = new PopupDeleteConfirm(this, row.Name), //delete message
                 Width = 380,
                 Height = 210,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
