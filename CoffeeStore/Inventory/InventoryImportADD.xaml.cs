@@ -169,6 +169,17 @@ namespace CoffeeStore.Inventory
             List<String> sqlString = new List<string>();
             foreach (InventoryImportDetailObject obj in list)
             {
+                int temp1=-1,temp2=-1;
+                if (!int.TryParse(obj.unitPrice,out temp1) || temp1 <= 0 || obj.unitPrice == "" || obj.unitPrice == null)                    
+                {
+                    MessageBox.Show($"Đơn giá không hợp lệ, vui lòng nhập lại!");
+                    return;
+                }
+                else if (int.TryParse(obj.amount, out temp2) || temp2<= 0 || obj.amount == "" || obj.amount == null)
+                {
+                    MessageBox.Show($"Số lượng không hợp lệ, vui lòng nhập lại!");                   
+                    return;
+                }
                 string temp = $"insert into InventoryImportDetail values ('{newImportID}','{obj.id}','{obj.amount}','{obj.unitPrice}')";
                 sqlString.Add(temp);
             }
@@ -206,5 +217,18 @@ namespace CoffeeStore.Inventory
             }
         }
 
+        private void tbPrice_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= tbPrice_GotFocus;
+        }
+
+        private void tbAmount_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= tbAmount_GotFocus;
+        }
     }
 }

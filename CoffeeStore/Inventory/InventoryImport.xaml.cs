@@ -81,7 +81,6 @@ namespace CoffeeStore.Inventory
             if (int.Parse(lblMaxPage.Content.ToString()) == 0)
                 this.tbNumPage.Text = "0";
             splitDataGrid(1);
-            MessageBox.Show("Load data");
         }
         public void splitDataGrid(int numpage)
         {
