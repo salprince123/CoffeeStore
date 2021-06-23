@@ -74,7 +74,7 @@ namespace CoffeeStore.Account
             string newID = busEmpType.CreateEmployeeTypes(newEmpType);
             if (newID == "")
             {
-                MessageBox.Show($"Không thể tạo mới do loại tài khoản này đã được tạo trước đây.");
+                tbGroupAccountValidation.Text = "Tên nhóm tài khoản này đã được tạo trước đây.";
             }
             else
             {
