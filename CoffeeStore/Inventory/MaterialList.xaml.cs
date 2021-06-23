@@ -225,9 +225,10 @@ namespace CoffeeStore.Inventory
         {
             BUS_Material material = new BUS_Material();
             bool result = material.Delete(name);
-            //if (result)
-            //    MessageBox.Show($"Đã xóa thành công vật liệu {row.Name}");
-            //else MessageBox.Show($"Xóa không thành công");
+            if (result)
+                MessageBox.Show($"Đã xóa thông tin của {name}");
+            else 
+                MessageBox.Show($"Đã có lỗi trong quá trình xóa {name}");
             LoadData();
             return result;
         }
@@ -236,7 +237,7 @@ namespace CoffeeStore.Inventory
             InventoryObject row = (InventoryObject)dataGridMaterial.SelectedItem;
             if(int.Parse(row.Amount) > 0)
             {
-                MessageBox.Show($"Bạn không thể xóa vật liệu vẫn còn trong kho!");
+                MessageBox.Show($"Không thể xóa vật liệu vẫn còn trong kho!");
                 return;
             }
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
