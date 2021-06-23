@@ -155,10 +155,10 @@ namespace CoffeeStore.IncomeAndPayment
                 WindowStyle = WindowStyle.None,
                 Title = "Xóa phiếu chi",
                 Content = new PopupDeleteConfirm("Dữ liệu về " + dto.PaymentID + " sẽ bị xóa vĩnh viễn.\n Bạn chắc chắn muốn xóa?", dto.PaymentID,2),
-                Width = 450,
-                Height = 400,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 450) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
+                Width = 380,
+                Height = 210,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
             };
             window.ShowDialog();
 

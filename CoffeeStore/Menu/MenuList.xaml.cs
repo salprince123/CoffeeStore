@@ -137,6 +137,7 @@ namespace CoffeeStore.Menu
                 WindowStyle = WindowStyle.None,
                 Title = "Xóa món",
                 Content = new PopupDeleteConfirm(row, this._context),
+                Width = 380,
                 Height = 210,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
                 Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
