@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CoffeeStore.BUS;
 using LiveCharts;
 using LiveCharts.Wpf;
 
@@ -30,72 +32,126 @@ namespace CoffeeStore.Report
         public ReportProfit()
         {
             InitializeComponent();
+            Loaded += LoadData;
+            cbYearMonth.SelectedIndex = 1;
             LoadGeneralChartYear();
+            generalChart.Update();
             DataContext = this;
         }
+
+        void LoadData(Object sender, RoutedEventArgs e)
+        {
+            LoadGeneralChartYear();
+            generalChart.Update();
+            DataContext = this;
+        }    
         private void LoadGeneralChartYear()
         {
             GeneralChart = new SeriesCollection();
-            LabelGeneralCharts = new string[months+1];
+            LabelGeneralCharts = new List<string>();
+            ChartValues<int> Income = new ChartValues<int>();
+            ChartValues<int> Outcome = new ChartValues<int>();
+            ChartValues<int> Profit = new ChartValues<int>();
+            for (int i = 0; i < months; i++)
+            {
+                LabelGeneralCharts.Add("Tháng " + (i + 1));
+                Income.Add(0);
+                Outcome.Add(0);
+                Profit.Add(0);
+            }
+
+            BUS_Receipt busRec = new BUS_Receipt();
+            DataTable RecData = busRec.GetTotalIncomeByYear(dpMonthYear.SelectedDate.GetValueOrDefault().Year);
+            foreach (DataRow row in RecData.Rows)
+            {
+                Income[Int32.Parse(row["Month"].ToString())] = Int32.Parse(row["TotalAfterDis"].ToString());
+            }    
+
 
             GeneralChart.Add(new ColumnSeries
             {
                 Title = "Doanh thu ",
-                Values = new ChartValues<double> { 10, 50, 39, 10, 50 }
+                Values = Income
             });
             GeneralChart.Add(new ColumnSeries
             {
                 Title = "Chi phí",
-                Values = new ChartValues<double> { 10, 50, 39, 10, 50, 39, 10, 50, 39, 90, 7, 50 }
+                Values = Outcome
             });
             GeneralChart.Add(new ColumnSeries
             {
                 Title = "Lợi nhuận",
-                Values = new ChartValues<double> { 10, 50, 39, 10, 50, 39, 10, 50, 39, 90, 7, 50 }
+                Values = Profit
             });
 
-            for (int i = 0; i < months; i++)
+            //FormatterGeneralCharts = value => value.ToString("N");
+            generalChart.AxisX.Clear();
+            generalChart.AxisX.Add(new Axis
             {
-                LabelGeneralCharts[i] = "Tháng " + (i + 1);
-            }    
-            FormatterGeneralCharts = value => value.ToString("N");
-            generalChart.Width = LabelGeneralCharts.Length * 100 + 3 * 200;
-            generalChartTitle.Text = "Biểu đồ thống kê tổng quát năm ...";
+                Title = "",
+                LabelFormatter = value => "Tháng " + (value + 1).ToString()
+            });
+            generalChart.Series = GeneralChart;
+            generalChart.Width = LabelGeneralCharts.Count * 160;
+            generalChartTitle.Text = $"Biểu đồ thống kê tổng quát năm {dpMonthYear.SelectedDate.GetValueOrDefault().Year}";
         }
 
         private void LoadGeneralChartMonth()
         {
             GeneralChart = new SeriesCollection();
-            LabelGeneralCharts = new string[dates+1];
+
+            ChartValues<int> Income = new ChartValues<int>();
+            ChartValues<int> Outcome = new ChartValues<int>();
+            ChartValues<int> Profit = new ChartValues<int>();
+
+            dates = DateTime.DaysInMonth(dpMonthYear.SelectedDate.GetValueOrDefault().Year, dpMonthYear.SelectedDate.GetValueOrDefault().Month);
+            LabelGeneralCharts = new List<string>();
+            for (int i = 0; i < dates; i++)
+            {
+                LabelGeneralCharts.Add("Ngày " + (i + 1));
+                Income.Add(0);
+                Outcome.Add(0);
+                Profit.Add(0);
+            }
+
+            BUS_Receipt busRec = new BUS_Receipt();
+            DataTable RecData = busRec.GetTotalIncomeByMonth(dpMonthYear.SelectedDate.GetValueOrDefault().Month, dpMonthYear.SelectedDate.GetValueOrDefault().Year);
+            foreach (DataRow row in RecData.Rows)
+            {
+                Income[Int32.Parse(row["Day"].ToString())] = Int32.Parse(row["TotalAfterDis"].ToString());
+            }
 
             GeneralChart.Add(new ColumnSeries
             {
                 Title = "Doanh thu ",
-                Values = new ChartValues<double> { 10, 50, 39, 10, 50, 39, 10, 50, 39, 90, 7, 50 }
+                Values = Income
             });
             GeneralChart.Add(new ColumnSeries
             {
                 Title = "Chi phí",
-                Values = new ChartValues<double> { 10, 50, 39, 10, 50, 39, 10, 50, 39, 90, 7, 50 }
+                Values = Outcome
             });
             GeneralChart.Add(new ColumnSeries
             {
                 Title = "Lợi nhuận",
-                Values = new ChartValues<double> { 10, 50, 39, 10, 50, 39, 10, 50, 39, 90, 7, 50 }
+                Values = Profit
             });
-
-            for (int i = 0; i < dates; i++)
+            
+            //FormatterGeneralCharts = value => value.ToString("N");
+            generalChart.AxisX.Clear();
+            generalChart.AxisX.Add(new Axis
             {
-                LabelGeneralCharts[i] = "Ngày " + (i + 1);
-            }
-            FormatterGeneralCharts = value => value.ToString("N");
-            generalChart.Width = LabelGeneralCharts.Length * 100 + 3 * 200;
-            generalChartTitle.Text = "Biểu đồ thống kê tổng quát .../... ";
+                Title = "",
+                LabelFormatter = value => "Ngày " + (value + 1).ToString()
+            });
+            generalChart.Series = GeneralChart;
+            generalChart.Width = LabelGeneralCharts.Count * 160;
+            generalChartTitle.Text = $"Biểu đồ thống kê tổng quát {dpMonthYear.SelectedDate.GetValueOrDefault().Month}/{dpMonthYear.SelectedDate.GetValueOrDefault().Year}";
         }
 
         public SeriesCollection GeneralChart { get; set; }
-        public string[] LabelGeneralCharts { get; set; }
-        public Func<double, string> FormatterGeneralCharts { get; set; }
+        public List<string> LabelGeneralCharts { get; set; }
+        public Func<int, string> FormatterGeneralCharts { get; set; }
 
         private void btnShow_Click(object sender, RoutedEventArgs e)
         {
@@ -113,6 +169,12 @@ namespace CoffeeStore.Report
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void cbYearMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string value = ((ComboBoxItem)(((ComboBox)sender).SelectedItem)).Tag.ToString();
+            dpMonthYear.SelectedDate = DateTime.Now;
         }
     }
 }
