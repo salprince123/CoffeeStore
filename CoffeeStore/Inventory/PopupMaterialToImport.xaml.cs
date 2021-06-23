@@ -96,7 +96,7 @@ namespace CoffeeStore.Inventory
             findList.Clear();
             foreach (MAterialObject obj in mainList.ToList())
             {
-                if (obj.name.Contains(tbFind.Text))
+                if (obj.name.ToLower().Contains(tbFind.Text.ToLower()))
                     findList.Add(obj);
             }
             this.dataGridMaterialImport.Items.Refresh();
