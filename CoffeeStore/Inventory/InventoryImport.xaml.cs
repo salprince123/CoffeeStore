@@ -48,13 +48,20 @@ namespace CoffeeStore.Inventory
             InitializeComponent();
             dataGridImport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             this._context = mainWindow;
-            LoadData();
+            Loaded += LoadData;
+            //LoadData();
         }
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = e.Row.GetIndex() + 1;
             e.Row.Height = 40;
         }
+
+        public void LoadData(Object sender, RoutedEventArgs e)
+        {
+            LoadData();
+        }
+
         public void LoadData()
         {
             username = _context.GetCurrentEmpName();
