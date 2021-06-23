@@ -109,6 +109,7 @@ namespace CoffeeStore.Discount
             find = true;
             var list = new ObservableCollection<Discount>();
             DataTable temp = bus.getAllDiscount();
+            int count = 1;
             foreach (DataRow row in temp.Rows)
             {
                 string name = row["DiscountName"].ToString();
@@ -122,7 +123,6 @@ namespace CoffeeStore.Discount
                 DateTime timeendfind = DateTime.ParseExact(enddatefind, "dd/MM/yyyy", null);
                 DateTime timestartfind = DateTime.ParseExact(startdatefind, "dd/MM/yyyy", null);
                 int rowNumber = Int32.Parse(tbNumPage.Text);
-                int count = 1;
                 DateTime time = DateTime.ParseExact(enddate, "dd/MM/yyyy", null);
                 if (DateTime.Compare(time, DateTime.Now.Date) >= 0 && DateTime.Compare(DateTime.ParseExact(startdate, "dd/MM/yyyy", null), DateTime.Now.Date) <= 0)
                 {
@@ -152,6 +152,8 @@ namespace CoffeeStore.Discount
                 }
 
             }
+            numRow = count;
+            setNumPage();
             dgDiscount.ItemsSource = list;
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -178,6 +180,7 @@ namespace CoffeeStore.Discount
 
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
+            tbNumPage.Text = "1";
             if (tbDateStart.SelectedDate.ToString() != "" && tbDateEnd.SelectedDate.ToString() != "" 
                 && DateTime.Compare((DateTime)tbDateStart.SelectedDate, (DateTime)tbDateEnd.SelectedDate) > 0)
             {

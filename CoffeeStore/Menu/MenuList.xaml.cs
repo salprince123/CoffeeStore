@@ -53,7 +53,10 @@ namespace CoffeeStore.Menu
         void loadData()
         {
             var list = new ObservableCollection<DTO_Beverage>();
-            cbBeverageType.ItemsSource = bus.getBeverageType();
+            List<string> listt = new List<string>();
+            listt = bus.getBeverageType();
+            listt.Add("All");
+            cbBeverageType.ItemsSource = listt;
             DataTable temp = bus.getAllBeverage();
             int rowNumber = Int32.Parse(tbNumPage.Text);
             int count = 1;
@@ -165,35 +168,45 @@ namespace CoffeeStore.Menu
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
             findBeverage();
+            tbNumPage.Text = "1";
         }
         void findBeverage()
         {
             find = true;
             var list = new ObservableCollection<DTO_Beverage>();
             DataTable temp = null;
-            if (cbBeverageType.SelectedItem != null)
+            if (cbBeverageType.SelectedItem != null && !cbBeverageType.SelectedItem.ToString().Equals("All"))
             {
                 temp = bus.findBeverage(cbBeverageType.SelectedItem.ToString(), tbName.Text);
             }
             else
-                temp = bus.findBeverage("", tbName.Text);
-            int count = 1;
-            int rowNumber = Int32.Parse(tbNumPage.Text);
-            foreach (DataRow row in temp.Rows)
+                if ((cbBeverageType.SelectedItem == null || cbBeverageType.SelectedItem.ToString().Equals("All")) && tbName.Text.Length != 0 )
+                    temp = bus.findBeverage("", tbName.Text);
+                else
+                    loadData();
+            if (temp!=null)
             {
-                string name = row["BeverageName"].ToString();
-                string id = row["BeverageID"].ToString();
-                string type = row["BeverageTypeName"].ToString();
-                int price = Int32.Parse(row["Price"].ToString());
-                if (count >= (rowNumber - 1) * 20 + 1 && count <= rowNumber * 20)
+                int count = 1;
+                int rowNumber = Int32.Parse(tbNumPage.Text);
+                foreach (DataRow row in temp.Rows)
                 {
-                    list.Add(new DTO_Beverage() { BeverageID = id, BeverageName = name, BeverageTypeID = type, Price = price });
-                    count++;
+                    string name = row["BeverageName"].ToString();
+                    string id = row["BeverageID"].ToString();
+                    string type = row["BeverageTypeName"].ToString();
+                    int price = Int32.Parse(row["Price"].ToString());
+                    if (count >= (rowNumber - 1) * 20 + 1 && count <= rowNumber * 20)
+                    {
+                        list.Add(new DTO_Beverage() { BeverageID = id, BeverageName = name, BeverageTypeID = type, Price = price });
+                        count++;
+                    }
+                    else count++;
                 }
-                else count++;                
-            }
-            dgMenu.ItemsSource = list;
-            dgMenu.Items.Refresh();
+                numRow = temp.Rows.Count;
+                setNumPage();
+                dgMenu.ItemsSource = list;
+                dgMenu.Items.Refresh();
+            }    
+            
         }
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
@@ -254,6 +267,16 @@ namespace CoffeeStore.Menu
             e.Handled = !e.Text.Any(x => Char.IsDigit(x));
             if (e.Text.Contains(" "))
                 e.Handled = false;
+        }
+
+        private void tbName_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete && tbName.Text.Length==0 && !cbBeverageType.SelectedItem.ToString().Equals("All"))
+            {
+                findBeverage();
+            }
+            if (e.Key == Key.Delete && tbName.Text.Length == 0 && cbBeverageType.SelectedItem.ToString().Equals("All"))
+                loadData();
         }
     }
 }

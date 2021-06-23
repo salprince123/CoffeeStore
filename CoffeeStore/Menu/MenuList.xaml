@@ -65,7 +65,7 @@
                 </ComboBox>
                 <TextBox x:Name="tbName" Grid.Column="2" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center" FontSize="15"
-                         materialDesign:HintAssist.Hint="Tên món" Padding="5"/>
+                         materialDesign:HintAssist.Hint="Tên món" Padding="5" PreviewKeyDown="tbName_PreviewKeyDown"/>
                 <Button x:Name="btnFind" Grid.Column="4" Height="40"
                     Background="#6B6158" Foreground="#FFE297" 
                     BorderBrush="#FFE297" BorderThickness="1" Click="btnFind_Click">

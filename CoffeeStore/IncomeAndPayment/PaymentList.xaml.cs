@@ -190,6 +190,7 @@ namespace CoffeeStore.IncomeAndPayment
                 MessageBox.Show("Ngày bắt đầu phải trước ngày kết thúc.");
                 return;
             }
+            tbNumPage.Text = "1";
             findPayment();
         }
         void findPayment()
@@ -227,6 +228,8 @@ namespace CoffeeStore.IncomeAndPayment
             }
             dgPayment.ItemsSource = list;
             find = true;
+            numRow = temp.Rows.Count;
+            setNumPage();
         }
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
