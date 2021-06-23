@@ -157,6 +157,7 @@ namespace CoffeeStore
         {
             gridLogin.Children.Clear();
             StackPanelMain.Children.Clear();
+            StackPanelMain.Children.Add(banner);
         }
 
         internal void SwitchToDiscount()
@@ -200,10 +201,10 @@ namespace CoffeeStore
                 WindowStyle = WindowStyle.None,
                 Title = "Đổi mật khẩu",
                 Content = new Account.PopupChangePassword(currentEmpID),
-                Width = 540,
-                Height = 350,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 360) / 2,
+                Width = 460,
+                Height = 380,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 380) / 2,
             };
             window.ShowDialog();
 

@@ -11,17 +11,17 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="300"></RowDefinition>
-            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,0,0" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <Grid Grid.Row="0" Grid.ColumnSpan="3" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <UserControls:TitleBar/>
-            <TextBlock
+            <TextBlock Text="Cập nhật tình trạng món"
                        FontFamily="Montserrat"
                        FontSize="20" 
                        FontWeight="Bold"
@@ -36,37 +36,101 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="tbFind" TextChanged="tbFind_TextChanged" Height="40" BorderThickness="1" Margin="10,0,10,0"/>
-            <Button x:Name="btnFind" Grid.Column="1" Height="40" Margin="0,0,10,0"
+            <TextBox x:Name="tbFind" TextChanged="tbFind_TextChanged" Height="40" BorderThickness="1" Margin="20,0,10,0"/>
+            <Button x:Name="btnFind" Grid.Column="1" Height="40" Margin="0,0,20,0"
                     Background="#6B6158" Foreground="#FFE297" 
                     BorderBrush="#FFE297" BorderThickness="1">
                 <materialDesign:PackIcon Kind="Search" Height="20" Width="20"/>
             </Button>
-            <Button x:Name="btnFilter" Grid.Column="2" Height="40" Margin="0,0,10,0"
-                    Background="#6B6158" Foreground="#FFE297" 
-                    BorderBrush="#FFE297" BorderThickness="1">
-                <materialDesign:PackIcon Kind="Filter" Height="20" Width="20"/>
-            </Button>
         </Grid>
         <!--List here-->
         <Grid Grid.Row="4">
-            <DataGrid x:Name="dgMenu" Margin="10,0,10,0"
+            <DataGrid x:Name="dgMenu" Margin="20,0,20,0"
                       BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                      VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" >
-                <DataGrid.CurrentColumn>
-                    <materialDesign:DataGridTextColumn/>
-                </DataGrid.CurrentColumn>
+                      VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" HeadersVisibility="All">
+                <DataGrid.CellStyle>
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                    <Grid Background="{TemplateBinding Background}">
+                                        <ContentPresenter Margin="13,0,13,0" VerticalAlignment="Center" />
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Foreground" Value="Black" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="{x:Null}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+
+                <DataGrid.Resources>
+                    <Style x:Key="DataGrid_Label_Style" 
+                                       TargetType="Label">
+                        <Setter Property="Foreground" Value="#717171" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                    <Style x:Key="DataGrid_Content_Center"
+                                           TargetType="{x:Type DataGridCell}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                    <Grid Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Foreground" Value="Black" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="{x:Null}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                    <Style x:Key="DataGrid_Content_CenterRightAlign" TargetType="{x:Type DataGridCell}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                    <Grid Background="{TemplateBinding Background}">
+                                        <ContentPresenter Margin="13,0,13,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Foreground" Value="Black" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="{x:Null}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Resources>
+
+                <DataGrid.RowHeaderTemplate>
+                    <DataTemplate>
+                        <Label HorizontalContentAlignment="Center" Width="50"
+                                           Content="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow},
+                                                             Path=Header}"/>
+                    </DataTemplate>
+                </DataGrid.RowHeaderTemplate>
+
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Tên món" IsReadOnly="True" Binding="{Binding Path=name}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Giá" IsReadOnly="True" Binding="{Binding Path=cost}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Giá" IsReadOnly="True" Binding="{Binding Path=cost, StringFormat=\{0:N0\} VNĐ}"
+                                        CellStyle="{StaticResource DataGrid_Content_CenterRightAlign}"></DataGridTextColumn>
 
-                    <DataGridTemplateColumn>
-                        <DataGridTemplateColumn.Header>
-                            <Label FontWeight="SemiBold" 
-                            HorizontalContentAlignment="Center" Content="Hết hàng"
-                            />
-                            <!--Style="{StaticResource DataGrid_Label_Style}"-->
-                        </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn Header="Hết hàng" CellStyle="{StaticResource DataGrid_Content_Center}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox Name="chbOutOfStock" Tag="{Binding Path=id}" IsChecked="{Binding Path=isOutOfStock, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

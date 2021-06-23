@@ -167,8 +167,8 @@ namespace CoffeeStore.Account
                 WindowStyle = WindowStyle.None,
                 Title = "Thêm nhóm tài khoản",
                 Content = new PopupAddGroupAccount(),
-                Width = 540,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
+                Width = 460,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
                 Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 560) / 2,
             };
             window.ShowDialog();
@@ -256,10 +256,9 @@ namespace CoffeeStore.Account
                 WindowStyle = WindowStyle.None,
                 Title = "Sửa loại tài khoản",
                 Content = new PopupEditGroupAccount(editGrAcc),
-                Width = 540,
-                Height = 400,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
+                Width = 460,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 560) / 2,
             };
             window.ShowDialog();
             LoadData();
@@ -284,7 +283,7 @@ namespace CoffeeStore.Account
             if (e.Key == Key.Return)
             {
                 int newPage = Int32.Parse(tbNumPage.Text);
-                if (newPage > (int)lblMaxPage.Content)
+                if (newPage > (int)lblMaxPage.Content || newPage == 0)
                 {
                     MessageBox.Show("Không có trang này!");
                     return;

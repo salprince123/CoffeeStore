@@ -62,10 +62,12 @@ namespace CoffeeStore.Account
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
+            tbGroupAccountValidation.Text = "";
             if (tbName.Text == "")
             {
                 // Name of Employee Type is empty
-
+                tbGroupAccountValidation.Text = "Tên nhóm tài khoản không dược để trống.";
+                return;
             }
             DTO_EmployeeType newEmpType = new DTO_EmployeeType("id", tbName.Text);
             BUS_EmployeeType busEmpType = new BUS_EmployeeType();
@@ -164,6 +166,14 @@ namespace CoffeeStore.Account
             if (dgSelected.SelectedItems.Count > 0)
             {
                 seletedItemRight = (AccessPermissionName)dgSelected.SelectedItems[0];
+            }
+        }
+
+        private void tbName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[a-zA-Z]"))
+            {
+                e.Handled = true;
             }
         }
     }

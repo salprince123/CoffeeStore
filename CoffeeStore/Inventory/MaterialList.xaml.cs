@@ -175,10 +175,10 @@ namespace CoffeeStore.Inventory
                 WindowStyle = WindowStyle.None,
                 Title = "Thêm vật liệu",
                 Content = new PopupAddMaterial(),
-                Width = 540,
-                Height = 280,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 900 / 2) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 600 / 2) / 2,
+                Width = 460,
+                Height = 300,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 300) / 2,
             };
             window.ShowDialog();
             LoadData();
@@ -200,10 +200,10 @@ namespace CoffeeStore.Inventory
                     WindowStyle = WindowStyle.None,
                     Title = "Sửa vật liệu",
                     Content = new PopupEditMaterial(row.Name, row.Unit),
-                    Width = 540,
-                    Height = 280,
-                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 900 / 2) / 2,
-                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 600 / 2) / 2,
+                    Width = 460,
+                    Height = 300,
+                    Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
+                    Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 300) / 2,
                 };
                 window.ShowDialog();
                 LoadData();

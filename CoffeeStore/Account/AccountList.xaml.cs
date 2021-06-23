@@ -108,10 +108,10 @@ namespace CoffeeStore.Account
                 WindowStyle = WindowStyle.None,
                 Title = "Thêm tài khoản",
                 Content = new PopupAddAccount(),
-                Width = 540,
-                Height = 430,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 430) / 2,
+                Width = 460,
+                Height = 460,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 460) / 2,
             };
             window.ShowDialog();
 
@@ -201,10 +201,10 @@ namespace CoffeeStore.Account
                 WindowStyle = WindowStyle.None,
                 Title = "Sửa tài khoản",
                 Content = new PopupEditAccount(editEmp),
-                Width = 540,
-                Height = 430,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 430) / 2,
+                Width = 460,
+                Height = 460,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 460) / 2,
             };
             window.ShowDialog();
             LoadData();
@@ -267,7 +267,7 @@ namespace CoffeeStore.Account
             if (e.Key == Key.Return)
             {
                 int newPage = Int32.Parse(tbNumPage.Text);
-                if (newPage > (int)lblMaxPage.Content)
+                if (newPage > (int)lblMaxPage.Content || newPage == 0)
                 {
                     MessageBox.Show("Không có trang này!");
                     return;

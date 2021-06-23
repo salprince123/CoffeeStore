@@ -233,7 +233,6 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddMaterial.g.
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupEditMaterial.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\MainWindow.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\MenuItem.g.cs
-E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\VatLieu.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Cashier.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\App.g.cs
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore_MarkupCompile.cache
@@ -246,7 +245,6 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupAddMaterial.ba
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Inventory\PopupEditMaterial.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\MainWindow.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\MenuItem.baml
-E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\VatLieu.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Cashier.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.g.resources
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.Properties.Resources.resources
@@ -868,3 +866,5 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\PopupPayment
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\PopupPaymentEdit.g.cs
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\IncomeAndPayment\PopupPaymentEdit.baml
 C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\CoffeeStore.csproj.AssemblyReference.cache
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Banner.g.cs
+E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Banner.baml
