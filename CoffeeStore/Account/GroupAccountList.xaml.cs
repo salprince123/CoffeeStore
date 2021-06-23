@@ -202,7 +202,7 @@ namespace CoffeeStore.Account
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
                 Title = "Xóa tài khoản",
-                Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa \nloại tài khoản {name} không?", name, 2),
+                Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa \nnhóm tài khoản {name} không?", name, 2),
                 Width = 380,
                 Height = 210,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
@@ -254,7 +254,7 @@ namespace CoffeeStore.Account
             {
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
-                Title = "Sửa loại tài khoản",
+                Title = "Sửa nhóm tài khoản",
                 Content = new PopupEditGroupAccount(editGrAcc),
                 Width = 460,
                 Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
