@@ -49,6 +49,7 @@ namespace CoffeeStore.Inventory
         }
         public void LoadData()
         {
+            btBack.IsEnabled = false;
             list.Clear();
             Dictionary<String, int> mapNameAmount = new Dictionary<string, int>();
             Dictionary<String, String> mapNameUnit = new Dictionary<string, string>();
@@ -269,7 +270,13 @@ namespace CoffeeStore.Inventory
                 if(tbFind.Text == "")
                     splitDataGrid(int.Parse(tbNumPage.Text));
                 else splitDataGridFind(int.Parse(tbNumPage.Text));
-
+                if (int.Parse(tbNumPage.Text) == 1)
+                    btBack.IsEnabled = false;
+                else
+                {
+                    btNext.IsEnabled = true;
+                    btBack.IsEnabled = true;
+                }
             }
                 
         }
@@ -282,6 +289,13 @@ namespace CoffeeStore.Inventory
                 if (tbFind.Text == "")
                     splitDataGrid(int.Parse(tbNumPage.Text));
                 else splitDataGridFind(int.Parse(tbNumPage.Text));
+                if (int.Parse(tbNumPage.Text) == (int)lblMaxPage.Content)
+                    btNext.IsEnabled = false;
+                else
+                {
+                    btNext.IsEnabled = true;
+                    btBack.IsEnabled = true;
+                }
             }
         }
 
@@ -296,6 +310,42 @@ namespace CoffeeStore.Inventory
             e.Handled = !e.Text.Any(x => Char.IsDigit(x));
             if (e.Text.Contains(" "))
                 e.Handled = false;
+        }
+
+        private void tbNumPage_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= tbNumPage_GotFocus;
+        }
+
+        private void tbNumPage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && int.TryParse(tbNumPage.Text,out int i))
+            {
+                if (int.Parse(tbNumPage.Text) > 0 && int.Parse(tbNumPage.Text) <= int.Parse(lblMaxPage.Content.ToString()))
+                {
+                    if (tbFind.Text == "")
+                        splitDataGrid(int.Parse(tbNumPage.Text));
+                    else splitDataGridFind(int.Parse(tbNumPage.Text));
+                    if(int.Parse(tbNumPage.Text) == (int)lblMaxPage.Content)
+                    {
+                        btNext.IsEnabled = false;
+                        btBack.IsEnabled = true;
+                    }
+                    else if(int.Parse(tbNumPage.Text) == 1)
+                    {
+                        btNext.IsEnabled = true;
+                        btBack.IsEnabled = false;
+                    }
+                    else
+                    {
+                        btNext.IsEnabled = true;
+                        btBack.IsEnabled = true;
+                    }
+                }
+                else MessageBox.Show("Trang không hợp lệ!");
+            }
         }
     }
 }

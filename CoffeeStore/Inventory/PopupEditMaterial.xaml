@@ -20,13 +20,14 @@
                        Foreground="#FFE297"/>
         </Grid>
         <TextBlock Margin="20,20,20,0" Text="Tên vật liệu"/>
-        <TextBox  Name="tbName" Margin="0,5,0,0" BorderThickness="1"
+        <TextBox  Name="tbName" Margin="0,5,0,0" BorderThickness="1" PreviewTextInput="tbName_PreviewTextInput"
                  Height="40" Width="420" FontSize="15" VerticalContentAlignment="Center"
                  Padding="5" Text="{Binding Path=Name}"/>
         <TextBlock Margin="20,0,20,0" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right"
                    Name="tbNameValidation" FontSize="13" Foreground="Red" Text=""/>
         <TextBlock Margin="20,0,20,0" Text="Đơn vị tính"/>
-        <TextBox  Name="tbUnit" Margin="0,5,0,0" BorderThickness="1" FontSize="15" VerticalContentAlignment="Center"
+        <TextBox  Name="tbUnit" Margin="0,5,0,0" BorderThickness="1" PreviewTextInput="tbUnit_PreviewTextInput"
+                  FontSize="15" VerticalContentAlignment="Center"
                  Padding="5" Height="40" Width="420" Text="{Binding Path=Unit}"/>
         <TextBlock Margin="20,0,20,0" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right"
                    Name="tbUnitValidation" FontSize="13" Foreground="Red" Text=""/>
