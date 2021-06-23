@@ -26,6 +26,7 @@ namespace CoffeeStore.Inventory
         public String selectionID = "";
         public String selectionName = "";
         MainWindow _context;
+        bool findFlag = false;
         public String username { get; set; }
         public List<InventoryExportObject> list = new List<InventoryExportObject>();
         public List<InventoryExportObject> findList = new List<InventoryExportObject>();
@@ -69,9 +70,54 @@ namespace CoffeeStore.Inventory
                 list.Add(new InventoryExportObject() { ID = id, EmployName = employid, InventoryDate = date });
 
             }
-            this.dataGridExport.Items.Refresh();
-            this.dataGridExport.ItemsSource = list;
-            
+            if (list.Count % 10 == 0)
+                lblMaxPage.Content = list.Count / 10;
+            else lblMaxPage.Content = list.Count / 10 + 1;
+            if (int.Parse(lblMaxPage.Content.ToString()) == 0)
+                this.tbNumPage.Text = "0";
+            splitDataGrid(1);
+
+        }
+
+        public void splitDataGrid(int numpage)
+        {
+            try
+            {
+                List<InventoryExportObject> displayList = new List<InventoryExportObject>();
+                int numberPerSheet = 10;
+                if (list.Count < numberPerSheet * numpage)
+                {
+                    displayList = list.GetRange((numpage - 1) * numberPerSheet, list.Count - (numpage - 1) * numberPerSheet);
+                }
+                else displayList = list.GetRange((numpage - 1) * numberPerSheet, numberPerSheet);
+                //displayList = list.GetRange(10, list.Count-10);
+                this.dataGridExport.Items.Refresh();
+                this.dataGridExport.ItemsSource = displayList;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something wrong!");
+            }
+        }
+        public void splitDataGridFind(int numpage)
+        {
+            try
+            {
+                List<InventoryExportObject> displayList = new List<InventoryExportObject>();
+                int numberPerSheet = 10;
+                if (findList.Count < numberPerSheet * numpage)
+                {
+                    displayList = findList.GetRange((numpage - 1) * numberPerSheet, findList.Count - (numpage - 1) * numberPerSheet);
+                }
+                else displayList = findList.GetRange((numpage - 1) * numberPerSheet, numberPerSheet);
+                //displayList = list.GetRange(10, list.Count-10);
+                this.dataGridExport.Items.Refresh();
+                this.dataGridExport.ItemsSource = displayList;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something wrong!");
+            }
         }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -199,12 +245,34 @@ namespace CoffeeStore.Inventory
                     }
                 }
             }
+            findFlag = true;
             dataGridExport.ItemsSource = findList;
             dataGridExport.Items.Refresh();
         }
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
             findExport();
+        }
+        private void btBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (int.Parse(tbNumPage.Text) > 1)
+            {
+                tbNumPage.Text = (int.Parse(tbNumPage.Text) - 1).ToString();
+                if (!findFlag)
+                    splitDataGrid(int.Parse(tbNumPage.Text));
+                else splitDataGridFind(int.Parse(tbNumPage.Text));
+            }
+        }
+
+        private void btNext_Click(object sender, RoutedEventArgs e)
+        {
+            if ((int.Parse(lblMaxPage.Content.ToString()) - int.Parse(tbNumPage.Text)) >= 1)
+            {
+                tbNumPage.Text = (int.Parse(tbNumPage.Text) + 1).ToString();
+                if (!findFlag)
+                    splitDataGrid(int.Parse(tbNumPage.Text));
+                else splitDataGridFind(int.Parse(tbNumPage.Text));
+            }
         }
     }
 }

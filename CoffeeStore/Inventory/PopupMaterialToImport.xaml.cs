@@ -66,7 +66,18 @@ namespace CoffeeStore.Inventory
             listString.Add(row.name);
             //MessageBox.Show(row.name);
         }
-
+        private void cbCheck_Unchecked(object sender, RoutedEventArgs e)
+        {
+            MAterialObject row = (MAterialObject)dataGridMaterialImport.SelectedItem;
+            for(int i=0; i < listString.Count; i++)
+            {
+                if (listString[i] == row.name)
+                {
+                    listString.RemoveAt(i);
+                    return;
+                }                    
+            }
+        }
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
             if(parent.GetType()==new InventoryImportADD().GetType())
@@ -91,5 +102,7 @@ namespace CoffeeStore.Inventory
             this.dataGridMaterialImport.Items.Refresh();
             this.dataGridMaterialImport.ItemsSource = findList;
         }
+
+        
     }
 }

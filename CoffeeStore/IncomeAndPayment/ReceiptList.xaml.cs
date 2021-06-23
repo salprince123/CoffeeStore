@@ -147,10 +147,10 @@ namespace CoffeeStore.IncomeAndPayment
                 WindowStyle = WindowStyle.None,
                 Title = "Chi tiết hóa đơn",
                 Content = new ReceiptDetail(id),
-                Width = 450,
-                Height = 800,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 450) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
+                Width = 500,
+                Height = 620,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 500) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 620) / 2,
             };
             window.ShowDialog();
 
@@ -240,7 +240,7 @@ namespace CoffeeStore.IncomeAndPayment
             if (e.Key == Key.Return)
             {
                 int newPage = Int32.Parse(tbNumPage.Text);
-                if (newPage > (int)lblMaxPage.Content)
+                if (newPage > (int)lblMaxPage.Content || newPage == 0)
                 {
                     MessageBox.Show("Không có trang này!");
                     return;

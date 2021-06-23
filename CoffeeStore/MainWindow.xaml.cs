@@ -32,7 +32,7 @@ namespace CoffeeStore
             
             InitializeComponent();
             currentEmpID = "";
-            var item1 = new ItemMenu("Thu ngân", new Cashier(this, currentEmpID), PackIconKind.Schedule);
+            var item1 = new ItemMenu("Thu ngân", "AP001", new Cashier(this, currentEmpID), PackIconKind.Schedule);
 
             var item2 = new ItemMenu("Menu", "AP006", new Menu.MenuList(this), PackIconKind.CalendarTextOutline);
 
@@ -82,9 +82,18 @@ namespace CoffeeStore
                 BUS_Employees busEmp = new BUS_Employees();
                 currentEmpID = tblockUsername.Text;
                 currentEmpType = busEmp.GetEmpTypeByID(tblockUsername.Text);
-                gridLogin.Children.Clear();
-                var screen = new Cashier(this, currentEmpID);
-                gridLogin.Children.Add(screen);
+
+                BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
+                bool isHavePermission = busAccPerGr.IsHavePermission(currentEmpType, "AP001");
+                if (isHavePermission)
+                {
+                    gridLogin.Children.Clear();
+                    var screen = new Cashier(this, currentEmpID);
+                    gridLogin.Children.Add(screen);
+                }    
+                else
+                    MessageBox.Show("Bạn không có quyền sử dụng chức năng này!");
+                
             }
         }
 
@@ -99,6 +108,8 @@ namespace CoffeeStore
                 ((ItemMenu)((MenuItem)Menu.Children[0]).DataContext)._Cashier.SetCurrrentUser(currentEmpID);
                 currentEmpType = busEmp.GetEmpTypeByID(tblockUsername.Text);
                 gridLogin.Children.Clear();
+                StackPanelMain.Children.Clear();
+                StackPanelMain.Children.Add(banner);
             }
         }
 
@@ -148,6 +159,7 @@ namespace CoffeeStore
         {
             gridLogin.Children.Clear();
             StackPanelMain.Children.Clear();
+            StackPanelMain.Children.Add(banner);
         }
 
         internal void SwitchToDiscount()
@@ -176,6 +188,9 @@ namespace CoffeeStore
 
         internal void LogOut()
         {
+            loginScreen.txtBoxAccount.Clear();
+            loginScreen.txtBoxPassword.Clear();
+            StackPanelMain.Children.Clear();
             gridLogin.Children.Clear();
             gridLogin.Children.Add(loginScreen);
         }
@@ -191,10 +206,10 @@ namespace CoffeeStore
                 WindowStyle = WindowStyle.None,
                 Title = "Đổi mật khẩu",
                 Content = new Account.PopupChangePassword(currentEmpID),
-                Width = 540,
-                Height = 350,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 360) / 2,
+                Width = 460,
+                Height = 380,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 380) / 2,
             };
             window.ShowDialog();
 

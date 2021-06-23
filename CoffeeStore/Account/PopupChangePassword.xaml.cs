@@ -36,42 +36,57 @@ namespace CoffeeStore.Account
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
-            if (tboxOldPass.Text == "")
+            tbOldPassValidation.Text = tbNewPassValidation.Text = tbConfirmPassValidation.Text = "";
+            if (tboxOldPass.Password == "")
             {
                 //Old password is empty
-                MessageBox.Show($"Val 1.");
+                tbOldPassValidation.Text = "Mật khẩu cũ không được để trống.";
                 return;
             }
 
-            if (tboxNewPass.Text.Length < 4 || tboxNewPass.Text.Length > 20)
+            if (tboxNewPass.Password == "")
+            {
+                //New password is empty
+                tbNewPassValidation.Text = "Mật khẩu mới không được để trống.";
+                return;
+            }
+
+            if (tboxNewPass.Password.Length < 4 || tboxNewPass.Password.Length > 20)
             {
                 // New password < 4 characters or > 20 characters
-                MessageBox.Show($"Val 2.");
+                tbNewPassValidation.Text = "Mật khẩu mới phải từ 4-20 ký tự.";
                 return;
             }
 
-            if (tboxNewPass.Text.Length != tboxConfirmPass.Text.Length)
+            if (tboxConfirmPass.Password == "")
+            {
+                //Confirm password is empty
+                tbConfirmPassValidation.Text = "Xác nhận mật khẩu không được để trống.";
+                return;
+            }
+
+            if (tboxNewPass.Password.Length != tboxConfirmPass.Password.Length)
             {
                 // New password not equal to Confirm password
-                MessageBox.Show($"Val 3.");
+                tbConfirmPassValidation.Text = "Mật khẩu không khớp.";
                 return;
             }
             
             BUS_Employees busAcc = new BUS_Employees();
 
-            if (busAcc.GetPasswordByID(empId) != tboxOldPass.Text)
+            if (busAcc.GetPasswordByID(empId) != tboxOldPass.Password)
             {
                 // Old password is wrong
-                MessageBox.Show($"Wrong pass.");
+                tbOldPassValidation.Text = "Mật khẩu không đúng.";
                 return;
             }
 
-            if (busAcc.EditPassword(empId, tboxConfirmPass.Text))
+            if (busAcc.EditPassword(empId, tboxConfirmPass.Password))
             {
-                MessageBox.Show($"Đã sửa mật khẩu của nhân viên {empId}.");
+                MessageBox.Show($"Đã đổi mật khẩu của nhân viên {empId}.");
                 Window.GetWindow(this).Close();
             }
-            else MessageBox.Show($"Đã xảy ra lỗi trong quá trình sửa mật khẩu.");
+            else MessageBox.Show($"Đã xảy ra lỗi trong quá trình đổi mật khẩu.");
         }
     }
 }

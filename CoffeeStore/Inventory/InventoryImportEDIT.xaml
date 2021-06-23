@@ -119,12 +119,14 @@
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                             <ColumnDefinition Width="10"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <DataGrid Grid.Column="1" Grid.Row="1"
+                        <DataGrid Grid.Column="1" Grid.Row="1" CanUserAddRows="false"
                                   x:Name="dataGridMaterialImport" 
-                                  BorderThickness="1"
+                                  BorderThickness="1" 
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
                                   VerticalScrollBarVisibility="Visible"
-                                  AutoGenerateColumns="False" HeadersVisibility="All">
+                                  AutoGenerateColumns="False" 
+                                  HeadersVisibility="All"
+                                  >
                             <DataGrid.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}">
                                     <Setter Property="Template">
@@ -203,9 +205,27 @@
                             </DataGrid.RowHeaderTemplate>
 
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" Binding="{Binding Path='name'}" IsReadOnly="True"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Đơn giá" Binding="{Binding Path='unitPrice'}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Số lượng" Binding="{Binding Path='amount'}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" Binding="{Binding Path='name'}"
+                                                    IsReadOnly="True"></DataGridTextColumn>
+
+                                <DataGridTemplateColumn Header="Đơn giá">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Name="tbPrice" Text="{Binding Path='unitPrice', Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                     VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Số lượng">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Name="tbAmount" Text="{Binding Path='amount', Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                     VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
                                 <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding Path='unit'}" IsReadOnly="True"
                                                     CellStyle="{StaticResource DataGrid_Content_Center}">
                                 </DataGridTextColumn>

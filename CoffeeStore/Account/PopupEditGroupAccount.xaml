@@ -20,10 +20,12 @@
         </Grid>
         <!--Group account name-->
         <TextBlock Margin="20,20,20,0" Text="Tên nhóm tài khoản"/>
-        <TextBox  x:Name="tbName" Margin="20,5,20,0" BorderThickness="1"
+        <TextBox  x:Name="tbName" Margin="20,5,20,0" BorderThickness="1" PreviewTextInput="tbName_PreviewTextInput"
                  Height="40" Padding="5" FontSize="15" VerticalContentAlignment="Center"/>
+        <TextBlock Margin="20,0,20,0" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                   Name="tbGroupAccountValidation" FontSize="13" Foreground="Red" Text=""/>
         <!--Permission-->
-        <Grid Margin="20,20,20,0" DataContext="{Binding }" >
+        <Grid Margin="20,0,20,0" DataContext="{Binding }" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="181*"/>
                 <RowDefinition Height="23*"/>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,9 +34,11 @@ namespace CoffeeStore.Report
 
             start = new DateTime(2021, 1, 1, 0, 0, 0);
             end = DateTime.Today;
-            LoadChart();
+            LoadSaleChart();
+            LoadProfitChart();
+            DataContext = this;
         }
-        private void LoadChart()
+        private void LoadSaleChart()
         {
             BUS_Beverage busBev = new BUS_Beverage();
             DataTable bevData = busBev.GetBeverageOrderBySellAmount(start, end);
@@ -60,15 +63,47 @@ namespace CoffeeStore.Report
                 }
             };
             Formatter = value => value.ToString("N");
-            saleChart.Height = (Labels.Count + 20) * countValue; //Number of labels * 100
+            saleChart.Height = (Labels.Count + 20) * 20;
             saleChart.Series = SaleChart;
             saleChart.Update();
-            DataContext = this;
+            
+        }
+        private void LoadProfitChart()
+        {
+            BUS_Beverage busBev = new BUS_Beverage();
+            DataTable bevProfitData = busBev.GetBeverageOrderBySellIncome(start, end);
+            int countValueProfit = bevProfitData.Rows.Count;
+
+            LabelsProfitChart = new List<string>();
+            ChartValues<int> valuesProfit = new ChartValues<int>();
+
+            for (int i = 0; i < countValueProfit; i++)
+            {
+                valuesProfit.Add(Int32.Parse(bevProfitData.Rows[i]["SellIncome"].ToString()));
+                LabelsProfitChart.Add(bevProfitData.Rows[i]["BeverageName"].ToString());
+            }
+
+            ProfitChart = new SeriesCollection
+            {
+                 new RowSeries
+                 {
+                    Title = "",
+                    Values = valuesProfit,
+                    Fill = Brushes.Orange
+                 }
+            };
+            FormatterProfitChart = value => value.ToString("N", CultureInfo.CreateSpecificCulture("en-US"));
+            profitChart.Height = (LabelsProfitChart.Count + 20) * 20; //Number of labels * 100
+            profitChart.Series = ProfitChart;
+            profitChart.Update();
         }
 
         public SeriesCollection SaleChart { get; set; }
+        public SeriesCollection ProfitChart { get; set; }
         public List<string> Labels { get; set; }
+        public List<string> LabelsProfitChart { get; set; }
         public Func<int, string> Formatter { get; set; }
+        public Func<int, string> FormatterProfitChart { get; set; }
 
         private void btnShow_Click(object sender, RoutedEventArgs e)
         {
@@ -84,7 +119,26 @@ namespace CoffeeStore.Report
             else
                 end = datepicker.Value;
 
-            LoadChart();
+            LoadSaleChart();
+            LoadProfitChart();
+
+        }
+
+        private void btnPrintSale_Click(object sender, RoutedEventArgs e)
+        {
+            PrintDialog myPrintDialog = new PrintDialog();
+            if (myPrintDialog.ShowDialog() == true)
+            {
+                myPrintDialog.PrintVisual(saleChartBody, "Báo cáo số lượng bán của từng món");
+            }
+        }
+        private void btnPrintProfit_Click(object sender, RoutedEventArgs e)
+        {
+            PrintDialog myPrintDialog = new PrintDialog();
+            if (myPrintDialog.ShowDialog() == true)
+            {
+                myPrintDialog.PrintVisual(profitChartBody, "Báo cáo doanh thu của từng món");
+            }
         }
     }
 }

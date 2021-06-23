@@ -30,7 +30,13 @@ namespace CoffeeStore.View
         public PopupEditMenuStatus()
         {
             InitializeComponent();
+            dgMenu.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             LoadData();
+        }
+        void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+            e.Row.Height = 40;
         }
 
         private void LoadData()
@@ -88,7 +94,6 @@ namespace CoffeeStore.View
         {
             DisplayByKeyword();
         }
-
 
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {

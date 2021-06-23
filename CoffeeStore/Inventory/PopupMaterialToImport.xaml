@@ -46,7 +46,7 @@
         </Grid>
         <!--List here-->
         <Grid Grid.Row="4">
-            <DataGrid x:Name="dataGridMaterialImport" Margin="20,0,20,0"
+            <DataGrid x:Name="dataGridMaterialImport" Margin="20,0,20,0" IsReadOnly="True"
                       BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
                       VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" HeadersVisibility="All">
                 <DataGrid.CellStyle>
@@ -127,15 +127,15 @@
                 </DataGrid.RowHeaderTemplate>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị" IsReadOnly="True" 
+                    <DataGridTextColumn Header="Tên nguyên vật liệu, thiết bị"
                                         Binding="{Binding Path='name'}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Đơn vị tính" IsReadOnly="True"
+                    <DataGridTextColumn Header="Đơn vị tính"
                                         Binding="{Binding Path='unit'}"
                                         CellStyle="{StaticResource DataGrid_Content_Center}"></DataGridTextColumn>
                     <DataGridTemplateColumn Header="">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox x:Name="cbCheck" Checked="cbCheck_Checked" ></CheckBox>
+                                <CheckBox x:Name="cbCheck" Checked="cbCheck_Checked" Unchecked="cbCheck_Unchecked" ></CheckBox>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

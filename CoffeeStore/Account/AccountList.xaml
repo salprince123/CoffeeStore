@@ -84,9 +84,12 @@
                             <ColumnDefinition Width="20"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <DataGrid x:Name="dataGridAccount" Grid.Column="1" Grid.Row="1" IsReadOnly="True" BorderThickness="1"
-                                  BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
-                                  VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False"
+                        <DataGrid x:Name="dataGridAccount" Grid.Column="1" Grid.Row="1" 
+                                  IsReadOnly="True" BorderThickness="1"
+                                  BorderBrush="{DynamicResource {x:Static 
+                            SystemColors.ActiveCaptionTextBrushKey}}"
+                                  VerticalScrollBarVisibility="Visible" 
+                                  AutoGenerateColumns="False"
                                   HeadersVisibility="All">
                             <DataGrid.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}">

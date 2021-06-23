@@ -46,13 +46,13 @@ namespace CoffeeStore.Account
         public AccountList(MainWindow mainWindow)
         {
             InitializeComponent();
+            Loaded += LoadData;
             dataGridAccount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             this._context = mainWindow;
             limitRow = 20;
             currentPage = 1;
             tbNumPage.Text = "1";
             btnPagePre.IsEnabled = false;
-            LoadData();
         }
 
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
@@ -60,6 +60,11 @@ namespace CoffeeStore.Account
             e.Row.Header = e.Row.GetIndex() + 1 + limitRow * (currentPage - 1);
             e.Row.Height = 40;
         }
+
+        public void LoadData(Object sender, RoutedEventArgs e)
+        {
+            LoadData();
+        }    
 
         public void LoadData()
         {
@@ -95,6 +100,7 @@ namespace CoffeeStore.Account
             }
             this.dataGridAccount.ItemsSource = employees;
             this.dataGridAccount.Items.Refresh();
+            
         }    
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -108,10 +114,10 @@ namespace CoffeeStore.Account
                 WindowStyle = WindowStyle.None,
                 Title = "Thêm tài khoản",
                 Content = new PopupAddAccount(),
-                Width = 540,
-                Height = 430,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 430) / 2,
+                Width = 460,
+                Height = 460,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 460) / 2,
             };
             window.ShowDialog();
 
@@ -201,10 +207,10 @@ namespace CoffeeStore.Account
                 WindowStyle = WindowStyle.None,
                 Title = "Sửa tài khoản",
                 Content = new PopupEditAccount(editEmp),
-                Width = 540,
-                Height = 430,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 430) / 2,
+                Width = 460,
+                Height = 460,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 460) / 2,
             };
             window.ShowDialog();
             LoadData();
@@ -267,7 +273,7 @@ namespace CoffeeStore.Account
             if (e.Key == Key.Return)
             {
                 int newPage = Int32.Parse(tbNumPage.Text);
-                if (newPage > (int)lblMaxPage.Content)
+                if (newPage > (int)lblMaxPage.Content || newPage == 0)
                 {
                     MessageBox.Show("Không có trang này!");
                     return;

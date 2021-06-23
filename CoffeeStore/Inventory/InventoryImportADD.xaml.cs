@@ -84,7 +84,7 @@ namespace CoffeeStore.Inventory
             public event PropertyChangedEventHandler PropertyChanged;
             protected void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
             {
-                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                this.PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(propertyName));
             }
             
         }
@@ -131,9 +131,9 @@ namespace CoffeeStore.Inventory
                 Title = "",
                 Content = new PopupMaterialToImport(this),
                 Width = 540,
-                Height = 450,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 1000 / 2) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 800 / 2) / 2,
+                Height = 500,
+                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
+                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 500) / 2,
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
@@ -184,16 +184,16 @@ namespace CoffeeStore.Inventory
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            InventoryImportDetailObject row = (InventoryImportDetailObject)dataGridMaterialImport.SelectedItem;
-            if (row != null)
-            {
-                try
-                {
-                    list.RemoveAt(findInList(row.id));
-                    dataGridMaterialImport.Items.Refresh();
-                }
-                catch (Exception) { }
-            }
+             InventoryImportDetailObject row = (InventoryImportDetailObject)dataGridMaterialImport.SelectedItem;
+             if (row != null)
+             {
+                 try
+                 {
+                     list.RemoveAt(findInList(row.id));
+                     dataGridMaterialImport.Items.Refresh();
+                 }
+                 catch (Exception) { }
+             }
         }
 
         private void btExit_Click(object sender, RoutedEventArgs e)

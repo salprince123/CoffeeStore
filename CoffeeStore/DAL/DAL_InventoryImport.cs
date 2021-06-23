@@ -25,8 +25,7 @@ namespace CoffeeStore.DAL
             {
                 Console.WriteLine( "INVENTORYIMPORT SELECT: Exception AT" + e.ToString());
                 return new DataTable();
-            };
-            
+            };            
         }
 
         public int TotalCost(String id)
@@ -152,7 +151,38 @@ namespace CoffeeStore.DAL
                 Console.WriteLine("Exception AT" + e.ToString());
                 return new DataTable();
             };
+        }
 
+        public DataTable GetTotalAmountByYear(int year)
+        {
+            DataTable data = new DataTable();
+            string sql = $"select substr(ImportDate, 4, 2) as Month, sum(Amount * Price) as TotalAmount from InventoryImport join InventoryImportDetail on InventoryImport.ImportID = InventoryImportDetail.ImportID where ImportDate like '%/%/{year}' group by Month";
+            try
+            {
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(data);
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+            }
+            return data;
+        }
+
+        public DataTable GetTotalAmountByMonth(int month, int year)
+        {
+            DataTable data = new DataTable();
+            string sql = $"select substr(ImportDate, 1, 2) as Day, sum(Amount * Price) as TotalAmount from InventoryImport join InventoryImportDetail on InventoryImport.ImportID = InventoryImportDetail.ImportID where ImportDate like '%/{month.ToString().PadLeft(2, '0')}/{year}' group by Day";
+            try
+            {
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(data);
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+            }
+            return data;
         }
     }
 }

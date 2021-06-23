@@ -62,12 +62,28 @@
                 <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
                     <DatePicker x:Name="dpDateStart" Height="40"
                          VerticalContentAlignment="Center" FontSize="15"
-                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5"/>
+                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5">
+                        <DatePicker.Resources>
+                            <Style TargetType="{x:Type DatePickerTextBox}" 
+                        x:Key="MaterialDesignDatePickerTextBox" 
+                        BasedOn="{StaticResource MaterialDesignDatePickerTextBox}">
+                                <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DatePicker},Path=SelectedDate,StringFormat=dd/MM/yyyy}" />
+                            </Style>
+                        </DatePicker.Resources>
+                    </DatePicker>
                 </Border>
                 <Border BorderBrush="Gray" Grid.Column="2" BorderThickness="1,1,1,0">
                     <DatePicker x:Name="dpDateEnd" Height="40"
                          VerticalContentAlignment="Center" FontSize="15"
-                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5"/>
+                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5">
+                        <DatePicker.Resources>
+                            <Style TargetType="{x:Type DatePickerTextBox}" 
+                        x:Key="MaterialDesignDatePickerTextBox" 
+                        BasedOn="{StaticResource MaterialDesignDatePickerTextBox}">
+                                <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DatePicker},Path=SelectedDate,StringFormat=dd/MM/yyyy}" />
+                            </Style>
+                        </DatePicker.Resources>
+                    </DatePicker>
                 </Border>
                 <TextBox x:Name="tbNameFind" Grid.Column="4" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center" FontSize="15"
@@ -215,7 +231,7 @@
                                                     <materialDesign:PackIcon Kind="FileDocument" Height="20" Width="20" Foreground="#9FA2B4" />
                                                 </Button>
                                                 <Button Margin="10,0,0,0" Name="btnEdit" BorderBrush="#3D76B5" Background="#3D76B5" Click="btnEdit_Click">
-                                                    <materialDesign:PackIcon Kind="GreasePencil" Foreground="White" Height="20" Width="20"  />
+                                                    <materialDesign:PackIcon Kind="GreasePencil" Foreground="White" Height="20" Width="20" />
                                                 </Button>
                                                 <Button Margin="10,0,0,0" Name="btnDelete" BorderBrush="#E55252" Background="#E55252" Click="btnDelete_Click">
                                                     <materialDesign:PackIcon Kind="Delete" Height="20" Width="20" />
