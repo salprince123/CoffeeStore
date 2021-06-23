@@ -11,7 +11,7 @@
         <!--Title bar here-->
         <Grid Grid.Row="0" Grid.ColumnSpan="3" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <UserControls:TitleBar/>
-            <TextBlock Text="Sửa nguyên vật liệu" 
+            <TextBlock Text="Sửa nguyên vật liệu, thiết bị" 
                        FontFamily="Montserrat"
                        FontSize="20" 
                        FontWeight="Bold"
