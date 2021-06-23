@@ -133,29 +133,29 @@ namespace CoffeeStore.IncomeAndPayment
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
         }
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
-        {
-            DTO_Payment dto = (DTO_Payment)dgPayment.SelectedItem;
-            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
-            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
-            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
-            Window window = new Window
-            {
-                ResizeMode = ResizeMode.NoResize,
-                WindowStyle = WindowStyle.None,
-                Title = "Sửa phiếu chi",
-                Content = new PopupPaymentEdit(dto),
-                Width = 450,
-                Height = 400,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 450) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
-            };
-            window.ShowDialog();
-
-            ((MainWindow)App.Current.MainWindow).Opacity = 1;
-            ((MainWindow)App.Current.MainWindow).Effect = null;
-            loaddata();
-        }
+        //private void btnEdit_Click(object sender, RoutedEventArgs e)
+        //{
+        //    DTO_Payment dto = (DTO_Payment)dgPayment.SelectedItem;
+        //    System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+        //    ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+        //    ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+        //    Window window = new Window
+        //    {
+        //        ResizeMode = ResizeMode.NoResize,
+        //        WindowStyle = WindowStyle.None,
+        //        Title = "Sửa phiếu chi",
+        //        Content = new PopupPaymentEdit(dto),
+        //        Width = 450,
+        //        Height = 400,
+        //        Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 450) / 2,
+        //        Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 400) / 2,
+        //    };
+        //    window.ShowDialog();
+        //
+        //    ((MainWindow)App.Current.MainWindow).Opacity = 1;
+        //    ((MainWindow)App.Current.MainWindow).Effect = null;
+        //    loaddata();
+        //}
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             DTO_Payment dto = (DTO_Payment)dgPayment.SelectedItem;
