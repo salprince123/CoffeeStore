@@ -44,22 +44,25 @@ namespace CoffeeStore.IncomeAndPayment
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
-            if (tbMoney.Text != "")
+            tbMoneyValidation.Text = "";
+            if (tbMoney.Text == "")
             {
-                DTO_Payment dto = new DTO_Payment();
-                dto.PaymentID = bus.createID();
-                dto.EmployeeID = mainWindow.GetCurrentEmpID();
-                dto.Time = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt");
-                dto.TotalAmount = float.Parse(tbMoney.Text);
-                dto.Description = tbDescription.Text;
-                if (bus.createNewPayment(dto) > 0)
-                    MessageBox.Show("Thành công.");
-                else
-                    MessageBox.Show("Thất bại.");
+                tbMoneyValidation.Text = "Số tiền không được để trống.";
+                return;
+            }
+            DTO_Payment dto = new DTO_Payment();
+            dto.PaymentID = bus.createID();
+            dto.EmployeeID = mainWindow.GetCurrentEmpID();
+            dto.Time = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss tt");
+            dto.TotalAmount = float.Parse(tbMoney.Text);
+            dto.Description = tbDescription.Text;
+            if (bus.createNewPayment(dto) > 0)
+            {
+                MessageBox.Show($"Đã thêm phiếu chi {dto.PaymentID}.");
                 Window.GetWindow(this).Close();
             }
             else
-                MessageBox.Show("Phải nhập đầy đủ ngày nhập và số tiền đã chi");
+                MessageBox.Show("Đã có lỗi trong quá trình thêm phiếu chi.");
         }
 
         private void tbMoney_PreviewTextInput(object sender, TextCompositionEventArgs e)

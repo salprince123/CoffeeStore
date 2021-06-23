@@ -41,7 +41,8 @@
             <TextBlock>Mã phiếu chi</TextBlock>
             <TextBox Name="tbPaymentID" Background="#DADADA"
                      Padding="5" Margin="0,5,0,0" Height="40"
-                     BorderThickness="0" IsReadOnly="True">
+                     BorderThickness="0" IsReadOnly="True"
+                     FontSize="15" VerticalContentAlignment="Center">
             </TextBox>
         </StackPanel>
         <!--Employee name here-->
@@ -49,7 +50,8 @@
             <TextBlock>Người lập</TextBlock>
             <TextBox Name="tbEmployeeName" Background="#DADADA"
                      Padding="5" Margin="0,5,0,0" Height="40"
-                     BorderThickness="0" IsReadOnly="True">
+                     BorderThickness="0" IsReadOnly="True"
+                     FontSize="15" VerticalContentAlignment="Center">
             </TextBox>
         </StackPanel>
         <!--Date & amount here-->
@@ -68,12 +70,14 @@
             <TextBlock Grid.Row="0">Ngày lập</TextBlock>
             <TextBox x:Name="tbTime" Grid.Row="2" Background="#DADADA"
                      Padding="5" Height="40"
-                     BorderThickness="0" IsReadOnly="True">
+                     BorderThickness="0" IsReadOnly="True"
+                     FontSize="15" VerticalContentAlignment="Center">
             </TextBox>
             <TextBlock Grid.Column="2">Số tiền (VNĐ)</TextBlock>
             <TextBox Grid.Row="2" Grid.Column="2" Name="tbAmount" Background="#DADADA"
                      Padding="5"  Height="40"
-                     BorderThickness="0" IsReadOnly="True">
+                     BorderThickness="0" IsReadOnly="True"
+                     FontSize="15" VerticalContentAlignment="Center">
             </TextBox>
         </Grid>
         <!--Description here-->
@@ -81,7 +85,8 @@
             <TextBlock>Lý do</TextBlock>
             <TextBox Name="tbDescription" Background="#DADADA"
                      Padding="5" Margin="0,5,0,0" Height="80"
-                     BorderThickness="0" IsReadOnly="True">
+                     BorderThickness="0" IsReadOnly="True"
+                     FontSize="15">
             </TextBox>
         </StackPanel>
     </Grid>
