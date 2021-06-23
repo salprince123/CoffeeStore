@@ -32,7 +32,7 @@ namespace CoffeeStore
             
             InitializeComponent();
             currentEmpID = "";
-            var item1 = new ItemMenu("Thu ngân", new Cashier(this, currentEmpID), PackIconKind.Schedule);
+            var item1 = new ItemMenu("Thu ngân", "AP001", new Cashier(this, currentEmpID), PackIconKind.Schedule);
 
             var item2 = new ItemMenu("Menu", "AP006", new Menu.MenuList(this), PackIconKind.CalendarTextOutline);
 
@@ -82,9 +82,18 @@ namespace CoffeeStore
                 BUS_Employees busEmp = new BUS_Employees();
                 currentEmpID = tblockUsername.Text;
                 currentEmpType = busEmp.GetEmpTypeByID(tblockUsername.Text);
-                gridLogin.Children.Clear();
-                var screen = new Cashier(this, currentEmpID);
-                gridLogin.Children.Add(screen);
+
+                BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
+                bool isHavePermission = busAccPerGr.IsHavePermission(currentEmpType, "AP001");
+                if (isHavePermission)
+                {
+                    gridLogin.Children.Clear();
+                    var screen = new Cashier(this, currentEmpID);
+                    gridLogin.Children.Add(screen);
+                }    
+                else
+                    MessageBox.Show("Bạn không có quyền sử dụng chức năng này!");
+                
             }
         }
 

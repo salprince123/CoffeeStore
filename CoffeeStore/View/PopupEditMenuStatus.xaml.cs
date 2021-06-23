@@ -89,7 +89,6 @@ namespace CoffeeStore.View
             DisplayByKeyword();
         }
 
-
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
             BUS_Beverage busBever = new BUS_Beverage();

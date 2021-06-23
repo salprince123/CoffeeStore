@@ -119,12 +119,14 @@
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                             <ColumnDefinition Width="10"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <DataGrid Grid.Column="1" Grid.Row="1"
+                        <DataGrid Grid.Column="1" Grid.Row="1" 
                                   x:Name="dataGridMaterialImport" 
                                   BorderThickness="1"
                                   BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
                                   VerticalScrollBarVisibility="Visible"
-                                  AutoGenerateColumns="False" HeadersVisibility="All">
+                                  AutoGenerateColumns="False" 
+                                  HeadersVisibility="All"
+                                  >
                             <DataGrid.CellStyle>
                                 <Style TargetType="{x:Type DataGridCell}">
                                     <Setter Property="Template">
