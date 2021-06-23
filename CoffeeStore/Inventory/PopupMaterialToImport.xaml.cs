@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,11 +29,26 @@ namespace CoffeeStore.Inventory
         List<String> listString = new List<string>();
         List<MAterialObject> mainList = new List<MAterialObject>();
         List<MAterialObject> findList = new List<MAterialObject>();
-        public class MAterialObject
+        public class MAterialObject : INotifyPropertyChanged
         {
             public string name { get; set; }
             public String unit { get; set; }
-        
+            public bool _isSelected;
+            public bool IsSelected
+            {
+                get { return _isSelected; }
+                set { _isSelected = value; OnPropertyChanged(); }
+            }
+            #region INotifyPropertyChanged
+            public event PropertyChangedEventHandler PropertyChanged;
+            protected void OnPropertyChanged([CallerMemberName] string name = "")
+            {
+                PropertyChangedEventHandler handler = PropertyChanged;
+                if (handler != null)
+                    handler(this, new PropertyChangedEventArgs(name));
+            }
+            #endregion
+
         }
         public PopupMaterialToImport(UserControl parent)
         {
@@ -55,7 +72,7 @@ namespace CoffeeStore.Inventory
                 string unit = row["Unit"].ToString();
                 string use = row["isUse"].ToString();
                 if (use == "1")
-                    mainList.Add(new MAterialObject() {  name = name, unit = unit });
+                    mainList.Add(new MAterialObject() {  name = name, unit = unit,IsSelected=false });
             }
             this.dataGridMaterialImport.ItemsSource = mainList;
         }
@@ -80,7 +97,12 @@ namespace CoffeeStore.Inventory
         }
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
-            if(parent.GetType()==new InventoryImportADD().GetType())
+            foreach (MAterialObject obj in mainList.ToList())
+            {
+                if (obj.IsSelected == true)
+                    listString.Add(obj.name);
+            }
+            if (parent.GetType()==new InventoryImportADD().GetType())
                 ((InventoryImportADD)parent).MaterName = listString;
             else ((InventoryImportEDIT)parent).MaterName = listString;
             Window.GetWindow(this).Close();
