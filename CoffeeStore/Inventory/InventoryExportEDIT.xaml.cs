@@ -31,6 +31,7 @@ namespace CoffeeStore.Inventory
         public List<String> sqlCommand = new List<string>();
 
         MainWindow _context;
+       
         public class InventoryObject : INotifyPropertyChanged
         {
             public String name { get; set; }
@@ -103,7 +104,6 @@ namespace CoffeeStore.Inventory
             this.dataGridMaterialExport.ItemsSource = list;
             if (list.Count == 0) return;
             tbDescription.Text = list[0].description;
-
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -196,5 +196,12 @@ namespace CoffeeStore.Inventory
             dataGridMaterialExport.ItemsSource = list;
             dataGridMaterialExport.Items.Refresh();
         }
+
+        /*
+         * some time , material is not using anymore and admin delete it 
+         * but it data is still contained in ImportDetail 
+         * We need to prevent user to change the row relevant with deleted material
+         * */
+        
     }
 }

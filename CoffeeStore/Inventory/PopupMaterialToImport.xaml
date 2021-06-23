@@ -46,7 +46,7 @@
         </Grid>
         <!--List here-->
         <Grid Grid.Row="4">
-            <DataGrid x:Name="dataGridMaterialImport" Margin="20,0,20,0"
+            <DataGrid x:Name="dataGridMaterialImport" Margin="20,0,20,0" CanUserAddRows="False"
                       BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
                       VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" HeadersVisibility="All">
                 <DataGrid.CellStyle>
