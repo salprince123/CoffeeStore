@@ -184,10 +184,17 @@ namespace CoffeeStore.Inventory
                     if (mapNameAmountInStock[obj.name] < amountInExport)
                     {
                         MessageBox.Show($"Số lượng vật liệu '{obj.name}' chỉ còn {mapNameAmountInStock[obj.name]} !");
+                        export.Delete(newExportID);
                         return;
                     }
                 }
-                string temp = $"insert into InventoryExportDetail values ('{newExportID}','{obj.id}','{obj.amount}','{tbDescription.Text}')";
+                if(tbDescription.Text.Length ==0)
+                {
+                    MessageBox.Show($"Vui lòng nhập lí do !");
+                    export.Delete(newExportID);
+                    return;
+                }
+                string temp = $"insert into InventoryExportDetail values ('{newExportID}','{obj.id}','{obj.amount}')";
                 sqlString.Add(temp);
             }
             BUS_InventoryExportDetail detail = new BUS_InventoryExportDetail();
@@ -252,8 +259,13 @@ namespace CoffeeStore.Inventory
                     mapNameAmount[name.Key] = 0;
             }
             return mapNameAmount;
-        }       
-        
-        
+        }
+
+        private void tbAmount_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= tbAmount_GotFocus;
+        }
     }
 }

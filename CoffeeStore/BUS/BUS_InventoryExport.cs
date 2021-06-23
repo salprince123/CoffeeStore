@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,14 @@ namespace CoffeeStore.BUS
         public DataTable SelectDetail(String id)
         {
             return export.SelectDetail(id);
+        }
+        public string SelectDescription(String id)
+        {
+            return export.SelectDescription(id);
+        }
+        public void updateDescription(String exportID, String value)
+        {
+            export.updateDescription(exportID, value);
         }
     }
 }

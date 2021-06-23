@@ -90,19 +90,20 @@ namespace CoffeeStore.Inventory
         {
             BUS_InventoryExport export = new BUS_InventoryExport();
             DataTable temp = export.SelectDetail(selectionID);
+            tbDescription.Text = export.SelectDescription(selectionID);
             Console.WriteLine(temp.Rows.Count);
             foreach (DataRow row in temp.Rows)
             {
                 string name = row["Tên"].ToString();
                 string amount = row["Số lượng"].ToString();
-                string descrip = row["Mô tả"].ToString();
                 string unit = row["Unit"].ToString();
                 string materID = row["MaterialID"].ToString();
-                list.Add(new InventoryObject() {  amount = amount, name = name, description = descrip, unit = unit, id= materID });
+                list.Add(new InventoryObject() {  amount = amount, name = name, unit = unit, id= materID });
             }
             this.dataGridMaterialExport.ItemsSource = list;
             if (list.Count == 0) return;
             tbDescription.Text = list[0].description;
+
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -119,9 +120,11 @@ namespace CoffeeStore.Inventory
         {            
             foreach (InventoryObject obj in list)
             {
-                string temp = $"insert into InventoryExportDetail values ('{selectionID}','{obj.id}','{obj.amount}','{tbDescription.Text}')";
+                string temp = $"insert into InventoryExportDetail values ('{selectionID}','{obj.id}','{obj.amount}')";
                 sqlCommand.Add(temp);
             }
+            BUS_InventoryExport export = new BUS_InventoryExport();
+            export.updateDescription(selectionID, tbDescription.Text);
             BUS_InventoryExportDetail detail = new BUS_InventoryExportDetail();
             detail.Delete(selectionID);
             detail.ImportList(sqlCommand);
@@ -132,20 +135,22 @@ namespace CoffeeStore.Inventory
                 this._context.StackPanelMain.Children.Add(screen);
             }
         }
-
+        public int findInList(String id)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].id == id)
+                    return i;
+            }
+            return -1;
+        }
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             InventoryObject row = (InventoryObject)dataGridMaterialExport.SelectedItem;
             if (row != null)
             {
-                /*try
-                {
-                    list.RemoveAt(row.number - 1);
-                    for (int i = 0; i < list.Count; i++)
-                        list[i].number = i + 1;
-                    dataGridImport.Items.Refresh();
-                }
-                catch (Exception) { }*/
+                list.RemoveAt(findInList(row.id));
+                dataGridMaterialExport.Items.Refresh();
             }
         }
         public bool containInList(String id)

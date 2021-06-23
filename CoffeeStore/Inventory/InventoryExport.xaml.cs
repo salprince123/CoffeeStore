@@ -149,7 +149,6 @@ namespace CoffeeStore.Inventory
                     Height = 630,
                     Width = 500,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen
-                    //Content = new PopupInventoryImportDETAIL("a","a","a")
                 };
                 window.ShowDialog();
                 ((MainWindow)App.Current.MainWindow).Opacity = 1;
