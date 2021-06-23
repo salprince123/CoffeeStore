@@ -39,5 +39,13 @@ namespace CoffeeStore.BUS
         {
             return import.SelectDetail(id);
         }
+        public DataTable GetTotalAmountByMonth(int month, int year)
+        {
+            return import.GetTotalAmountByMonth(month, year);
+        }
+        public DataTable GetTotalAmountByYear(int year)
+        {
+            return import.GetTotalAmountByYear(year);
+        }
     }
 }

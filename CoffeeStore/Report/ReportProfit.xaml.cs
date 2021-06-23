@@ -64,10 +64,17 @@ namespace CoffeeStore.Report
             DataTable RecData = busRec.GetTotalIncomeByYear(dpMonthYear.SelectedDate.GetValueOrDefault().Year);
             foreach (DataRow row in RecData.Rows)
             {
-                Income[Int32.Parse(row["Month"].ToString())] = Int32.Parse(row["TotalAfterDis"].ToString());
-                Profit[Int32.Parse(row["Month"].ToString())] += Int32.Parse(row["TotalAfterDis"].ToString());
-            }    
+                Income[Int32.Parse(row["Month"].ToString()) - 1] = Int32.Parse(row["TotalAfterDis"].ToString());
+                Profit[Int32.Parse(row["Month"].ToString()) - 1] += Int32.Parse(row["TotalAfterDis"].ToString());
+            }
 
+            BUS_InventoryImport busInvImp = new BUS_InventoryImport();
+            DataTable InvImpData = busInvImp.GetTotalAmountByYear(dpMonthYear.SelectedDate.GetValueOrDefault().Year);
+            foreach (DataRow row in InvImpData.Rows)
+            {
+                Outcome[Int32.Parse(row["Month"].ToString()) - 1] = Int32.Parse(row["TotalAmount"].ToString());
+                Profit[Int32.Parse(row["Month"].ToString()) - 1] -= Int32.Parse(row["TotalAmount"].ToString());
+            }
 
             GeneralChart.Add(new ColumnSeries
             {
@@ -124,8 +131,16 @@ namespace CoffeeStore.Report
             DataTable RecData = busRec.GetTotalIncomeByMonth(dpMonthYear.SelectedDate.GetValueOrDefault().Month, dpMonthYear.SelectedDate.GetValueOrDefault().Year);
             foreach (DataRow row in RecData.Rows)
             {
-                Income[Int32.Parse(row["Day"].ToString())] = Int32.Parse(row["TotalAfterDis"].ToString());
-                Profit[Int32.Parse(row["Day"].ToString())] += Int32.Parse(row["TotalAfterDis"].ToString());
+                Income[Int32.Parse(row["Day"].ToString()) - 1] = Int32.Parse(row["TotalAfterDis"].ToString());
+                Profit[Int32.Parse(row["Day"].ToString()) - 1] += Int32.Parse(row["TotalAfterDis"].ToString());
+            }
+
+            BUS_InventoryImport busInvImp = new BUS_InventoryImport();
+            DataTable InvImpData = busInvImp.GetTotalAmountByMonth(dpMonthYear.SelectedDate.GetValueOrDefault().Month, dpMonthYear.SelectedDate.GetValueOrDefault().Year);
+            foreach (DataRow row in InvImpData.Rows)
+            {
+                Outcome[Int32.Parse(row["Day"].ToString()) - 1] = Int32.Parse(row["TotalAmount"].ToString());
+                Profit[Int32.Parse(row["Day"].ToString()) - 1] -= Int32.Parse(row["TotalAmount"].ToString());
             }
 
             GeneralChart.Add(new ColumnSeries

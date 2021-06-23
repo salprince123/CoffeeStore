@@ -171,7 +171,7 @@ namespace CoffeeStore.Account
 
         private void tbName_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[a-zA-Z]"))
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, @"\p{L}"))
             {
                 e.Handled = true;
             }

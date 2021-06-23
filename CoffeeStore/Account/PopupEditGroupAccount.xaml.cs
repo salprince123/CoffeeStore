@@ -202,10 +202,11 @@ namespace CoffeeStore.Account
 
             BUS_EmployeeType busEmpType = new BUS_EmployeeType();
             string editID = busEmpType.GetIDByName(editGrAccInfo.name);
-            bool result = busEmpType.EditEmployeeType(new DTO_EmployeeType(editID, editGrAccInfo.name));
+            bool result = busEmpType.EditEmployeeType(new DTO_EmployeeType(editID, tbName.Text));
             if (!result)
             {
-                MessageBox.Show($"Đã xảy ra lỗi do tên loại tài khoản trong quá trình sửa loại tài khoản {editGrAccInfo.name}.");
+                tbGroupAccountValidation.Text = "Tên nhóm tài khoản bị trùng với một nhóm tài khoản khác.";
+                return;
             }    
             BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
             #region Get List Permission
@@ -287,7 +288,7 @@ namespace CoffeeStore.Account
 
         private void tbName_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, "^[a-zA-Z]"))
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, @"\p{L}"))
             {
                 e.Handled = true;
             }

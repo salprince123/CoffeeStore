@@ -46,13 +46,13 @@ namespace CoffeeStore.Account
         public AccountList(MainWindow mainWindow)
         {
             InitializeComponent();
+            Loaded += LoadData;
             dataGridAccount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             this._context = mainWindow;
             limitRow = 20;
             currentPage = 1;
             tbNumPage.Text = "1";
             btnPagePre.IsEnabled = false;
-            LoadData();
         }
 
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
@@ -60,6 +60,11 @@ namespace CoffeeStore.Account
             e.Row.Header = e.Row.GetIndex() + 1 + limitRow * (currentPage - 1);
             e.Row.Height = 40;
         }
+
+        public void LoadData(Object sender, RoutedEventArgs e)
+        {
+            LoadData();
+        }    
 
         public void LoadData()
         {
