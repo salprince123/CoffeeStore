@@ -223,11 +223,11 @@
                                     VerticalAlignment="Center" Click="btBack_Click">
                                 <materialDesign:PackIcon Kind="ChevronLeft" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
                             </Button>
-                            <TextBox Name="tbNumPage" Width="35" Height="30"
+                            <TextBox Name="tbNumPage" Width="35" Height="30" KeyDown="tbNumPage_KeyDown"
                                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                                      Text="1" FontWeight="SemiBold" FontSize="14" 
                                      Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,1"
-                                     PreviewKeyDown="tbNumPage_PreviewKeyDown" PreviewTextInput="tbNumPage_PreviewTextInput"/>
+                                     PreviewKeyDown="tbNumPage_PreviewKeyDown" PreviewTextInput="tbNumPage_PreviewTextInput" GotFocus="tbNumPage_GotFocus"/>
                             <Label VerticalContentAlignment="Center" 
                                    Content="/" FontWeight="SemiBold" FontSize="14"/>
                             <Label Name="lblMaxPage" Width="35" 

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -69,6 +70,21 @@ namespace CoffeeStore.Inventory
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Close();
+        }
+        private void tbName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("^[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+$");
+            if (!regex.IsMatch(e.Text))
+                e.Handled = true;
+            base.OnPreviewTextInput(e);
+        }
+
+        private void tbUnit_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("^[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+$");
+            if (!regex.IsMatch(e.Text))
+                e.Handled = true;
+            base.OnPreviewTextInput(e);
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -47,11 +48,28 @@ namespace CoffeeStore.Inventory
             BUS_Material material = new BUS_Material();
             if (material.Create(tbName.Text, tbUnit.Text))
             { 
-                MessageBox.Show($"Đã thêm thông tin của {tbName.Text} vào kho.");
+                //MessageBox.Show($"Đã thêm thông tin của {tbName.Text} vào kho.");
                 Window.GetWindow(this).Close();
             }
             else
                 MessageBox.Show($"Nguyên vật liệu, thiết bị đã tồn tại.");
+        }
+        
+
+        private void tbName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("^[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+$");
+            if (!regex.IsMatch(e.Text))
+                e.Handled = true;
+            base.OnPreviewTextInput(e);
+        }
+
+        private void tbUnit_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("^[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+$");
+            if (!regex.IsMatch(e.Text))
+                e.Handled = true;
+            base.OnPreviewTextInput(e);
         }
     }
 }
