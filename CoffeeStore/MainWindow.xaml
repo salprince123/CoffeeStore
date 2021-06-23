@@ -64,7 +64,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="90"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -90,18 +90,18 @@
                           Header="Đăng xuất" Click="LogOutBtn_Click"/>
             </MenuItem>
         </Menu>
+        <!--Logo here-->
         <Grid Grid.RowSpan="2" Grid.Column="0" Background="#6B6158">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <materialDesign:PackIcon Kind="Coffee" Background="#6B6158" Foreground="#FFE297" HorizontalAlignment="Center" Width="40" Height="40"/>
+                <materialDesign:PackIcon Kind="Coffee" Background="#6B6158" Foreground="#FFE297" VerticalAlignment="Center" HorizontalAlignment="Center" Width="40" Height="40"/>
                 <TextBlock FontWeight="SemiBold" Foreground="#FFE297" FontSize="20" >Ngao Coffee</TextBlock>
             </StackPanel>
-            
         </Grid>
         <!--Navigation menu here-->
         <Grid HorizontalAlignment="Stretch" Grid.Row="2"  Background="#6B6158">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="137*"/>
-                <ColumnDefinition Width="113*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="326*"/>
