@@ -41,13 +41,6 @@
                     <DatePicker x:Name="dpStartDate" Height="40"
                          VerticalContentAlignment="Center" FontSize="15"
                          materialDesign:HintAssist.Hint="Từ ngày" Padding="5">
-                        <DatePicker.Resources>
-                            <Style TargetType="{x:Type DatePickerTextBox}" 
-                        x:Key="MaterialDesignDatePickerTextBox" 
-                        BasedOn="{StaticResource MaterialDesignDatePickerTextBox}">
-                                <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DatePicker},Path=SelectedDate,StringFormat=dd/MM/yyyy}" />
-                            </Style>
-                        </DatePicker.Resources>
                     </DatePicker>
                 </Border>
             </StackPanel>

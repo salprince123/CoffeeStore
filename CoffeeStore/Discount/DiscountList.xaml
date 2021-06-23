@@ -64,28 +64,14 @@
                     <DatePicker x:Name="tbDateStart" Height="40"
                          VerticalContentAlignment="Center" FontSize="15"
                          materialDesign:HintAssist.Hint="Từ ngày" Padding="5"
-                                PreviewTextInput="tbDateStart_PreviewTextInput" PreviewKeyDown="tbDateStart_PreviewKeyDown">
-                        <DatePicker.Resources>
-                            <Style TargetType="{x:Type DatePickerTextBox}" 
-                        x:Key="MaterialDesignDatePickerTextBox" 
-                        BasedOn="{StaticResource MaterialDesignDatePickerTextBox}">
-                                <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DatePicker},Path=SelectedDate,StringFormat=dd/MM/yyyy}" />
-                            </Style>
-                        </DatePicker.Resources>
+                         PreviewTextInput="tbDateStart_PreviewTextInput" PreviewKeyDown="tbDateStart_PreviewKeyDown">
                     </DatePicker>
                 </Border>
                 <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1,1,1,0">
                     <DatePicker x:Name="tbDateEnd" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center" FontSize="15"
                          materialDesign:HintAssist.Hint="Đến ngày" Padding="5"
-                                PreviewTextInput="tbDateEnd_PreviewTextInput" PreviewKeyDown="tbDateEnd_PreviewKeyDown">
-                        <DatePicker.Resources>
-                            <Style TargetType="{x:Type DatePickerTextBox}" 
-                        x:Key="MaterialDesignDatePickerTextBox" 
-                        BasedOn="{StaticResource MaterialDesignDatePickerTextBox}">
-                                <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DatePicker},Path=SelectedDate,StringFormat=dd/MM/yyyy}" />
-                            </Style>
-                        </DatePicker.Resources>
+                         PreviewTextInput="tbDateEnd_PreviewTextInput" PreviewKeyDown="tbDateEnd_PreviewKeyDown">
                     </DatePicker>
                 </Border>
                 <TextBox x:Name="tbName" Grid.Column="4" 

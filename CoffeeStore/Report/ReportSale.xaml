@@ -8,7 +8,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DataContext="{d:DesignInstance  local:ReportSale}"
              mc:Ignorable="d" 
-             MinWidth="650" MinHeight="700" Height="700" >
+             MinWidth="650" MinHeight="700" Height="750" >
     <ScrollViewer VerticalScrollBarVisibility="Visible">
         <Grid Background="White" ScrollViewer.CanContentScroll="True">
             <Grid.RowDefinitions>
@@ -62,15 +62,7 @@
                     <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1,1,1,0">
                         <DatePicker x:Name="tbDateStart" Height="40"
                          VerticalContentAlignment="Center" FontSize="15"
-                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5"
-                                    PreviewTextInput="tbDateStart_PreviewTextInput" PreviewKeyDown="tbDateStart_PreviewKeyDown">
-                            <DatePicker.Resources>
-                                <Style TargetType="{x:Type DatePickerTextBox}" 
-                        x:Key="MaterialDesignDatePickerTextBox" 
-                        BasedOn="{StaticResource MaterialDesignDatePickerTextBox}">
-                                    <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DatePicker},Path=SelectedDate,StringFormat=dd/MM/yyyy}" />
-                                </Style>
-                            </DatePicker.Resources>
+                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5">
                         </DatePicker>
                     </Border>
                     <!--To-->
@@ -81,21 +73,14 @@
                         <DatePicker x:Name="tbDateEnd" Height="40" FontSize="15"
                          BorderThickness="1" VerticalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Đến ngày" Padding="5"
-                                    PreviewTextInput="tbDateEnd_PreviewTextInput" PreviewKeyDown="tbDateEnd_PreviewKeyDown">
-                            <DatePicker.Resources>
-                                <Style TargetType="{x:Type DatePickerTextBox}" 
-                        x:Key="MaterialDesignDatePickerTextBox" 
-                        BasedOn="{StaticResource MaterialDesignDatePickerTextBox}">
-                                    <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DatePicker},Path=SelectedDate,StringFormat=dd/MM/yyyy}" />
-                                </Style>
-                            </DatePicker.Resources>
+                         PreviewTextInput="tbDateStart_PreviewTextInput" PreviewKeyDown="tbDateStart_PreviewKeyDown">
                         </DatePicker>
                     </Border>
                     <!--Button show here-->
                     <Button Grid.Column="6" x:Name="btnShow" Width="120" Height="Auto"
                             BorderBrush="#6B6158" BorderThickness="1"
                             Background="#FFE297" Foreground="#6B6158"
-                                Click="btnShow_Click">
+                            Click="btnShow_Click">
                         Hiển thị
                     </Button>
                 </Grid>
