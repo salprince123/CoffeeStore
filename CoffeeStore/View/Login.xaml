@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:CoffeeStore.View"
              mc:Ignorable="d" 
              MinWidth="760" MinHeight="504">
@@ -31,21 +32,21 @@
                 <RowDefinition Height="0.3*"></RowDefinition>
                 <RowDefinition Height="0.8*"></RowDefinition>
                 <RowDefinition Height="0.8*"></RowDefinition>
-                <RowDefinition Height="0.3*"></RowDefinition>
+                <RowDefinition Height="0.2*"></RowDefinition>
                 <RowDefinition Height="0.5*"></RowDefinition>
                 <RowDefinition Height="0.8*"></RowDefinition>
                 <RowDefinition Height="0.3*"></RowDefinition>
                 <RowDefinition Height="0.5*"></RowDefinition>
                 <RowDefinition Height="0.8*"></RowDefinition>
-                <RowDefinition Height="0.3*"></RowDefinition>
+                <RowDefinition Height="0"></RowDefinition>
                 <RowDefinition Height="0.5*"></RowDefinition>
                 <RowDefinition Height="0.8*"></RowDefinition>
-                <RowDefinition Height="0.8*"></RowDefinition>
+                <RowDefinition Height="0.5*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Label Name="lblShopName" 
-                   Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="2" 
-                   VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
-                   Foreground="#FFF57300" FontFamily="Open Sans" FontSize="36" FontWeight="Bold">
+            <materialDesign:PackIcon Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="1"  Kind="Coffee" Background="Transparent" Foreground="#FFF57300" VerticalAlignment="Center" HorizontalAlignment="Center" Width="90" Height="90"/>
+            <Label Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="2" Name="lblShopName" 
+                   VerticalContentAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" 
+                   Foreground="#FFF57300" FontFamily="Open Sans" FontSize="30" FontWeight="Bold">
                 Ngao Coffee
             </Label>
             <Label Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="4" 
