@@ -11,7 +11,7 @@
         <!--Title bar here-->
         <Grid x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <UserControls:TitleBar/>
-            <TextBlock Text="Thêm món" 
+            <TextBlock Text="Sửa món" 
                        FontFamily="Montserrat"
                        FontSize="20" 
                        FontWeight="Bold"
