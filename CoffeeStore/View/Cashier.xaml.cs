@@ -197,7 +197,10 @@ namespace CoffeeStore.View
             BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
             bool isHavePermission = busAccPerGr.IsHavePermission(typeEmp, "AP006");
             if (isHavePermission)
+            {
                 _context.SwitchToMenu();
+                PrintScreen.Children.Clear();
+            }      
             else
                 MessageBox.Show("Bạn không có quyền sử dụng chức năng này!");
         }
@@ -205,6 +208,7 @@ namespace CoffeeStore.View
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             _context.SwitchBackHome();
+            PrintScreen.Children.Clear();
         }
 
         private void FilterButton_Click(object sender, RoutedEventArgs e)
@@ -236,7 +240,10 @@ namespace CoffeeStore.View
             BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
             bool isHavePermission = busAccPerGr.IsHavePermission(typeEmp, "AP007");
             if (isHavePermission)
+            {
                 _context.SwitchToDiscount();
+                PrintScreen.Children.Clear();
+            }     
             else
                 MessageBox.Show("Bạn không có quyền sử dụng chức năng này!");
         }
@@ -248,7 +255,10 @@ namespace CoffeeStore.View
             BUS_AccessPermissionGroup busAccPerGr = new BUS_AccessPermissionGroup();
             bool isHavePermission = busAccPerGr.IsHavePermission(typeEmp, "AP001");
             if (isHavePermission)
+            {
                 _context.SwitchToReceipt();
+                PrintScreen.Children.Clear();
+            }        
             else
                 MessageBox.Show("Bạn không có quyền sử dụng chức năng này!");
         }
@@ -256,6 +266,7 @@ namespace CoffeeStore.View
         private void LogOutBtn_Click(object sender, RoutedEventArgs e)
         {
             _context.LogOut();
+            PrintScreen.Children.Clear();
         }
         private void ChangePasswordBtn_Click(object sender, RoutedEventArgs e)
         {
