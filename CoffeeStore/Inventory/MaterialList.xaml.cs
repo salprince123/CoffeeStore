@@ -29,7 +29,13 @@ namespace CoffeeStore.Inventory
             InitializeComponent();
             dataGridMaterial.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             LoadData();
+            Loaded += LoadData;
         }
+        public void LoadData(Object sender, RoutedEventArgs e)
+        {
+            LoadData();
+        }
+
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = e.Row.GetIndex() + 1;
@@ -37,6 +43,7 @@ namespace CoffeeStore.Inventory
         }
         public List<InventoryObject> list = new List<InventoryObject>();
         public List<InventoryObject> findList = new List<InventoryObject>();
+        public List<String> materialInUse = new List<string>();
         public String selectionName = "";
         public class InventoryObject
         {
@@ -50,6 +57,7 @@ namespace CoffeeStore.Inventory
         public void LoadData()
         {
             btBack.IsEnabled = false;
+            
             list.Clear();
             Dictionary<String, int> mapNameAmount = new Dictionary<string, int>();
             Dictionary<String, String> mapNameUnit = new Dictionary<string, string>();
@@ -65,6 +73,7 @@ namespace CoffeeStore.Inventory
                 string use = row["isUse"].ToString();
                 if (use == "1")
                     mapNameAmount[name] = int.Parse(amount);
+                else materialInUse.Add(name);
             }
             //With unit
             BUS_Material mater = new BUS_Material();
@@ -86,6 +95,7 @@ namespace CoffeeStore.Inventory
                 string amount = row["Số lượng"].ToString();
                 if (mapNameAmount.ContainsKey(name))
                     mapNameAmount[name] -= int.Parse(amount);
+                materialInUse.Add(name);
             }
             //finally get the amount of mater in stock (if not import yet then:  amount =0 )
             int number0 = 1;
@@ -102,6 +112,8 @@ namespace CoffeeStore.Inventory
             else lblMaxPage.Content = list.Count / 10 + 1;
             if (int.Parse(lblMaxPage.Content.ToString()) == 0)
                 this.tbNumPage.Text = "0";
+            if (int.Parse(lblMaxPage.Content.ToString()) == 1)
+                btNext.IsEnabled = false;
             splitDataGrid(1);
         }
         public void splitDataGrid(int numpage)
@@ -146,6 +158,7 @@ namespace CoffeeStore.Inventory
         {
             findList.Clear();
             tbNumPage.Text = "1";
+            btBack.IsEnabled = false;
             foreach (InventoryObject obj in list.ToList())
             {
                 if (obj.Name.ToLower().Contains(keyword.ToLower()))
@@ -156,12 +169,15 @@ namespace CoffeeStore.Inventory
             else lblMaxPage.Content = findList.Count / 10 + 1;
             if (int.Parse(lblMaxPage.Content.ToString()) == 0)
                 this.tbNumPage.Text = "0";
+            if (int.Parse(lblMaxPage.Content.ToString()) == 1)
+                btNext.IsEnabled = false;
             dataGridMaterial.ItemsSource = findList;
             dataGridMaterial.Items.Refresh();
         }
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             findMaterial(tbFind.Text);
+
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -238,8 +254,17 @@ namespace CoffeeStore.Inventory
             InventoryObject row = (InventoryObject)dataGridMaterial.SelectedItem;
             if(int.Parse(row.Amount) > 0)
             {
-                MessageBox.Show($"Không thể xóa vật liệu vẫn còn trong kho!");
+                MessageBox.Show($"Không thể xóa vật liệu vẫn còn trong kho!");                
                 return;
+            }
+            for (int i = 0; i < materialInUse.Count; i++)
+            {
+                if (materialInUse[i].Contains(row.Name))
+                {
+                    MessageBox.Show($"Không thể xóa vật liệu đã được nhập/xuất kho!");
+                    return;
+                }
+
             }
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
             ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
@@ -250,16 +275,13 @@ namespace CoffeeStore.Inventory
                 WindowStyle = WindowStyle.None,
                 Title = "Xóa vật liệu ",
                 Content = new PopupDeleteConfirm(this, row.Name), //delete message
-                Width = 380,
+                Width = 420,
                 Height = 210,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
-
-           
-
         }
 
         private void btBack_Click(object sender, RoutedEventArgs e)
@@ -315,7 +337,6 @@ namespace CoffeeStore.Inventory
         private void tbNumPage_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox tb = (TextBox)sender;
-            tb.Text = string.Empty;
             tb.GotFocus -= tbNumPage_GotFocus;
         }
 
@@ -331,7 +352,7 @@ namespace CoffeeStore.Inventory
                     if(int.Parse(tbNumPage.Text) == (int)lblMaxPage.Content)
                     {
                         btNext.IsEnabled = false;
-                        btBack.IsEnabled = true;
+                        btBack.IsEnabled = true;                       
                     }
                     else if(int.Parse(tbNumPage.Text) == 1)
                     {
@@ -342,6 +363,12 @@ namespace CoffeeStore.Inventory
                     {
                         btNext.IsEnabled = true;
                         btBack.IsEnabled = true;
+                    }
+                    if (int.Parse(tbNumPage.Text) == (int)lblMaxPage.Content && (int)lblMaxPage.Content == 1)
+
+                    {
+                        btNext.IsEnabled = false;
+                        btBack.IsEnabled = false;
                     }
                 }
                 else MessageBox.Show("Trang không hợp lệ!");

@@ -49,6 +49,7 @@ namespace CoffeeStore.Discount
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
             tbNameValidation.Text = tbDateValidation.Text = tbRateValidation.Text = "";
+            tbDateValidation.HorizontalAlignment = HorizontalAlignment.Right;
             if (tbName.Text == "")
             {
                 tbNameValidation.Text = "Tên ưu đãi không được để trống.";
@@ -58,22 +59,14 @@ namespace CoffeeStore.Discount
             if (tbStartDate.SelectedDate == null)
             {
                 tbDateValidation.Text = "Ngày bắt đầu không được để trống.";
+                tbDateValidation.HorizontalAlignment = HorizontalAlignment.Left;
                 return;
             }
             
             if (DateTime.Compare((DateTime)tbStartDate.SelectedDate, DateTime.Now.Date) <= 0)
             {
                 tbDateValidation.Text = "Ngày bắt đầu phải sau ngày hiện tại.";
-                return;
-            }
-            if (DateTime.Compare((DateTime)tbEndDate.SelectedDate, DateTime.Now.Date) < 0)
-            {
-                tbDateValidation.Text = "Ngày kết thúc phải bằng hoặc sau ngày hiện tại.";
-                return;
-            }
-            if (DateTime.Compare((DateTime)tbEndDate.SelectedDate, DateTime.Now.Date) < 0)
-            {
-                tbDateValidation.Text = "Ngày kết thúc phải bằng hoặc sau ngày hiện tại.";
+                tbDateValidation.HorizontalAlignment = HorizontalAlignment.Left;
                 return;
             }
 
@@ -85,7 +78,7 @@ namespace CoffeeStore.Discount
 
             if (DateTime.Compare((DateTime)tbStartDate.SelectedDate, (DateTime)tbEndDate.SelectedDate) > 0)
             {
-                tbDateValidation.Text = "Ngày bắt đầu phải trước ngày kết thúc.";
+                tbDateValidation.Text = "Ngày kết thúc phải sau ngày bắt đầu.";
                 return;
             }
 

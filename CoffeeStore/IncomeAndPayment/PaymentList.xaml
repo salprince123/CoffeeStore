@@ -230,7 +230,7 @@
                         </DataGrid>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2">
-                            <Button x:Name="btnPrevious" Width="40" Height="Auto" 
+                            <Button x:Name="btnPagePre" Width="40" Height="Auto" 
                                     Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
                                     VerticalAlignment="Center" Click="btnPrevious_Click" >
                                 <materialDesign:PackIcon Kind="ChevronLeft" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
@@ -245,7 +245,7 @@
                             <Label Name="lblMaxPage" Width="35" 
                                    Content="10" FontWeight="SemiBold" FontSize="14"
                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Button x:Name="btnNext" Width="40" Height="Auto" 
+                            <Button x:Name="btnPageNext" Width="40" Height="Auto" 
                                     Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
                                     VerticalAlignment="Center" Click="btnNext_Click">
                                 <materialDesign:PackIcon Kind="ChevronRight" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />

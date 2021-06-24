@@ -80,15 +80,25 @@ namespace CoffeeStore.Menu
         }
         void setNumPage()
         {
-
             if (numRow % 20 == 0)
             {
                 maxNumpage = numRow / 20;
             }
             else
                 maxNumpage = numRow / 20 + 1;
-
+            
             lblMaxPage.Content = maxNumpage.ToString();
+            if (maxNumpage == 0)
+            {
+                tbNumPage.Text = "0";
+                btnPageNext.IsEnabled = false;
+            }
+            if (currentNumpage == maxNumpage)
+                btnPageNext.IsEnabled = false;
+            else
+                btnPageNext.IsEnabled = true;
+            if (currentNumpage == 1)
+                btnPagePre.IsEnabled = false;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -104,8 +114,7 @@ namespace CoffeeStore.Menu
                 Content = new PopupAddMenu(_context),
                 Width = 460,
                 Height = 380,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 380) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 
@@ -130,8 +139,7 @@ namespace CoffeeStore.Menu
                 Content = new PopupEditMenu(row.BeverageName, row.BeverageTypeID, row.Price.ToString(), row.BeverageID, this._context),
                 Width = 460,
                 Height = 380,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 540) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 380) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
@@ -151,10 +159,9 @@ namespace CoffeeStore.Menu
                 WindowStyle = WindowStyle.None,
                 Title = "Xóa món",
                 Content = new PopupDeleteConfirm(row, this._context),
-                Width = 380,
+                Width = 420,
                 Height = 210,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 380) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 210) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
@@ -167,8 +174,9 @@ namespace CoffeeStore.Menu
 
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
-            findBeverage();
+            currentNumpage = 1;
             tbNumPage.Text = "1";
+            findBeverage();
         }
         void findBeverage()
         {
@@ -213,12 +221,13 @@ namespace CoffeeStore.Menu
             currentNumpage = Int32.Parse(tbNumPage.Text);
             if (Int32.Parse(tbNumPage.Text) == 1)
             {
-
+                btnPagePre.IsEnabled = false;
             }
             else
             {
                 tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
                 currentNumpage--;
+                btnPageNext.IsEnabled = true;
                 if (!find)
                     loadData();
                 else
@@ -231,12 +240,13 @@ namespace CoffeeStore.Menu
             currentNumpage = Int32.Parse(tbNumPage.Text);
             if (Int32.Parse(tbNumPage.Text) == maxNumpage)
             {
-
+                btnPageNext.IsEnabled = false;
             }
             else
             {
                 tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
                 currentNumpage++;
+                btnPagePre.IsEnabled = true;
                 if (!find)
                     loadData();
                 else
@@ -253,11 +263,27 @@ namespace CoffeeStore.Menu
             if (e.Key == Key.Enter)
             {
                 if (tbNumPage.Text.Length != 0 && int.Parse(tbNumPage.Text) <= maxNumpage && int.Parse(tbNumPage.Text) > 0)
+                {
+                    int newPage = Int32.Parse(tbNumPage.Text);
+                    currentNumpage = newPage;
+                    if (currentNumpage == 1)
+                        btnPagePre.IsEnabled = false;
+                    else
+                        btnPagePre.IsEnabled = true;
+                    if (currentNumpage == maxNumpage)
+                        btnPageNext.IsEnabled = false;
+                    else
+                        btnPageNext.IsEnabled = true;
                     loadData();
+                }     
                 else
                 {
+                    MessageBox.Show("Không có trang này!");
                     tbNumPage.Text = currentNumpage.ToString();
-                    loadData();
+                    if (!find)
+                        loadData();
+                    else
+                        return;
                 }
             }
         }

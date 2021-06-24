@@ -158,11 +158,7 @@ namespace CoffeeStore.Inventory
         {
 
             dataGridMaterialImport.Items.Refresh();
-            // save in database
-            //insert InventoryImport
-
-            //MessageBox.Show(newImportID);
-            //insert InventoryImportdetails
+            
             BUS_InventoryImport import = new BUS_InventoryImport();
             String newImportID = import.Create(tbEmployeeName.Text, tbDate.Text);
             if (newImportID == null) return;

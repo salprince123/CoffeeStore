@@ -186,8 +186,8 @@ namespace CoffeeStore.IncomeAndPayment
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
                 Title = "Xóa hóa đơn",
-                Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa hóa đơn {id} không?", id, 1),
-                Width = 380,
+                Content = new PopupDeleteConfirm($"Bạn có chắc chắn muốn xóa hóa đơn\n{id} không?", id, 1),
+                Width = 420,
                 Height = 220,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
