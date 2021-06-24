@@ -55,6 +55,17 @@ namespace CoffeeStore.Account
             tboxEmpName.Text = editEmp.EmployeeName;
             tboxPassword.Password = editEmp.Password;
             cbEmpType.Text = editEmp.EmployeeTypeID;
+
+            if (editEmp.EmployeeID == "E001")
+            {
+                tboxAccount.IsEnabled = false;
+                cbEmpType.IsEnabled = false;
+            }
+            else
+            {
+                tboxAccount.IsEnabled = true;
+                cbEmpType.IsEnabled = true;
+            }    
         }    
 
         private void btSave_Click(object sender, RoutedEventArgs e)

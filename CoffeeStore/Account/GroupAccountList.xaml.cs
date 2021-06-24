@@ -199,6 +199,20 @@ namespace CoffeeStore.Account
         {
             string name = ((Button)sender).Tag.ToString();
 
+            BUS_EmployeeType busEmpType = new BUS_EmployeeType();
+            string id = busEmpType.GetIDByName(name);
+            if (id == "ET001")
+            {
+                MessageBox.Show("Đây là nhóm tài khoản gốc, không thể xóa!");
+                return;
+            }
+            BUS_Employees busEmp = new BUS_Employees();
+            if (busEmp.CountEmployeesByTypeID(id) > 0)
+            {
+                MessageBox.Show($"Không thể xóa do vẫn còn tài khoản có nhóm tài khoản này.");
+                return;
+            }
+
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
             ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
             ((MainWindow)App.Current.MainWindow).Effect = objBlur;
@@ -214,7 +228,6 @@ namespace CoffeeStore.Account
             };
             window.ShowDialog();
 
-            BUS_EmployeeType busEmpType = new BUS_EmployeeType();
             int empTypeCount = busEmpType.CountEmployeeTypes();
             if (empTypeCount % limitRow == 0)
                 lblMaxPage.Content = empTypeCount / limitRow;
@@ -243,6 +256,15 @@ namespace CoffeeStore.Account
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             string name = ((Button)sender).Tag.ToString();
+
+            BUS_EmployeeType busEmp = new BUS_EmployeeType();
+            string id = busEmp.GetIDByName(name);
+            if (id == "ET001")
+            {
+                MessageBox.Show("Đây là nhóm tài khoản gốc, không thể sửa!");
+                return;
+            }
+
             GroupAccountInfo editGrAcc = new GroupAccountInfo();
             for (int i = 0; i < dataGridGroupAccount.Items.Count; i++)
             {

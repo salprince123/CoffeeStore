@@ -98,7 +98,24 @@ namespace CoffeeStore.DAL
                 Console.WriteLine(ex.Message);
                 return 0;
             }
-        }    
+        }
+
+        public int CountEmployeesByTypeID(string id)
+        {
+            DataTable result = new DataTable();
+            try
+            {
+                string sql = $"select count(EmployeeID) from Employees where EmployeeTypeID = '{id}'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
+                da.Fill(result);
+                return Int32.Parse(result.Rows[0].ItemArray[0].ToString());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
+        }
 
         public DataTable GetEmployees(int limit, int offset)
         {

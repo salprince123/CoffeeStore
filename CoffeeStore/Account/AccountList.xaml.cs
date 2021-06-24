@@ -145,6 +145,12 @@ namespace CoffeeStore.Account
             {
                 MessageBox.Show("Không được xóa tài khoản của bản thân!");
                 return;
+            }
+
+            if (id == "E001")
+            {
+                MessageBox.Show("Đây là tài khoản gốc, không thể xóa!");
+                return;
             }    
 
             BUS_Employees busEmp = new BUS_Employees();
@@ -224,6 +230,13 @@ namespace CoffeeStore.Account
                 if (_context.GetCurrentEmpID() == id)
                 {
                     MessageBox.Show("Không được vô hiệu hóa tài khoản của bản thân!");
+                    ((CheckBox)sender).IsChecked = true;
+                    return;
+                }
+
+                if ("E001" == id)
+                {
+                    MessageBox.Show("Đây là tài khoản gốc, không được vô hiệu hóa!");
                     ((CheckBox)sender).IsChecked = true;
                     return;
                 }

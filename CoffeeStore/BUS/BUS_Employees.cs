@@ -71,5 +71,10 @@ namespace CoffeeStore.BUS
         {
             return dalEmp.IsDoingAnything(id);
         }
+
+        public int CountEmployeesByTypeID(string id)
+        {
+            return dalEmp.CountEmployeesByTypeID(id);
+        }    
     }
 }
