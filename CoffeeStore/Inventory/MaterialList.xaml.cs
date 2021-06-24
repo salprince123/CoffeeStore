@@ -250,7 +250,7 @@ namespace CoffeeStore.Inventory
                 WindowStyle = WindowStyle.None,
                 Title = "Xóa vật liệu ",
                 Content = new PopupDeleteConfirm(this, row.Name), //delete message
-                Width = 380,
+                Width = 420,
                 Height = 210,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };

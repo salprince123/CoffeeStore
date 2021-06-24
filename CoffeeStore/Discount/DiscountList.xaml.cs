@@ -203,7 +203,7 @@ namespace CoffeeStore.Discount
                 WindowStyle = WindowStyle.None,
                 Title = "Xóa ưu đãi",
                 Content = new PopupDeleteConfirm(row, _context),
-                Width = 380,
+                Width = 420,
                 Height = 210,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };

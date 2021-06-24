@@ -42,7 +42,7 @@ namespace CoffeeStore.Inventory
                 case MaterialList list:
                     {
                         //this.tbContent.HorizontalAlignment = HorizontalAlignment.Center;
-                        this.tbContent.Text = $"Dữ liệu về vật liệu {deleteID} sẽ \nbị xóa vĩnh viễn. Bạn chắc chắn muốn xóa?";
+                        this.tbContent.Text = $"Dữ liệu về vật liệu {deleteID} sẽ bị xóa vĩnh viễn.\nBạn chắc chắn muốn xóa?";
                         break;
                     }
             }

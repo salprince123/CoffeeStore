@@ -6,25 +6,42 @@
              xmlns:local="clr-namespace:CoffeeStore.IncomeAndPayment"
              xmlns:UserControls="clr-namespace:CoffeeStore.View"
              mc:Ignorable="d" 
-             Height="210" Width="390">
-    <StackPanel Background="White" Margin="0,0,0.4,-0.4">
+             MinHeight="220" MinWidth="380">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
         <!--Title bar here-->
-        <Grid Margin="0,-5,0,0" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <Grid Margin="0,0,0,0" x:Name="topBar" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <UserControls:TitleBar/>
         </Grid>
-        <!--Popup content-->
-        <TextBlock x:Name="tblContent" Margin="30" HorizontalAlignment="Center"
-                   Text="Dữ liệu về ... sẽ bị xóa vĩnh viễn. &#x0a;Bạn chắc chắn muốn xóa?" 
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--Popup content-->
+            <TextBlock Grid.Column="1" Grid.Row="1" x:Name="tblContent" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Text="Dữ liệu về sẽ bị xóa vĩnh viễn. &#x0a;Bạn chắc chắn muốn xóa?" 
                    Height="39"
                    FontSize="15"/>
-        <!--Button-->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="btSave" Height="40" Width="105"
-                    Content="XÁC NHẬN" Margin="0" Background="#66A3FF"
-                    Click="btSave_Click"/>
-            <Button x:Name="btExit" Height="40" Width="100"
-                    Content="HỦY" Margin="10,0,0,0" Background="#F27047"
-                    Click="btExit_Click"/>
-        </StackPanel>
-    </StackPanel>
+            <!--Button-->
+            <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btSave" Height="40" Width="105"
+                    Content="XÁC NHẬN" Margin="0" Background="#66A3FF" Click="btSave_Click"/>
+                <Button x:Name="btExit" Height="40" Width="100"
+                    Content="HỦY" Margin="10,0,0,0" Background="#F27047" Click="btExit_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
 </UserControl>
