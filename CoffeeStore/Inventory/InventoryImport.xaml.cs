@@ -45,7 +45,7 @@ namespace CoffeeStore.Inventory
             public String IsUsing { get; set; }
         }
         public InventoryImport(MainWindow mainWindow, string page="1")
-        {
+        { 
             InitializeComponent();
             dataGridImport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             this._context = mainWindow;
@@ -66,8 +66,7 @@ namespace CoffeeStore.Inventory
 
         public void LoadData()
         {
-            btBack.IsEnabled = false;
-            //MessageBox.Show(lblMaxPage.Content.ToString());
+            btBack.IsEnabled = false;         
             
             username = _context.GetCurrentEmpName();
             mainList.Clear();
@@ -101,8 +100,6 @@ namespace CoffeeStore.Inventory
                     displayList = mainList.GetRange((numpage - 1) * numberPerSheet, mainList.Count - (numpage - 1) * numberPerSheet);
                 }
                 else displayList = mainList.GetRange((numpage - 1) * numberPerSheet, numberPerSheet);
-                //displayList = list.GetRange(10, list.Count-10);
-                
                 this.dataGridImport.ItemsSource = displayList;
                 this.dataGridImport.Items.Refresh();
             }
@@ -116,14 +113,19 @@ namespace CoffeeStore.Inventory
             try
             {
                 List<InventoryImportObject> displayList = new List<InventoryImportObject>();
+                if(numpage==0)
+                {
+                    this.dataGridImport.ItemsSource = findList;
+                    this.dataGridImport.Items.Refresh();
+                    return;
+                }
                 int numberPerSheet = 20;
                 if (findList.Count < numberPerSheet * numpage)
                 {
                     displayList = findList.GetRange((numpage - 1) * numberPerSheet, findList.Count - (numpage - 1) * numberPerSheet);
                 }
                 else displayList = findList.GetRange((numpage - 1) * numberPerSheet, numberPerSheet);
-                //displayList = list.GetRange(10, list.Count-10);
-                
+                //displayList = list.GetRange(10, list.Count-10);                
                 this.dataGridImport.ItemsSource = displayList;
                 this.dataGridImport.Items.Refresh();
             }
@@ -154,16 +156,15 @@ namespace CoffeeStore.Inventory
                 return;
             }
                 
-            //MessageBox.Show($"{ fromTime} {toTime}");
+            //MessageBox.Show($"{ mainList.Count.ToString()} ");
             foreach (InventoryImportObject obj in mainList.ToList())
-            {
-                
+            {                
                 DateTime importTime = DateTime.ParseExact(obj.InventoryDate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
                 if(fromTime <= importTime && importTime <= toTime)
                 {
                     if( id != "")
                     {
-                        if(obj.ID.Contains(id) || obj.EmployName.Contains(id))
+                        if(obj.ID.ToLower().Contains(id.ToLower()) || obj.EmployName.ToLower().Contains(id.ToLower()))
                             findList.Add(new InventoryImportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate });
                     }
                     else
@@ -172,11 +173,16 @@ namespace CoffeeStore.Inventory
                     }
                 }
             }
-            if (mainList.Count % 10 == 0)
-                lblMaxPage.Content = findList.Count / 10;
-            else lblMaxPage.Content = findList.Count / 10 + 1;
-            if (int.Parse(lblMaxPage.Content.ToString()) == 0)
+            int rowPerSheet = 20;
+            btNext.IsEnabled = true;
+            if (findList.Count % rowPerSheet == 0)
+                lblMaxPage.Content = findList.Count / rowPerSheet;
+            else lblMaxPage.Content = findList.Count / rowPerSheet + 1;
+            if (int.Parse(lblMaxPage.Content.ToString()) == 0)           
                 this.tbNumPage.Text = "0";
+            else this.tbNumPage.Text = "1";
+            if (int.Parse(lblMaxPage.Content.ToString()) < 2)
+                btNext.IsEnabled = false;
             splitDataGridFind(int.Parse(tbNumPage.Text));
             this.findFlag = true;
         }

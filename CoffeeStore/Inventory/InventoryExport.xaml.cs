@@ -93,6 +93,12 @@ namespace CoffeeStore.Inventory
             try
             {
                 List<InventoryExportObject> displayList = new List<InventoryExportObject>();
+                if (numpage == 0)
+                {
+                    this.dataGridExport.ItemsSource = list;
+                    this.dataGridExport.Items.Refresh();
+                    return;
+                }
                 int numberPerSheet = 20;
                 if (list.Count < numberPerSheet * numpage)
                 {
@@ -113,6 +119,12 @@ namespace CoffeeStore.Inventory
             try
             {
                 List<InventoryExportObject> displayList = new List<InventoryExportObject>();
+                if (numpage == 0)
+                {
+                    this.dataGridExport.ItemsSource = findList;
+                    this.dataGridExport.Items.Refresh();
+                    return;
+                }
                 int numberPerSheet = 20;
                 if (findList.Count < numberPerSheet * numpage)
                 {
@@ -255,7 +267,7 @@ namespace CoffeeStore.Inventory
                 {
                     if (id != "")
                     {
-                        if (obj.ID.Contains(id) || obj.EmployName.Contains(id))
+                        if (obj.ID.ToLower().Contains(id.ToLower()) || obj.EmployName.ToLower().Contains(id.ToLower()))
                             findList.Add(new InventoryExportObject() { ID = obj.ID, EmployName = obj.EmployName, InventoryDate = obj.InventoryDate });
                     }
                     else
@@ -264,9 +276,18 @@ namespace CoffeeStore.Inventory
                     }
                 }
             }
-            findFlag = true;
-            dataGridExport.ItemsSource = findList;
-            dataGridExport.Items.Refresh();
+            int rowPerSheet = 20;
+            btNext.IsEnabled = true;
+            if (findList.Count % rowPerSheet == 0)
+                lblMaxPage.Content = findList.Count / rowPerSheet;
+            else lblMaxPage.Content = findList.Count / rowPerSheet + 1;
+            if (int.Parse(lblMaxPage.Content.ToString()) == 0)
+                this.tbNumPage.Text = "0";
+            else this.tbNumPage.Text = "1";
+            if (int.Parse(lblMaxPage.Content.ToString()) < 2)
+                btNext.IsEnabled = false;
+            splitDataGridFind(int.Parse(tbNumPage.Text));
+            this.findFlag = true;
         }
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {

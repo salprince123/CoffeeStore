@@ -123,6 +123,12 @@ namespace CoffeeStore.Inventory
             try 
             {                
                 List<InventoryObject> displayList = new List<InventoryObject>();
+                if (numpage == 0)
+                {
+                    this.dataGridMaterial.ItemsSource = list;
+                    this.dataGridMaterial.Items.Refresh();
+                    return;
+                }
                 int numberPersheet = 20;
                 if (list.Count < numberPersheet * numpage)
                 {
@@ -143,6 +149,12 @@ namespace CoffeeStore.Inventory
             try
             {
                 List<InventoryObject> displayList = new List<InventoryObject>();
+                if (numpage == 0)
+                {
+                    this.dataGridMaterial.ItemsSource = findList;
+                    this.dataGridMaterial.Items.Refresh();
+                    return;
+                }
                 int numberPersheet = 20;
                 if (findList.Count < numberPersheet * numpage)
                 {
@@ -168,15 +180,17 @@ namespace CoffeeStore.Inventory
                 if (obj.Name.ToLower().Contains(keyword.ToLower()))
                     findList.Add(obj);
             }
-            if (findList.Count % 10 == 0)
-                lblMaxPage.Content = findList.Count / 10;
-            else lblMaxPage.Content = findList.Count / 10 + 1;
+            int rowPerSheet = 20;
+            btNext.IsEnabled = true;
+            if (findList.Count % rowPerSheet == 0)
+                lblMaxPage.Content = findList.Count / rowPerSheet;
+            else lblMaxPage.Content = findList.Count / rowPerSheet + 1;
             if (int.Parse(lblMaxPage.Content.ToString()) == 0)
                 this.tbNumPage.Text = "0";
-            if (int.Parse(lblMaxPage.Content.ToString()) == 1)
+            else this.tbNumPage.Text = "1";
+            if (int.Parse(lblMaxPage.Content.ToString()) < 2)
                 btNext.IsEnabled = false;
-            dataGridMaterial.ItemsSource = findList;
-            dataGridMaterial.Items.Refresh();
+            splitDataGridFind(int.Parse(tbNumPage.Text));
         }
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
