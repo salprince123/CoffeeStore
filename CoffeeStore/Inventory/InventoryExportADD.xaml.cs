@@ -177,6 +177,11 @@ namespace CoffeeStore.Inventory
             //insert InventoryImportdetails
             if (newExportID == null) return;
             List<String> sqlString = new List<string>();
+            if (list.Count.Equals(0))
+            {
+                MessageBox.Show($"Danh sách nguyên vật liệu, thiết bị không được để trống!");
+                return;
+            }
             foreach (InventoryExportDetailObject obj in list)
             {
                 int amountInExport; int temp1 = -1, temp2 = -1;
@@ -184,23 +189,23 @@ namespace CoffeeStore.Inventory
                 {
                     if (mapNameAmountInStock[obj.name] < amountInExport)
                     {
-                        MessageBox.Show($"Số lượng vật liệu '{obj.name}' chỉ còn {mapNameAmountInStock[obj.name]} !");
+                        MessageBox.Show($"Số lượng của {obj.name} trong kho chỉ còn {mapNameAmountInStock[obj.name]}!");
                         export.Delete(newExportID);
                         return;
                     }
                 }
                 if (!int.TryParse(obj.amount, out temp2) || temp2 <= 0)
                 {
-                    MessageBox.Show($"Số lượng { obj.name} không hợp lệ , vui lòng nhập lại!");
+                    MessageBox.Show($"Số lượng của {obj.name} không hợp lệ!");
                     export.Delete(newExportID);
                     return;
                 }
-                if (tbDescription.Text.Length ==0)
-                {
-                    MessageBox.Show($"Vui lòng nhập lí do !");
-                    export.Delete(newExportID);
-                    return;
-                }
+                //if (tbDescription.Text.Length ==0)
+                //{
+                //    MessageBox.Show($"Vui lòng nhập lí do !");
+                //    export.Delete(newExportID);
+                //    return;
+                //}
                 
                 string temp = $"insert into InventoryExportDetail values ('{newExportID}','{obj.id}','{obj.amount}')";
                 sqlString.Add(temp);

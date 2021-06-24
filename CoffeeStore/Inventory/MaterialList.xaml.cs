@@ -162,6 +162,7 @@ namespace CoffeeStore.Inventory
         {
             findList.Clear();
             tbNumPage.Text = "1";
+            btBack.IsEnabled = false;
             foreach (InventoryObject obj in list.ToList())
             {
                 if (obj.Name.ToLower().Contains(keyword.ToLower()))
@@ -172,12 +173,15 @@ namespace CoffeeStore.Inventory
             else lblMaxPage.Content = findList.Count / 10 + 1;
             if (int.Parse(lblMaxPage.Content.ToString()) == 0)
                 this.tbNumPage.Text = "0";
+            if (int.Parse(lblMaxPage.Content.ToString()) == 1)
+                btNext.IsEnabled = false;
             dataGridMaterial.ItemsSource = findList;
             dataGridMaterial.Items.Refresh();
         }
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             findMaterial(tbFind.Text);
+
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -287,9 +291,6 @@ namespace CoffeeStore.Inventory
             else this.btNext.IsEnabled = true;
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
-
-           
-
         }
 
         private void btBack_Click(object sender, RoutedEventArgs e)
