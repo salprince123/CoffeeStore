@@ -23,6 +23,7 @@ namespace CoffeeStore.Inventory
         public String selectionID = "";
         public String selectionName = "";
         bool findFlag = false;
+        public int page { get; set; }
         MainWindow _context;
         public String username { get; set; }
         public InventoryImportObject row;
@@ -43,11 +44,12 @@ namespace CoffeeStore.Inventory
             //this variable for button add/del/edit
             public String IsUsing { get; set; }
         }
-        public InventoryImport(MainWindow mainWindow)
+        public InventoryImport(MainWindow mainWindow, string page="1")
         {
             InitializeComponent();
             dataGridImport.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             this._context = mainWindow;
+            this.page = int.Parse(page);
             Loaded += LoadData;
             //LoadData();
         }
@@ -78,21 +80,22 @@ namespace CoffeeStore.Inventory
                 string date = row["importDate"].ToString();
                 mainList.Add(new InventoryImportObject() { ID = id, EmployName = employid, InventoryDate = date });
             }
-            if (mainList.Count % 10 == 0)
-                lblMaxPage.Content = mainList.Count / 10;
-            else lblMaxPage.Content = mainList.Count / 10 + 1;
+            int rowPerSheet = 20;
+            if (mainList.Count % rowPerSheet == 0)
+                lblMaxPage.Content = mainList.Count / rowPerSheet;
+            else lblMaxPage.Content = mainList.Count / rowPerSheet + 1;
             if (int.Parse(lblMaxPage.Content.ToString()) == 0)
                 this.tbNumPage.Text = "0";
             if (int.Parse(lblMaxPage.Content.ToString()) < 2)
                 btNext.IsEnabled = false;
-            splitDataGrid(1);
+            splitDataGrid(page);
         }
         public void splitDataGrid(int numpage)
         {
             try
             {
                 List<InventoryImportObject> displayList = new List<InventoryImportObject>();
-                int numberPerSheet = 10;
+                int numberPerSheet = 20;
                 if (mainList.Count < numberPerSheet * numpage)
                 {
                     displayList = mainList.GetRange((numpage - 1) * numberPerSheet, mainList.Count - (numpage - 1) * numberPerSheet);
@@ -113,7 +116,7 @@ namespace CoffeeStore.Inventory
             try
             {
                 List<InventoryImportObject> displayList = new List<InventoryImportObject>();
-                int numberPerSheet = 10;
+                int numberPerSheet = 20;
                 if (findList.Count < numberPerSheet * numpage)
                 {
                     displayList = findList.GetRange((numpage - 1) * numberPerSheet, findList.Count - (numpage - 1) * numberPerSheet);
@@ -328,6 +331,11 @@ namespace CoffeeStore.Inventory
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
+            this.tbNumPage.Text = "1";
+            this.btBack.IsEnabled = false;
+            if((int)lblMaxPage.Content ==1)
+                this.btNext.IsEnabled = false;
+            else this.btNext.IsEnabled = true;
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
         }
@@ -383,7 +391,13 @@ namespace CoffeeStore.Inventory
                     splitDataGrid(int.Parse(tbNumPage.Text));
                 else splitDataGridFind(int.Parse(tbNumPage.Text));
                 if (int.Parse(tbNumPage.Text) == 1)
+                {
                     btBack.IsEnabled = false;
+                    if ((int)lblMaxPage.Content == 1)
+                        btNext.IsEnabled = false;
+                    else btNext.IsEnabled = true;
+                }
+
                 else
                 {
                     btNext.IsEnabled = true;
@@ -401,11 +415,15 @@ namespace CoffeeStore.Inventory
                     splitDataGrid(int.Parse(tbNumPage.Text));
                 else splitDataGridFind(int.Parse(tbNumPage.Text));
                 if (int.Parse(tbNumPage.Text) == (int)lblMaxPage.Content)
+                {
+                    // MessageBox.Show("");
                     btNext.IsEnabled = false;
+                    btBack.IsEnabled = true;
+                }
                 else
                 {
                     btNext.IsEnabled = true;
-                    btBack.IsEnabled = true;
+
                 }
             }
         }
@@ -448,7 +466,7 @@ namespace CoffeeStore.Inventory
         {
             TextBox tb = (TextBox)sender;
             tb.Text = string.Empty;
-            tb.GotFocus -= tbNumPage_GotFocus;
+            //tb.GotFocus -= tbNumPage_GotFocus;
         }
 
         private void tbNumPage_KeyDown(object sender, KeyEventArgs e)

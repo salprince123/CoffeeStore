@@ -243,7 +243,7 @@
                                     VerticalAlignment="Center">
                                 <materialDesign:PackIcon Kind="ChevronLeft" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Black" />
                             </Button>
-                            <TextBox Name="tbNumPage" Width="35" Height="30" KeyDown="tbNumPage_KeyDown"
+                            <TextBox Name="tbNumPage" Width="35" Height="30" KeyDown="tbNumPage_KeyDown" GotFocus="tbNumPage_GotFocus"
                                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                                      Text="1" FontWeight="SemiBold" FontSize="14" 
                                      Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,1"

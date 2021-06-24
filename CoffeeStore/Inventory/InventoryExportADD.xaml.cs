@@ -273,7 +273,7 @@ namespace CoffeeStore.Inventory
         {
             TextBox tb = (TextBox)sender;
             tb.Text = string.Empty;
-            tb.GotFocus -= tbAmount_GotFocus;
+            //tb.GotFocus -= tbAmount_GotFocus;
         }
 
         private void tbDescription_PreviewTextInput(object sender, TextCompositionEventArgs e)

@@ -75,9 +75,10 @@ namespace CoffeeStore.Inventory
                 list.Add(new InventoryExportObject() { ID = id, EmployName = employid, InventoryDate = date });
 
             }
-            if (list.Count % 10 == 0)
-                lblMaxPage.Content = list.Count / 10;
-            else lblMaxPage.Content = list.Count / 10 + 1;
+            int rowPerSheet = 20;
+            if (list.Count % rowPerSheet == 0)
+                lblMaxPage.Content = list.Count / rowPerSheet;
+            else lblMaxPage.Content = list.Count / rowPerSheet + 1;
             if (int.Parse(lblMaxPage.Content.ToString()) == 0)
                 this.tbNumPage.Text = "0";
             //MessageBox.Show(lblMaxPage.Content.ToString());
@@ -92,7 +93,7 @@ namespace CoffeeStore.Inventory
             try
             {
                 List<InventoryExportObject> displayList = new List<InventoryExportObject>();
-                int numberPerSheet = 10;
+                int numberPerSheet = 20;
                 if (list.Count < numberPerSheet * numpage)
                 {
                     displayList = list.GetRange((numpage - 1) * numberPerSheet, list.Count - (numpage - 1) * numberPerSheet);
@@ -112,7 +113,7 @@ namespace CoffeeStore.Inventory
             try
             {
                 List<InventoryExportObject> displayList = new List<InventoryExportObject>();
-                int numberPerSheet = 10;
+                int numberPerSheet = 20;
                 if (findList.Count < numberPerSheet * numpage)
                 {
                     displayList = findList.GetRange((numpage - 1) * numberPerSheet, findList.Count - (numpage - 1) * numberPerSheet);
@@ -163,6 +164,13 @@ namespace CoffeeStore.Inventory
         {
             InventoryExportObject row = (InventoryExportObject)dataGridExport.SelectedItem;
             if (row == null) return;
+            DateTime importDate = DateTime.ParseExact(row.InventoryDate, "dd/MM/yyyy", null);
+
+            if ((DateTime.Now - importDate) > TimeSpan.FromDays(2))
+            {
+                MessageBox.Show($"Không thể chỉnh sửa do phiếu đã được tạo cách đây hơn 2 ngày.");
+                return;
+            }
             BUS_InventoryExport export = new BUS_InventoryExport();
             var screen = new InventoryExportEDIT(row.ID, row.EmployName, row.InventoryDate, export.SelectDescription(row.ID), _context);
             if (screen != null)
@@ -198,6 +206,11 @@ namespace CoffeeStore.Inventory
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
+            this.tbNumPage.Text = "1";
+            this.btBack.IsEnabled = false;
+            if ((int)lblMaxPage.Content == 1)
+                this.btNext.IsEnabled = false;
+            else this.btNext.IsEnabled = true;
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
 
@@ -267,6 +280,19 @@ namespace CoffeeStore.Inventory
                 if (!findFlag)
                     splitDataGrid(int.Parse(tbNumPage.Text));
                 else splitDataGridFind(int.Parse(tbNumPage.Text));
+                if (int.Parse(tbNumPage.Text) == 1)
+                {
+                    btBack.IsEnabled = false;
+                    if ((int)lblMaxPage.Content == 1)
+                        btNext.IsEnabled = false;
+                    else btNext.IsEnabled = true;
+                }
+
+                else
+                {
+                    btNext.IsEnabled = true;
+                    btBack.IsEnabled = true;
+                }
             }
         }
 
@@ -278,6 +304,17 @@ namespace CoffeeStore.Inventory
                 if (!findFlag)
                     splitDataGrid(int.Parse(tbNumPage.Text));
                 else splitDataGridFind(int.Parse(tbNumPage.Text));
+                if (int.Parse(tbNumPage.Text) == (int)lblMaxPage.Content)
+                {
+                    // MessageBox.Show("");
+                    btNext.IsEnabled = false;
+                    btBack.IsEnabled = true;
+                }
+                else
+                {
+                    btNext.IsEnabled = true;
+
+                }
             }
         }
 
@@ -348,6 +385,11 @@ namespace CoffeeStore.Inventory
                 }
                 else MessageBox.Show("Trang không hợp lệ!");
             }
+        }
+        private void tbNumPage_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
         }
     }
 }

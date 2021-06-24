@@ -220,14 +220,14 @@ namespace CoffeeStore.Inventory
         {
             TextBox tb = (TextBox)sender;
             tb.Text = string.Empty;
-            tb.GotFocus -= tbPrice_GotFocus;
+            //tb.GotFocus -= tbPrice_GotFocus;
         }
 
         private void tbAmount_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox tb = (TextBox)sender;
             tb.Text = string.Empty;
-            tb.GotFocus -= tbAmount_GotFocus;
+            //tb.GotFocus -= tbAmount_GotFocus;
         }
     }
 }

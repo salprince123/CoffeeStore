@@ -22,6 +22,7 @@ namespace CoffeeStore.Inventory
     {
         private object _context;
         private string deleteID;
+        private string page;
         public PopupDeleteConfirm()
         {
             InitializeComponent();
@@ -36,7 +37,13 @@ namespace CoffeeStore.Inventory
                 case InventoryImport import:
                     {
                         //this.tbContent.HorizontalAlignment = HorizontalAlignment.Center;
-                        this.tbContent.Text = $"Dữ liệu về phiếu nhập kho {deleteID} sẽ \nbị xóa vĩnh viễn. Bạn chắc chắn muốn xóa?";
+                        this.tbContent.Text = $"Dữ liệu về phiếu nhập kho {deleteID} sẽ bị xóa vĩnh viễn.\n Bạn chắc chắn muốn xóa?";
+                        break;
+                    }
+                case InventoryExport export:
+                    {
+                        //this.tbContent.HorizontalAlignment = HorizontalAlignment.Center;
+                        this.tbContent.Text = $"Dữ liệu về phiếu xuất kho {deleteID} sẽ bị xóa vĩnh viễn.\n Bạn chắc chắn muốn xóa?";
                         break;
                     }
                 case MaterialList list:
@@ -75,7 +82,7 @@ namespace CoffeeStore.Inventory
         }
 
         private void btExit_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             Window.GetWindow(this).Close();
         }
     }
