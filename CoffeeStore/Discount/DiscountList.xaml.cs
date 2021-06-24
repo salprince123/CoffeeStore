@@ -94,7 +94,6 @@ namespace CoffeeStore.Discount
         }
         void setNumPage()
         {
-
             if (numRow % 20 == 0)
             {
                 maxNumpage = numRow / 20;
@@ -103,7 +102,11 @@ namespace CoffeeStore.Discount
                 maxNumpage = numRow / 20 + 1;
 
             lblMaxPage.Content = maxNumpage.ToString();
-
+            if(maxNumpage == 0)
+            {
+                tbNumPage.Text = "0";
+                btnPageNext.IsEnabled = false;
+            }    
             if (currentNumpage == maxNumpage)
                 btnPageNext.IsEnabled = false;
             else

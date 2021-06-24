@@ -447,7 +447,6 @@ namespace CoffeeStore.Inventory
         private void tbNumPage_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox tb = (TextBox)sender;
-            tb.Text = string.Empty;
             tb.GotFocus -= tbNumPage_GotFocus;
         }
 
