@@ -173,6 +173,7 @@ namespace CoffeeStore.Account
                 Title = "Thêm nhóm tài khoản",
                 Content = new PopupAddGroupAccount(),
                 Width = 460,
+                Height = 540,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
@@ -260,6 +261,7 @@ namespace CoffeeStore.Account
                 Title = "Sửa nhóm tài khoản",
                 Content = new PopupEditGroupAccount(editGrAcc),
                 Width = 460,
+                Height = 540,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();

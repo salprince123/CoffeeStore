@@ -197,7 +197,7 @@ namespace CoffeeStore.Inventory
                     ResizeMode = ResizeMode.NoResize,
                     WindowStyle = WindowStyle.None,
                     Title = "Chi tiết phiếu nhập",
-                    Height = 630,
+                    Height = 600,
                     Width = 500,
                     Content = new PopupInventoryImportDETAIL(row.ID, row.EmployName, row.InventoryDate),
                     WindowStartupLocation = WindowStartupLocation.CenterScreen

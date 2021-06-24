@@ -208,8 +208,7 @@ namespace CoffeeStore
                 Content = new Account.PopupChangePassword(currentEmpID),
                 Width = 460,
                 Height = 380,
-                Left = (Application.Current.MainWindow.Left + Application.Current.MainWindow.Width - 460) / 2,
-                Top = (Application.Current.MainWindow.Top + Application.Current.MainWindow.Height - 380) / 2,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
 

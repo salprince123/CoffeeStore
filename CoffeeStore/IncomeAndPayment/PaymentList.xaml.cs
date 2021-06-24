@@ -125,6 +125,7 @@ namespace CoffeeStore.IncomeAndPayment
                 WindowStyle = WindowStyle.None,
                 Title = "Chi tiết phiếu chi",
                 Content = new PopupPaymentDetail(dto),
+                Height = 440,
                 Width = 460,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };

@@ -230,6 +230,7 @@ namespace CoffeeStore.Discount
                 Title = "Chi tiết ưu đãi",
                 Content = new PopupDiscountDetail(row.DiscountID),
                 Width = 460,
+                Height = 440,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
