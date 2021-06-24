@@ -193,6 +193,10 @@ namespace CoffeeStore
             StackPanelMain.Children.Clear();
             gridLogin.Children.Clear();
             gridLogin.Children.Add(loginScreen);
+            ((MenuItem)Menu.Children[3]).ExpanderMenu.IsExpanded = false;
+            ((MenuItem)Menu.Children[4]).ExpanderMenu.IsExpanded = false;
+            ((MenuItem)Menu.Children[5]).ExpanderMenu.IsExpanded = false;
+            ((MenuItem)Menu.Children[6]).ExpanderMenu.IsExpanded = false;
         }
 
         internal void PopupChangePassword()
