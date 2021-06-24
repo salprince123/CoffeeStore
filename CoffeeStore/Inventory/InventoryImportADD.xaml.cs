@@ -163,18 +163,23 @@ namespace CoffeeStore.Inventory
             String newImportID = import.Create(tbEmployeeName.Text, tbDate.Text);
             if (newImportID == null) return;
             List<String> sqlString = new List<string>();
+            if (list.Count.Equals(0))
+            {
+                MessageBox.Show($"Danh sách nguyên vật liệu, thiết bị không được để trống!");
+                return;
+            }
             foreach (InventoryImportDetailObject obj in list)
             {
                 int temp1=-1,temp2=-1;
                 if (!int.TryParse(obj.unitPrice,out temp1) || temp1 <= 0 || obj.unitPrice == "" || obj.unitPrice == null)                    
                 {
-                    MessageBox.Show($"Đơn giá không hợp lệ, vui lòng nhập lại!");
+                    MessageBox.Show($"Đơn giá của {obj.name} không hợp lệ!");
                     import.Delete(newImportID);
                     return;
                 }
                 else if ( !int.TryParse(obj.amount, out temp2) || temp2 <= 0)
                 {
-                    MessageBox.Show($"Số lượng không hợp lệ {temp2}, vui lòng nhập lại!");
+                    MessageBox.Show($"Số lượng của {obj.name} không hợp lệ!");
                     import.Delete(newImportID);
                     return;
                 }

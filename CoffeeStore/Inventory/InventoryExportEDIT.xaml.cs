@@ -167,7 +167,12 @@ namespace CoffeeStore.Inventory
         }
 
         private void btSave_Click(object sender, RoutedEventArgs e)
-        {            
+        {
+            if (list.Count.Equals(0))
+            {
+                MessageBox.Show($"Danh sách nguyên vật liệu, thiết bị không được để trống!");
+                return;
+            }
             foreach (InventoryObject obj in list)
             {
                 int amountInExport; int temp1 = -1, temp2 = -1;
@@ -175,20 +180,20 @@ namespace CoffeeStore.Inventory
                 {
                     if (mapNameAmountInStock[obj.name] < amountInExport)
                     {
-                        MessageBox.Show($"Số lượng vật liệu '{obj.name}' chỉ còn {mapNameAmountInStock[obj.name]} !");
+                        MessageBox.Show($"Số lượng của '{obj.name}' trong kho chỉ còn {mapNameAmountInStock[obj.name]}!");
                         return;
                     }
                 }
                 if (!int.TryParse(obj.amount, out temp2) || temp2 <= 0)
                 {
-                    MessageBox.Show($"Số lượng { obj.name} không hợp lệ , vui lòng nhập lại!");
+                    MessageBox.Show($"Số lượng của {obj.name} không hợp lệ!");
                     return;
                 }
-                if (tbDescription.Text.Length == 0)
-                {
-                    MessageBox.Show($"Vui lòng nhập lí do !");
-                    return;
-                }
+                //if (tbDescription.Text.Length == 0)
+                //{
+                //    MessageBox.Show($"Vui lòng nhập lí do !");
+                //    return;
+                //}
                 string temp = $"insert into InventoryExportDetail values ('{selectionID}','{obj.id}','{obj.amount}')";
                 sqlCommand.Add(temp);
             }
