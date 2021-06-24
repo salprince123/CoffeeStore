@@ -9,7 +9,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DataContext="{d:DesignInstance  local:ReportProfit}"
              mc:Ignorable="d" 
-             MinWidth="650" MinHeight="700" Height="700" >
+             MinWidth="650" MinHeight="700" Height="750" >
     <UserControl.Resources>
         <Style x:Key = "MonthYearTrigger" TargetType = "DatePicker" BasedOn="{StaticResource MaterialDesignDatePicker}">
             <Setter Property="cal:DatePickerCalendar.IsMonthYear"  Value="True"></Setter>
