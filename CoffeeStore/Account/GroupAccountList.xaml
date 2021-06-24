@@ -163,7 +163,7 @@
                                     Binding="{Binding Path=account}">
                                 </DataGridCheckBoxColumn>
                                 <DataGridCheckBoxColumn
-                                    Header="Quản lý loại tài khoản"
+                                    Header="Quản lý nhóm tài khoản"
                                     IsThreeState="True" 
                                     Binding="{Binding Path=accountType}">
                                 </DataGridCheckBoxColumn>
