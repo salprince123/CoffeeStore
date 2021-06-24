@@ -64,6 +64,9 @@ namespace CoffeeStore.Inventory
 
         public void LoadData()
         {
+            btBack.IsEnabled = false;
+            //MessageBox.Show(lblMaxPage.Content.ToString());
+            
             username = _context.GetCurrentEmpName();
             mainList.Clear();
             BUS_InventoryImport import = new BUS_InventoryImport();
@@ -80,6 +83,8 @@ namespace CoffeeStore.Inventory
             else lblMaxPage.Content = mainList.Count / 10 + 1;
             if (int.Parse(lblMaxPage.Content.ToString()) == 0)
                 this.tbNumPage.Text = "0";
+            if (int.Parse(lblMaxPage.Content.ToString()) < 2)
+                btNext.IsEnabled = false;
             splitDataGrid(1);
         }
         public void splitDataGrid(int numpage)
@@ -337,6 +342,12 @@ namespace CoffeeStore.Inventory
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             InventoryImportObject row = (InventoryImportObject)dataGridImport.SelectedItem;
+            DateTime importDate = DateTime.ParseExact(row.InventoryDate, "dd/MM/yyyy", null);
+            if ((DateTime.Now - importDate) > TimeSpan.FromDays(2))
+            {
+                MessageBox.Show("Không thể chỉnh sửa phiếu đã được tạo cách đây hơn 2 ngày.");
+                return;
+            }
             if (row == null) return;
                 var screen = new InventoryImportEDIT(row.ID, row.EmployName, row.InventoryDate, _context);
             if (screen != null)
@@ -371,6 +382,13 @@ namespace CoffeeStore.Inventory
                 if (!findFlag)
                     splitDataGrid(int.Parse(tbNumPage.Text));
                 else splitDataGridFind(int.Parse(tbNumPage.Text));
+                if (int.Parse(tbNumPage.Text) == 1)
+                    btBack.IsEnabled = false;
+                else
+                {
+                    btNext.IsEnabled = true;
+                    btBack.IsEnabled = true;
+                }
             }
         }
 
@@ -382,6 +400,13 @@ namespace CoffeeStore.Inventory
                 if (!findFlag )
                     splitDataGrid(int.Parse(tbNumPage.Text));
                 else splitDataGridFind(int.Parse(tbNumPage.Text));
+                if (int.Parse(tbNumPage.Text) == (int)lblMaxPage.Content)
+                    btNext.IsEnabled = false;
+                else
+                {
+                    btNext.IsEnabled = true;
+                    btBack.IsEnabled = true;
+                }
             }
         }
 
@@ -418,6 +443,47 @@ namespace CoffeeStore.Inventory
         {
             if (e.Key == Key.Space)
                 e.Handled = true;
+        }
+        private void tbNumPage_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= tbNumPage_GotFocus;
+        }
+
+        private void tbNumPage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && int.TryParse(tbNumPage.Text, out int i))
+            {
+                if (int.Parse(tbNumPage.Text) > 0 && int.Parse(tbNumPage.Text) <= int.Parse(lblMaxPage.Content.ToString()))
+                {
+                    if (!findFlag)
+                        splitDataGrid(int.Parse(tbNumPage.Text));
+                    else splitDataGridFind(int.Parse(tbNumPage.Text));
+                    if (int.Parse(tbNumPage.Text) == (int)lblMaxPage.Content)
+                    {
+                        btNext.IsEnabled = false;
+                        btBack.IsEnabled = true;
+                    }
+                    else if (int.Parse(tbNumPage.Text) == 1)
+                    {
+                        btNext.IsEnabled = true;
+                        btBack.IsEnabled = false;
+                    }
+                    else
+                    {
+                        btNext.IsEnabled = true;
+                        btBack.IsEnabled = true;
+                    }
+                    if (int.Parse(tbNumPage.Text) == (int)lblMaxPage.Content && (int)lblMaxPage.Content == 1)
+
+                    {
+                        btNext.IsEnabled = false;
+                        btBack.IsEnabled = false;
+                    }
+                }
+                else MessageBox.Show("Trang không hợp lệ!");
+            }
         }
     }
 
