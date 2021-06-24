@@ -103,6 +103,13 @@ namespace CoffeeStore.Discount
                 maxNumpage = numRow / 20 + 1;
 
             lblMaxPage.Content = maxNumpage.ToString();
+
+            if (currentNumpage == maxNumpage)
+                btnPageNext.IsEnabled = false;
+            else
+                btnPageNext.IsEnabled = true;
+            if (currentNumpage == 1)
+                btnPagePre.IsEnabled = false;
         }
         void findDiscount(string startdatefind, string enddatefind)
         {
@@ -180,6 +187,7 @@ namespace CoffeeStore.Discount
 
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
+            currentNumpage = 1;
             tbNumPage.Text = "1";
             if (tbDateStart.SelectedDate.ToString() != "" && tbDateEnd.SelectedDate.ToString() != "" 
                 && DateTime.Compare((DateTime)tbDateStart.SelectedDate, (DateTime)tbDateEnd.SelectedDate) > 0)
@@ -271,12 +279,13 @@ namespace CoffeeStore.Discount
             currentNumpage = Int32.Parse(tbNumPage.Text);
             if (Int32.Parse(tbNumPage.Text) == 1)
             {
-
+                btnPagePre.IsEnabled = false;
             }
             else
             {
                 tbNumPage.Text = (Int32.Parse(tbNumPage.Text) - 1).ToString();
                 currentNumpage--;
+                btnPageNext.IsEnabled = true;
                 if (!find)
                     loadData();
                 else
@@ -290,12 +299,13 @@ namespace CoffeeStore.Discount
             currentNumpage = Int32.Parse(tbNumPage.Text);
             if (Int32.Parse(tbNumPage.Text) == maxNumpage)
             {
-
+                btnPageNext.IsEnabled = false;
             }
             else
             {
                 tbNumPage.Text = (Int32.Parse(tbNumPage.Text) + 1).ToString();
                 currentNumpage++;
+                btnPagePre.IsEnabled = true;
                 if (!find)
                     loadData();
                 else
@@ -312,11 +322,27 @@ namespace CoffeeStore.Discount
             if (e.Key == Key.Enter)
             {
                 if (tbNumPage.Text.Length != 0 && int.Parse(tbNumPage.Text) <= maxNumpage && int.Parse(tbNumPage.Text) > 0)
+                {
+                    int newPage = Int32.Parse(tbNumPage.Text);
+                    currentNumpage = newPage;
+                    if (currentNumpage == 1)
+                        btnPagePre.IsEnabled = false;
+                    else
+                        btnPagePre.IsEnabled = true;
+                    if (currentNumpage == maxNumpage)
+                        btnPageNext.IsEnabled = false;
+                    else
+                        btnPageNext.IsEnabled = true;
                     loadData();
+                }
                 else
                 {
+                    MessageBox.Show("Không có trang này!");
                     tbNumPage.Text = currentNumpage.ToString();
-                    loadData();
+                    if (!find)
+                        loadData();
+                    else
+                        return;
                 }
             }
         }
