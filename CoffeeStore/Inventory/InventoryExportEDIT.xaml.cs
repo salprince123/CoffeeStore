@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,7 +30,7 @@ namespace CoffeeStore.Inventory
         public List<String> MaterName { get; set; }
         public List<InventoryObject> list = new List<InventoryObject>();
         public List<String> sqlCommand = new List<string>();
-
+        Dictionary<String, int> mapNameAmountInStock = new Dictionary<string, int>();
         MainWindow _context;
        
         public class InventoryObject : INotifyPropertyChanged
@@ -70,7 +71,7 @@ namespace CoffeeStore.Inventory
             if (selectionID != "")
                 LoadData();
         }
-        public InventoryExportEDIT(String id, String name, String date, MainWindow mainWindow)
+        public InventoryExportEDIT(String id, String name, String date, String description, MainWindow mainWindow)
         {
             this.ImportName = name;
             this.selectionID = id;
@@ -81,6 +82,51 @@ namespace CoffeeStore.Inventory
             tbEmployeeName.Text = name;
             tbDate.Text = date;
             tbExportID.Text = id;
+            tbDescription.Text = description;
+            
+        }
+        public Dictionary<String, int> loadAmountofMaterial()
+        {
+            Dictionary<String, int> mapNameAmount = new Dictionary<string, int>();
+            Dictionary<String, String> mapNameUnit = new Dictionary<string, string>();
+            //With import amount
+            BUS_InventoryImportDetail import = new BUS_InventoryImportDetail();
+            DataTable temp = import.SelectAllImportDetailGroupByName();
+            foreach (DataRow row in temp.Rows)
+            {
+                string name = row["Tên"].ToString();
+                string amount = row["Số lượng"].ToString();
+                string use = row["isUse"].ToString();
+                if (use == "1")
+                    mapNameAmount[name] = int.Parse(amount);
+            }
+            //With unit
+            BUS_Material mater = new BUS_Material();
+            DataTable tempMater = mater.selectAll();
+            foreach (DataRow row in tempMater.Rows)
+            {
+                string name = row["MaterialName"].ToString();
+                string unit = row["Unit"].ToString();
+                string use = row["isUse"].ToString();
+                if (use == "1")
+                    mapNameUnit[name] = unit;
+            }
+            //calculate amount in stock = import - export (if have)
+            BUS_InventoryExportDetail export = new BUS_InventoryExportDetail();
+            DataTable temp1 = export.SelectAllExportDetailGroupByName();
+            foreach (DataRow row in temp1.Rows)
+            {
+                string name = row["Tên"].ToString();
+                string amount = row["Số lượng"].ToString();
+                if (mapNameAmount.ContainsKey(name))
+                    mapNameAmount[name] -= int.Parse(amount);
+            }
+            foreach (KeyValuePair<string, string> name in mapNameUnit)
+            {
+                if (!mapNameAmount.ContainsKey(name.Key))
+                    mapNameAmount[name.Key] = 0;
+            }
+            return mapNameAmount;
         }
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
@@ -89,6 +135,7 @@ namespace CoffeeStore.Inventory
         }
         public void LoadData()
         {
+            mapNameAmountInStock = loadAmountofMaterial();
             BUS_InventoryExport export = new BUS_InventoryExport();
             DataTable temp = export.SelectDetail(selectionID);
             tbDescription.Text = export.SelectDescription(selectionID);
@@ -100,10 +147,13 @@ namespace CoffeeStore.Inventory
                 string unit = row["Unit"].ToString();
                 string materID = row["MaterialID"].ToString();
                 list.Add(new InventoryObject() {  amount = amount, name = name, unit = unit, id= materID });
+                if (mapNameAmountInStock.ContainsKey(name))
+                    mapNameAmountInStock[name] += int.Parse(amount);
             }
             this.dataGridMaterialExport.ItemsSource = list;
             if (list.Count == 0) return;
             tbDescription.Text = list[0].description;
+            
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -120,6 +170,25 @@ namespace CoffeeStore.Inventory
         {            
             foreach (InventoryObject obj in list)
             {
+                int amountInExport; int temp1 = -1, temp2 = -1;
+                if (int.TryParse(obj.amount, out amountInExport))
+                {
+                    if (mapNameAmountInStock[obj.name] < amountInExport)
+                    {
+                        MessageBox.Show($"Số lượng vật liệu '{obj.name}' chỉ còn {mapNameAmountInStock[obj.name]} !");
+                        return;
+                    }
+                }
+                if (!int.TryParse(obj.amount, out temp2) || temp2 <= 0)
+                {
+                    MessageBox.Show($"Số lượng { obj.name} không hợp lệ , vui lòng nhập lại!");
+                    return;
+                }
+                if (tbDescription.Text.Length == 0)
+                {
+                    MessageBox.Show($"Vui lòng nhập lí do !");
+                    return;
+                }
                 string temp = $"insert into InventoryExportDetail values ('{selectionID}','{obj.id}','{obj.amount}')";
                 sqlCommand.Add(temp);
             }
@@ -197,11 +266,17 @@ namespace CoffeeStore.Inventory
             dataGridMaterialExport.Items.Refresh();
         }
 
-        /*
-         * some time , material is not using anymore and admin delete it 
-         * but it data is still contained in ImportDetail 
-         * We need to prevent user to change the row relevant with deleted material
-         * */
-        
+        private void tbAmount_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+        }
+        private void tbDescription_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("^[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+$");
+            if (!regex.IsMatch(e.Text))
+                e.Handled = true;
+            base.OnPreviewTextInput(e);
+        }
     }
 }

@@ -139,7 +139,7 @@
                     <DataGridTemplateColumn Header="">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox x:Name="cbCheck" Click="cbCheck_Checked"></CheckBox>
+                                <CheckBox x:Name="cbCheck" IsChecked="{Binding Path='IsSelected',Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
