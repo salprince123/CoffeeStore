@@ -61,6 +61,7 @@ namespace CoffeeStore.Inventory
         }
         public void LoadData()
         {
+            btBack.IsEnabled = false;
             username = _context.GetCurrentEmpName();
             list.Clear();
             BUS_InventoryExport export = new BUS_InventoryExport();
@@ -79,6 +80,9 @@ namespace CoffeeStore.Inventory
             else lblMaxPage.Content = list.Count / 10 + 1;
             if (int.Parse(lblMaxPage.Content.ToString()) == 0)
                 this.tbNumPage.Text = "0";
+            //MessageBox.Show(lblMaxPage.Content.ToString());
+            if (int.Parse(lblMaxPage.Content.ToString()) < 2)
+                btNext.IsEnabled = false;
             splitDataGrid(1);
 
         }
@@ -159,7 +163,8 @@ namespace CoffeeStore.Inventory
         {
             InventoryExportObject row = (InventoryExportObject)dataGridExport.SelectedItem;
             if (row == null) return;
-            var screen = new InventoryExportEDIT(row.ID, row.EmployName, row.InventoryDate, _context);
+            BUS_InventoryExport export = new BUS_InventoryExport();
+            var screen = new InventoryExportEDIT(row.ID, row.EmployName, row.InventoryDate, export.SelectDescription(row.ID), _context);
             if (screen != null)
             {
                 this._context.StackPanelMain.Children.Clear();
@@ -309,6 +314,40 @@ namespace CoffeeStore.Inventory
         {
             if (e.Key == Key.Space)
                 e.Handled = true;
+        }
+        private void tbNumPage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && int.TryParse(tbNumPage.Text, out int i))
+            {
+                if (int.Parse(tbNumPage.Text) > 0 && int.Parse(tbNumPage.Text) <= int.Parse(lblMaxPage.Content.ToString()))
+                {
+                    if (!findFlag)
+                        splitDataGrid(int.Parse(tbNumPage.Text));
+                    else splitDataGridFind(int.Parse(tbNumPage.Text));
+                    if (int.Parse(tbNumPage.Text) == (int)lblMaxPage.Content)
+                    {
+                        btNext.IsEnabled = false;
+                        btBack.IsEnabled = true;
+                    }
+                    else if (int.Parse(tbNumPage.Text) == 1)
+                    {
+                        btNext.IsEnabled = true;
+                        btBack.IsEnabled = false;
+                    }
+                    else
+                    {
+                        btNext.IsEnabled = true;
+                        btBack.IsEnabled = true;
+                    }
+                    if (int.Parse(tbNumPage.Text) == (int)lblMaxPage.Content && (int)lblMaxPage.Content == 1)
+
+                    {
+                        btNext.IsEnabled = false;
+                        btBack.IsEnabled = false;
+                    }
+                }
+                else MessageBox.Show("Trang không hợp lệ!");
+            }
         }
     }
 }

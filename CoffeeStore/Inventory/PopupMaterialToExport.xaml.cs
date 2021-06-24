@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,12 +29,27 @@ namespace CoffeeStore.Inventory
         List<String> temp = new List<string>();
         List<MAterialObject> mainList = new List<MAterialObject>();
         List<MAterialObject> findList = new List<MAterialObject>();
-        public class MAterialObject
+        public class MAterialObject : INotifyPropertyChanged
         {
             public string id { get; set; }
             public String name { get; set; }
             public String unit { get; set; }
             public String amount { get; set; }
+            public bool _isSelected;
+            public bool IsSelected
+            {
+                get { return _isSelected; }
+                set { _isSelected = value; OnPropertyChanged(); }
+            }
+            #region INotifyPropertyChanged
+            public event PropertyChangedEventHandler PropertyChanged;
+            protected void OnPropertyChanged([CallerMemberName] string name = "")
+            {
+                PropertyChangedEventHandler handler = PropertyChanged;
+                if (handler != null)
+                    handler(this, new PropertyChangedEventArgs(name));
+            }
+            #endregion
 
         }
         public PopupMaterialToExport()
@@ -91,7 +108,7 @@ namespace CoffeeStore.Inventory
                 if (mapNameAmount.ContainsKey(name.Key))
                     amount = mapNameAmount[name.Key];
                 if (amount == 0) continue;
-                mainList.Add(new MAterialObject() {  name = name.Key, amount= amount.ToString(), unit= name.Value });
+                mainList.Add(new MAterialObject() { name = name.Key, amount = amount.ToString(), unit = name.Value, IsSelected = false }); ;
             }
             this.dataGridMaterialExport.ItemsSource = mainList;
         }
@@ -108,6 +125,11 @@ namespace CoffeeStore.Inventory
 
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
+            foreach (MAterialObject obj in mainList.ToList())
+            {
+                if (obj.IsSelected == true)
+                    temp.Add(obj.name);
+            }
             if (parent.GetType() == new InventoryImportADD().GetType())
                 ((InventoryImportADD)parent).MaterName = temp;
             else if (parent.GetType() == new InventoryExportADD().GetType())

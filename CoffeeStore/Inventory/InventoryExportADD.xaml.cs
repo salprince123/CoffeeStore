@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -178,7 +179,7 @@ namespace CoffeeStore.Inventory
             List<String> sqlString = new List<string>();
             foreach (InventoryExportDetailObject obj in list)
             {
-                int amountInExport;
+                int amountInExport; int temp1 = -1, temp2 = -1;
                 if (int.TryParse(obj.amount, out amountInExport))
                 {
                     if (mapNameAmountInStock[obj.name] < amountInExport)
@@ -188,12 +189,19 @@ namespace CoffeeStore.Inventory
                         return;
                     }
                 }
-                if(tbDescription.Text.Length ==0)
+                if (!int.TryParse(obj.amount, out temp2) || temp2 <= 0)
+                {
+                    MessageBox.Show($"Số lượng { obj.name} không hợp lệ , vui lòng nhập lại!");
+                    export.Delete(newExportID);
+                    return;
+                }
+                if (tbDescription.Text.Length ==0)
                 {
                     MessageBox.Show($"Vui lòng nhập lí do !");
                     export.Delete(newExportID);
                     return;
                 }
+                
                 string temp = $"insert into InventoryExportDetail values ('{newExportID}','{obj.id}','{obj.amount}')";
                 sqlString.Add(temp);
             }
@@ -266,6 +274,14 @@ namespace CoffeeStore.Inventory
             TextBox tb = (TextBox)sender;
             tb.Text = string.Empty;
             tb.GotFocus -= tbAmount_GotFocus;
+        }
+
+        private void tbDescription_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("^[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+$");
+            if (!regex.IsMatch(e.Text))
+                e.Handled = true;
+            base.OnPreviewTextInput(e);
         }
     }
 }
