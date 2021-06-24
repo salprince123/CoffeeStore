@@ -167,12 +167,12 @@ namespace CoffeeStore.Inventory
                 int temp1 = -1, temp2 = -1;
                 if (!int.TryParse(obj.unitPrice, out temp1) || temp1 <= 0 || obj.unitPrice == "" || obj.unitPrice == null)
                 {
-                    MessageBox.Show($"Đơn giá {obj.name} không hợp lệ, vui lòng nhập lại!");
+                    MessageBox.Show($"Đơn giá của {obj.name} không hợp lệ!");
                     return;
                 }
                 else if (!int.TryParse(obj.amount, out temp2) || temp2 <= 0)
                 {
-                    MessageBox.Show($"Số lượng vật liệu, thiết bị {obj.name} không hợp lệ, vui lòng nhập lại!");
+                    MessageBox.Show($"Số lượng của {obj.name} không hợp lệ!");
                     return;
                 }
                 string temp = $"insert into InventoryImportDetail values ('{selectionID}','{obj.id}','{obj.amount}','{obj.unitPrice}')";
