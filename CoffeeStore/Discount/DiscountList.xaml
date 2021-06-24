@@ -63,7 +63,8 @@
                 <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
                     <DatePicker x:Name="tbDateStart" Height="40"
                          VerticalContentAlignment="Center" FontSize="15"
-                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5">
+                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5"
+                         PreviewTextInput="tbDateStart_PreviewTextInput" PreviewKeyDown="tbDateStart_PreviewKeyDown">
                     </DatePicker>
                 </Border>
                 <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1,1,1,0">

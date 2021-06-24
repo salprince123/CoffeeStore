@@ -61,13 +61,15 @@
                 <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
                     <DatePicker x:Name="dpDateStart" Height="40"
                          VerticalContentAlignment="Center" FontSize="15"
-                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5">
+                         materialDesign:HintAssist.Hint="Từ ngày" Padding="5"
+                         PreviewTextInput="tbDateStart_PreviewTextInput" PreviewKeyDown="tbDateStart_PreviewKeyDown">
                     </DatePicker>
                 </Border>
                 <Border BorderBrush="Gray" Grid.Column="2" BorderThickness="1,1,1,0">
                     <DatePicker x:Name="dpDateEnd" Height="40"
                          VerticalContentAlignment="Center" FontSize="15"
-                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5">
+                         materialDesign:HintAssist.Hint="Đến ngày" Padding="5"
+                         PreviewTextInput="tbDateStart_PreviewTextInput" PreviewKeyDown="tbDateStart_PreviewKeyDown">
                     </DatePicker>
                 </Border>
                 <TextBox x:Name="tbFind" Grid.Column="4" Height="40" 
