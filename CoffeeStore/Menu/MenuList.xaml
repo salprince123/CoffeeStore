@@ -52,6 +52,8 @@
             <!--Textbox here-->
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="10"></ColumnDefinition>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition Width="10"></ColumnDefinition>
                     <ColumnDefinition Width="3*"></ColumnDefinition>
@@ -59,14 +61,22 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <ComboBox x:Name="cbBeverageType" Height="40" 
+                <Button Height="Auto"
+                    BorderBrush="#6B6158" BorderThickness="1" HorizontalContentAlignment="Center"
+                    Background="#FFE297" Foreground="#6B6158" Click="Button_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="FileDocument" Height="20" Width="20"/>
+                        <TextBlock Text=" LOẠI MÓN"/>
+                    </StackPanel>
+                </Button>
+                <ComboBox x:Name="cbBeverageType" Height="40" Grid.Column="2"
                          BorderThickness="1" VerticalContentAlignment="Center" FontSize="15"
                          materialDesign:HintAssist.Hint="Loại món" Padding="5">
                 </ComboBox>
-                <TextBox x:Name="tbName" Grid.Column="2" Height="40" 
+                <TextBox x:Name="tbName" Grid.Column="4" Height="40" 
                          BorderThickness="1" VerticalContentAlignment="Center" FontSize="15"
                          materialDesign:HintAssist.Hint="Tên món" Padding="5" PreviewKeyDown="tbName_PreviewKeyDown"/>
-                <Button x:Name="btnFind" Grid.Column="4" Height="40"
+                <Button x:Name="btnFind" Grid.Column="6" Height="40"
                     Background="#6B6158" Foreground="#FFE297" 
                     BorderBrush="#FFE297" BorderThickness="1" Click="btnFind_Click">
                     <materialDesign:PackIcon Kind="Search" Height="20" Width="20"/>
