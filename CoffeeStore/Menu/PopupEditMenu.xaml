@@ -19,6 +19,12 @@
                        HorizontalAlignment="Center"
                        Foreground="#FFE297"/>
         </Grid>
+        <TextBlock Margin="20,20,20,0" Text="Hình ảnh"/>
+        <StackPanel Margin="20,5,20,0" Orientation="Horizontal">
+            <Image HorizontalAlignment="Left" Width="200" Height="200"/>
+            <Button Margin="10,0,0,0" VerticalAlignment="Bottom" BorderBrush="#6B6158" BorderThickness="1"
+                    Background="#FFE297" Foreground="#6B6158" Content="Chọn ảnh"/>
+        </StackPanel>
         <!--Product name-->
         <TextBlock Margin="20,20,20,0" Text="Tên món"/>
         <TextBox x:Name="tbName" Margin="0,5,0,0" BorderThickness="1"
