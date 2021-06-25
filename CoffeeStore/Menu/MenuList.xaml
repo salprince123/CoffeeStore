@@ -203,6 +203,14 @@
                             </DataGrid.RowHeaderTemplate>
 
                             <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Hình ảnh">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Name="img"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                
                                 <DataGridTextColumn Header="Tên món" Binding="{Binding Path='BeverageName'}">
                                 </DataGridTextColumn>
 
