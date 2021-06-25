@@ -270,6 +270,9 @@
     <Compile Include="Menu\PopupAddMenu.xaml.cs">
       <DependentUpon>PopupAddMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Menu\PopupBeverageType.xaml.cs">
+      <DependentUpon>PopupBeverageType.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Menu\PopupDeleteConfirm.xaml.cs">
       <DependentUpon>PopupDeleteConfirm.xaml</DependentUpon>
     </Compile>
@@ -281,6 +284,12 @@
     </Compile>
     <Compile Include="Report\ReportSale.xaml.cs">
       <DependentUpon>ReportSale.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Rule\Rule.xaml.cs">
+      <DependentUpon>Rule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Rule\RuleEdit.xaml.cs">
+      <DependentUpon>RuleEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\DatePickerCalendar.cs" />
     <Compile Include="ViewModel\ItemMenu.cs" />
@@ -487,6 +496,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Menu\PopupBeverageType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Menu\PopupDeleteConfirm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -500,6 +513,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Report\ReportSale.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Rule\Rule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Rule\RuleEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
