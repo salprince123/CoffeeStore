@@ -113,7 +113,7 @@ namespace CoffeeStore.Menu
                 Title = "Thêm món",
                 Content = new PopupAddMenu(_context),
                 Width = 460,
-                Height = 380,
+                Height = 620,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();
@@ -121,7 +121,28 @@ namespace CoffeeStore.Menu
             ((MainWindow)App.Current.MainWindow).Opacity = 1;
             ((MainWindow)App.Current.MainWindow).Effect = null;
             loadData();
+            
+        }
 
+        private void ButtonBeverageType_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
+            ((MainWindow)App.Current.MainWindow).Effect = objBlur;
+            Window window = new Window
+            {
+                ResizeMode = ResizeMode.NoResize,
+                WindowStyle = WindowStyle.None,
+                Title = "Thêm loại món",
+                Content = new PopupBeverageType(),
+                Width = 400,
+                Height = 400,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
+            };
+            window.ShowDialog();
+
+            ((MainWindow)App.Current.MainWindow).Opacity = 1;
+            ((MainWindow)App.Current.MainWindow).Effect = null;
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -138,7 +159,7 @@ namespace CoffeeStore.Menu
                 Title = "Sửa món",
                 Content = new PopupEditMenu(row.BeverageName, row.BeverageTypeID, row.Price.ToString(), row.BeverageID, this._context),
                 Width = 460,
-                Height = 380,
+                Height = 620,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             window.ShowDialog();

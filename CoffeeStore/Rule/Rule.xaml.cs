@@ -20,14 +20,21 @@ namespace CoffeeStore.Rule
     /// </summary>
     public partial class Rule : UserControl
     {
-        public Rule()
+        MainWindow _context;
+        public Rule(MainWindow mainWindow)
         {
             InitializeComponent();
+            _context = mainWindow;
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            var screen = new RuleEdit(_context);
+            if (screen != null)
+            {
+                this._context.StackPanelMain.Children.Clear();
+                this._context.StackPanelMain.Children.Add(screen);
+            }
         }
     }
 }
