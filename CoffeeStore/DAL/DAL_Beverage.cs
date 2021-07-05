@@ -15,7 +15,7 @@ namespace CoffeeStore.DAL
         {
             try
             {
-                string sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price, IsOutOfStock From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID";
+                string sql = $"Select BeverageID, BeverageName, Link,BeverageTypeName, Price, IsOutOfStock From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 DataTable dsMon = new DataTable();
                 da.Fill(dsMon);
@@ -30,7 +30,7 @@ namespace CoffeeStore.DAL
         public int createNewBeverage(DTO_Beverage beverage)
         {
             int rs = 0;
-            string sql = $"Insert into BeverageName values ('" + beverage.BeverageID + "','" + beverage.BeverageTypeID + "','" + beverage.BeverageName + "'," + beverage.Price + ", false, 'Cup')";
+            string sql = $"Insert into BeverageName values ('" + beverage.BeverageID + "','" + beverage.BeverageTypeID + "','" + beverage.BeverageName + "'," + beverage.Price + ", false, 'Cup', '"+beverage.Link+"')";
             try
             {
                 SQLiteCommand command = new SQLiteCommand(sql, getConnection());
@@ -64,7 +64,7 @@ namespace CoffeeStore.DAL
         {
             int rs = 0;
             Console.WriteLine(beverage.BeverageID);
-            string sql = $"Update BeverageName set BeverageTypeID='" + beverage.BeverageTypeID + "', BeverageName='" + beverage.BeverageName + "', Price=" + beverage.Price + ",IsOutOfStock=" + beverage.IsOutOfStock + ",Unit='" + beverage.Unit + "' Where BeverageID='" + beverage.BeverageID + "'";
+            string sql = $"Update BeverageName set BeverageTypeID='" + beverage.BeverageTypeID + "', BeverageName='" + beverage.BeverageName + "', Price=" + beverage.Price + ",IsOutOfStock=" + beverage.IsOutOfStock + ",Unit='" + beverage.Unit + $"' , Link='{beverage.Link}' Where BeverageID='" + beverage.BeverageID + "'";
             try
             {
                 SQLiteCommand command = new SQLiteCommand(sql, getConnection());
@@ -163,12 +163,12 @@ namespace CoffeeStore.DAL
             try
             {
                 string sql = "";
-                if (type.Length!=0 && name.Length==0)
+                if (type.Length != 0 && name.Length == 0)
                     sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID and (BT.BeverageTypeName='" + type + "')";
                 else if (type.Length != 0 && name.Length != 0)
                     sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID and (BT.BeverageTypeName='" + type + "' and BN.BeverageName like '%" + name + "%')";
                 else if (type.Length == 0 && name.Length != 0)
-                     sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID and ( BN.BeverageName like '%" + name + "%')";
+                    sql = $"Select BeverageID, BeverageName, BeverageTypeName, Price From BeverageName BN, BeverageType BT Where BN.BeverageTypeID=BT.BeverageTypeID and ( BN.BeverageName like '%" + name + "%')";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
                 DataTable dsMon = new DataTable();
                 da.Fill(dsMon);
@@ -215,7 +215,7 @@ namespace CoffeeStore.DAL
                 Console.Error.WriteLine(ex.Message);
                 return false;
             }
-            
+
         }
         public DataTable GetBeverageTypeInfo()
         {
@@ -242,14 +242,14 @@ namespace CoffeeStore.DAL
             {
                 string sql = $"select BeverageName.BeverageID, BeverageName, sum(Amount) as SellAmount from BeverageName join ReceiptDetail on ReceiptDetail.BeverageID = BeverageName.BeverageID join Receipt on ReceiptDetail.ReceiptID = Receipt.ReceiptID where (CAST(strftime('%s', Time) AS integer) >= CAST(strftime('%s', '{start}') AS integer)) and (CAST(strftime('%s', Time) AS integer) < CAST(strftime('%s', '{end}') AS integer)) group by BeverageName.BeverageID order by sum(Amount) asc";
                 SQLiteDataAdapter da = new SQLiteDataAdapter(sql, getConnection());
-                
+
                 da.Fill(BeverData);
                 return BeverData;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                
+
             };
             return BeverData;
         }
