@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:CoffeeStore.Menu" xmlns:UserControls="clr-namespace:CoffeeStore.View" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              MinWidth="300" Height="Auto" >
-    <Grid Background="White">
+    <Grid Background="White" Height="234">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
@@ -43,7 +43,7 @@
         </Grid>
         <!--List here-->
         <Grid Grid.Row="4">
-            <DataGrid x:Name="dataGridBeverageType" Margin="20,0,20,0"
+            <DataGrid x:Name="dgBeverageType" Margin="20,0,20,0"
                       BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
                       VerticalScrollBarVisibility="Visible" AutoGenerateColumns="False" HeadersVisibility="All">
                 <DataGrid.CellStyle>
@@ -124,10 +124,11 @@
                 </DataGrid.RowHeaderTemplate>
 
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Loại món">
+                    <DataGridTemplateColumn Header="Loại món" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox Name="tbType" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" />
+                                <TextBox Name="tbType" Text="{Binding Path='BeverageTypeName', Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Left" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

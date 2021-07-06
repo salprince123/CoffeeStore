@@ -61,7 +61,7 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Height="Auto"
+                <Button x:Name="btnEditBeverageType" Height="Auto"
                     BorderBrush="#6B6158" BorderThickness="1" HorizontalContentAlignment="Center"
                     Background="#FFE297" Foreground="#6B6158" Click="ButtonBeverageType_Click">
                     <StackPanel Orientation="Horizontal">

@@ -1194,3 +1194,9 @@ E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Report\ReportSale.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Rule\Rule.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\Rule\RuleEdit.baml
 E:\Study\Project\CoffeeStore\CoffeeStore\obj\Debug\View\Banner.baml
+C:\Users\pacif\Desktop\CS ver 2\CoffeeStore\CoffeeStore\obj\Debug\Rule\Rule.g.cs
+C:\Users\pacif\Desktop\CS ver 2\CoffeeStore\CoffeeStore\obj\Debug\Rule\RuleEdit.g.cs
+C:\Users\pacif\Desktop\CS ver 2\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupBeverageType.g.cs
+C:\Users\pacif\Desktop\CS ver 2\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupBeverageType.baml
+C:\Users\pacif\Desktop\CS ver 2\CoffeeStore\CoffeeStore\obj\Debug\Rule\Rule.baml
+C:\Users\pacif\Desktop\CS ver 2\CoffeeStore\CoffeeStore\obj\Debug\Rule\RuleEdit.baml
