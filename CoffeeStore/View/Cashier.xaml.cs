@@ -32,23 +32,26 @@ namespace CoffeeStore.View
             public string name{ get; set;}
             public string type { get; set; }
             public int cost { get; set; }
+            public byte[] image { get; set; }
             public bool isOutOfStock { get; set; }
 
-            public MenuBeverage(string newId, string newName, string newtype, int newCost, bool newState)
+            public MenuBeverage(string newId, string newName, string newtype, int newCost, bool newState, byte[] newImage)
             {
                 id = newId;
                 name = newName;
                 type = newtype;
                 cost = newCost;
                 isOutOfStock = newState;
+                image = newImage;
             }
 
-            public MenuBeverage(string newId, string newName, int newCost, bool newState)
+            public MenuBeverage(string newId, string newName, int newCost, bool newState, byte[] newImage)
             {
                 id = newId;
                 name = newName;
                 cost = newCost;
                 isOutOfStock = newState;
+                image = newImage;
             }    
         }
 
@@ -135,12 +138,13 @@ namespace CoffeeStore.View
                 string name = row["BeverageName"].ToString();
                 string type = row["BeverageTypeName"].ToString();
                 int price = Int32.Parse(row["Price"].ToString());
+                byte[] image = (byte[])row["Link"];
                 bool isOutOfStock;
                 if (row["IsOutOfStock"].ToString() == "0")
                     isOutOfStock = false;
                 else isOutOfStock = true;
-                menuItems.Add(new MenuBeverage(id, name, type, price, isOutOfStock));
-                menuItemsDisplay.Add(new MenuBeverage(id, name, type, price, isOutOfStock));
+                menuItems.Add(new MenuBeverage(id, name, type, price, isOutOfStock, image));
+                menuItemsDisplay.Add(new MenuBeverage(id, name, type, price, isOutOfStock, image));
             }
 
             filterButtons = new List<FilterButton>();

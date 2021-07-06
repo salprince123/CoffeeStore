@@ -206,7 +206,7 @@
                                 <DataGridTemplateColumn Header="Hình ảnh">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Image Name="img"/>
+                                            <Image Name="img" Source="{Binding Path='Link'}"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>

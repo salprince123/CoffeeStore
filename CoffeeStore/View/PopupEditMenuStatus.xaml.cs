@@ -50,12 +50,13 @@ namespace CoffeeStore.View
                 string id = row["BeverageID"].ToString();
                 string name = row["BeverageName"].ToString();
                 int price = Int32.Parse(row["Price"].ToString());
+                byte[] image = (byte[])row["Link"];
                 bool isOutOfStock;
                 if (row["IsOutOfStock"].ToString() == "0")
                     isOutOfStock = false;
                 else isOutOfStock = true;
-                menuItems.Add(new MenuBeverage(id, name, price, isOutOfStock));
-                menuItemsResult.Add(new MenuBeverage(id, name, price, isOutOfStock));
+                menuItems.Add(new MenuBeverage(id, name, price, isOutOfStock, image));
+                menuItemsResult.Add(new MenuBeverage(id, name, price, isOutOfStock, image));
                 menuItemsDisplay = menuItemsResult;
             }
 

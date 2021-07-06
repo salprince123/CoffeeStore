@@ -14,7 +14,7 @@ namespace CoffeeStore.DTO
         public int IsOutOfStock { get; set; }
         public int Price { get; set; }
         public string Unit { get; set; }
-        public string Link { get; set; }
+        public byte[] Link { get; set; }
 
     }
 }

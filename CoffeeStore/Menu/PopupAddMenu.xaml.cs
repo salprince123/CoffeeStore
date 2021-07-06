@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +28,7 @@ namespace CoffeeStore.Menu
     {
         BUS_Beverage bus = new BUS_Beverage();
         MainWindow main;
-        String selectedImageLink = "";
+        byte[] imageBytes;
         public PopupAddMenu()
         {
             InitializeComponent();
@@ -35,6 +38,8 @@ namespace CoffeeStore.Menu
             InitializeComponent();
             cbBeverageType.ItemsSource = bus.getBeverageType();            
             main = window;
+            byte[] x = File.ReadAllBytes("cafe-latte.jpg");
+            imageBytes = x;
         }
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
@@ -62,7 +67,7 @@ namespace CoffeeStore.Menu
             beverage.BeverageName = tbName.Text;
             beverage.BeverageTypeID = bus.getBeverageTypeID(cbBeverageType.Text);
             beverage.Price = Int32.Parse(tbPrice.Text);
-            beverage.Link = selectedImageLink;
+            beverage.Link = imageBytes;
             if (bus.createNewBevverage(beverage) > 0)
             {
                 MessageBox.Show($"Đã thêm {tbName.Text} vào menu");
@@ -91,10 +96,64 @@ namespace CoffeeStore.Menu
               "Portable Network Graphic (*.png)|*.png";            
             if (op.ShowDialog() == true)
             {
-               // MessageBox.Show(op.FileName);
-                image.Source = new BitmapImage(new Uri(op.FileName));
-                selectedImageLink = op.FileName;
+                byte[] x = File.ReadAllBytes(op.FileName);
+                image.Source = ToImageSource(ConvertByteArrayToImage(x));
+                imageBytes = x;
+                //image.Source = new BitmapImage(new Uri(op.FileName));
+                //selectedImageLink = op.FileName;
             }
+        }
+
+        public ImageFormat GetImageFormat(System.Drawing.Image img)
+        {
+            if (img.RawFormat.Equals(ImageFormat.Jpeg))
+                return ImageFormat.Jpeg;
+            if (img.RawFormat.Equals(ImageFormat.Bmp))
+                return ImageFormat.Bmp;
+            if (img.RawFormat.Equals(ImageFormat.Png))
+                return ImageFormat.Png;
+            if (img.RawFormat.Equals(ImageFormat.Emf))
+                return ImageFormat.Emf;
+            if (img.RawFormat.Equals(ImageFormat.Exif))
+                return ImageFormat.Exif;
+            if (img.RawFormat.Equals(ImageFormat.Gif))
+                return ImageFormat.Gif;
+            if (img.RawFormat.Equals(ImageFormat.Icon))
+                return ImageFormat.Icon;
+            if (img.RawFormat.Equals(ImageFormat.MemoryBmp))
+                return ImageFormat.MemoryBmp;
+            if (img.RawFormat.Equals(ImageFormat.Tiff))
+                return ImageFormat.Tiff;
+            else
+                return ImageFormat.Wmf;
+        }
+
+        public ImageSource ToImageSource(System.Drawing.Image image)
+        {
+            BitmapImage bitmap = new BitmapImage();
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                // Save to the stream
+                image.Save(stream, GetImageFormat(image));
+
+                // Rewind the stream
+                stream.Seek(0, SeekOrigin.Begin);
+
+                // Tell the WPF BitmapImage to use this stream
+                bitmap.BeginInit();
+                bitmap.StreamSource = stream;
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.EndInit();
+            }
+
+            return bitmap;
+        }
+
+        public System.Drawing.Image ConvertByteArrayToImage(byte[] bytes)
+        {
+            MemoryStream stream = new MemoryStream(bytes);
+            return System.Drawing.Image.FromStream(stream);
         }
     }
 }

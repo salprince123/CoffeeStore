@@ -38,7 +38,7 @@ namespace CoffeeStore.DAL
             }
             catch (Exception e)
             {
-
+                Console.WriteLine(e);
             }
             return dto;
         }

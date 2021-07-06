@@ -1200,3 +1200,17 @@ C:\Users\pacif\Desktop\CS ver 2\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupBeve
 C:\Users\pacif\Desktop\CS ver 2\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupBeverageType.baml
 C:\Users\pacif\Desktop\CS ver 2\CoffeeStore\CoffeeStore\obj\Debug\Rule\Rule.baml
 C:\Users\pacif\Desktop\CS ver 2\CoffeeStore\CoffeeStore\obj\Debug\Rule\RuleEdit.baml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupBeverageType.g.cs
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Rule\Rule.g.cs
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Rule\RuleEdit.g.cs
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Menu\PopupBeverageType.baml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Rule\Rule.baml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\obj\Debug\Rule\RuleEdit.baml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\System.Buffers.dll
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\System.Memory.dll
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\System.Buffers.xml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\System.Memory.xml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\PC\Source\Repos\salprince123\CoffeeStore\CoffeeStore\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml

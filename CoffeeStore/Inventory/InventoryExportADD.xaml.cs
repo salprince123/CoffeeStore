@@ -184,7 +184,8 @@ namespace CoffeeStore.Inventory
             }
             foreach (InventoryExportDetailObject obj in list)
             {
-                int amountInExport; int temp1 = -1, temp2 = -1;
+                int amountInExport;
+                int temp1 = -1, temp2 = -1;
                 if (int.TryParse(obj.amount, out amountInExport))
                 {
                     if (mapNameAmountInStock[obj.name] < amountInExport)

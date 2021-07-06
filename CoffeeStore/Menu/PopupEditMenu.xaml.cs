@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,11 +29,12 @@ namespace CoffeeStore.Menu
         string ID;
         MainWindow window;
         String selectedImageLink = "";
+        byte[] imageBytes;
         public PopupEditMenu()
         {
             InitializeComponent();
         }
-        public PopupEditMenu(string name, string type, string price, string id,string imageLink, MainWindow context)
+        public PopupEditMenu(string name, string type, string price, string id, byte[] imageLink, MainWindow context)
         {
             InitializeComponent();
             bus = new BUS_Beverage();
@@ -41,13 +44,65 @@ namespace CoffeeStore.Menu
             cbBeverageType.SelectedItem = type;
             try
             {
-                image.Source = new BitmapImage(new Uri(imageLink));
-                selectedImageLink = imageLink;
+                image.Source = ToImageSource(ConvertByteArrayToImage(imageLink));
+                imageBytes = imageLink;
             }
             catch (Exception) { }
             
             ID = id;
             window = context;
+        }
+
+        public ImageFormat GetImageFormat(System.Drawing.Image img)
+        {
+            if (img.RawFormat.Equals(ImageFormat.Jpeg))
+                return ImageFormat.Jpeg;
+            if (img.RawFormat.Equals(ImageFormat.Bmp))
+                return ImageFormat.Bmp;
+            if (img.RawFormat.Equals(ImageFormat.Png))
+                return ImageFormat.Png;
+            if (img.RawFormat.Equals(ImageFormat.Emf))
+                return ImageFormat.Emf;
+            if (img.RawFormat.Equals(ImageFormat.Exif))
+                return ImageFormat.Exif;
+            if (img.RawFormat.Equals(ImageFormat.Gif))
+                return ImageFormat.Gif;
+            if (img.RawFormat.Equals(ImageFormat.Icon))
+                return ImageFormat.Icon;
+            if (img.RawFormat.Equals(ImageFormat.MemoryBmp))
+                return ImageFormat.MemoryBmp;
+            if (img.RawFormat.Equals(ImageFormat.Tiff))
+                return ImageFormat.Tiff;
+            else
+                return ImageFormat.Wmf;
+        }
+
+        public ImageSource ToImageSource(System.Drawing.Image image)
+        {
+            BitmapImage bitmap = new BitmapImage();
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                // Save to the stream
+                image.Save(stream, GetImageFormat(image));
+
+                // Rewind the stream
+                stream.Seek(0, SeekOrigin.Begin);
+
+                // Tell the WPF BitmapImage to use this stream
+                bitmap.BeginInit();
+                bitmap.StreamSource = stream;
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.EndInit();
+            }
+
+            return bitmap;
+        }
+
+        public System.Drawing.Image ConvertByteArrayToImage(byte[] bytes)
+        {
+            MemoryStream stream = new MemoryStream(bytes);
+            return System.Drawing.Image.FromStream(stream);
         }
 
         private void btSave_Click(object sender, RoutedEventArgs e)
@@ -70,7 +125,7 @@ namespace CoffeeStore.Menu
             beverage.BeverageName = tbName.Text;
             beverage.BeverageTypeID = bus.getBeverageTypeID(cbBeverageType.Text);
             beverage.Price = Int32.Parse(tbPrice.Text);
-            beverage.Link = selectedImageLink;
+            beverage.Link = imageBytes;
             if (bus.editBevverage(beverage) > 0)
             {
                 MessageBox.Show($"Đã sửa thông tin của {tbName.Text}");
@@ -99,9 +154,12 @@ namespace CoffeeStore.Menu
               "Portable Network Graphic (*.png)|*.png";
             if (op.ShowDialog() == true)
             {
+                byte[] x = File.ReadAllBytes(op.FileName);
+                image.Source = ToImageSource(ConvertByteArrayToImage(x));
+                imageBytes = x;
                 //MessageBox.Show(op.FileName);
-                image.Source = new BitmapImage(new Uri(op.FileName));
-                selectedImageLink = op.FileName;
+                //image.Source = new BitmapImage(new Uri(op.FileName));
+                //selectedImageLink = op.FileName;
             }
         }
     }

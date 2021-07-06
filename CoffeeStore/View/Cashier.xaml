@@ -385,7 +385,7 @@
                                                                 <Style TargetType="Border">
                                                                     <Setter Property="Background">
                                                                         <Setter.Value>
-                                                                            <ImageBrush ImageSource="cafe-latte.jpg"/>
+                                                                            <ImageBrush ImageSource="{Binding Path = image}"/>
                                                                         </Setter.Value>
                                                                     </Setter>
                                                                     <Style.Triggers>

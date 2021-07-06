@@ -1,8 +1,10 @@
 ﻿using CoffeeStore.DTO;
 using System;
+using System.Buffers.Text;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,10 +32,12 @@ namespace CoffeeStore.DAL
         public int createNewBeverage(DTO_Beverage beverage)
         {
             int rs = 0;
-            string sql = $"Insert into BeverageName values ('" + beverage.BeverageID + "','" + beverage.BeverageTypeID + "','" + beverage.BeverageName + "'," + beverage.Price + ", false, 'Cup', '"+beverage.Link+"')";
+            string sql = $"Insert into BeverageName values ('" + beverage.BeverageID + "','" + beverage.BeverageTypeID + "','" + beverage.BeverageName + "'," + beverage.Price + ", false, 'Cup', @image)";
+            
             try
             {
                 SQLiteCommand command = new SQLiteCommand(sql, getConnection());
+                command.Parameters.Add("@image", DbType.Binary, 20).Value = beverage.Link;
                 command.Connection.Open();
                 rs = command.ExecuteNonQuery();
             }
@@ -64,10 +68,11 @@ namespace CoffeeStore.DAL
         {
             int rs = 0;
             Console.WriteLine(beverage.BeverageID);
-            string sql = $"Update BeverageName set BeverageTypeID='" + beverage.BeverageTypeID + "', BeverageName='" + beverage.BeverageName + "', Price=" + beverage.Price + ",IsOutOfStock=" + beverage.IsOutOfStock + ",Unit='" + beverage.Unit + $"' , Link='{beverage.Link}' Where BeverageID='" + beverage.BeverageID + "'";
+            string sql = $"Update BeverageName set BeverageTypeID='" + beverage.BeverageTypeID + "', BeverageName='" + beverage.BeverageName + "', Price=" + beverage.Price + ",IsOutOfStock=" + beverage.IsOutOfStock + ",Unit='" + beverage.Unit + $"' , Link=@image Where BeverageID='" + beverage.BeverageID + "'";
             try
             {
                 SQLiteCommand command = new SQLiteCommand(sql, getConnection());
+                command.Parameters.Add("@image", DbType.Binary, 20).Value = beverage.Link;
                 command.Connection.Open();
                 rs = command.ExecuteNonQuery();
             }
@@ -274,5 +279,8 @@ namespace CoffeeStore.DAL
             };
             return BeverData;
         }
+
+
+
     }
 }
