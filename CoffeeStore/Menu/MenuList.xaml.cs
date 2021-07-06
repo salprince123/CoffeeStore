@@ -66,9 +66,10 @@ namespace CoffeeStore.Menu
                 string id = row["BeverageID"].ToString();
                 string type = row["BeverageTypeName"].ToString();
                 int price = Int32.Parse(row["Price"].ToString());
+                string link = row["Link"].ToString();
                 if (count >= (rowNumber - 1) * 20 + 1 && count <= rowNumber * 20)
                 {
-                    list.Add(new DTO_Beverage() { BeverageID = id, BeverageName = name, BeverageTypeID = type, Price = price });
+                    list.Add(new DTO_Beverage() { BeverageID = id, BeverageName = name, BeverageTypeID = type, Price = price, Link=link });
                     count++;
                 }
                 else count++;
@@ -157,7 +158,7 @@ namespace CoffeeStore.Menu
                 ResizeMode = ResizeMode.NoResize,
                 WindowStyle = WindowStyle.None,
                 Title = "Sửa món",
-                Content = new PopupEditMenu(row.BeverageName, row.BeverageTypeID, row.Price.ToString(), row.BeverageID, this._context),
+                Content = new PopupEditMenu(row.BeverageName, row.BeverageTypeID, row.Price.ToString(), row.BeverageID,row.Link, this._context),
                 Width = 460,
                 Height = 620,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen

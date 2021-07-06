@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CoffeeStore.BUS;
 using CoffeeStore.DTO;
+using Microsoft.Win32;
 
 namespace CoffeeStore.Menu
 {
@@ -24,6 +25,7 @@ namespace CoffeeStore.Menu
     {
         BUS_Beverage bus = new BUS_Beverage();
         MainWindow main;
+        String selectedImageLink = "";
         public PopupAddMenu()
         {
             InitializeComponent();
@@ -31,7 +33,7 @@ namespace CoffeeStore.Menu
         public PopupAddMenu(MainWindow window)
         {
             InitializeComponent();
-            cbBeverageType.ItemsSource = bus.getBeverageType();
+            cbBeverageType.ItemsSource = bus.getBeverageType();            
             main = window;
         }
         private void btSave_Click(object sender, RoutedEventArgs e)
@@ -60,6 +62,7 @@ namespace CoffeeStore.Menu
             beverage.BeverageName = tbName.Text;
             beverage.BeverageTypeID = bus.getBeverageTypeID(cbBeverageType.Text);
             beverage.Price = Int32.Parse(tbPrice.Text);
+            beverage.Link = selectedImageLink;
             if (bus.createNewBevverage(beverage) > 0)
             {
                 MessageBox.Show($"Đã thêm {tbName.Text} vào menu");
@@ -77,6 +80,21 @@ namespace CoffeeStore.Menu
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Close();
+        }
+
+        private void btLoadImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a picture";
+            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+              "Portable Network Graphic (*.png)|*.png";            
+            if (op.ShowDialog() == true)
+            {
+               // MessageBox.Show(op.FileName);
+                image.Source = new BitmapImage(new Uri(op.FileName));
+                selectedImageLink = op.FileName;
+            }
         }
     }
 }

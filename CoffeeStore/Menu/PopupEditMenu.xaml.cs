@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CoffeeStore.BUS;
 using CoffeeStore.DTO;
+using Microsoft.Win32;
+
 namespace CoffeeStore.Menu
 {
     /// <summary>
@@ -24,11 +26,12 @@ namespace CoffeeStore.Menu
         BUS_Beverage bus;
         string ID;
         MainWindow window;
+        String selectedImageLink = "";
         public PopupEditMenu()
         {
             InitializeComponent();
         }
-        public PopupEditMenu(string name, string type, string price, string id, MainWindow context)
+        public PopupEditMenu(string name, string type, string price, string id,string imageLink, MainWindow context)
         {
             InitializeComponent();
             bus = new BUS_Beverage();
@@ -36,6 +39,13 @@ namespace CoffeeStore.Menu
             tbPrice.Text = price;
             cbBeverageType.ItemsSource = bus.getBeverageType();
             cbBeverageType.SelectedItem = type;
+            try
+            {
+                image.Source = new BitmapImage(new Uri(imageLink));
+                selectedImageLink = imageLink;
+            }
+            catch (Exception) { }
+            
             ID = id;
             window = context;
         }
@@ -60,13 +70,14 @@ namespace CoffeeStore.Menu
             beverage.BeverageName = tbName.Text;
             beverage.BeverageTypeID = bus.getBeverageTypeID(cbBeverageType.Text);
             beverage.Price = Int32.Parse(tbPrice.Text);
+            beverage.Link = selectedImageLink;
             if (bus.editBevverage(beverage) > 0)
             {
                 MessageBox.Show($"Đã sửa thông tin của {tbName.Text}");
                 Window.GetWindow(this).Close();
             }
             else
-                MessageBox.Show($"Đã có lỗi trong quá trình tạo {tbName.Text}");
+                MessageBox.Show($"Đã có lỗi trong quá trình chỉnh sửa {tbName.Text}");
         }
 
         private void tbPrice_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
@@ -77,6 +88,21 @@ namespace CoffeeStore.Menu
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Close();
+        }
+
+        private void btSelectImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a picture";
+            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+              "Portable Network Graphic (*.png)|*.png";
+            if (op.ShowDialog() == true)
+            {
+                //MessageBox.Show(op.FileName);
+                image.Source = new BitmapImage(new Uri(op.FileName));
+                selectedImageLink = op.FileName;
+            }
         }
     }
 }
