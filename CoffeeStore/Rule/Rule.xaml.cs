@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoffeeStore.BUS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,14 @@ using System.Windows.Shapes;
 
 namespace CoffeeStore.Rule
 {
+    static class Constants
+    {
+        public const string ROWINLIST = "RowInList";
+        public const string DAYDELETERECEIPT = "DayDeleteReceipt";
+        public const string DAYDELETEPAYMENT = "DayDeletePayment";
+        public const string DAYDELETEIMPORT = "DayDeleteImport";
+        public const string DAYDELETEEXPORT = "DayDeleteExport";
+    }
     /// <summary>
     /// Interaction logic for Rule.xaml
     /// </summary>
@@ -25,7 +34,24 @@ namespace CoffeeStore.Rule
         {
             InitializeComponent();
             _context = mainWindow;
+            Loaded += LoadData;
         }
+
+        public void LoadData(Object sender, RoutedEventArgs e)
+        {
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            BUS_Parameter busParameter = new BUS_Parameter();
+            tbMaxNumRow.Text = busParameter.GetValue(Constants.ROWINLIST).ToString();
+            tbMaxDaysPayment.Text = busParameter.GetValue(Constants.DAYDELETEPAYMENT).ToString();
+            tbMaxDaysBill.Text = busParameter.GetValue(Constants.DAYDELETERECEIPT).ToString();
+            tbMaxDaysExport.Text = busParameter.GetValue(Constants.DAYDELETEEXPORT).ToString();
+            tbMaxDaysImport.Text = busParameter.GetValue(Constants.DAYDELETEIMPORT).ToString();
+        }
+            
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {

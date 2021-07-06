@@ -79,7 +79,8 @@ namespace CoffeeStore.Inventory
                 string date = row["importDate"].ToString();
                 mainList.Add(new InventoryImportObject() { ID = id, EmployName = employid, InventoryDate = date });
             }
-            int rowPerSheet = 20;
+            BUS_Parameter busParameter = new BUS_Parameter();
+            int rowPerSheet = busParameter.GetValue("RowInList");
             if (mainList.Count % rowPerSheet == 0)
                 lblMaxPage.Content = mainList.Count / rowPerSheet;
             else lblMaxPage.Content = mainList.Count / rowPerSheet + 1;
@@ -94,7 +95,8 @@ namespace CoffeeStore.Inventory
             try
             {
                 List<InventoryImportObject> displayList = new List<InventoryImportObject>();
-                int numberPerSheet = 20;
+                BUS_Parameter busParameter = new BUS_Parameter();
+                int numberPerSheet = busParameter.GetValue("RowInList");
                 if (mainList.Count < numberPerSheet * numpage)
                 {
                     displayList = mainList.GetRange((numpage - 1) * numberPerSheet, mainList.Count - (numpage - 1) * numberPerSheet);
@@ -119,7 +121,8 @@ namespace CoffeeStore.Inventory
                     this.dataGridImport.Items.Refresh();
                     return;
                 }
-                int numberPerSheet = 20;
+                BUS_Parameter busParameter = new BUS_Parameter();
+                int numberPerSheet = busParameter.GetValue("RowInList");
                 if (findList.Count < numberPerSheet * numpage)
                 {
                     displayList = findList.GetRange((numpage - 1) * numberPerSheet, findList.Count - (numpage - 1) * numberPerSheet);
@@ -173,7 +176,8 @@ namespace CoffeeStore.Inventory
                     }
                 }
             }
-            int rowPerSheet = 20;
+            BUS_Parameter busParameter = new BUS_Parameter();
+            int rowPerSheet = busParameter.GetValue("RowInList");
             btNext.IsEnabled = true;
             if (findList.Count % rowPerSheet == 0)
                 lblMaxPage.Content = findList.Count / rowPerSheet;
@@ -309,12 +313,15 @@ namespace CoffeeStore.Inventory
          */
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-        
             InventoryImportObject row = (InventoryImportObject)dataGridImport.SelectedItem;
-            DateTime importDate = DateTime.ParseExact(row.InventoryDate, "dd/MM/yyyy", null);            
-            if ((DateTime.Now - importDate) > TimeSpan.FromDays(2))
+            DateTime importDate = DateTime.ParseExact(row.InventoryDate, "dd/MM/yyyy", null);
+
+            BUS_Parameter busParameter = new BUS_Parameter();
+            int limitDay = busParameter.GetValue("DayDeleteImport");
+
+            if ((DateTime.Now - importDate) > TimeSpan.FromDays(limitDay))
             {
-                MessageBox.Show("Không thể xóa do phiếu đã được tạo cách đây hơn 2 ngày.");
+                MessageBox.Show($"Không thể xóa do phiếu đã được tạo cách đây hơn {limitDay} ngày.");
                 return;
             }    
 
@@ -357,9 +364,13 @@ namespace CoffeeStore.Inventory
         {
             InventoryImportObject row = (InventoryImportObject)dataGridImport.SelectedItem;
             DateTime importDate = DateTime.ParseExact(row.InventoryDate, "dd/MM/yyyy", null);
-            if ((DateTime.Now - importDate) > TimeSpan.FromDays(2))
+
+            BUS_Parameter busParameter = new BUS_Parameter();
+            int limitDay = busParameter.GetValue("DayDeleteImport");
+
+            if ((DateTime.Now - importDate) > TimeSpan.FromDays(limitDay))
             {
-                MessageBox.Show("Không thể chỉnh sửa phiếu đã được tạo cách đây hơn 2 ngày.");
+                MessageBox.Show($"Không thể chỉnh sửa phiếu đã được tạo cách đây hơn {limitDay} ngày.");
                 return;
             }
             if (row == null) return;

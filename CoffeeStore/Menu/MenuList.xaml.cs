@@ -29,12 +29,13 @@ namespace CoffeeStore.Menu
         int maxNumpage;
         int numRow;
         int currentNumpage;
+        int limitRow;
         public MenuList()
         {
             InitializeComponent();
             dgMenu.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             bus = new BUS_Beverage();
-            loadData();
+            Loaded += LoadData;
         }
         public MenuList(MainWindow mainWindow)
         {
@@ -43,17 +44,23 @@ namespace CoffeeStore.Menu
             bus = new BUS_Beverage();
             currentNumpage = 1;
             this._context = mainWindow;
-            loadData();
+            Loaded += LoadData;
         }
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = e.Row.GetIndex() + 1;
             e.Row.Height = 60;
         }
+        public void LoadData(Object sender, RoutedEventArgs e)
+        {
+            loadData();
+        }
         void loadData()
         {
             var list = new ObservableCollection<DTO_Beverage>();
             List<string> listt = new List<string>();
+            BUS_Parameter busParameter = new BUS_Parameter();
+            limitRow = busParameter.GetValue("RowInList");
             listt = bus.getBeverageType();
             listt.Add("All");
             cbBeverageType.ItemsSource = listt;
@@ -67,7 +74,7 @@ namespace CoffeeStore.Menu
                 string type = row["BeverageTypeName"].ToString();
                 int price = Int32.Parse(row["Price"].ToString());
                 byte[] link =(byte [])row["Link"];
-                if (count >= (rowNumber - 1) * 20 + 1 && count <= rowNumber * 20)
+                if (count >= (rowNumber - 1) * limitRow + 1 && count <= rowNumber * limitRow)
                 {
                     list.Add(new DTO_Beverage() { BeverageID = id, BeverageName = name, BeverageTypeID = type, Price = price, Link=link });
                     count++;
@@ -81,12 +88,12 @@ namespace CoffeeStore.Menu
         }
         void setNumPage()
         {
-            if (numRow % 20 == 0)
+            if (numRow % limitRow == 0)
             {
-                maxNumpage = numRow / 20;
+                maxNumpage = numRow / limitRow;
             }
             else
-                maxNumpage = numRow / 20 + 1;
+                maxNumpage = numRow / limitRow + 1;
             
             lblMaxPage.Content = maxNumpage.ToString();
             if (maxNumpage == 0)
@@ -224,7 +231,7 @@ namespace CoffeeStore.Menu
                     string id = row["BeverageID"].ToString();
                     string type = row["BeverageTypeName"].ToString();
                     int price = Int32.Parse(row["Price"].ToString());
-                    if (count >= (rowNumber - 1) * 20 + 1 && count <= rowNumber * 20)
+                    if (count >= (rowNumber - 1) * limitRow + 1 && count <= rowNumber * limitRow)
                     {
                         list.Add(new DTO_Beverage() { BeverageID = id, BeverageName = name, BeverageTypeID = type, Price = price });
                         count++;

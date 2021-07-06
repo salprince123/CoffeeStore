@@ -30,6 +30,7 @@ namespace CoffeeStore.Discount
         int maxNumpage;
         int numRow;
         int currentNumpage;
+        int limitRow;
         class Discount : DTO_Discount
         {
             public String Status { get; set; }
@@ -38,15 +39,21 @@ namespace CoffeeStore.Discount
         public DiscountList()
         {
             InitializeComponent();
+            Loaded += LoadData;
             dgDiscount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
-            loadData();
+            limitRow = 20;
         }
         public DiscountList(MainWindow window)
         {
             InitializeComponent();
+            Loaded += LoadData;
             dgDiscount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             currentNumpage = 1;
+            limitRow = 20;
             this._context = window;
+        }
+        public void LoadData(Object sender, RoutedEventArgs e)
+        {
             loadData();
         }
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
@@ -81,7 +88,7 @@ namespace CoffeeStore.Discount
                 {
                     status = "Sắp diễn ra";
                 }
-                if (count >= (rowNumber - 1) * 20 + 1 && count <= rowNumber * 20)
+                if (count >= (rowNumber - 1) * limitRow + 1 && count <= rowNumber * limitRow)
                 {
                     list.Add(new Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate, Status = status });
                     count++;
@@ -94,12 +101,12 @@ namespace CoffeeStore.Discount
         }
         void setNumPage()
         {
-            if (numRow % 20 == 0)
+            if (numRow % limitRow == 0)
             {
-                maxNumpage = numRow / 20;
+                maxNumpage = numRow / limitRow;
             }
             else
-                maxNumpage = numRow / 20 + 1;
+                maxNumpage = numRow / limitRow + 1;
 
             lblMaxPage.Content = maxNumpage.ToString();
             if(maxNumpage == 0)
@@ -153,7 +160,7 @@ namespace CoffeeStore.Discount
                 else
                 {
 
-                    if (count >= (rowNumber - 1) * 20 + 1 && count <= rowNumber * 20)
+                    if (count >= (rowNumber - 1) * limitRow + 1 && count <= rowNumber * limitRow)
                     {
                         list.Add(new Discount() { DiscountID = id, DiscountName = name, DiscountValue = value, StartDate = startdate, EndDate = enddate, Status = status });
                         count++;

@@ -49,7 +49,6 @@ namespace CoffeeStore.Account
             Loaded += LoadData;
             dataGridAccount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             this._context = mainWindow;
-            limitRow = 20;
         }
 
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
@@ -68,6 +67,8 @@ namespace CoffeeStore.Account
 
         public void LoadData()
         {
+            BUS_Parameter busParameter = new BUS_Parameter();
+            limitRow = busParameter.GetValue("RowInList");
             BUS_Employees bus_employees = new BUS_Employees();
             int empCount = bus_employees.CountEmployees();
             if (empCount % limitRow == 0)

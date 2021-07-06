@@ -165,6 +165,7 @@
     <Compile Include="BUS\BUS_Employees.cs" />
     <Compile Include="BUS\BUS_EmployeeType.cs" />
     <Compile Include="BUS\BUS_InventoryExport.cs" />
+    <Compile Include="BUS\BUS_Parameter.cs" />
     <Compile Include="BUS\BUS_Payment.cs" />
     <Compile Include="BUS\BUS_Receipt.cs" />
     <Compile Include="BUS\BUS_ReceiptDetail.cs" />
@@ -173,6 +174,7 @@
     <Compile Include="DAL\DAL_BeverageType.cs" />
     <Compile Include="DAL\DAL_Employees.cs" />
     <Compile Include="DAL\DAL_EmployeeType.cs" />
+    <Compile Include="DAL\DAL_Parameter.cs" />
     <Compile Include="DAL\DAL_Payment.cs" />
     <Compile Include="DAL\DAL_Receipt.cs" />
     <Compile Include="DAL\DAL_ReceiptDetail.cs" />

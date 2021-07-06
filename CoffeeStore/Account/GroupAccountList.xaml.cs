@@ -66,7 +66,6 @@ namespace CoffeeStore.Account
             InitializeComponent();
             Loaded += LoadData;
             dataGridGroupAccount.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
-            limitRow = 20;
             LoadData();
         }
 
@@ -86,6 +85,9 @@ namespace CoffeeStore.Account
 
         public void LoadData()
         {
+            BUS_Parameter busParameter = new BUS_Parameter();
+            limitRow = busParameter.GetValue("RowInList");
+
             List<GroupAccountInfo> groupAccountInfos = new List<GroupAccountInfo>();
 
             BUS_EmployeeType busEmpType = new BUS_EmployeeType();

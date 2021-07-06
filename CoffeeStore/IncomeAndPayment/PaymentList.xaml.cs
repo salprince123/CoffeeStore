@@ -30,30 +30,37 @@ namespace CoffeeStore.IncomeAndPayment
         int maxNumpage;
         int numRow;
         int currentNumpage;
+        int limitRow;
         public PaymentList()
         {
             InitializeComponent();
+            Loaded += LoadData;
             dgPayment.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             bus = new BUS_Payment();
             currentNumpage = 1;
-            loaddata();
         }
         public PaymentList(MainWindow window)
         {
             InitializeComponent();
+            Loaded += LoadData;
             dgPayment.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             bus = new BUS_Payment();
             _context = window;
             currentNumpage = 1;
-            loaddata();
         }
         void datagrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = e.Row.GetIndex() + 1;
             e.Row.Height = 40;
         }
+        public void LoadData(Object sender, RoutedEventArgs e)
+        {
+            loaddata();
+        }
         void loaddata()
         {
+            BUS_Parameter busParameter = new BUS_Parameter();
+            limitRow = busParameter.GetValue("RowInList");
             var list = new ObservableCollection<DTO_Payment>();
             DataTable temp = bus.getAllPayment();
             int rowNumber = Int32.Parse(tbNumPage.Text);
@@ -64,7 +71,7 @@ namespace CoffeeStore.IncomeAndPayment
                 float money = float.Parse(row["TotalAmount"].ToString());
                 string employeename = row["EmployeeName"].ToString();
                 string time = row["Time"].ToString();
-                if (count >= (rowNumber - 1) * 20 + 1 && count <= rowNumber * 20)
+                if (count >= (rowNumber - 1) * limitRow + 1 && count <= rowNumber * limitRow)
                 {
                     list.Add(new DTO_Payment() { PaymentID = id, Time = time, EmployeeID = employeename, TotalAmount = money });
                     count++;
@@ -77,13 +84,12 @@ namespace CoffeeStore.IncomeAndPayment
         }
         void setNumPage()
         {
-
-            if (numRow % 20 == 0)
+            if (numRow % limitRow == 0)
             {
-                maxNumpage = numRow / 20;
+                maxNumpage = numRow / limitRow;
             }
             else
-                maxNumpage = numRow / 20 + 1;
+                maxNumpage = numRow / limitRow + 1;
 
             lblMaxPage.Content = maxNumpage.ToString();
             if (maxNumpage == 0)
@@ -147,6 +153,17 @@ namespace CoffeeStore.IncomeAndPayment
         }
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+            DTO_Payment row = (DTO_Payment)dgPayment.SelectedItem;
+            DateTime importDate = DateTime.ParseExact(row.Time, "dd/MM/yyyy HH:mm:ss", null);
+
+            BUS_Parameter busParameter = new BUS_Parameter();
+            int limitDay = busParameter.GetValue("DayDeletePayment");
+
+            if ((DateTime.Now - importDate) > TimeSpan.FromDays(limitDay))
+            {
+                MessageBox.Show($"Không thể chỉnh sửa phiếu đã được tạo cách đây hơn {limitDay} ngày.");
+                return;
+            }
             DTO_Payment dto = (DTO_Payment)dgPayment.SelectedItem;
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
             ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
@@ -169,6 +186,18 @@ namespace CoffeeStore.IncomeAndPayment
         }
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            DTO_Payment row = (DTO_Payment)dgPayment.SelectedItem;
+            DateTime importDate = DateTime.ParseExact(row.Time, "dd/MM/yyyy HH:mm:ss tt", null);
+
+            BUS_Parameter busParameter = new BUS_Parameter();
+            int limitDay = busParameter.GetValue("DayDeletePayment");
+
+            if ((DateTime.Now - importDate) > TimeSpan.FromDays(limitDay))
+            {
+                MessageBox.Show($"Không thể xóa phiếu đã được tạo cách đây hơn {limitDay} ngày.");
+                return;
+            }
+
             DTO_Payment dto = (DTO_Payment)dgPayment.SelectedItem;
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
             ((MainWindow)App.Current.MainWindow).Opacity = 0.5;
@@ -229,7 +258,7 @@ namespace CoffeeStore.IncomeAndPayment
                 string employeename = row["EmployeeName"].ToString();
                 string time = row["Time"].ToString();
                 DateTime timefind = DateTime.ParseExact(time, "dd/MM/yyyy", null);
-                if (count >= (rowNumber - 1) * 20 + 1 && count <= rowNumber * 20)
+                if (count >= (rowNumber - 1) * limitRow + 1 && count <= rowNumber * limitRow)
                 {
                     if (DateTime.Compare(timefind, timeend) <= 0 && DateTime.Compare(timefind, timestart) >= 0)
                     {

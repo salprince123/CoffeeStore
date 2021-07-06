@@ -27,6 +27,7 @@ namespace CoffeeStore.Inventory
         public MaterialList()
         {
             InitializeComponent();
+
             dataGridMaterial.LoadingRow += new EventHandler<DataGridRowEventArgs>(datagrid_LoadingRow);
             LoadData();
             Loaded += LoadData;
@@ -57,7 +58,6 @@ namespace CoffeeStore.Inventory
         public void LoadData()
         {
             btBack.IsEnabled = false;
-            
             list.Clear();
             Dictionary<String, int> mapNameAmount = new Dictionary<string, int>();
             Dictionary<String, String> mapNameUnit = new Dictionary<string, string>();
@@ -107,7 +107,8 @@ namespace CoffeeStore.Inventory
                 list.Add(new InventoryObject() { Name = name.Key, Amount = amount.ToString(), Unit = name.Value });
                 number0++;
             }
-            int rowPerSheet = 20;
+            BUS_Parameter busParameter = new BUS_Parameter();
+            int rowPerSheet = busParameter.GetValue("RowInList");
             if (list.Count % rowPerSheet == 0)
                 lblMaxPage.Content = list.Count / rowPerSheet;
             else lblMaxPage.Content = list.Count / rowPerSheet + 1;
@@ -129,7 +130,8 @@ namespace CoffeeStore.Inventory
                     this.dataGridMaterial.Items.Refresh();
                     return;
                 }
-                int numberPersheet = 20;
+                BUS_Parameter busParameter = new BUS_Parameter();
+                int numberPersheet = busParameter.GetValue("RowInList");
                 if (list.Count < numberPersheet * numpage)
                 {
                     displayList = list.GetRange((numpage - 1) * numberPersheet, list.Count - (numpage - 1) * numberPersheet);
@@ -155,7 +157,8 @@ namespace CoffeeStore.Inventory
                     this.dataGridMaterial.Items.Refresh();
                     return;
                 }
-                int numberPersheet = 20;
+                BUS_Parameter busParameter = new BUS_Parameter();
+                int numberPersheet = busParameter.GetValue("RowInList");
                 if (findList.Count < numberPersheet * numpage)
                 {
                     displayList = findList.GetRange((numpage - 1) * numberPersheet, findList.Count - (numpage - 1) * numberPersheet);
@@ -180,7 +183,8 @@ namespace CoffeeStore.Inventory
                 if (obj.Name.ToLower().Contains(keyword.ToLower()))
                     findList.Add(obj);
             }
-            int rowPerSheet = 20;
+            BUS_Parameter busParameter = new BUS_Parameter();
+            int rowPerSheet = busParameter.GetValue("RowInList");
             btNext.IsEnabled = true;
             if (findList.Count % rowPerSheet == 0)
                 lblMaxPage.Content = findList.Count / rowPerSheet;

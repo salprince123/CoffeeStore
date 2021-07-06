@@ -61,11 +61,14 @@ namespace CoffeeStore.IncomeAndPayment
 
         void LoadData(Object sender, RoutedEventArgs e)
         {
+            BUS_Parameter busParameter = new BUS_Parameter();
+            limitRow = busParameter.GetValue("RowInList");
+
             currentPage = 1;
             tbNumPage.Text = "1";
             btnPagePre.IsEnabled = false;
 
-            start = new DateTime(2021, 1, 1, 0, 0, 0);
+            start = new DateTime(1900, 1, 1, 0, 0, 0);
             end = DateTime.Today;
             keyword = "";
 
@@ -112,7 +115,7 @@ namespace CoffeeStore.IncomeAndPayment
         {
             DateTime? datepicker = dpDateStart.SelectedDate;
             if (datepicker.ToString() == "")
-                start = new DateTime(2021, 1, 1, 0, 0, 0);
+                start = new DateTime(1900, 1, 1, 0, 0, 0);
             else
                 start = datepicker.Value;
 
@@ -172,9 +175,11 @@ namespace CoffeeStore.IncomeAndPayment
         {
             string id = ((Button)sender).Tag.ToString();
             BUS_Receipt busReceipt = new BUS_Receipt();
-            if ((DateTime.Now - busReceipt.GetCreateDayByID(id)).TotalDays > 2)
+            BUS_Parameter busParameter = new BUS_Parameter();
+            int limitDay = busParameter.GetValue("DayDeleteReceipt");
+            if ((DateTime.Now - busReceipt.GetCreateDayByID(id)).TotalDays > limitDay)
             {
-                MessageBox.Show("Không thể xóa do hóa đơn đã được tạo cách đây hơn 2 ngày!");
+                MessageBox.Show($"Không thể xóa do hóa đơn đã được tạo cách đây hơn {limitDay} ngày!");
                 return;
             }    
 
