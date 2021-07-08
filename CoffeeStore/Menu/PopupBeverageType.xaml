@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:CoffeeStore.Menu" xmlns:UserControls="clr-namespace:CoffeeStore.View" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              MinWidth="300" Height="Auto" >
-    <Grid Background="White" Height="234">
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
