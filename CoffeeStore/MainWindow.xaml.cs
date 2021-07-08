@@ -59,7 +59,7 @@ namespace CoffeeStore
             menuAccount.Add(new SubItem("Nhóm tài khoản", "AP003", new Account.GroupAccountList()));
             var item7 = new ItemMenu("Tài khoản", menuAccount, PackIconKind.Register);
 
-            var item8 = new ItemMenu("Thiết lập quy định", "", new Rule.Rule(this), PackIconKind.Cog);
+            var item8 = new ItemMenu("Thiết lập quy định", "AP009", new Rule.Rule(this), PackIconKind.Cog);
             Menu.Children.Add(new MenuItem(item1, this));
             Menu.Children.Add(new MenuItem(item2, this));
             Menu.Children.Add(new MenuItem(item3, this));

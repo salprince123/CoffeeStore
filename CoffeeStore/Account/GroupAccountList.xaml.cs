@@ -25,6 +25,7 @@ static class Constants
     public const string MENU = "Quản lý menu";
     public const string DISCOUNT = "Quản lý ưu đãi";
     public const string REPORT = "Báo cáo";
+    public const string RULE = "Thiết lập quy định";
 }
 
 namespace CoffeeStore.Account
@@ -47,8 +48,9 @@ namespace CoffeeStore.Account
             public bool menu { get; set; }
             public bool discount { get; set; }
             public bool report { get; set; }
+            public bool rule { get; set; }
             public GroupAccountInfo() { }
-            public GroupAccountInfo(string newName, bool newCashPer, bool newAcc, bool newAccType, bool newInv, bool newCost, bool newMenu, bool newDiscount, bool newReport)
+            public GroupAccountInfo(string newName, bool newCashPer, bool newAcc, bool newAccType, bool newInv, bool newCost, bool newMenu, bool newDiscount, bool newReport, bool newRule)
             {
                 name = newName;
                 cashier = newCashPer;
@@ -59,6 +61,7 @@ namespace CoffeeStore.Account
                 menu = newMenu;
                 discount = newDiscount;
                 report = newReport;
+                rule = newRule;
             }
         }
         public GroupAccountList()
@@ -155,6 +158,11 @@ namespace CoffeeStore.Account
                     newGrAccInfo.report = false;
                 else
                     newGrAccInfo.report = true;
+
+                if (row[columnName: Constants.RULE].ToString() == "0")
+                    newGrAccInfo.rule = false;
+                else
+                    newGrAccInfo.rule = true;
 
                 groupAccountInfos.Add(item: newGrAccInfo);
             }

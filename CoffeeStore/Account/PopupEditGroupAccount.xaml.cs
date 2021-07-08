@@ -114,6 +114,13 @@ namespace CoffeeStore.Account
                 AccessPermissionName item = dgUnselectedList.Find(x => x.name == Constants.REPORT);
                 dgUnselectedList.Remove(item);
             }
+
+            if (grAccInfo.rule == true)
+            {
+                dgSelectedList.Add(new AccessPermissionName(Constants.RULE));
+                AccessPermissionName item = dgUnselectedList.Find(x => x.name == Constants.RULE);
+                dgUnselectedList.Remove(item);
+            }
             #endregion
 
             this.dgUnselected.ItemsSource = dgUnselectedList;
@@ -234,6 +241,9 @@ namespace CoffeeStore.Account
                 oldPerList.Add(new AccessPermissionName(Constants.DISCOUNT));
 
             if (editGrAccInfo.report)
+                oldPerList.Add(new AccessPermissionName(Constants.REPORT));
+
+            if (editGrAccInfo.rule)
                 oldPerList.Add(new AccessPermissionName(Constants.REPORT));
 
             #endregion

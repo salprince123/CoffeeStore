@@ -192,6 +192,11 @@
                                     IsThreeState="True" 
                                     Binding="{Binding Path=report}">
                                 </DataGridCheckBoxColumn>
+                                <DataGridCheckBoxColumn 
+                                    Header="Thiết lập quy định"
+                                    IsThreeState="True" 
+                                    Binding="{Binding Path=rule}">
+                                </DataGridCheckBoxColumn>
                                 <DataGridTemplateColumn Header="">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
