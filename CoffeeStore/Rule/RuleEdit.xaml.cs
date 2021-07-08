@@ -54,68 +54,70 @@ namespace CoffeeStore.Rule
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
+            tbMaxNumRowValidation.Text = tbMaxDaysBillValidation.Text = tbMaxDaysImportValidation.Text = tbMaxDaysExportValidation.Text = tbMaxDaysPaymentValidation.Text = "";
+
             if (tbMaxNumRow.Text == "")
             {
                 ///Validation for max num row empty or == 0
-                
+                tbMaxNumRowValidation.Text = "Số dòng tối đa không được để trống.";
                 return;
             }
             if (Int32.Parse(tbMaxNumRow.Text) == 0)
             {
                 ///Validation for max num row empty or == 0
-                
-                return;
-            }
-
-            if (tbMaxDaysPayment.Text == "")
-            {
-                ///Validation for max num row empty or == 0
-
-                return;
-            }
-            if (Int32.Parse(tbMaxDaysPayment.Text) == 0)
-            {
-                ///Validation for max num row empty or == 0
-
+                tbMaxNumRowValidation.Text = "Số dòng tối đa phải lớn hơn 0.";
                 return;
             }
 
             if (tbMaxDaysBill.Text == "")
             {
                 ///Validation for max num row empty or == 0
-
+                tbMaxDaysBillValidation.Text = "Thời gian được sửa/xóa hóa đơn không được để trống.";
                 return;
             }
             if (Int32.Parse(tbMaxDaysBill.Text) == 0)
             {
                 ///Validation for max num row empty or == 0
-
-                return;
-            }
-
-            if (tbMaxDaysExport.Text == "")
-            {
-                ///Validation for max num row empty or == 0
-
-                return;
-            }
-            if (Int32.Parse(tbMaxDaysExport.Text) == 0)
-            {
-                ///Validation for max num row empty or == 0
-
+                tbMaxDaysBillValidation.Text = "Thời gian được sửa/xóa hóa đơn phải lớn hơn 0.";
                 return;
             }
 
             if (tbMaxDaysImport.Text == "")
             {
                 ///Validation for max num row empty or == 0
-
+                tbMaxDaysImportValidation.Text = "Thời gian được sửa/xóa phiếu nhập kho không được để trống.";
                 return;
             }
             if (Int32.Parse(tbMaxDaysImport.Text) == 0)
             {
                 ///Validation for max num row empty or == 0
+                tbMaxDaysImportValidation.Text = "Thời gian được sửa/xóa phiếu nhập kho phải lớn hơn 0.";
+                return;
+            }
 
+            if (tbMaxDaysExport.Text == "")
+            {
+                ///Validation for max num row empty or == 0
+                tbMaxDaysExportValidation.Text = "Thời gian được sửa/xóa phiếu xuất kho không được để trống.";
+                return;
+            }
+            if (Int32.Parse(tbMaxDaysExport.Text) == 0)
+            {
+                ///Validation for max num row empty or == 0
+                tbMaxDaysExportValidation.Text = "Thời gian được sửa/xóa phiếu xuất kho phải lớn hơn 0.";
+                return;
+            }
+
+            if (tbMaxDaysPayment.Text == "")
+            {
+                ///Validation for max num row empty or == 0
+                tbMaxDaysPaymentValidation.Text = "Thời gian được sửa/xóa phiếu chi không được để trống.";
+                return;
+            }
+            if (Int32.Parse(tbMaxDaysPayment.Text) == 0)
+            {
+                ///Validation for max num row empty or == 0
+                tbMaxDaysPaymentValidation.Text = "Thời gian được sửa/xóa phiếu chi phải lớn hơn 0.";
                 return;
             }
 

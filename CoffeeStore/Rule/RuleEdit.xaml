@@ -68,6 +68,8 @@
                              PreviewKeyDown="tbMaxNumRow_PreviewKeyDown" PreviewTextInput="tbMaxNumRow_PreviewTextInput">
                     </TextBox>
                 </StackPanel>
+                <TextBlock Margin="20,0,0,0" Grid.Row="1" Height="20" VerticalAlignment="Center" HorizontalAlignment="Right"
+                   Name="tbMaxNumRowValidation" FontSize="13" Foreground="Red" Text=""/>
 
                 <StackPanel Grid.Row="2">
                     <TextBlock>Thời gian được sửa/xóa hóa đơn (ngày)</TextBlock>
@@ -76,6 +78,8 @@
                              PreviewKeyDown="tbMaxDaysBill_PreviewKeyDown" PreviewTextInput="tbMaxDaysBill_PreviewTextInput">
                     </TextBox>
                 </StackPanel>
+                <TextBlock Margin="20,0,0,0" Grid.Row="3" Height="20" VerticalAlignment="Center" HorizontalAlignment="Right"
+                   Name="tbMaxDaysBillValidation" FontSize="13" Foreground="Red" Text=""/>
 
                 <StackPanel Grid.Row="4">
                     <TextBlock>Thời gian được sửa/xóa phiếu nhập kho (ngày)</TextBlock>
@@ -84,6 +88,8 @@
                              PreviewKeyDown="tbMaxDaysImport_PreviewKeyDown" PreviewTextInput="tbMaxDaysImport_PreviewTextInput">
                     </TextBox>
                 </StackPanel>
+                <TextBlock Margin="20,0,0,0" Grid.Row="5" Height="20" VerticalAlignment="Center" HorizontalAlignment="Right"
+                   Name="tbMaxDaysImportValidation" FontSize="13" Foreground="Red" Text=""/>
 
                 <StackPanel Grid.Row="6">
                     <TextBlock>Thời gian được sửa/xóa phiếu xuất kho (ngày)</TextBlock>
@@ -92,6 +98,8 @@
                              PreviewKeyDown="tbMaxDaysExport_PreviewKeyDown" PreviewTextInput="tbMaxDaysExport_PreviewTextInput">
                     </TextBox>
                 </StackPanel>
+                <TextBlock Margin="20,0,0,0" Grid.Row="7" Height="20" VerticalAlignment="Center" HorizontalAlignment="Right"
+                   Name="tbMaxDaysExportValidation" FontSize="13" Foreground="Red" Text=""/>
 
                 <StackPanel Grid.Row="8">
                     <TextBlock>Thời gian được sửa/xóa phiếu chi (ngày)</TextBlock>
@@ -100,6 +108,8 @@
                              PreviewKeyDown="tbMaxDaysPayment_PreviewKeyDown" PreviewTextInput="tbMaxDaysPayment_PreviewTextInput">
                     </TextBox>
                 </StackPanel>
+                <TextBlock Margin="20,0,0,0" Grid.Row="9" Height="20" VerticalAlignment="Center" HorizontalAlignment="Right"
+                   Name="tbMaxDaysPaymentValidation" FontSize="13" Foreground="Red" Text=""/>
 
                 <Button Grid.Row="10" Width="100" Margin="0,0,10,0"
                             Name="btSave"
